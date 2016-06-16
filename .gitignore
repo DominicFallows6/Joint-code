@@ -50,9 +50,13 @@ atlassian*
 
 /lib
 
+/phpserver
+
 /pub
 
 /setup
+
+/update
 
 /var
 
@@ -60,6 +64,9 @@ atlassian*
 
 /*.*
 
+!/.gitignore
 !/composer.json
 !/composer.lock
 !/README.md
+
+!/vendor/limitless
