@@ -64,9 +64,8 @@ atlassian*
 
 /*.*
 
+!/bin/limitless
 !/.gitignore
 !/composer.json
 !/composer.lock
 !/README.md
-
-!/vendor/limitless
