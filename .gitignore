@@ -72,3 +72,4 @@ atlassian*
 !/README.md
 
 .DS_Store
+.idea
