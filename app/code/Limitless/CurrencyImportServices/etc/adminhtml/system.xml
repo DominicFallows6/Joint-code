@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="currency">
+            <group id="solvitt" translate="label" sortOrder="41" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Solvitt</label>
+                <field id="wsdl" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>WSDL URL</label>
+                </field>
+                <field id="timeout" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Connection Timeout (Seconds)</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
