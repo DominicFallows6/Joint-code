@@ -1,0 +1,53 @@
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceContainer name="page.top">
+            <block class="Magento\Cms\Block\Block" name="reasonsNav" after="catalog.topnav" htmlTag="div" htmlClass="reasons-nav">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">reasons_nav</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <referenceBlock name="top.search">
+            <block class="Magento\Cms\Block\Block" name="headerContact">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">header_contact</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <!-- Sets width of logo -->
+        <referenceContainer name="header-wrapper">
+            <block class="Magento\Cms\Block\Block" name="trustpilotHeader" after="minicart">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">trustpilot_header</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Theme\Block\Html\Header\Logo" name="logo">
+                <arguments>
+                    <argument name="logo_img_width" xsi:type="number">230</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+        <!-- Removes welcome message? -->
+        <referenceBlock name="top.links">
+            <block class="Magento\Theme\Block\Html\Header" name="header" as="header" before="-"></block>
+        </referenceBlock>
+
+        <referenceContainer name="footer">
+            <referenceBlock name="footer_links" remove="true"/>
+            <block class="Magento\Cms\Block\Block" name="footerLinks">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">footer_links</argument>
+                </arguments>
+            </block>
+            <block class="Magento\Cms\Block\Block" name="socialFooterLinks">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">social_footer_links</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>
