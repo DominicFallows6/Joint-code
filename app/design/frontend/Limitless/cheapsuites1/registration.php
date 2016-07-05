@@ -5,6 +5,6 @@
  */
 \Magento\Framework\Component\ComponentRegistrar::register(
     \Magento\Framework\Component\ComponentRegistrar::THEME,
-    'frontend/Trueshopping/cheapsuites1',
+    'frontend/Limitless/cheapsuites1',
     __DIR__
 );
