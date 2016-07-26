@@ -6,6 +6,9 @@ DBNAME=magento2
 DBUSER=magento2
 DBPASSWD=P@55word123
 
+echo -e "\n--- Ubuntu Image Bug Fix ---\n"
+sed -i '1s/^/127.0.1.1 ubuntu-xenial \n/' /etc/hosts
+
 echo -e "\n--- Updating packages list ---\n"
 apt-get -qq update
 
@@ -28,8 +31,8 @@ echo -e "\n--- Install PHP specific packages and settings ---\n"
 apt-get -y install nginx php7.0-fpm php7.0-mysql php7.0-curl php7.0-dom php7.0-mcrypt php7.0-intl php7.0-mbstring php7.0-zip php7.0-bcmath php7.0-gd
 
 echo -e "\n--- Setup Nginx ---\n"
+cp /var/www/html/limitless/vagrant/magento2.conf /etc/nginx/sites-available/
 rm /etc/nginx/sites-enabled/default
-cp /var/www/html/limitless/vagrant/magento2.conf /etc/nginx/sites-enabled/
+rm /etc/nginx/sites-avalible/default
+ln -s /etc/nginx/sites-available/magento2.conf /etc/nginx/sites-enabled/
 service nginx restart
-
-
