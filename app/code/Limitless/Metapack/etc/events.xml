@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-<!-- Config placed in global event as will be used on front end and back end -->
-<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
-    <event name="sales_order_save_after">
-        <observer name="limitless_metapack_sales_order_save_after" instance="Limitless\Metapack\Observer\OrderPlaced" shared="false" />
-    </event>
-</config>
