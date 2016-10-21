@@ -36,3 +36,10 @@ php bin/magento setup:upgrade
 ```
 php bin/magento cache:enable
 ```
+
+## Useful Aliases ##
+
+```
+alias php-restart='sudo /usr/local/opt/php70/sbin/php70-fpm restart'
+alias clear-cache='rm -rfv /var/www/html/magento2/var/generation/*; rm -rfv /var/www/html/magento2/var/cache/*'
+```
