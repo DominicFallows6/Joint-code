@@ -1,81 +1,8 @@
 <?php
-return array(
-    'backend' =>
-        array(
-            'frontName' => 'limitless',
-        ),
-    'db' =>
-        array(
-            'connection' =>
-                array(
-                    'indexer' =>
-                        array(
-                            'host' => '<mysql ip or host>',
-                            'dbname' => '<database name>',
-                            'username' => '<database user>',
-                            'password' => '<database password>',
-                            'active' => '1',
-                            'persistent' => null,
-                        ),
-                    'default' =>
-                        array(
-                            'host' => '<mysql ip or host>',
-                            'dbname' => '<database name>',
-                            'username' => '<database user>',
-                            'password' => '<database password>',
-                            'active' => '1',
-                        ),
-                ),
-            'table_prefix' => '',
-        ),
-    'cache' =>
-        array(
-            'frontend' =>
-                array(
-                    'default' =>
-                        array(
-                            'backend' => 'Cm_Cache_Backend_Redis',
-                            'backend_options' =>
-                                array(
-                                    'server' => '<redis ip or host>',
-                                    'port' => '6379'
-                                    //'database' => '1',
-                                    //'compress_data' => '0'
-                                ),
-                        ),
-                    'page_cache' =>
-                        array(
-                            'backend' => 'Cm_Cache_Backend_Redis',
-                            'backend_options' =>
-                                array(
-                                    'server' => '<redis ip or host>',
-                                    'port' => '6379',
-                                    //'database' => '1',
-                                    //'compress_data' => '0'
-                                )
-                        )
-                )
-        ),
-    'crypt' =>
-        array(
-            'key' => '',
-        ),
-    'session' =>
-        array (
-            'save' => 'memcached',
-            'save_path' => '<memcache ip or host>:<memcache port>'
-        ),
-    'resource' =>
-        array(
-            'default_setup' =>
-                array(
-                    'connection' => 'default',
-                ),
-        ),
-    'x-frame-options' => 'SAMEORIGIN',
-    'MAGE_MODE' => 'production',
+return array (
     'cache_types' =>
-        array(
+        array (
+            'compiled_config' => 1,
             'config' => 1,
             'layout' => 1,
             'block_html' => 1,
@@ -91,8 +18,53 @@ return array(
             'translate' => 1,
             'config_webservice' => 1,
         ),
+    'backend' =>
+        array (
+            'frontName' => 'limitless',
+        ),
+    'db' =>
+        array (
+            'connection' =>
+                array (
+                    'indexer' =>
+                        array (
+                            'host' => 'magento2-staging-cluster.cluster-cxwxfaziwde9.eu-west-1.rds.amazonaws.com',
+                            'dbname' => 'magento2',
+                            'username' => 'webserver',
+                            'password' => '!ZA1mD6xY^EScJcD',
+                            'active' => '1',
+                            'persistent' => NULL,
+                        ),
+                    'default' =>
+                        array (
+                            'host' => 'magento2-staging-cluster.cluster-cxwxfaziwde9.eu-west-1.rds.amazonaws.com',
+                            'dbname' => 'magento2',
+                            'username' => 'webserver',
+                            'password' => '!ZA1mD6xY^EScJcD',
+                            'active' => '1',
+                        ),
+                ),
+            'table_prefix' => '',
+        ),
+    'crypt' =>
+        array (
+            'key' => '9aa17b9681659942c0276caeb60d8d1b',
+        ),
+    'session' =>
+        array (
+            'save' => 'files',
+        ),
+    'resource' =>
+        array (
+            'default_setup' =>
+                array (
+                    'connection' => 'default',
+                ),
+        ),
+    'x-frame-options' => 'SAMEORIGIN',
+    'MAGE_MODE' => 'production',
     'install' =>
-        array(
-            'date' => '',
+        array (
+            'date' => 'Sat, 22 Oct 2016 19:30:47 +0000',
         ),
 );
