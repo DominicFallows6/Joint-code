@@ -1,6 +1,7 @@
 #!/bin/bash
 
-DIR="$( cd "$( dirname $( dirname $( dirname "${BASH_SOURCE[0]}" ) ) )" && pwd )"
+#DIR="$( cd "$( dirname $( dirname $( dirname "${BASH_SOURCE[0]}" ) ) )" && pwd )"
+DIR=/var/www/html
 
 [ ! -d "$DIR/app" ] && echo "Not in Magento 2 root directory" >&2 && exit 1
 
