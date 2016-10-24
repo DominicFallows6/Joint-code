@@ -1,7 +1,7 @@
 <?php
-return array (
+return array(
     'cache_types' =>
-        array (
+        array(
             'compiled_config' => 1,
             'config' => 1,
             'layout' => 1,
@@ -19,15 +19,15 @@ return array (
             'config_webservice' => 1,
         ),
     'backend' =>
-        array (
+        array(
             'frontName' => 'limitless',
         ),
     'db' =>
-        array (
+        array(
             'connection' =>
-                array (
+                array(
                     'indexer' =>
-                        array (
+                        array(
                             'host' => 'magento2-staging-cluster.cluster-cxwxfaziwde9.eu-west-1.rds.amazonaws.com',
                             'dbname' => 'magento2',
                             'username' => 'webserver',
@@ -36,7 +36,7 @@ return array (
                             'persistent' => NULL,
                         ),
                     'default' =>
-                        array (
+                        array(
                             'host' => 'magento2-staging-cluster.cluster-cxwxfaziwde9.eu-west-1.rds.amazonaws.com',
                             'dbname' => 'magento2',
                             'username' => 'webserver',
@@ -46,25 +46,51 @@ return array (
                 ),
             'table_prefix' => '',
         ),
+    'cache' =>
+        array(
+            'frontend' =>
+                array(
+                    'default' =>
+                        array(
+                            'backend' => 'Cm_Cache_Backend_Redis',
+                            'backend_options' =>
+                                array(
+                                    'server' => 'central.tyrt1z.ng.0001.euw1.cache.amazonaws.com',
+                                    'port' => '6379',
+                                ),
+                        ),
+                    'page_cache' =>
+                        array(
+                            'backend' => 'Cm_Cache_Backend_Redis',
+                            'backend_options' =>
+                                array(
+                                    'server' => 'page.tyrt1z.ng.0001.euw1.cache.amazonaws.com',
+                                    'port' => '6379',
+                                    'compress_data' => '0'
+                                )
+                        )
+                )
+        ),
     'crypt' =>
-        array (
+        array(
             'key' => '9aa17b9681659942c0276caeb60d8d1b',
         ),
     'session' =>
-        array (
-            'save' => 'files',
+        array(
+            'save' => 'memcached',
+            'save_path' => 'sessions.tyrt1z.cfg.euw1.cache.amazonaws.com:11211',
         ),
     'resource' =>
-        array (
+        array(
             'default_setup' =>
-                array (
+                array(
                     'connection' => 'default',
                 ),
         ),
     'x-frame-options' => 'SAMEORIGIN',
     'MAGE_MODE' => 'production',
     'install' =>
-        array (
+        array(
             'date' => 'Sat, 22 Oct 2016 19:30:47 +0000',
         ),
 );
