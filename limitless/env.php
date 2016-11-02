@@ -34,6 +34,9 @@ return array(
                             'password' => '!ZA1mD6xY^EScJcD',
                             'active' => '1',
                             'persistent' => NULL,
+                            'model' => 'mysql4',
+                            'engine' => 'innodb',
+                            'initStatements' => 'SET NAMES utf8;',
                         ),
                     'default' =>
                         array(
@@ -42,6 +45,9 @@ return array(
                             'username' => 'webserver',
                             'password' => '!ZA1mD6xY^EScJcD',
                             'active' => '1',
+                            'model' => 'mysql4',
+                            'engine' => 'innodb',
+                            'initStatements' => 'SET NAMES utf8;',
                         ),
                 ),
             'table_prefix' => '',
@@ -96,5 +102,12 @@ return array(
     'install' =>
         array(
             'date' => 'Sat, 22 Oct 2016 19:30:47 +0000',
+        ),
+    'http_cache_hosts' => 
+        array (
+            0 => 
+                array (
+                    'host' => '10.4.26.94',
+                ),
         ),
 );
