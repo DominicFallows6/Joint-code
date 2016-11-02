@@ -75,10 +75,14 @@ return array(
         array(
             'key' => '9aa17b9681659942c0276caeb60d8d1b',
         ),
-    'session' =>
+/*    'session' =>
         array(
             'save' => 'memcached',
             'save_path' => 'sessions.tyrt1z.cfg.euw1.cache.amazonaws.com:11211',
+        ),*/
+    'session' =>
+        array(
+            'save' => 'db'
         ),
     'resource' =>
         array(
