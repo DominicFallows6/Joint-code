@@ -9,9 +9,12 @@ hooks:
       timeout: 300
       runas: root
   AfterInstall:
-    - location: limitless/deployment/after_install.sh
+    - location: limitless/deployment/permissions.sh
       timeout: 300
       runas: root
+    - location: limitless/deployment/setup_upgrade.sh
+      timeout: 300
+      runas: nginx
   ApplicationStart:
     - location: limitless/deployment/application_start.sh
       timeout: 300
