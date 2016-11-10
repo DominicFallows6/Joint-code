@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "ae32150be2dfa2cb588c5a286e91cd16",
-    "content-hash": "63ddb6a0b332f8159672b0808dd6b311",
+    "hash": "c17905614d99280c65d6af27258346cf",
+    "content-hash": "9a9cc165cca64cc6116947b905a9cb47",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -403,16 +403,16 @@
         },
         {
             "name": "elasticsearch/elasticsearch",
-            "version": "v2.2.2",
+            "version": "v2.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/elastic/elasticsearch-php.git",
-                "reference": "2f54f5c5301075b993da5505e406d2a4d6113222"
+                "reference": "588ede911141543f5b43e9f605931d5e6490a3d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/2f54f5c5301075b993da5505e406d2a4d6113222",
-                "reference": "2f54f5c5301075b993da5505e406d2a4d6113222",
+                "url": "https://api.github.com/repos/elastic/elasticsearch-php/zipball/588ede911141543f5b43e9f605931d5e6490a3d6",
+                "reference": "588ede911141543f5b43e9f605931d5e6490a3d6",
                 "shasum": ""
             },
             "require": {
@@ -453,7 +453,7 @@
                 "elasticsearch",
                 "search"
             ],
-            "time": "2016-10-17 19:43:19"
+            "time": "2016-11-04 17:59:06"
         },
         {
             "name": "guzzlehttp/ringphp",
@@ -9252,16 +9252,16 @@
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "v2.8.12",
+            "version": "v2.8.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "889983a79a043dfda68f38c38b6dba092dd49cd8"
+                "reference": "25c576abd4e0f212e678fe8b2bd9a9a98c7ea934"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/889983a79a043dfda68f38c38b6dba092dd49cd8",
-                "reference": "889983a79a043dfda68f38c38b6dba092dd49cd8",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/25c576abd4e0f212e678fe8b2bd9a9a98c7ea934",
+                "reference": "25c576abd4e0f212e678fe8b2bd9a9a98c7ea934",
                 "shasum": ""
             },
             "require": {
@@ -9308,20 +9308,20 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2016-07-28 16:56:28"
+            "time": "2016-10-13 01:43:15"
         },
         {
             "name": "symfony/filesystem",
-            "version": "v2.8.12",
+            "version": "v2.8.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/filesystem.git",
-                "reference": "44b499521defddf2eae17a18c811bbdae4f98bdf"
+                "reference": "a3784111af9f95f102b6411548376e1ae7c93898"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/filesystem/zipball/44b499521defddf2eae17a18c811bbdae4f98bdf",
-                "reference": "44b499521defddf2eae17a18c811bbdae4f98bdf",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/a3784111af9f95f102b6411548376e1ae7c93898",
+                "reference": "a3784111af9f95f102b6411548376e1ae7c93898",
                 "shasum": ""
             },
             "require": {
@@ -9357,11 +9357,11 @@
             ],
             "description": "Symfony Filesystem Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-06 10:55:00"
+            "time": "2016-10-18 04:28:30"
         },
         {
             "name": "symfony/finder",
-            "version": "v3.1.5",
+            "version": "v3.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
@@ -9410,7 +9410,7 @@
         },
         {
             "name": "symfony/process",
-            "version": "v2.8.12",
+            "version": "v2.8.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/process.git",
@@ -9546,6 +9546,88 @@
                 "yui"
             ],
             "time": "2014-09-22 08:08:50"
+        },
+        {
+            "name": "worldpay/magento2-module-payments",
+            "version": "2.0.24",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Worldpay/worldpay-magento2.git",
+                "reference": "9424e7fc425940c6696af8505342a977bbd3f87c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Worldpay/worldpay-magento2/zipball/9424e7fc425940c6696af8505342a977bbd3f87c",
+                "reference": "9424e7fc425940c6696af8505342a977bbd3f87c",
+                "shasum": ""
+            },
+            "require": {
+                "magento/magento-composer-installer": "*",
+                "magento/module-payment": "*",
+                "magento/module-quote": "*",
+                "magento/module-sales": "*",
+                "php": "~5.5.0|~5.6.0|~7.0.0",
+                "worldpay/worldpay-lib-php": "~2.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Worldpay\\Payments\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Proprietary"
+            ],
+            "description": "Worldpay Payments",
+            "time": "2016-10-10 13:10:12"
+        },
+        {
+            "name": "worldpay/worldpay-lib-php",
+            "version": "2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Worldpay/worldpay-lib-php.git",
+                "reference": "19995ee5a685b83986ac64e1e44561ea8b1a1c86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Worldpay/worldpay-lib-php/zipball/19995ee5a685b83986ac64e1e44561ea8b1a1c86",
+                "reference": "19995ee5a685b83986ac64e1e44561ea8b1a1c86",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Worldpay\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Worldpay",
+                    "homepage": "https://online.worldpay.com"
+                }
+            ],
+            "description": "Worldpay PHP Library",
+            "homepage": "https://online.worldpay.com",
+            "keywords": [
+                "api",
+                "payments",
+                "uiisthebest",
+                "worldpay"
+            ],
+            "time": "2016-09-19 10:24:16"
         },
         {
             "name": "zendframework/zend-code",
@@ -11104,16 +11186,16 @@
         },
         {
             "name": "fabpot/php-cs-fixer",
-            "version": "v1.12.2",
+            "version": "v1.12.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "baa7112bef3b86c65fcfaae9a7a50436e3902b41"
+                "reference": "78a820c16d13f593303511461eefa939502fb2de"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/baa7112bef3b86c65fcfaae9a7a50436e3902b41",
-                "reference": "baa7112bef3b86c65fcfaae9a7a50436e3902b41",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/78a820c16d13f593303511461eefa939502fb2de",
+                "reference": "78a820c16d13f593303511461eefa939502fb2de",
                 "shasum": ""
             },
             "require": {
@@ -11159,7 +11241,7 @@
             ],
             "description": "A tool to automatically fix PHP code style",
             "abandoned": "friendsofphp/php-cs-fixer",
-            "time": "2016-09-27 07:57:59"
+            "time": "2016-10-30 12:07:10"
         },
         {
             "name": "lusitanian/oauth",
@@ -12192,7 +12274,7 @@
         },
         {
             "name": "symfony/config",
-            "version": "v2.8.12",
+            "version": "v2.8.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/config.git",
@@ -12245,16 +12327,16 @@
         },
         {
             "name": "symfony/dependency-injection",
-            "version": "v2.8.12",
+            "version": "v2.8.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/dependency-injection.git",
-                "reference": "ee9ec9ac2b046462d341e9de7c4346142d335e75"
+                "reference": "3d61c765daa1a5832f1d7c767f48886b8d8ea64c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/ee9ec9ac2b046462d341e9de7c4346142d335e75",
-                "reference": "ee9ec9ac2b046462d341e9de7c4346142d335e75",
+                "url": "https://api.github.com/repos/symfony/dependency-injection/zipball/3d61c765daa1a5832f1d7c767f48886b8d8ea64c",
+                "reference": "3d61c765daa1a5832f1d7c767f48886b8d8ea64c",
                 "shasum": ""
             },
             "require": {
@@ -12304,11 +12386,11 @@
             ],
             "description": "Symfony DependencyInjection Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-24 09:47:20"
+            "time": "2016-10-24 15:52:36"
         },
         {
             "name": "symfony/stopwatch",
-            "version": "v3.1.5",
+            "version": "v3.1.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/stopwatch.git",
@@ -12357,16 +12439,16 @@
         },
         {
             "name": "symfony/yaml",
-            "version": "v2.8.12",
+            "version": "v2.8.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "e7540734bad981fe59f8ef14b6fc194ae9df8d9c"
+                "reference": "396784cd06b91f3db576f248f2402d547a077787"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/e7540734bad981fe59f8ef14b6fc194ae9df8d9c",
-                "reference": "e7540734bad981fe59f8ef14b6fc194ae9df8d9c",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/396784cd06b91f3db576f248f2402d547a077787",
+                "reference": "396784cd06b91f3db576f248f2402d547a077787",
                 "shasum": ""
             },
             "require": {
@@ -12402,7 +12484,7 @@
             ],
             "description": "Symfony Yaml Component",
             "homepage": "https://symfony.com",
-            "time": "2016-09-02 01:57:56"
+            "time": "2016-10-21 20:59:10"
         },
         {
             "name": "theseer/fdomdocument",
