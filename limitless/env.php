@@ -34,6 +34,9 @@ return array(
                             'password' => '!ZA1mD6xY^EScJcD',
                             'active' => '1',
                             'persistent' => NULL,
+                            'model' => 'mysql4',
+                            'engine' => 'innodb',
+                            'initStatements' => 'SET NAMES utf8;',
                         ),
                     'default' =>
                         array(
@@ -42,6 +45,9 @@ return array(
                             'username' => 'webserver',
                             'password' => '!ZA1mD6xY^EScJcD',
                             'active' => '1',
+                            'model' => 'mysql4',
+                            'engine' => 'innodb',
+                            'initStatements' => 'SET NAMES utf8;',
                         ),
                 ),
             'table_prefix' => '',
@@ -75,10 +81,14 @@ return array(
         array(
             'key' => '9aa17b9681659942c0276caeb60d8d1b',
         ),
-    'session' =>
+/*    'session' =>
         array(
             'save' => 'memcached',
             'save_path' => 'sessions.tyrt1z.cfg.euw1.cache.amazonaws.com:11211',
+        ),*/
+    'session' =>
+        array(
+            'save' => 'db'
         ),
     'resource' =>
         array(
@@ -92,5 +102,12 @@ return array(
     'install' =>
         array(
             'date' => 'Sat, 22 Oct 2016 19:30:47 +0000',
+        ),
+    'http_cache_hosts' => 
+        array (
+            0 => 
+                array (
+                    'host' => '10.4.26.94',
+                ),
         ),
 );

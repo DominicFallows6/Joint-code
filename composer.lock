@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "cf1a40e87c949001dfa37c3e37910695",
-    "content-hash": "ad12071dd82eddb043d0c81f506b1542",
+    "hash": "ae32150be2dfa2cb588c5a286e91cd16",
+    "content-hash": "63ddb6a0b332f8159672b0808dd6b311",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9086,6 +9086,59 @@
             "time": "2014-09-22 08:40:36"
         },
         {
+            "name": "snowdog/frontools",
+            "version": "1.1.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SnowdogApps/magento2-frontools.git",
+                "reference": "9e8f84b25b8584787db12d18f0812f54dc65bcfe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SnowdogApps/magento2-frontools/zipball/9e8f84b25b8584787db12d18f0812f54dc65bcfe",
+                "reference": "9e8f84b25b8584787db12d18f0812f54dc65bcfe",
+                "shasum": ""
+            },
+            "type": "magento2-component",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Set of front-end tools for Magento 2, based on Gulp.js",
+            "time": "2016-10-28 09:58:29"
+        },
+        {
+            "name": "snowdog/theme-blank-sass",
+            "version": "0.8.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/SnowdogApps/magento2-theme-blank-sass.git",
+                "reference": "0f515072698b30c8ec6ced5402c0ddffe0fe82ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/SnowdogApps/magento2-theme-blank-sass/zipball/0f515072698b30c8ec6ced5402c0ddffe0fe82ef",
+                "reference": "0f515072698b30c8ec6ced5402c0ddffe0fe82ef",
+                "shasum": ""
+            },
+            "require": {
+                "magento/framework": "100.1.*",
+                "php": "~5.6.0|7.0.2|~7.0.6"
+            },
+            "type": "magento2-theme",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "SASS based version of Magento 2 Blank theme",
+            "time": "2016-10-07 08:47:42"
+        },
+        {
             "name": "solarium/solarium",
             "version": "3.3.0",
             "source": {
@@ -9493,88 +9546,6 @@
                 "yui"
             ],
             "time": "2014-09-22 08:08:50"
-        },
-        {
-            "name": "worldpay/magento2-module-payments",
-            "version": "2.0.24",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Worldpay/worldpay-magento2.git",
-                "reference": "9424e7fc425940c6696af8505342a977bbd3f87c"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Worldpay/worldpay-magento2/zipball/9424e7fc425940c6696af8505342a977bbd3f87c",
-                "reference": "9424e7fc425940c6696af8505342a977bbd3f87c",
-                "shasum": ""
-            },
-            "require": {
-                "magento/magento-composer-installer": "*",
-                "magento/module-payment": "*",
-                "magento/module-quote": "*",
-                "magento/module-sales": "*",
-                "php": "~5.5.0|~5.6.0|~7.0.0",
-                "worldpay/worldpay-lib-php": "~2.1.0"
-            },
-            "type": "magento2-module",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ],
-                "psr-4": {
-                    "Worldpay\\Payments\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "Proprietary"
-            ],
-            "description": "Worldpay Payments",
-            "time": "2016-10-10 13:10:12"
-        },
-        {
-            "name": "worldpay/worldpay-lib-php",
-            "version": "2.1.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Worldpay/worldpay-lib-php.git",
-                "reference": "19995ee5a685b83986ac64e1e44561ea8b1a1c86"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Worldpay/worldpay-lib-php/zipball/19995ee5a685b83986ac64e1e44561ea8b1a1c86",
-                "reference": "19995ee5a685b83986ac64e1e44561ea8b1a1c86",
-                "shasum": ""
-            },
-            "require": {
-                "ext-curl": "*",
-                "php": ">=5.3.0"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-4": {
-                    "Worldpay\\": "lib/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Worldpay",
-                    "homepage": "https://online.worldpay.com"
-                }
-            ],
-            "description": "Worldpay PHP Library",
-            "homepage": "https://online.worldpay.com",
-            "keywords": [
-                "api",
-                "payments",
-                "uiisthebest",
-                "worldpay"
-            ],
-            "time": "2016-09-19 10:24:16"
         },
         {
             "name": "zendframework/zend-code",
