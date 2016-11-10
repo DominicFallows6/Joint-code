@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "17a08010bdff60ab723af624cd7ffb30",
-    "content-hash": "74841c5e35173fbfe49af10ebac27576",
+    "hash": "cf1a40e87c949001dfa37c3e37910695",
+    "content-hash": "ad12071dd82eddb043d0c81f506b1542",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -9493,6 +9493,88 @@
                 "yui"
             ],
             "time": "2014-09-22 08:08:50"
+        },
+        {
+            "name": "worldpay/magento2-module-payments",
+            "version": "2.0.24",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Worldpay/worldpay-magento2.git",
+                "reference": "9424e7fc425940c6696af8505342a977bbd3f87c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Worldpay/worldpay-magento2/zipball/9424e7fc425940c6696af8505342a977bbd3f87c",
+                "reference": "9424e7fc425940c6696af8505342a977bbd3f87c",
+                "shasum": ""
+            },
+            "require": {
+                "magento/magento-composer-installer": "*",
+                "magento/module-payment": "*",
+                "magento/module-quote": "*",
+                "magento/module-sales": "*",
+                "php": "~5.5.0|~5.6.0|~7.0.0",
+                "worldpay/worldpay-lib-php": "~2.1.0"
+            },
+            "type": "magento2-module",
+            "autoload": {
+                "files": [
+                    "registration.php"
+                ],
+                "psr-4": {
+                    "Worldpay\\Payments\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Proprietary"
+            ],
+            "description": "Worldpay Payments",
+            "time": "2016-10-10 13:10:12"
+        },
+        {
+            "name": "worldpay/worldpay-lib-php",
+            "version": "2.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Worldpay/worldpay-lib-php.git",
+                "reference": "19995ee5a685b83986ac64e1e44561ea8b1a1c86"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Worldpay/worldpay-lib-php/zipball/19995ee5a685b83986ac64e1e44561ea8b1a1c86",
+                "reference": "19995ee5a685b83986ac64e1e44561ea8b1a1c86",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Worldpay\\": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Worldpay",
+                    "homepage": "https://online.worldpay.com"
+                }
+            ],
+            "description": "Worldpay PHP Library",
+            "homepage": "https://online.worldpay.com",
+            "keywords": [
+                "api",
+                "payments",
+                "uiisthebest",
+                "worldpay"
+            ],
+            "time": "2016-09-19 10:24:16"
         },
         {
             "name": "zendframework/zend-code",
