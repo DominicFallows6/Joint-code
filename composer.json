@@ -15,6 +15,7 @@
     "require": {
         "magento/product-enterprise-edition": "2.1.2",
         "composer/composer": "@alpha",
+        "worldpay/magento2-module-payments": "^2.0",
         "snowdog/frontools": "^1.1",
         "snowdog/theme-blank-sass": "^0.8.2"
     },
