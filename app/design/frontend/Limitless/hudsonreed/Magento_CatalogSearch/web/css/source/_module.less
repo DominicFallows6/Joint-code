@@ -34,9 +34,8 @@
     .label {
       .lib-icon-font(
         @_icon-font-content: @icon-search,
-        @_icon-font-size: 22px,
-        @_icon-font-line-height: 28px,
-        @_icon-font-margin: 0 @indent__s 0 0,
+        @_icon-font-size: 35px,
+        @_icon-font-line-height: 33px,
         @_icon-font-color: @minicart-icons-color,
         @_icon-font-color-hover: @minicart-icons-color-hover,
         @_icon-font-color-active: @minicart-icons-color-hover,
@@ -77,21 +76,15 @@
   }
 
   .search-autocomplete {
+    &:extend(.abs-add-box-sizing all);
     display: none;
     margin-top: -15px;
     overflow: hidden;
     position: absolute;
     z-index: 3;
-    &:extend(.abs-add-box-sizing all);
 
     ul {
       .lib-list-reset-styles();
-
-      &:not(:empty) {
-        .lib-css(background, @autocomplete__background-color);
-        .lib-css(border, @autocomplete__border);
-        border-top: 0;
-      }
 
       li {
         .lib-css(border-top, @autocomplete-item__border);
@@ -101,6 +94,12 @@
         position: relative;
         text-align: left;
         white-space: normal;
+
+        &:not(:empty) {
+          border-top: 0;
+          .lib-css(border, @autocomplete__border);
+          .lib-css(background, @autocomplete__background-color);
+        }
 
         &:first-child {
           border-top: none;
@@ -122,8 +121,6 @@
   }
 
   .form.search.advanced {
-    &:extend(.abs-forms-general-desktop all);
-
     .fields.range {
       .field {
         &:first-child {
@@ -159,10 +156,6 @@
             padding-right: 45px;
           }
         }
-
-        &.date {
-          &:extend(.abs-field-date all);
-        }
       }
     }
 
@@ -180,17 +173,7 @@
     }
   }
 
-  .search-terms {
-    &:extend(.abs-reset-list all);
-    line-height: 2em;
-
-    > li {
-      display: inline-block;
-      margin-right: @indent__s;
-    }
-  }
-
-  .search.found {
+  .search.summary {
     margin-bottom: @indent__s;
   }
 }
@@ -198,6 +181,14 @@
 //
 //  Mobile
 //  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .block-search {
+    .block-content {
+      margin-bottom: 0;
+    }
+  }
+}
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
   .block-search {
@@ -225,7 +216,13 @@
     .control {
       border-top: 0;
       margin: 0;
-      padding: 0;
+      padding: 0 0 25px;
+    }
+
+    .nested {
+      display: none;
+      padding-top: 5px;
+      position: absolute;
     }
 
     input {
@@ -239,15 +236,13 @@
       display: inline-block;
       .lib-button-icon(
         @_icon-font-content: @icon-search,
-        @_icon-font-size: 16px,
         @_icon-font-text-hide: true,
-        @_icon-font-color: @header-icons-color,
-        @_icon-font-color-hover: @header-icons-color-hover,
-        @_icon-font-line-height: 32px
+        @_icon-font-color: @header-icons-color
       );
       .lib-button-reset();
+      padding: @indent__xs 0;
       position: absolute;
-      right: @indent__s;
+      right: 10px;
       top: 0;
       z-index: 1;
 

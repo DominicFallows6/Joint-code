@@ -10,23 +10,10 @@
 & when (@media-common = true) {
 
   //  Using buttons mixins
+
   button {
-    &:not(.primary) {
+    &:active {
       .lib-css(box-shadow, @button__shadow);
-
-      &:active {
-        .lib-css(box-shadow, @button__shadow-active);
-      }
-    }
-  }
-
-  body {
-    &:not(._keyfocus) {
-      button {
-        &:focus {
-          box-shadow: none;
-        }
-      }
     }
   }
 
