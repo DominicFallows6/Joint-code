@@ -76,11 +76,21 @@ div.trustpilot-footer-banner iframe {
 
 
 div.homepage-banner {
+  margin:0 0 20px 0;
+}
 
+div.featured-categories {
+  width:100%;
 }
 
 div.featured-categories a {
+  width:24%;
+  display:inline-block;
+  margin-right:1%;
+}
 
+div.featured-categories img {
+  width:100%;
 }
 
 div.featured-categories a:last-child {
