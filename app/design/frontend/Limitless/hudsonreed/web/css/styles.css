@@ -1,10 +1,12 @@
 div.social-links {
   display:inline-block;
   width:28%;
+  padding:0 25px 0 25px;
 }
 
 div.social-links p {
   color:#666;
+  font-size:12px;
 }
 
 div.social-links a {

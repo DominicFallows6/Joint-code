@@ -5,6 +5,12 @@
         <referenceBlock name="copyright" remove="true" />
         <referenceBlock name="report.bugs" remove="true" />
         <referenceBlock name="footer_links" remove="true"/>
+
+
+        <referenceContainer name="page.bottom.container">
+            <block class="Magento\Framework\View\Element\Template" name="footer.trustpilot" template="Magento_Theme::hr-trustpilot.phtml" before="-" />
+        </referenceContainer>
+
         <referenceBlock name="footer">
             <block class="Magento\Framework\View\Element\Template" name="footer.links" template="Magento_Theme::hr-footer-links.phtml" after="-" />
             <block class="Magento\Framework\View\Element\Template" name="social.links" template="Magento_Theme::hr-social-links.phtml" after="-" />
