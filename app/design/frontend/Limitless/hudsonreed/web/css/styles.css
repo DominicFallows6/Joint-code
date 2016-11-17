@@ -1,0 +1,44 @@
+div.social-links {
+  display:inline-block;
+  width:28%;
+}
+
+div.social-links p {
+  color:#666;
+}
+
+div.social-links a {
+  color:#fff;
+  font-size:12px;
+  display:inline-block;
+  line-height:36px;
+  margin:0 10px 0 0;
+}
+
+div.social-links a span {
+  margin-left:10px;
+}
+
+div.social-links a:before {
+  float:left;
+}
+
+div.social-links a.facebook:before {
+  content:url('../images/facebook.svg');
+}
+
+div.social-links a.pinterest:before {
+  content:url('../images/pinterest.svg');
+}
+
+div.social-links a.twitter:before {
+  content:url('../images/twitter.svg');
+}
+
+div.social-links a.google-plus:before {
+  content:url('../images/google-plus.svg');
+}
+
+div.social-links a.you-tube:before {
+  content:url('../images/you-tube.svg');
+}
