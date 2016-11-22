@@ -2,21 +2,41 @@
 
 <page layout="3columns" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceBlock name="copyright" remove="true" />
+
         <referenceBlock name="report.bugs" remove="true" />
         <referenceBlock name="footer_links" remove="true"/>
 
-        <referenceBlock name="header.panel.wrapper" remove="true" />
+        <!--<referenceBlock name="header.panel.wrapper" remove="true" />-->
 
-        <!--<move element="my-account-link" destination="header-wrapper" before="minicart"/>-->
+
+        <referenceBlock name="top.container">
+            <block class="Magento\Framework\View\Element\Template" name="usp.bar" template="Magento_Theme::hr-usp.phtml" after="-" />
+        </referenceBlock>
+
+        <referenceBlock name="header-wrapper">
+            <block class="Magento\Framework\View\Element\Template" name="sales.hotline" template="Magento_Theme::hr-sales-hotline.phtml" after="minicart" />
+            <block class="Magento\Framework\View\Element\Template" name="myaccount.link" template="Magento_Theme::hr-myaccount-link.phtml" before="sales.hotline" />
+
+        </referenceBlock>
+
+        <!--<move element="top.links" destination="header-wrapper" before="sales.hotline"/>
+        <referenceBlock name="register-link" remove="true" />
+        <referenceBlock name="authorization-link" remove="true" />
+        <referenceBlock name="wish-list-link" remove="true" />-->
 
         <referenceContainer name="footer-container">
             <block class="Magento\Framework\View\Element\Template" name="footer.trustpilot" template="Magento_Theme::hr-trustpilot.phtml" before="-" />
+            <block class="Magento\Framework\View\Element\Template" name="footer.payment" template="Magento_Theme::hr-footer-payment.phtml" after="-" />
         </referenceContainer>
 
         <referenceBlock name="footer">
             <block class="Magento\Framework\View\Element\Template" name="footer.links" template="Magento_Theme::hr-footer-links.phtml" after="-" />
             <block class="Magento\Framework\View\Element\Template" name="social.links" template="Magento_Theme::hr-social-links.phtml" after="-" />
         </referenceBlock>
+
+        <move element="copyright" destination="footer" after="social.links" />
+
+        <move element="form.subscribe" destination="footer" after="social.links" />
+
     </body>
 </page>

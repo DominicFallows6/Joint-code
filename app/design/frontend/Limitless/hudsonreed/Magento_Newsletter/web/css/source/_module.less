@@ -12,6 +12,8 @@
   //  Newsletter subscription
   .block.newsletter {
     margin-bottom: @indent__xl;
+    display:inline-block;
+    margin-bottom:0;
 
     .form.subscribe {
       display: table;
@@ -29,12 +31,6 @@
       margin: 0;
 
       .control {
-        .lib-icon-font(
-                @icon-envelope,
-          @_icon-font-size: 35px,
-          @_icon-font-line-height: 33px,
-          @_icon-font-color: @form-element-input-placeholder__color
-        );
         display: block;
 
         &:before {
@@ -44,11 +40,15 @@
     }
 
     input {
-      padding-left: 35px;
+      padding-left: 10px;
     }
 
     .title {
-      display: none;
+      strong {
+        color:@color-white;
+        font-weight:@font-weight__light;
+        font-size:@font-size__xl;
+      }
     }
 
     .label {
@@ -75,7 +75,7 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
   .block.newsletter {
-    width: 26%;
+    width: 40%;
 
     .field {
       .control {
@@ -86,5 +86,13 @@
     .action.subscribe {
       background:@color-gray40;
     }
+  }
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+  .block.newsletter {
+    width: 26%;
+    margin-bottom:30px;
   }
 }

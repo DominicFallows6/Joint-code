@@ -43,6 +43,9 @@
       );
       display: inline-block;
       float: right;
+      position:absolute;
+      top:6px;
+      left:40px;
 
       &.active {
         + .control {
@@ -58,7 +61,6 @@
     }
 
     .control {
-      border-top: 1px solid @border-color__base;
       clear: both;
       margin: 0 -@layout__width-xs-indent -1px;
       padding: 0 @layout__width-xs-indent;
@@ -68,6 +70,9 @@
       left: -300%;
       margin: 15px 0;
       position: absolute;
+      font-size:@font-size__s;
+      height:28px;
+      border:none;
     }
 
     .nested {
@@ -192,7 +197,7 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
   .block-search {
-    margin-top: @indent__s;
+    margin-top: 0;
   }
 }
 
@@ -204,9 +209,10 @@
   .block-search {
     float: left;
     padding-left: 15px;
+    margin-top:5px;
     margin-left:60px;
     position: relative;
-    width: 250px;
+    width: 340px;
     z-index: 4;
 
     .label {
@@ -228,7 +234,7 @@
     input {
       .lib-input-placeholder(@form-element-input-placeholder__color);
       margin: 0;
-      padding-right: 35px;
+      padding-left: 30px;
       position: static;
     }
 
@@ -237,18 +243,18 @@
       .lib-button-icon(
         @_icon-font-content: @icon-search,
         @_icon-font-text-hide: true,
-        @_icon-font-color: @header-icons-color
+        @_icon-font-color: @header-icons-search-color
       );
       .lib-button-reset();
-      padding: @indent__xs 0;
+      padding: 3px 0;
       position: absolute;
-      right: 10px;
+      left: 20px;
       top: 0;
       z-index: 1;
 
       &:focus {
         &:before {
-          .lib-css(color, @color-gray20);
+          .lib-css(color, @color-black);
         }
       }
     }

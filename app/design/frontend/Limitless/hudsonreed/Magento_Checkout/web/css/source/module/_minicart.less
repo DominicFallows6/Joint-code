@@ -118,6 +118,18 @@
       @_icon-font-color-active: @minicart-icons-color
     );
     float: right;
+    position:absolute;
+    right:0;
+    top:5px;
+
+    &:before {
+      content:'Warenkorb';
+      color:#fff;
+      line-height:40px;
+      float:left;
+      margin: 0 10px 0 0;
+      font-size:@font-size__s;
+    }
 
     .block-minicart {
       .lib-css(padding, 25px @minicart__padding-horizontal);
@@ -170,14 +182,14 @@
 
       &.showcart {
         white-space: nowrap;
+        position:relative;
 
         .text {
           &:extend(.abs-visually-hidden all);
         }
 
         .counter.qty {
-          .lib-css(background, @active__color);
-          .lib-css(color, @page__background-color);
+          .lib-css(color, @color-black);
           .lib-css(height, @minicart-qty__height);
           .lib-css(line-height, @minicart-qty__height);
           border-radius: 2px;
@@ -185,9 +197,13 @@
           margin: 3px 0 0;
           min-width: 18px;
           overflow: hidden;
-          padding: 0 3px;
           text-align: center;
           white-space: normal;
+          position:absolute;
+          top:6px;
+          left:0;
+          width:100%;
+          font-weight:800;
 
           &.empty {
             display: none;
@@ -396,7 +412,16 @@
 
 .media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__s) {
   .minicart-wrapper {
-    margin-top: @indent__s;
+    margin-top: 0;
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+  .minicart-wrapper {
+    &:before {
+      content:'';
+      margin:0;
+    }
   }
 }
 
@@ -406,10 +431,25 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
   .minicart-wrapper {
-    margin-left: 13px;
     .block-minicart {
       right: -15px;
       width: 390px;
     }
+    position:relative;
+    top:auto;
+    right:auto;
   }
 }
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__lm) {
+  .minicart-wrapper {
+    color: red;
+  }
+
+}
+
+
+
+
+
