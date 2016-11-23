@@ -61,7 +61,7 @@ return array(
                             'backend' => 'Cm_Cache_Backend_Redis',
                             'backend_options' =>
                                 array(
-                                    'server' => 'central.tyrt1z.ng.0001.euw1.cache.amazonaws.com',
+                                    'server' => 'main.tyrt1z.ng.0001.euw1.cache.amazonaws.com',
                                     'port' => '6379',
                                 ),
                         ),
