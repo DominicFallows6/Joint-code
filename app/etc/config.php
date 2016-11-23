@@ -179,5 +179,6 @@ return array (
     'Magento_CatalogWidget' => 1,
     'Magento_ProductVideoStaging' => 1,
     'Magento_Worldpay' => 1,
+    'Worldpay_Payments' => 1,
   ),
 );
