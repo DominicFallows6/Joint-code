@@ -3,5 +3,12 @@
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <move element="logo" destination="header-wrapper" before="minicart"/>
+        <referenceBlock name="sales.hotline" remove="true" />
+        <referenceBlock name="myaccount.link" remove="true" />
+        <referenceBlock name="minicart" remove="true" />
+        <referenceBlock name="top.search" remove="true" />
+        <referenceBlock name="top.container" remove="true" />
+        <referenceBlock name="footer.trustpilot" remove="true" />
+        <referenceBlock name="footer" remove="true" />
     </body>
 </page>
