@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c17905614d99280c65d6af27258346cf",
-    "content-hash": "9a9cc165cca64cc6116947b905a9cb47",
+    "hash": "cf1a40e87c949001dfa37c3e37910695",
+    "content-hash": "ad12071dd82eddb043d0c81f506b1542",
     "packages": [
         {
             "name": "braintree/braintree_php",
@@ -8944,16 +8944,16 @@
         },
         {
             "name": "seld/jsonlint",
-            "version": "1.4.1",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Seldaek/jsonlint.git",
-                "reference": "e827b5254d3e58c736ea2c5616710983d80b0b70"
+                "reference": "19495c181d6d53a0a13414154e52817e3b504189"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/e827b5254d3e58c736ea2c5616710983d80b0b70",
-                "reference": "e827b5254d3e58c736ea2c5616710983d80b0b70",
+                "url": "https://api.github.com/repos/Seldaek/jsonlint/zipball/19495c181d6d53a0a13414154e52817e3b504189",
+                "reference": "19495c181d6d53a0a13414154e52817e3b504189",
                 "shasum": ""
             },
             "require": {
@@ -8986,7 +8986,7 @@
                 "parser",
                 "validator"
             ],
-            "time": "2016-09-14 15:17:56"
+            "time": "2016-11-14 17:59:58"
         },
         {
             "name": "seld/phar-utils",
@@ -9084,59 +9084,6 @@
             ],
             "description": "An extendable framework for version control hooks.",
             "time": "2014-09-22 08:40:36"
-        },
-        {
-            "name": "snowdog/frontools",
-            "version": "1.1.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SnowdogApps/magento2-frontools.git",
-                "reference": "9e8f84b25b8584787db12d18f0812f54dc65bcfe"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SnowdogApps/magento2-frontools/zipball/9e8f84b25b8584787db12d18f0812f54dc65bcfe",
-                "reference": "9e8f84b25b8584787db12d18f0812f54dc65bcfe",
-                "shasum": ""
-            },
-            "type": "magento2-component",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Set of front-end tools for Magento 2, based on Gulp.js",
-            "time": "2016-10-28 09:58:29"
-        },
-        {
-            "name": "snowdog/theme-blank-sass",
-            "version": "0.8.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/SnowdogApps/magento2-theme-blank-sass.git",
-                "reference": "0f515072698b30c8ec6ced5402c0ddffe0fe82ef"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/SnowdogApps/magento2-theme-blank-sass/zipball/0f515072698b30c8ec6ced5402c0ddffe0fe82ef",
-                "reference": "0f515072698b30c8ec6ced5402c0ddffe0fe82ef",
-                "shasum": ""
-            },
-            "require": {
-                "magento/framework": "100.1.*",
-                "php": "~5.6.0|7.0.2|~7.0.6"
-            },
-            "type": "magento2-theme",
-            "autoload": {
-                "files": [
-                    "registration.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "SASS based version of Magento 2 Blank theme",
-            "time": "2016-10-07 08:47:42"
         },
         {
             "name": "solarium/solarium",
@@ -11186,16 +11133,16 @@
         },
         {
             "name": "fabpot/php-cs-fixer",
-            "version": "v1.12.3",
+            "version": "v1.12.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/FriendsOfPHP/PHP-CS-Fixer.git",
-                "reference": "78a820c16d13f593303511461eefa939502fb2de"
+                "reference": "c5a9d66dd27f02a3ffba4ec451ce27702604cdc8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/78a820c16d13f593303511461eefa939502fb2de",
-                "reference": "78a820c16d13f593303511461eefa939502fb2de",
+                "url": "https://api.github.com/repos/FriendsOfPHP/PHP-CS-Fixer/zipball/c5a9d66dd27f02a3ffba4ec451ce27702604cdc8",
+                "reference": "c5a9d66dd27f02a3ffba4ec451ce27702604cdc8",
                 "shasum": ""
             },
             "require": {
@@ -11241,7 +11188,7 @@
             ],
             "description": "A tool to automatically fix PHP code style",
             "abandoned": "friendsofphp/php-cs-fixer",
-            "time": "2016-10-30 12:07:10"
+            "time": "2016-11-15 09:10:47"
         },
         {
             "name": "lusitanian/oauth",
@@ -11609,16 +11556,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "1.4.8",
+            "version": "1.4.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da"
+                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
-                "reference": "3144ae21711fb6cac0b1ab4cbe63b75ce3d4e8da",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/3b402f65a4cc90abf6e1104e388b896ce209631b",
+                "reference": "3b402f65a4cc90abf6e1104e388b896ce209631b",
                 "shasum": ""
             },
             "require": {
@@ -11654,7 +11601,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2015-09-15 10:49:45"
+            "time": "2016-11-15 14:06:22"
         },
         {
             "name": "phpunit/phpunit",
@@ -12111,16 +12058,16 @@
         },
         {
             "name": "sebastian/recursion-context",
-            "version": "1.0.2",
+            "version": "1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/recursion-context.git",
-                "reference": "913401df809e99e4f47b27cdd781f4a258d58791"
+                "reference": "938df7a6478e72795e5f8266cff24d06e3136f2e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/913401df809e99e4f47b27cdd781f4a258d58791",
-                "reference": "913401df809e99e4f47b27cdd781f4a258d58791",
+                "url": "https://api.github.com/repos/sebastianbergmann/recursion-context/zipball/938df7a6478e72795e5f8266cff24d06e3136f2e",
+                "reference": "938df7a6478e72795e5f8266cff24d06e3136f2e",
                 "shasum": ""
             },
             "require": {
@@ -12160,7 +12107,7 @@
             ],
             "description": "Provides functionality to recursively process PHP variables",
             "homepage": "http://www.github.com/sebastianbergmann/recursion-context",
-            "time": "2015-11-11 19:50:13"
+            "time": "2016-11-15 06:55:36"
         },
         {
             "name": "sebastian/version",
