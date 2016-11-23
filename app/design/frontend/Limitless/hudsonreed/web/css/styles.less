@@ -2,51 +2,57 @@ div.social-links {
   float:left;
   width:100%;
   margin:0 0 20px 0;
-}
+  p {
+    color:#666;
+    font-size:14px;
+    line-height:26px;
+  }
+  a {
+    color:#fff;
+    font-size:14px;
+    float:left;
+    line-height:36px;
+    margin:0 10px 0 0;
+    width:110px;
+    span {
+      margin-left:10px;
+    }
+    &:before {
+      float:left;
+    }
+  }
 
-div.social-links p {
-  color:#666;
-  font-size:14px;
-  line-height:26px;
-}
+  a.facebook {
+    &:before {
+      content:url('../images/facebook.svg');
+    }
+  }
 
-div.social-links a {
-  color:#fff;
-  font-size:14px;
-  float:left;
-  line-height:36px;
-  margin:0 10px 0 0;
-  width:110px;
-}
+  a.pinterest {
+    &:before {
+      content:url('../images/pinterest.svg');
+    }
+  }
 
-div.social-links a span {
-  margin-left:10px;
-}
+  a.twitter {
+    &:before {
+      content:url('../images/twitter.svg');
+    }
+  }
 
-div.social-links a:before {
-  float:left;
-}
+  a.google-plus {
+    &:before {
+      content:url('../images/google-plus.svg');
+    }
+  }
 
-div.social-links a.facebook:before {
-  content:url('../images/facebook.svg');
-}
+  a.you-tube {
+    &:before {
+      content:url('../images/you-tube.svg');
+    }
+  }
 
-div.social-links a.pinterest:before {
-  content:url('../images/pinterest.svg');
 }
-
-div.social-links a.twitter:before {
-  content:url('../images/twitter.svg');
-}
-
-div.social-links a.google-plus:before {
-  content:url('../images/google-plus.svg');
-}
-
-div.social-links a.you-tube:before {
-  content:url('../images/you-tube.svg');
-}
-
 
 div.trustpilot-footer-banner {
   background:#333333;
@@ -54,54 +60,24 @@ div.trustpilot-footer-banner {
   display:inline-block;
   padding:10px 0 10px 0;
   height:45px;
-}
-
-div.tp-footer-wrapper {
-  max-width:1280px;
-  margin-left:auto;
-  margin-right:auto;
-}
-
-div.tp-footer-logo {
-  display:none;
-}
-
-div.tp-footer-logo img {
-  width:220px;
-  height:45px;
-}
-
-div.trustpilot-widget {
-  width:100%;
-}
-
-div.trustpilot-footer-banner iframe {
-  margin:12px 0 0;
-}
-
-
-div.homepage-banner {
-  margin:0 0 20px 0;
-}
-
-div.featured-categories {
-  width:100%;
-  display:flex;
-  margin:0 0 20px 0;
-}
-
-div.featured-categories a {
-  width:24%;
-  display:inline-block;
-  margin-right:2%;
-}
-
-div.featured-categories img {
-  width:100%;
-}
-
-div.featured-categories a:last-child {
-  margin-right:0;
+  div.tp-footer-wrapper {
+    max-width:1280px;
+    margin-left:auto;
+    margin-right:auto;
+    div.tp-footer-logo {
+      display:none;
+      img {
+        width:220px;
+        height:45px;
+      }
+    }
+    div.trustpilot-widget {
+      width:100%;
+      iframe {
+        margin:12px 0 0;
+      }
+    }
+  }
 }
 
 .payment-footer {
@@ -304,13 +280,38 @@ ul.header .welcome, ul.header .compare, ul.header .wishlist {
 }
 
 #my-account-link, #my-account-link span {
-   display:none;
+  display:none;
 }
 
 #my-account-link a:after {
   content: url("../images/hr-my-account.svg");
   float:right;
   margin-top:5px;
+}
+
+
+div.homepage-banner {
+  margin:0 0 20px 0;
+}
+
+div.featured-categories {
+  width:100%;
+  display:flex;
+  margin:0 0 20px 0;
+}
+
+div.featured-categories a {
+  width:24%;
+  display:inline-block;
+  margin-right:2%;
+}
+
+div.featured-categories img {
+  width:100%;
+}
+
+div.featured-categories a:last-child {
+  margin-right:0;
 }
 
 
@@ -419,15 +420,18 @@ ul.header .welcome, ul.header .compare, ul.header .wishlist {
     float:right;
   }
 
-  div.tp-footer-logo {
-    display:block;
-    width:20%;
-    float:left;
-  }
-
-  div.trustpilot-widget {
-    width:80%;
-    float:right;
+  div.trustpilot-footer-banner {
+    div.tp-footer-wrapper {
+      div.tp-footer-logo {
+        display:block;
+        width:20%;
+        float:left;
+      }
+      div.trustpilot-widget {
+        width:80%;
+        float:right;
+      }
+    }
   }
 
 }
@@ -448,14 +452,12 @@ ul.header .welcome, ul.header .compare, ul.header .wishlist {
 
 }
 
-
-
-
 @media screen and (min-width: 1280px) {
 
-.payment-footer .payment-icons span {
+  .payment-footer .payment-icons span {
     margin: 0 20px 5px 0;
   }
+
 }
 
 

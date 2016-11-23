@@ -212,7 +212,7 @@
     margin-top:5px;
     margin-left:60px;
     position: relative;
-    width: 340px;
+    width: 270px;
     z-index: 4;
 
     .label {
@@ -262,5 +262,11 @@
 
   .search-autocomplete {
     margin-top: 0;
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+  .block-search {
+    width:340px;
   }
 }

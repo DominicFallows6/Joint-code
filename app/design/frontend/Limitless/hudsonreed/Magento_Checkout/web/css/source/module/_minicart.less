@@ -122,15 +122,6 @@
     right:0;
     top:5px;
 
-    &:before {
-      content:'Warenkorb';
-      color:#fff;
-      line-height:40px;
-      float:left;
-      margin: 0 10px 0 0;
-      font-size:@font-size__s;
-    }
-
     .block-minicart {
       .lib-css(padding, 25px @minicart__padding-horizontal);
       right: 0;
@@ -147,7 +138,7 @@
 
       &:before {
         left: auto;
-        right: 26px;
+        right: 7px;
       }
     }
 
@@ -416,14 +407,7 @@
   }
 }
 
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-  .minicart-wrapper {
-    &:before {
-      content:'';
-      margin:0;
-    }
-  }
-}
+
 
 //
 //  Desktop
@@ -442,12 +426,21 @@
 }
 
 
-.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__lm) {
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
   .minicart-wrapper {
-    color: red;
+    &:before {
+      content: 'Warenkorb';
+      color: #fff;
+      line-height: 40px;
+      float: left;
+      margin: 0 10px 0 0;
+      font-size: @font-size__s;
+    }
   }
-
 }
+
+
+
 
 
 
