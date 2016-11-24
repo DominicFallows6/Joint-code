@@ -121,6 +121,7 @@
     position:absolute;
     right:0;
     top:5px;
+    text-align:left;
 
     .block-minicart {
       .lib-css(padding, 25px @minicart__padding-horizontal);
@@ -133,12 +134,12 @@
 
       &:after {
         left: auto;
-        right: 25px;
+        right: 5px;
       }
 
       &:before {
         left: auto;
-        right: 7px;
+        right: 6px;
       }
     }
 
@@ -174,6 +175,8 @@
       &.showcart {
         white-space: nowrap;
         position:relative;
+        background:none;
+        border:none;
 
         .text {
           &:extend(.abs-visually-hidden all);
@@ -418,6 +421,14 @@
     .block-minicart {
       right: -15px;
       width: 390px;
+
+      &:after {
+        right: 21px;
+      }
+
+      &:before {
+        right: 22px;
+      }
     }
     position:relative;
     top:auto;
