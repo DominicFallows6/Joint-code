@@ -5,5 +5,6 @@
         <referenceContainer name="content">
                 <block class="Magento\Framework\View\Element\Template" name="homepage" template="Magento_Theme::hr-homepage.phtml" before="-" />
         </referenceContainer>
+        <referenceBlock name="breadcrumbs" remove="true" />
     </body>
 </page>
