@@ -5,12 +5,11 @@
 
         <referenceBlock name="report.bugs" remove="true" />
         <referenceBlock name="footer_links" remove="true"/>
-
-        <!--<referenceBlock name="header.panel.wrapper" remove="true" />-->
-
-        <referenceBlock name="top.container">
-            <block class="Magento\Framework\View\Element\Template" name="usp.bar" template="Magento_Theme::hr-usp.phtml" after="-" />
-        </referenceBlock>
+        <referenceBlock name="my-account-link" remove="true" />
+        <referenceBlock name="register-link" remove="true" />
+        <referenceBlock name="authorization-link" remove="true" />
+        <referenceBlock name="wish-list-link" remove="true" />
+        <referenceBlock name="multiple-wish-list-link" remove="true" />
 
         <referenceBlock name="header-wrapper">
             <block class="Magento\Framework\View\Element\Template" name="sales.hotline" template="Magento_Theme::hr-sales-hotline.phtml" after="minicart" />
