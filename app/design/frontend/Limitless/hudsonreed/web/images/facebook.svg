@@ -1,10 +1,31 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="35.75px" height="35.625px" viewBox="0 0 35.75 35.625" enable-background="new 0 0 35.75 35.625" xml:space="preserve">
-<path fill="#676766" d="M34.967,17.811c0,9.471-7.678,17.148-17.148,17.148c-9.471,0-17.149-7.678-17.149-17.148
-	S8.348,0.662,17.819,0.662C27.289,0.662,34.967,8.34,34.967,17.811"/>
-<path fill="#010101" d="M16.102,15.453h-1.426v2.328h1.426v6.838h2.742v-6.867h1.914l0.203-2.299h-2.117v-1.311
-	c0-0.541,0.11-0.756,0.633-0.756h1.484V11h-1.898c-2.041,0-2.961,0.898-2.961,2.619V15.453z"/>
+	 width="37px" height="37px" viewBox="0 0 37 37" style="enable-background:new 0 0 37 37;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{clip-path:url(#SVGID_4_);fill:none;stroke:#666666;stroke-width:2;stroke-miterlimit:10;}
+	.st2{clip-path:url(#SVGID_4_);fill:#666666;}
+</style>
+<g id="Facebook_Icon">
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="0.3" y="0" width="36.3" height="36.3"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<g class="st0">
+			<defs>
+				<rect id="SVGID_3_" x="0.3" y="0" width="36.3" height="36.3"/>
+			</defs>
+			<clipPath id="SVGID_4_">
+				<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+			</clipPath>
+			<circle class="st1" cx="18.4" cy="18.2" r="17.1"/>
+			<path class="st2" d="M21.6,13.8h-1.5c-0.5,0-0.6,0.2-0.6,0.8v1.3h2.1l-0.2,2.3h-1.9V25h-2.7v-6.8h-1.4v-2.3h1.4V14
+				c0-1.7,0.9-2.6,3-2.6h1.9V13.8z"/>
+		</g>
+	</g>
+</g>
 </svg>

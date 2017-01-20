@@ -44,13 +44,14 @@
       display: inline-block;
       float: right;
       position:absolute;
-      top:6px;
+      top:8px;
       left:40px;
 
       &.active {
         + .control {
           input {
             position: static;
+            color: @color-gray50;
           }
         }
       }
@@ -70,10 +71,19 @@
       left: -300%;
       margin: 15px 0;
       position: absolute;
-      font-size:@font-size__s;
-      height:28px;
-      border:none;
+      font-size:@font-size__xs;
+      background-color:@color-gray18;
+      height:30px;
+      border:1px solid @color-gray50;
+      text-transform:uppercase;
+
+      &:focus {
+        background-color:@color-white;
+      }
+
     }
+
+
 
     .nested {
       display: none;
@@ -207,10 +217,10 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
   .block-search {
-    float: left;
+    float: right;
     padding-left: 15px;
     margin-top:5px;
-    margin-left:60px;
+    margin-right:50px;
     position: relative;
     width: 270px;
     z-index: 4;
@@ -232,7 +242,7 @@
     }
 
     input {
-      .lib-input-placeholder(@form-element-input-placeholder__color);
+      .lib-input-placeholder(@color-gray50);
       margin: 0;
       padding-left: 30px;
       position: static;

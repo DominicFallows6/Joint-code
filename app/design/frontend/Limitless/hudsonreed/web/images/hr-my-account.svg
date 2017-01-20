@@ -1,10 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 15.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Generator: Adobe Illustrator 21.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="27px" height="27.334px" viewBox="0 0 27 27.334" enable-background="new 0 0 27 27.334" xml:space="preserve">
-<path fill="#FFFFFF" d="M13.616,1.293c-6.875,0-12.5,5.625-12.5,12.5s5.625,12.5,12.5,12.5s12.5-5.625,12.5-12.5
-	S20.491,1.293,13.616,1.293 M13.616,5.043c2.125,0,3.75,1.625,3.75,3.75s-1.625,3.75-3.75,3.75c-2.126,0-3.751-1.625-3.751-3.75
-	S11.49,5.043,13.616,5.043 M13.616,22.793c-3.126,0-5.875-1.625-7.501-4c0-2.5,5-3.875,7.501-3.875c2.499,0,7.5,1.375,7.5,3.875
-	C19.491,21.168,16.741,22.793,13.616,22.793"/>
+	 width="27px" height="27px" viewBox="0 0 27 27" style="enable-background:new 0 0 27 27;" xml:space="preserve">
+<style type="text/css">
+	.st0{clip-path:url(#SVGID_2_);}
+	.st1{clip-path:url(#SVGID_4_);fill:none;stroke:#FFFFFF;stroke-width:1.5;stroke-miterlimit:10;}
+	.st2{clip-path:url(#SVGID_4_);fill:#FFFFFF;}
+</style>
+<g id="Account_Icon_White">
+	<g>
+		<defs>
+			<rect id="SVGID_1_" x="0" y="0.1" width="26.5" height="26.5"/>
+		</defs>
+		<clipPath id="SVGID_2_">
+			<use xlink:href="#SVGID_1_"  style="overflow:visible;"/>
+		</clipPath>
+		<g class="st0">
+			<defs>
+				<rect id="SVGID_3_" x="0" y="0.1" width="26.5" height="26.5"/>
+			</defs>
+			<clipPath id="SVGID_4_">
+				<use xlink:href="#SVGID_3_"  style="overflow:visible;"/>
+			</clipPath>
+			<path class="st1" d="M13.2,0.9C6.4,0.9,0.7,6.5,0.7,13.4s5.6,12.5,12.5,12.5s12.5-5.6,12.5-12.5S20.1,0.9,13.2,0.9z"/>
+			<path class="st2" d="M13.2,4.6c2.1,0,3.8,1.6,3.8,3.8s-1.6,3.8-3.8,3.8c-2.1,0-3.8-1.6-3.8-3.8S11.1,4.6,13.2,4.6"/>
+			<path class="st2" d="M13.2,22.4c-3.1,0-5.9-1.6-7.5-4c0-2.5,5-3.9,7.5-3.9c2.5,0,7.5,1.4,7.5,3.9C19.1,20.7,16.4,22.4,13.2,22.4"
+				/>
+		</g>
+	</g>
+</g>
 </svg>

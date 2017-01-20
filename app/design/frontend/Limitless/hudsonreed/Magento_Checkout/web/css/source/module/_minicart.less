@@ -120,7 +120,7 @@
     float: right;
     position:absolute;
     right:0;
-    top:5px;
+    top:6px;
     text-align:left;
 
     .block-minicart {
@@ -183,7 +183,7 @@
         }
 
         .counter.qty {
-          .lib-css(color, @color-black);
+          .lib-css(color, @color-white);
           .lib-css(height, @minicart-qty__height);
           .lib-css(line-height, @minicart-qty__height);
           border-radius: 2px;
@@ -194,10 +194,11 @@
           text-align: center;
           white-space: normal;
           position:absolute;
-          top:6px;
+          top:7px;
           left:0;
           width:100%;
-          font-weight:800;
+          font-weight:600;
+          font-size: @font-size__xs;
 
           &.empty {
             display: none;
@@ -444,8 +445,9 @@
       color: #fff;
       line-height: 40px;
       float: left;
-      margin: 0 10px 0 0;
-      font-size: @font-size__s;
+      margin: 0 12px 0 0;
+      font-size:11px;
+      text-transform:uppercase;
     }
   }
 }

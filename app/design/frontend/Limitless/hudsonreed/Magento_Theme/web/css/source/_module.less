@@ -30,7 +30,7 @@
 @header-icons-color: @color-white;
 @header-icons-color-hover: @color-white;
 
-@header-icons-search-color: @color-black;
+@header-icons-search-color: @color-gray50;
 
 @addto-color: @text__color__muted;
 @addto-hover-color: @primary__color;
@@ -71,6 +71,7 @@
       &.content {
         padding-left:0;
         padding-right:0;
+        min-height:30px;
       }
     }
   }
@@ -89,7 +90,7 @@
 
   .logo {
     margin: 0;
-    max-width: 100%;
+    max-width: 50%;
     position: relative;
     z-index: 5;
     display:inline-block;
@@ -97,6 +98,7 @@
     img {
       display: inline-block;
       max-width:70%;
+      margin:5px 0 0 0;
     }
 
     .page-print & {
@@ -176,9 +178,10 @@
 
   .footer {
     &.content {
-      margin-top: 10px;
       padding-bottom: 10px;
       padding-top: 10px;
+      padding-left:25px;
+      padding-right:25px;
 
       ul {
         &:extend(.abs-reset-list all);
@@ -187,15 +190,49 @@
       .links {
         width:100%;
         float:left;
-        margin:0 0 20px 0;
-        > li {
-          margin: 0 0 8px;
+        margin:0;
+        border-bottom:1px solid @color-gray40;
+        li {
+          margin: 0 0 20px;
           color:@color-gray40;
-          font-size:14px;
+          font-size:18px;
           line-height:26px;
+          width:100%;
 
           a {
             color:@color-white;
+            text-decoration:none;
+          }
+        }
+        li.footer-toggle {
+          display:none;
+          float:left;
+          margin:0;
+        }
+        li.footer-toggle.active {
+          display:block;
+        }
+        li.hdr {
+          padding:20px 0 20px 0;
+          margin:0;
+          &:after {
+            content: url("../images/plus-icon.svg");
+            float: right;
+          }
+        }
+        li.hdr.active {
+          &:after {
+            content: url("../images/minus-icon.svg");
+          }
+        }
+
+      }
+
+      .last {
+        border-bottom:none;
+        > li {
+          &:first-child {
+            display:none;
           }
         }
       }
@@ -208,8 +245,8 @@
     .copyright,
     .bugs {
       display: block;
-      margin: 20px 0 0;
-      color:@color-white;
+      margin: 20px 0 40px 0;
+      color:@color-gray40;
       text-align:center;
     }
   }
@@ -303,9 +340,36 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
   .footer {
     &.content {
+      padding-left:15px;
+      padding-right:15px;
       .links {
-        width:30%;
+        width:47%;
         float:left;
+        border:none;
+        li {
+          width:auto;
+          font-size:14px;
+          margin:0 0 8px;
+        }
+        li.footer-toggle {
+          display:block;
+        }
+        li.last {
+          float:right;
+        }
+        li.hdr {
+          padding:10px 0 8px 0;
+          &:after {
+            display:none;
+          }
+        }
+      }
+      .last {
+        > li {
+          &:first-child {
+            display: block;
+          }
+        }
       }
     }
   }
@@ -380,7 +444,7 @@
 
     &.content {
       &:extend(.abs-add-clearfix-desktop all);
-      padding: @indent__m @indent__base 0;
+      padding: @indent__base @indent__base 0;
     }
   }
 
@@ -427,10 +491,12 @@
   .logo {
     margin: 2px auto 18px 0;
     float:left;
+    max-width:100%;
 
     img {
       max-height: inherit;
       max-width:100%;
+      margin:0;
     }
   }
 
@@ -442,10 +508,14 @@
 
       .links {
         float:left;
-        width:33.3%;
+        width:42%;
         vertical-align: top;
+        margin:0 0 30px 0;
           li {
             font-size:@font-size__s;
+          }
+          li.hdr {
+            text-transform:uppercase;
           }
       }
 
@@ -458,9 +528,10 @@
 
     .copyright {
       &:extend(.abs-add-clearfix all);
-      color:@color-white;
+      color:@color-gray40;
       float:right;
       clear:right;
+      margin: 20px 0 0 0;
     }
   }
 }
@@ -471,8 +542,10 @@
   .footer {
     &.content {
       .links {
-        width:16%;
-        margin:0;
+        width:20%;
+      }
+      .about {
+        width:22%;
       }
     }
   }
