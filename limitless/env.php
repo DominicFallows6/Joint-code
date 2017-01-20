@@ -81,14 +81,35 @@ return array(
         array(
             'key' => '9aa17b9681659942c0276caeb60d8d1b',
         ),
-/*    'session' =>
+    'session' =>
         array(
             'save' => 'memcached',
             'save_path' => 'sessions.tyrt1z.cfg.euw1.cache.amazonaws.com:11211',
-        ),*/
-    'session' =>
-        array(
-            'save' => 'db'
+        ),
+    'session' => 
+        array (
+            'save' => 'redis',
+            'redis' => 
+                array (
+                    'host' => 'session.tyrt1z.ng.0001.euw1.cache.amazonaws.com',
+                    'port' => '6379',
+                    'password' => '',
+                    'timeout' => '2.5',
+                    'persistent_identifier' => '',
+                    'database' => '0',
+                    'compression_threshold' => '2048',
+                    'compression_library' => 'gzip',
+                    'log_level' => '1',
+                    'max_concurrency' => '6',
+                    'break_after_frontend' => '5',
+                    'break_after_adminhtml' => '30',
+                    'first_lifetime' => '600',
+                    'bot_first_lifetime' => '60',
+                    'bot_lifetime' => '7200',
+                    'disable_locking' => '0',
+                    'min_lifetime' => '60',
+                    'max_lifetime' => '2592000'
+                )
         ),
     'resource' =>
         array(
