@@ -65,6 +65,9 @@
 
     li {
       margin: 0;
+      &:first-child {
+        border-top:none;
+      }
     }
 
     a {
@@ -110,7 +113,7 @@
       }
 
       > .level1 {
-        .lib-css(font-weight, @font-weight__semibold);
+        .lib-css(font-weight, @font-weight__heavier);
       }
 
       &.active,
@@ -277,7 +280,7 @@
 ) {
 
   .navigation {
-    .lib-css(background, @_nav-background-color);
+    .lib-css(background, @navigation__background__desktop);
     .lib-css(border, @_nav-border);
     .lib-css(font-size, @_nav-font-size);
     .lib-css(font-weight, @_nav-font-weight);
