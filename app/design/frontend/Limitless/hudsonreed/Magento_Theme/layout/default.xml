@@ -5,9 +5,6 @@
 
         <referenceBlock name="report.bugs" remove="true" />
         <referenceBlock name="footer_links" remove="true"/>
-        <referenceBlock name="my-account-link" remove="true" />
-        <referenceBlock name="register-link" remove="true" />
-        <referenceBlock name="authorization-link" remove="true" />
         <referenceBlock name="wish-list-link" remove="true" />
         <referenceBlock name="multiple-wish-list-link" remove="true" />
 
