@@ -3,23 +3,63 @@ os: linux
 files:
   - source: /
     destination: /var/www/html
+permissions:
+  - object: /var/www/html
+    pattern: "**"
+    owner: nginx
+    group: nginx
+    mode: 750
+    type:
+      - directory
+  - object: /var/www/html
+    pattern: "**"
+    owner: nginx
+    group: nginx
+    mode: 640
+    type:
+      - file
+  - object: /var/www/html/vendor
+    pattern: "*/bin/*"
+    owner: nginx
+    group: nginx
+    mode: 740
+    type:
+      - file
+  - object: /var/www/html/bin
+    pattern: "magento"
+    owner: nginx
+    group: nginx
+    mode: 740
+    type:
+      - file
 hooks:
-  BeforeInstall:
-    - location: limitless/deployment/before_install.sh
+# Step 1. Stop the application
+  ApplicationStop:
+    - location: limitless/deployment/10-AppStop-ELB-Deregister.sh
       timeout: 300
       runas: root
+    - location: limitless/deployment/11-AppStop-Services.sh
+      timeout: 300
+      runas: root
+# Step 2. Download Bundle (No Hook)
+# Step 3. Before install
+#  BeforeInstall:
+# Step 4. Install (No Hook)
+# Step 5. After Install
   AfterInstall:
-    - location: limitless/deployment/permissions.sh
+    - location: limitless/deployment/50-AfterInstall-General.sh
       timeout: 300
       runas: root
-    - location: limitless/deployment/setup_upgrade.sh
+    - location: limitless/deployment/51-AfterInstall-Upgrade.sh
       timeout: 300
       runas: nginx
+# Step 6. Application Start
   ApplicationStart:
-    - location: limitless/deployment/application_start.sh
+    - location: limitless/deployment/60-AppStart-Services.sh
       timeout: 300
       runas: root
-  ApplicationStop:
-    - location: limitless/deployment/application_stop.sh
+    - location: limitless/deployment/61-AppStart-ELB-Register.sh
       timeout: 300
       runas: root
+# Step 7. Validate Service
+#  ValidateService:
