@@ -2,9 +2,25 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
+
         <referenceContainer name="content">
-                <block class="Magento\Framework\View\Element\Template" name="homepage" template="Magento_Theme::hr-homepage.phtml" before="-" />
+            <block class="Magento\Framework\View\Element\Template" name="homepage" template="Magento_Theme::hr-homepage.phtml" before="-" />
+            <block class="Magento\Cms\Block\Block" name="homepage_featured_products" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_featured_products</argument>
+                </arguments>
+            </block>
         </referenceContainer>
+
+        <referenceContainer name="page.bottom.container">
+            <block class="Magento\Cms\Block\Block" name="homepage_text" before="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">homepage_text</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
         <referenceBlock name="breadcrumbs" remove="true" />
+
     </body>
 </page>
