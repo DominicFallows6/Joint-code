@@ -13,7 +13,7 @@ permissions:
       - directory
   - object: /var/www/html
     pattern: "**"
-    except: [bin/magento]
+    except: [/var/www/html/bin/magento]
     owner: nginx
     group: nginx
     mode: 640
