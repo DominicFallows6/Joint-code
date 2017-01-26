@@ -26,13 +26,6 @@ permissions:
     mode: 740
     type:
       - file
-  - object: /var/www/html/bin
-    pattern: "magento"
-    owner: nginx
-    group: nginx
-    mode: 740
-    type:
-      - file
 hooks:
 # Step 1. Stop the application
   ApplicationStop:
