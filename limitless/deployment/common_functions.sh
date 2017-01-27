@@ -21,7 +21,7 @@ TARGET_GROUP_LIST="WebServers"
 
 # PORT defines which port the application is running at.
 # If PORT is not specified, the script will use the default port set in target groups
-PORT=""
+PORT="80"
 
 # Under normal circumstances, you shouldn't need to change anything below this line.
 # -----------------------------------------------------------------------------
