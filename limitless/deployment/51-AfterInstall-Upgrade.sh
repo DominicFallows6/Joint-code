@@ -1,5 +1,4 @@
 #!/bin/bash
-# Limitless Digital Group
 
 DIR=/var/www/html
 
