@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # From: https://github.com/awslabs/aws-codedeploy-samples/blob/master/load-balancing/elb-v2/deregister_from_elb.sh
 #
