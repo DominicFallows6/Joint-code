@@ -1,4 +1,5 @@
 #!/bin/bash
+# Limitless Digital Group
 #
 # From: https://github.com/awslabs/aws-codedeploy-samples/blob/master/load-balancing/elb-v2/deregister_from_elb.sh
 #
@@ -92,3 +93,4 @@ end_sec=$(/bin/date +%s.%N)
 elapsed_seconds=$(echo "$end_sec - $start_sec" | /usr/bin/bc)
 
 msg "Elapsed time: $elapsed_seconds"
+

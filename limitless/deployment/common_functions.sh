@@ -1,4 +1,7 @@
 #!/bin/bash
+# Limitless Digital Group
+#
+# From: https://github.com/awslabs/aws-codedeploy-samples/blob/master/load-balancing/elb-v2/deregister_from_elb.sh
 #
 # Copyright 2014 Amazon.com, Inc. or its affiliates. All Rights Reserved.
 #
@@ -536,3 +539,4 @@ get_instance_id() {
     curl -s http://169.254.169.254/latest/meta-data/instance-id
     return $?
 }
+
