@@ -20,7 +20,7 @@ return array (
         'name' => 'MageAdmin',
         'sort_order' => '0',
         'default_group_id' => '1',
-        'is_default' => '1',
+        'is_default' => '0',
       ),
       'hudsonreed_de' => 
       array (
