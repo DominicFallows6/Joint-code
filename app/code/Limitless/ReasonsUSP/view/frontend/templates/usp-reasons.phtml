@@ -1,0 +1,22 @@
+<?php
+/** @var \Limitless\ReasonsUSP\Block\View $block */
+?>
+
+<div class="usp-reasons">
+    <ul>
+        <?= $block->getReasonsToBuy();?>
+    </ul>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        ".usp-box": {
+            "Limitless_ReasonsUSP/js/usp": {
+                "config" : "value"
+            }
+        }
+    }
+</script>
+
+
+

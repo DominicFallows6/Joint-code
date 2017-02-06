@@ -1,0 +1,38 @@
+<?php
+/** @var \Limitless\SalesHotline\Block\View $block */
+?>
+
+<div id="sales-hotline">
+    <div id="sales-wrapper">
+        <a class="show-sales-hotline" href="#"><span><?php echo __('Kontakt');?></span></a>
+        <div id="opening-times-container">
+            <button class="close"></button>
+            <div id="opening-times"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Limitless_SalesHotline/js/sales-hotline": {
+                "timeZone": "<?=$block->getTimeZone() ?>",
+                "utcOffset" : "<?= $block->getTimeZoneOffset() ?>",
+                "openText" : "<?=$block->getOpenText()?>",
+                "closedText" : "<?=$block->getClosedText()?>",
+                "openingTimes" : <?= $block->getOpeningTimes() ?>,
+                "closedValue" : <?= $block->getClosedValue(); ?>,
+                "salesNumber" : "<?= $block->getSalesNumber() ?>",
+                "checkInterval" : "<?=$block->checkInterval() ?>",
+                "helpCentreLink" : "<?= $block->getHelpCentreLink(); ?>"
+            }
+        }
+    }
+</script>
+
+
+
+
+
+
+

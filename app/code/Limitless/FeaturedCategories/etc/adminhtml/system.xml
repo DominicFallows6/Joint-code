@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="general">
+            <group id="limitless_featured_categories" translate="label" sortOrder="999" showInDefault="1" showInWebsite="1" showInStore="0">
+                <label>Homepage Featured Categories</label>
+                <field id="featured_one_title" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Featured Products One Title</label>
+                    <comment>Please enter your title. If no title is specified the overlay will not show.</comment>
+                </field>
+                <field id="featured_one_url" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Featured Products One Url</label>
+                    <comment>Please enter your url</comment>
+                </field>
+                <field id="featured_one_image" translate="label" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Featured Products One Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">featured</upload_dir>
+                    <base_url type="media" scope_info="1">featured</base_url>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>Please upload your image in jpg, png, or gif format. Image dimensions 390px x 390px.</comment>
+                </field>
+                <field id="featured_two_title" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Featured Products Two Title</label>
+                    <comment>Please enter your title. If no title is specified the overlay will not show.</comment>
+                </field>
+                <field id="featured_two_url" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Featured Products Two Url</label>
+                    <comment>Please enter your url</comment>
+                </field>
+                <field id="featured_two_image" translate="label" type="image" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Featured Products Two Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">featured</upload_dir>
+                    <base_url type="media" scope_info="1">featured</base_url>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>Please upload your image in jpg, png, or gif format. Image dimensions 390px x 390px.</comment>
+                </field>
+                <field id="featured_three_title" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Featured Products Three Title</label>
+                    <comment>Please enter your title. If no title is specified the overlay will not show.</comment>
+                </field>
+                <field id="featured_three_url" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Featured Products Three Url</label>
+                    <comment>Please enter your url</comment>
+                </field>
+                <field id="featured_three_image" translate="label" type="image" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Featured Products Three Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">featured</upload_dir>
+                    <base_url type="media" scope_info="1">featured</base_url>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>Please upload your image in jpg, png, or gif format. Image dimensions 390px x 390px.</comment>
+                </field>
+                <field id="featured_four_title" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Featured Products Four Title</label>
+                    <comment>Please enter your title. If no title is specified the overlay will not show.</comment>
+                </field>
+                <field id="featured_four_url" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Featured Products Four Url</label>
+                    <comment>Please enter your url</comment>
+                </field>
+                <field id="featured_four_image" translate="label" type="image" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1" >
+                    <label>Featured Products Four Image</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">featured</upload_dir>
+                    <base_url type="media" scope_info="1">featured</base_url>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>Please upload your image in jpg, png, or gif format. Image dimensions 390px x 390px.</comment>
+                </field>
+                <field id="featured_five_title" translate="label" type="text" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <label>Featured Products Five Title (Side Feature)</label>
+                    <comment>Please enter your title. If no title is specified the overlay will not show.</comment>
+                </field>
+                <field id="featured_five_url" translate="label" type="text" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Featured Products Five Url (Side Feature)</label>
+                    <comment>Please enter your url</comment>
+                </field>
+                <field id="featured_five_image" translate="label" type="image" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1" >
+                    <label>Featured Products Five Image Desktop (Side Feature)</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">featured</upload_dir>
+                    <base_url type="media" scope_info="1">featured</base_url>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>Please upload your image in jpg, png, or gif format</comment>
+                </field>
+                <field id="featured_five_image_mobile" translate="label" type="image" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1" >
+                    <label>Featured Products Five Image Mobile (Side Feature)</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">featured</upload_dir>
+                    <base_url type="media" scope_info="1">featured</base_url>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>Please upload your image in jpg, png, or gif format. Minimum width must be 767px.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

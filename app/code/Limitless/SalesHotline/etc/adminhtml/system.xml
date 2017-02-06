@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="general">
+            <group id="limitless_sales_hotline" translate="label" sortOrder="999" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Sales Hotline</label>
+
+                <field id="timezone" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Timezone</label>
+                    <source_model>Magento\Config\Model\Config\Source\Locale\Timezone</source_model>
+                </field>
+
+                <field id="sales_number" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Telephone Number</label>
+                    <comment>Please enter the stores telephone number</comment>
+                </field>
+                <field id="days" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Opening Times</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized</backend_model>
+                    <frontend_model>Limitless\SalesHotline\Block\System\Config\Form\Field\Custom</frontend_model>
+                </field>
+                <field id="check_interval" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Check Interval</label>
+                    <comment>In seconds, determine how often the browser will check the opening hours. If 0, no updates will occur after the initial page load.</comment>
+                </field>
+                <field id="closed_text" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Closed Text</label>
+                    <comment>Please enter the stores closed text</comment>
+                </field>
+                <field id="open_text" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Open Text</label>
+                    <comment>Please enter the stores open text</comment>
+                </field>
+                <field id="helpcentre_link" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Help Centre Link</label>
+                    <comment>Please enter the link to the help centre</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

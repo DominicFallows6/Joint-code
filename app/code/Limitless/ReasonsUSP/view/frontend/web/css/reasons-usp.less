@@ -1,0 +1,143 @@
+div.usp-reasons {
+  background:#000000;
+}
+
+.usp-reasons ul {
+  width:100%;
+  padding:0;
+}
+
+.usp-reasons li {
+  width: 100%;
+  font-size: 1.4rem;
+  margin: 0;
+  padding: 0;
+  color: white;
+  text-align: left;
+  line-height: inherit;
+}
+
+.usp-box {
+  padding: 12px 0;
+  margin-left: 15px;
+  margin-right: 15px;
+  border-bottom: 1px dotted #ffffff;
+}
+
+li:last-of-type .usp-box {
+  border:none;
+}
+.usp-box span {
+  display:none;
+}
+
+.usp-box a {
+  color: #ffffff;
+}
+.usp-box a:hover {
+  text-decoration: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+.usp-box a:visited {
+  color:#ffffff;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+  div.usp-reasons {
+    width: 100%;
+    text-align: center;
+    background-color: white;
+    margin-bottom: 10px;
+  }
+
+  .usp-reasons ul {
+    margin:0 auto;
+    padding:0;
+    width:100%;
+  }
+
+  .usp-reasons li {
+    display: inline;
+  }
+
+  .usp-reasons li .usp-box {
+    list-style:none;
+    display:inline-block;
+    position:relative;
+    text-transform:uppercase;
+    line-height:12px;
+    font-weight:500;
+    color:#aaa;
+    font-size:0.7rem;
+    border-right:1px solid #aaa;
+    padding:0 5% 0 5%;
+  }
+
+  li:last-child .usp-box {
+    margin-right:0;
+    border-right:none;
+  }
+
+  .usp-box span {
+    width: 220px;
+    font-size: 0.8rem;
+    display: none;
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    margin-left: -120px;
+    border: 1px solid #ccc;
+    padding: 8px;
+    background: #f0f0f0;
+    line-height: 16px;
+    border-radius: 3px;
+    font-weight: normal;
+    text-align: center;
+  }
+
+  .usp-box span:after, .usp-box span:before {
+    bottom: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .usp-box span:after {
+    border-color: rgba(240, 240, 240, 0);
+    border-bottom-color: #f0f0f0;
+    border-width: 15px;
+    margin-left: -15px;
+  }
+
+  .usp-box span:before {
+    border-color: rgba(204, 204, 204, 0);
+    border-bottom-color: #cccccc;
+    border-width: 16px;
+    margin-left: -16px;
+  }
+
+  .usp-box img {
+    vertical-align:top;
+    margin-right:5px;
+    width:25px;
+    height:25px;
+  }
+  .usp-box a {
+    text-decoration:none;
+    color:#aaa;
+    font-weight:500;
+  }
+  .usp-box a:hover {
+    color:#aaa;
+  }
+  .usp-box a:visited {
+    color:#aaa;
+  }
+}

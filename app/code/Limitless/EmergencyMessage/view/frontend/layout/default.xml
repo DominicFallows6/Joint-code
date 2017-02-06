@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Limitless_EmergencyMessage::css/emergency-message.css" />
+    </head>
+    <body>
+        <referenceContainer name="page.wrapper">
+            <block class="Limitless\EmergencyMessage\Block\View"
+                   name="emergency.message"
+                   template="Limitless_EmergencyMessage::emergency-message.phtml"
+                   before="-"
+                   ifconfig="general/limitless_emergency_message/enabled" />
+        </referenceContainer>
+    </body>
+</page>

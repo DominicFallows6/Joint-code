@@ -1,0 +1,127 @@
+.homepage-featured-categories {
+    width:100%;
+    display:inline-block;
+}
+
+.homepage-featured-categories .featured-left {
+    float:left;
+}
+
+.homepage-featured-categories .featured-right {
+    float:left;
+    width:100%;
+}
+
+.homepage-featured-categories .featured-left a {
+    position:relative;
+    display:inline-block;
+    margin:0 0 2.5% 0;
+    width:48.7%;
+}
+
+
+.homepage-featured-categories .featured-right a {
+    position:relative;
+    float:left;
+    margin:0 0 2.5% 0;
+    width:100%;
+}
+
+
+.homepage-featured-categories .featured-right a img:first-child {
+    display:none;
+}
+
+.homepage-featured-categories a span.cta:after {
+    content:'\e619';
+    font-family: 'icons-blank-theme';
+    display:inline-block;
+    font-size:18px;
+    line-height:14px;
+    vertical-align:top;
+}
+
+.homepage-featured-categories .featured-left a:nth-child(odd) {
+    margin-right:2.5%;
+}
+
+.homepage-featured-categories a img {
+    width:100%
+}
+
+.homepage-featured-categories .featured-text {
+    position:absolute;
+    bottom:15px;
+    width:92%;
+    background:rgba(0,0,0,0.4);
+    color:#fff;
+    min-height:60px;
+    padding-left:4%;
+    padding-right:4%;
+    display:flex;
+    align-items:center;
+}
+
+.homepage-featured-categories .featured-text span {
+    display: inline-block;
+    width: 100%;
+    font-size: 20px;
+    line-height:28px;
+    font-weight: 300;
+}
+
+.homepage-featured-categories .featured-text span.cta {
+    font-size:10px;
+    line-height:15px;
+    text-transform:uppercase;
+}
+
+.homepage-featured-categories .no-title {
+    display:none;
+}
+
+
+@media (min-width:768px) {
+
+    .homepage-featured-categories .featured-left {
+        width:64.6%;
+    }
+
+    .homepage-featured-categories .featured-right {
+        width:33.7%;
+        float:right;
+    }
+
+    .homepage-featured-categories .featured-right a {
+        float:right;
+    }
+
+    .homepage-featured-categories .featured-text {
+        min-height:100px;
+        bottom:22px;
+    }
+
+    .homepage-featured-categories .featured-text span {
+        font-size:28px;
+    }
+
+    .homepage-featured-categories .featured-text span.cta {
+        font-size:12px;
+        line-height:18px;
+    }
+
+    .homepage-featured-categories a span.cta:after {
+        line-height:18px;
+    }
+
+    .homepage-featured-categories .featured-right a img:first-child {
+        display:inline-block;
+    }
+
+    .mobile-featured {
+        display:none;
+    }
+
+}
+
+

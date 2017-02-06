@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Limitless_ReasonsUSP::css/reasons-usp.css" />
+    </head>
+    <body>
+        <referenceBlock name="navigation.sections">
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Limitless_ReasonsUSP::html/sections.phtml</argument>
+            </action>
+            <block class="Limitless\ReasonsUSP\Block\View" name="reasons.usp" template="Limitless_ReasonsUSP::usp-reasons.phtml" />
+        </referenceBlock>
+    </body>
+</page>

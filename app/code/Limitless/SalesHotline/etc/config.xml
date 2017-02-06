@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <general>
+            <limitless_sales_hotline>
+                <timezone>Europe/Berlin</timezone>
+                <sales_number>0123456789</sales_number>
+                <days>a:3:{s:9:"open_time";a:7:{i:0;s:5:"09:30";i:1;s:5:"09:30";i:2;s:5:"09:30";i:3;s:5:"09:30";i:4;s:5:"09:30";i:5;s:5:"09:30";i:6;s:5:"09:30";}s:11:"closed_time";a:7:{i:0;s:5:"18:00";i:1;s:5:"18:00";i:2;s:5:"18:00";i:3;s:5:"18:00";i:4;s:5:"18:00";i:5;s:5:"18:00";i:6;s:5:"18:00";}s:14:"open_or_closed";a:7:{i:0;s:3:"Yes";i:1;s:2:"No";i:2;s:2:"No";i:3;s:2:"No";i:4;s:2:"No";i:5;s:2:"No";i:6;s:3:"Yes";}}</days>
+                <check_interval>999</check_interval>
+                <closed_text>Closed text</closed_text>
+                <open_text>Open text</open_text>
+                <helpcentre_link>www.helpcentrelinkexample.com</helpcentre_link>
+            </limitless_sales_hotline>
+        </general>
+    </default>
+</config>

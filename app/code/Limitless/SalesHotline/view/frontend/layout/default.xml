@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Limitless_SalesHotline::css/sales-hotline.css" />
+    </head>
+    <body>
+        <referenceContainer name="header-wrapper">
+            <block class="Limitless\SalesHotline\Block\View" name="sales_hotline" template="Limitless_SalesHotline::sales-hotline.phtml" after="myaccount.link"/>
+        </referenceContainer>
+    </body>
+</page>

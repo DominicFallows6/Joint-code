@@ -1,0 +1,7 @@
+<?php /** @var Limitless\HomepageBanner\Block\View $block */ ?>
+<div id="banner-hp" style="<?php echo $block->getBackgroundColour(); ?>">
+    <a href="<?php echo $block->getBannerLink(); ?>">
+        <img class="desktop-hp-banner" src="<?php echo $block->getDesktopHomepageBanner(); ?>" alt="<?php echo $block->getImgAltText();?>" />
+        <img class="mobile-hp-banner" src="<?php echo $block->getMobileHomepageBanner(); ?>" alt="<?php echo $block->getImgAltText();?>" />
+    </a>
+</div>

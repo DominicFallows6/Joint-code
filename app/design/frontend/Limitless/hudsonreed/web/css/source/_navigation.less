@@ -65,7 +65,7 @@
         &:after {
           position: absolute;
           right: 7px;
-          top: 2px;
+          top: 6px;
         }
 
         &.ui-state-active {
@@ -292,6 +292,11 @@
     .lib-vendor-prefix-flex-basis(auto);
     margin-bottom: @indent__s;
     background:@color-gray96;
+    z-index:3;
+
+    &:hover {
+      z-index:4;
+    }
   }
 
   .nav-sections-item-title {

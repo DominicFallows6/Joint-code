@@ -9,8 +9,7 @@
         <referenceBlock name="multiple-wish-list-link" remove="true" />
 
         <referenceBlock name="header-wrapper">
-            <block class="Magento\Framework\View\Element\Template" name="sales.hotline" template="Magento_Theme::hr-sales-hotline.phtml" after="minicart" />
-            <block class="Magento\Framework\View\Element\Template" name="myaccount.link" template="Magento_Theme::hr-myaccount-link.phtml" before="sales.hotline" />
+            <block class="Magento\Framework\View\Element\Template" name="myaccount.link" template="Magento_Theme::hr-myaccount-link.phtml" after="minicart" />
         </referenceBlock>
 
         <!--<move element="top.links" destination="header-wrapper" before="sales.hotline"/>

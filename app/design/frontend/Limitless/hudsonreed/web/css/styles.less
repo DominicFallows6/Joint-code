@@ -335,25 +335,6 @@ div.social-links {
   }
 }
 
-div#sales-hotline {
-  position:absolute;
-  top:6px;
-  right:45px;
-  span {
-    display:none;
-  }
-  a {
-    color:#fff;
-    text-decoration:none;
-    &:after {
-      content:url("../images/hr-tel-icon.svg");
-      float:right;
-      margin-top:6px;
-    }
-  }
-
-}
-
 .hr-home-blurb {
   background:#efefef;
   font-size:12px;
@@ -398,6 +379,57 @@ div.featured-categories {
   }
   img {
     width:100%;
+  }
+}
+
+
+.navigation {
+  ul {
+    li {
+      a > {
+        i {
+          background:url("../images/menu-icons.svg");
+          display:inline-block;
+          height:32px;
+          width:32px;
+          vertical-align:middle;
+          margin-right:20px;
+        }
+        i.heizkörper {
+          background-position:-9px -6px;
+        }
+        i.hantuchheizkörper {
+          background-position:-9px -47px;
+        }
+        i.armaturen {
+          background-position:-10px -90px;
+        }
+        i.duschen {
+          background-position:-9px -133px;
+        }
+        i.toiletten {
+          background-position:-9px -179px;
+        }
+        i.waschtische {
+          background-position:-8px -223px;
+        }
+        i.badewannen {
+          background-position:-8px -266px;
+        }
+        i.badmöbel {
+          background-position:-8px -310px;
+        }
+        i.beleuchtung {
+          background-position:-8px -354px;
+        }
+        i.sale {
+          background-position:-8px -398px;
+        }
+        span {
+          display:inline-block;
+        }
+      }
+    }
   }
 }
 
@@ -449,18 +481,6 @@ div.featured-categories {
     }
   }
 
-  div#sales-hotline {
-    float:right;
-    margin: 0 40px 0 0;
-    font-size:12px;
-    position:static;
-    span {
-      span {
-        font-weight:bold;
-      }
-    }
-  }
-
   #my-account-link {
     float:right;
     margin:0 40px 0 0;
@@ -491,6 +511,27 @@ div.featured-categories {
         }
         .title {
           font-size: 26px;
+        }
+      }
+    }
+  }
+
+  .menu-overlay {
+    opacity:0.2;
+    background:#000;
+    height:100%;
+    position:fixed;
+    width:100%;
+    z-index:2;
+  }
+
+  .navigation {
+    ul {
+      li {
+        > a {
+          i {
+            display:none;
+          }
         }
       }
     }
@@ -560,16 +601,6 @@ div.featured-categories {
 }
 
 @media screen and (min-width: 1180px) {
-
-  div#sales-hotline {
-    span {
-      line-height: 40px;
-      margin: 0 12px 0 0;
-      display: inline-block;
-      text-transform:uppercase;
-      font-size:11px;
-    }
-  }
 
   #my-account-link {
     span {

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="general">
+            <group id="limitless_homepage_banner" translate="label" type="text" sortOrder="997" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Homepage Banner</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="limitless_homepage_banner_image" translate="label" type="image" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add Desktop Banner</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">homepage_banners</upload_dir>
+                    <base_url type="media" scope_info="1">homepage_banners</base_url>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>Please upload your banner and 'Save Config'</comment>
+                </field>
+                <field id="limitless_mobile_homepage_banner_image" translate="label" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add Mobile Banner</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">homepage_banners</upload_dir>
+                    <base_url type="media" scope_info="1">homepage_banners</base_url>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>Please upload your banner and 'Save Config'</comment>
+                </field>
+                <field id="limitless_homepage_banner_alt" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Image Alt Text</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="limitless_homepage_banner_link" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Banner Link</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>Base Url not required e.g. Only enter 'radiators.html'</comment>
+                </field>
+                <field id="limitless_banner_background_colour" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Banner Background Colour</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                    <comment>Please enter full hex code including the hash e.g #02171D</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

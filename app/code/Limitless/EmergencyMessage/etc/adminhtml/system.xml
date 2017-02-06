@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="general">
+            <group id="limitless_emergency_message" translate="label" type="text" sortOrder="998" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Emergency Message</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="emergency_message_text" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <label>Message to display</label>
+                </field>
+                <field id="emergency_message_background_colour" translate="label" type="text" sortOrder="3" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <label>Background colour of the container</label>
+                    <comment>Please specify a colour or a hex colour e.g. white or #ffffff</comment>
+                </field>
+                <field id="emergency_message_text_colour" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <comment>Please specify a colour or a hex colour e.g. white or #ffffff</comment>
+                    <label>Font colour</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

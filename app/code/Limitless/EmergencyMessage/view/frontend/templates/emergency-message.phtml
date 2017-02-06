@@ -1,0 +1,9 @@
+<?php
+/**
+ * @var \Limitless\EmergencyMessage\Block\View $block
+ */
+?>
+<div id="emergency-message"
+     style="background-color:<?php echo $block->getBackgroundColour(); ?>; color:<?php echo $block->getTextColour(); ?>">
+    <span><?php echo $block->getEmergencyMessageFromConfig(); ?></span>
+</div>

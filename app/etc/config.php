@@ -2,6 +2,11 @@
 return array (
   'modules' => 
   array (
+    'Limitless_EmergencyMessage' => 1,
+    'Limitless_FeaturedCategories' => 1,
+    'Limitless_HomepageBanner' => 1,
+    'Limitless_ReasonsUSP' => 1,
+    'Limitless_SalesHotline' => 1,
     'Magento_Store' => 1,
     'Magento_Directory' => 1,
     'Magento_Theme' => 1,
@@ -135,6 +140,7 @@ return array (
     'Magento_AdvancedSalesRule' => 1,
     'Magento_CatalogPermissions' => 1,
     'Magento_SalesArchive' => 1,
+    'Magento_SalesInventory' => 1,
     'Magento_CustomerSegment' => 1,
     'Magento_SalesRuleStaging' => 1,
     'Magento_BannerCustomerSegment' => 1,
