@@ -19,18 +19,17 @@ class View extends Template
     /**
      * View constructor.
      * @param Context $context
-     * @param TimezoneInterface $timezone
      * @param array $data
      */
     public function __construct(
         Context $context,
-        TimezoneInterface $timezone,
+        //TimezoneInterface $timezone,
         array $data = []
     )
     {
         parent::__construct($context, $data);
         $this->scopeConfig = $context->getScopeConfig();
-        $this->timezone = $timezone;
+        //$this->timezone = $timezone;
 
     }
 

@@ -17,17 +17,15 @@ class View extends Template
     /**
      * View constructor.
      * @param Context $context
-     * @param ScopeConfigInterface $scopeConfig
      * @param array $data
      */
     public function __construct(
         Context $context,
-        ScopeConfigInterface $scopeConfig,
         array $data = []
     )
     {
         parent::__construct($context, $data);
-        $this->scopeConfig = $scopeConfig;
+        $this->scopeConfig = $context->getScopeConfig();
 
     }
 
