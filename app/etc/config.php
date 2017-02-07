@@ -2,9 +2,9 @@
 return array (
   'modules' => 
   array (
-    'Limitless_EmergencyMessage' => 0,
+    'Limitless_EmergencyMessage' => 1,
     'Limitless_FeaturedCategories' => 1,
-    'Limitless_HomepageBanner' => 0,
+    'Limitless_HomepageBanner' => 1,
     'Limitless_ReasonsUSP' => 1,
     'Limitless_SalesHotline' => 1,
     'Magento_Store' => 1,
