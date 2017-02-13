@@ -9,7 +9,7 @@ div.usp-reasons {
 
 .usp-reasons li {
   width: 100%;
-  font-size: 1.4rem;
+  font-size: 14px;
   margin: 0;
   padding: 0;
   color: white;
@@ -50,7 +50,7 @@ li:last-of-type .usp-box {
     width: 100%;
     text-align: center;
     background-color: white;
-    margin-bottom: 10px;
+    margin:7px 0 0 0;
   }
 
   .usp-reasons ul {
@@ -61,6 +61,7 @@ li:last-of-type .usp-box {
 
   .usp-reasons li {
     display: inline;
+    font-size:10px;
   }
 
   .usp-reasons li .usp-box {
@@ -71,9 +72,10 @@ li:last-of-type .usp-box {
     line-height:12px;
     font-weight:500;
     color:#aaa;
-    font-size:0.7rem;
+    font-size:10px;
     border-right:1px solid #aaa;
-    padding:0 5% 0 5%;
+    padding:0 2% 0 2%;
+    margin:0;
   }
 
   li:last-child .usp-box {
@@ -83,7 +85,7 @@ li:last-of-type .usp-box {
 
   .usp-box span {
     width: 220px;
-    font-size: 0.8rem;
+    font-size: 10px;
     display: none;
     position: absolute;
     top: 35px;
@@ -139,5 +141,12 @@ li:last-of-type .usp-box {
   }
   .usp-box a:visited {
     color:#aaa;
+  }
+}
+
+
+@media only screen and (min-width: 1024px) {
+  .usp-reasons li .usp-box {
+      padding:0 4% 0 4%;
   }
 }

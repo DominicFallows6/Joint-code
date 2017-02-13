@@ -405,14 +405,10 @@
     }
   }
 
-  .navigation ul {
-    padding: 0 8px;
-    > li.level0 {
-      > a {
-        text-transform: uppercase;
-        font-size:@font-size__s;
-      }
-    }
+  .navigation > ul {
+    padding: 0;
+    text-align:center;
+    display:inline-block;
   }
 
   .header {
@@ -451,8 +447,6 @@
   .page-header {
     border: 0;
     margin-bottom: 0;
-    z-index:4;
-
     .header {
       &.content {
         padding-left:15px;
@@ -495,9 +489,10 @@
     max-width:100%;
 
     img {
-      max-height: inherit;
-      max-width:100%;
+      width:215px;
+      height: 32px;
       margin:0;
+      max-width:100%;
     }
   }
 

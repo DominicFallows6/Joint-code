@@ -31,13 +31,53 @@ define([
 
         _init: function () {
 
+            //Add class for icons to each top level menu item
             $(".navigation .level0 > a").each(function() {
                 var iconTarget = $(this);
                 var iconClass = $(this).find('span:last-child').html().toLowerCase().replace(/ /g,'');
                 iconTarget.prepend('<i class="'+iconClass+'"></i>');
             });
 
-            $('body').append('<div class="menu-overlay"></div>');
+            var menuOverlay = function() {
+
+                if ($(window).width() >= 768) {
+                    //Insert overlay into DOM if it has not been added already
+                    if(!$('.menu-overlay').length) {
+                        $('<div class="menu-overlay"></div>').insertAfter('.nav-sections-items');
+                    }
+
+                    //Get Height of Header Elements so overlay sits underneath top navigation bar
+                    var headerHeight = $('.page-header').height();
+                    var navHeight = $('.nav-sections-items').height();
+                    var siteMessageHeight = $('#emergency-message').height();
+                    var headerPlusNavHeight = headerHeight + navHeight + siteMessageHeight;
+
+                    //Show overlay on mouseenter
+                    $(".navigation > ul").mouseenter(function () {
+                        $('.menu-overlay').css({
+                            "top" : headerPlusNavHeight,
+                            "position" : "absolute"
+                        }).delay(300).fadeIn();
+                    });
+
+                    //Work out overlay position when page has been scrolled
+                    $(window).scroll(function(){
+                        $(".menu-overlay").css({
+                            "top" : Math.max(0,headerPlusNavHeight-$(this).scrollTop()),
+                            "position" : "fixed"
+                        });
+                    });
+                } else {
+                    //Remove overlay on mobile
+                    $('.menu-overlay').remove();
+                }
+            };
+
+            menuOverlay();
+
+            $(window).on("resize", function() {
+                menuOverlay();
+            });
 
             this._super();
             this.delay = this.options.delay;
@@ -271,6 +311,7 @@ define([
         },
 
         _toggleMobileMode: function () {
+
             $(this.element).off('mouseenter mouseleave');
             this._on({
                 "click .ui-menu-item:has(a)": function (event) {
@@ -307,9 +348,8 @@ define([
 
         _toggleDesktopMode: function () {
 
-            $(".navigation").mouseenter(function () {
-                $('.menu-overlay').css("top", 0).delay(300).fadeIn();
-            }).mouseleave(function () {
+            // Remove overlay when not hovered on nav
+            $('.navigation > ul').mouseleave(function(){
                 $('.menu-overlay').delay(300).stop(true,true).fadeOut();
             });
 

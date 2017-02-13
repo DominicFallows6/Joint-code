@@ -11,20 +11,10 @@ define(['jquery'], function($) {
         }
     };
 
-    var toggleUsp = function() {
-        if($(window).width() < 768) {
-            $('.usp-reasons').appendTo('.nav-sections');
-        } else if($(window).width() >= 768){
-            $('.usp-reasons').insertAfter('.nav-sections');
-        }
-    };
-
     $(function(){
         toggle();
-        toggleUsp();
         $(window).on("resize", function() {
             toggle();
-            toggleUsp();
         });
     });
 

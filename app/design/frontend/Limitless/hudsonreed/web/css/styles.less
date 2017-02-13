@@ -133,7 +133,7 @@ div.social-links {
     font-size:14px;
     float:left;
     line-height:36px;
-    margin:0 15px 0 0;
+    margin:0 15px 12px 0;
     span {
       margin-left:10px;
       display:none;
@@ -146,30 +146,40 @@ div.social-links {
   a.facebook {
     &:before {
       content:url('../images/facebook.svg');
+      width:36px;
+      height:36px;
     }
   }
 
   a.pinterest {
     &:before {
       content:url('../images/pinterest.svg');
+      width:36px;
+      height:36px;
     }
   }
 
   a.twitter {
     &:before {
       content:url('../images/twitter.svg');
+      width:36px;
+      height:36px;
     }
   }
 
   a.google-plus {
     &:before {
       content:url('../images/google-plus.svg');
+      width:36px;
+      height:36px;
     }
   }
 
   a.you-tube {
     &:before {
       content:url('../images/you-tube.svg');
+      width:36px;
+      height:36px;
     }
   }
 
@@ -520,9 +530,10 @@ div.featured-categories {
     opacity:0.2;
     background:#000;
     height:100%;
-    position:fixed;
+    position:absolute;
     width:100%;
     z-index:2;
+    display:none;
   }
 
   .navigation {

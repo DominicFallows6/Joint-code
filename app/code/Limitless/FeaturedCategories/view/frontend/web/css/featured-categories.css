@@ -55,11 +55,18 @@
     width:92%;
     background:rgba(0,0,0,0.4);
     color:#fff;
-    min-height:60px;
+    height:60px;
     padding-left:4%;
     padding-right:4%;
+    display:table;
     display:flex;
     align-items:center;
+}
+
+.homepage-featured-categories .featured-text > div {
+    display:table-cell;
+    vertical-align:middle;
+
 }
 
 .homepage-featured-categories .featured-text span {
