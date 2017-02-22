@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Limitless\Delivery\DeliveryApi\DeliveryApiInterface" type="Limitless\Delivery\DeliveryApi\MetapackApi" />
+
+    <type name="Magento\Quote\Model\ResourceModel\Quote\Address">
+        <plugin name="limitless_allocationfilter" type="Limitless\Delivery\Plugin\SetAllocationFilterOnQuoteAddressResourcePlugin" />
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\Address">
+        <plugin name="limitless_allocationfilter" type="Limitless\Delivery\Plugin\SetAllocationFilterOnQuoteAddressModelPlugin" />
+    </type>
+
+    <type name="Magento\Quote\Api\CartManagementInterface">
+        <plugin name="limitless_allocationfilter" type="Limitless\Delivery\Plugin\SetPlaceOrderIdPlugin" />
+    </type>
+
+    <type name="Magento\Sales\Model\OrderRepository">
+        <plugin name="limitless_allocationfilter" type="Limitless\Delivery\Plugin\AddAllocationFilterToOrderApiPlugin" />
+    </type>
+
+    <type name="Magento\Shipping\Model\Rate\Result">
+        <plugin name="limitless_allocationfilter" type="Limitless\Delivery\Plugin\BypassSortRatesByPrice" />
+    </type>
+
+</config>

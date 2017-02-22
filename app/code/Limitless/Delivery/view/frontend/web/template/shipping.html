@@ -1,0 +1,228 @@
+<!--
+/**
+ * Copyright © 2016 Magento. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<li id="shipping" class="checkout-shipping-address METAPACK" data-bind="fadeVisible: visible()">
+    <div class="step-title" data-bind="i18n: 'Shipping Address'" data-role="title"></div>
+    <div id="checkout-step-shipping"
+         class="step-content"
+         data-role="content">
+
+        <!-- ko if: (!quoteIsVirtual) -->
+        <!-- ko foreach: getRegion('customer-email') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+        <!--/ko-->
+
+        <!-- ko foreach: getRegion('address-list') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+
+        <!-- ko foreach: getRegion('address-list-additional-addresses') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+
+        <!-- Address form pop up -->
+        <!-- ko if: (!isFormInline) -->
+        <button type="button"
+                data-bind="click: showFormPopUp, visible: !isNewAddressAdded()"
+                class="action action-show-popup">
+            <span data-bind="i18n: 'New Address'"></span></button>
+        <div id="opc-new-shipping-address" data-bind="visible: isFormPopUpVisible()">
+            <!-- ko template: 'Magento_Checkout/shipping-address/form' --><!-- /ko -->
+        </div>
+        <!-- /ko -->
+
+        <!-- ko foreach: getRegion('before-form') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!--/ko-->
+
+        <!-- Inline address form -->
+        <!-- ko if: (isFormInline) -->
+        <!-- ko template: 'Magento_Checkout/shipping-address/form' --><!-- /ko -->
+        <!-- /ko -->
+    </div>
+    <form id="on-submit" class="methods-shipping" data-bind="click: onSubmit, visible: isContinueToShippingMethodButtonVisible" novalidate="novalidate">
+        <div class="actions-toolbar">
+            <div class="primary">
+                <button data-role="opc-continue" type="submit" class="button action continue primary">
+                    <span><!-- ko i18n: 'Next >>'--><!-- /ko --></span>
+                </button>
+            </div>
+        </div>
+    </form>
+</li>
+
+
+
+
+
+
+<!--Shipping method template-->
+<li id="opc-shipping_method"
+    class="checkout-shipping-method"
+    data-bind="visible: isShippingMethodVisible(), blockLoader: isLoading"
+    role="presentation">
+    <div class="checkout-shipping-method">
+        <div class="step-title" data-bind="i18n: 'Shipping Methods'" data-role="title"></div>
+        <!-- ko foreach: getRegion('before-shipping-method-form') -->
+        <!-- ko template: getTemplate() --><!-- /ko -->
+        <!-- /ko -->
+        <div id="checkout-step-shipping_method"
+             class="step-content"
+             data-role="content"
+             role="tabpanel"
+             aria-hidden="false">
+            <!-- ko if: rates().length  -->
+            <form class="form methods-shipping" id="co-shipping-method-form" data-bind="submit: setShippingInformation" novalidate="novalidate">
+                <div id="checkout-shipping-method-load">
+                    <div class="table-checkout-shipping-method">
+                        <!-- ko if: deliveryDatepickerWindow().length > 0 -->
+                        <div>
+                            <!-- ko if: mobileCheck() == true -->
+                            <!-- MOBILE - Choose your delivery date dropdown-->
+                            <div class="choose-delivery-message"><!-- ko i18n: 'Choose your delivery date and time...'--><!-- /ko --></div>
+                            <select id="mobile-delivery-date"
+                                    class="mobile-delivery-rates"
+                                    data-bind="
+                                    options: mobileDeliveryDatepickerWindow(),
+                                    optionsCaption: 'Select a delivery date...',
+                                    optionsText: function(item) {
+                                        return item.date.toLocaleString($parent.locale, {weekday: 'short'}) + ' ' + item.date.getDate() + ' ' + item.from_price.toLocaleString($parent.locale, { style: 'currency', currency: 'EUR' });
+                                    },
+                                    css: {'default-select-value': isDefaultSelected},
+                                    value: selectedRates,
+                                    event: {change: $parent.selectMobileDeliveryDate}
+                             "></select>
+
+                            <!-- MOBILE - Choose your delivery option dropdown -->
+                            <select id="mobile-delivery-option"
+                                    class="mobile-delivery-rates"
+                                    data-bind="
+                                    css: {'default-select-value': isDefaultSelected},
+                                    visible: mobileDeliveryRatesVisibility,
+                                    event: {change: selectMobileShippingMethod}">
+                                <option value=""><!-- ko i18n: 'Select a delivery time...'--><!-- /ko --></option>
+                                <!-- ko foreach: mobileDeliveryRatesForDay -->
+                                <option data-bind="
+                                text: carrier_title + ' ' + method_title + ' ' + amount.toLocaleString($parent.locale, { style: 'currency', currency: 'EUR' }),
+                                value: carrier_code + '_' + method_code,
+                                attr: {
+                                    'id': 's_method_' + carrier_code + '_' + method_code,
+                                    'aria-labelledby': 'label_method_' + method_code + '_' + carrier_code + ' ' + 'label_carrier_' + method_code + '_' + carrier_code
+                                }
+                                "
+                                ></option>
+                                <!-- /ko -->
+                            </select>
+                            <!-- /ko -->
+                        </div>
+
+                        <div>
+                            <!-- ko if: mobileCheck() == false -->
+                            <div>
+                                <!-- DESKTOP - Week picker: left and right arrows -->
+                                <ul id="week-picker" class="desktop-delivery-rates">
+                                    <li>
+                                        <span class="previous-arrow" data-bind="click: previousWeek"></span>
+                                        <span data-bind="text: deliveryWindowStartDay().toLocaleString(locale, {month: 'short', day: '2-digit'})">Feb 01</span> -
+                                        <span data-bind="text: deliveryWindowEndDay().toLocaleString(locale, {month: 'short', day: '2-digit'})">Feb 07</span>
+                                        <span class="next-week" data-bind="click: nextWeek"></span>
+                                    </li>
+                                </ul>
+
+                                <!--DESKTOP - Choose your delivery date-->
+                                <ul id="date-picker-window" class="desktop-delivery-rates" data-bind="foreach: deliveryDatepickerWindow()">
+                                    <li data-bind="css: { 'no-rates': rates.length === 0}, click: $parent.selectDeliveryDate">
+                                        <div class="day" data-bind="text: date.toLocaleString($parent.locale, {weekday: 'short'})">Mon</div>
+                                        <div class="date" data-bind="text: date.getDate()">26</div>
+                                        <div class="availability" data-bind="visible: rates.length > 1"><!-- ko i18n: 'From'--><!-- /ko --></div>
+                                        <div class="availability" data-bind="visible: rates.length === 1">&nbsp;</div>
+                                        <div class="availability" data-bind="visible: rates.length === 0"><!-- ko i18n: 'Not available'--><!-- /ko --></div>
+                                        <div class="date-price" data-bind="visible: rates.length > 0, text: from_price.toLocaleString($parent.locale, { style: 'currency', currency: 'EUR' })">9,99 €</div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!--DESKTOP - Choose your delivery option-->
+                            <div id="del-rates" class="desktop-delivery-rates" data-bind="foreach: deliveryRatesForDay, click: $parent.preselectRate">
+                                <div class="rates-for-day" data-bind="click: $parent.selectShippingMethod">
+                                    <span class="carrier-title" data-bind="text: carrier_title">Anytime Delivery</span>
+                                    <span class="method_title" data-bind="text: method_title">7:00am - 6:00pm</span>
+                                    <div>
+                                        <span class="del-amount" data-bind="text: amount.toLocaleString($parent.locale, { style: 'currency', currency: 'EUR' }), visible: method_title.length > 0">9,99 €</span>
+                                        <input type="radio"
+                                               data-bind="
+                                                visible: method_code !== '',
+                                                value: carrier_code + '_' + method_code,
+                                                checked: $parent.isSelected,
+                                                attr: {
+                                                        'id': 's_method_' + carrier_code + '_' + method_code,
+                                                        'aria-labelledby': 'label_method_' + method_code + '_' + carrier_code + ' ' + 'label_carrier_' + method_code + '_' + carrier_code
+                                                        },
+                                                click: $parent.selectShippingMethod"
+                                               class="radio"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- /ko -->
+                        </div>
+                        <!-- /ko -->
+                        <div id="standard-delivery">
+                            <!-- ko if: deliveryDatepickerWindow().length > 0 -->
+                            <div class="or-container">
+                                <span><!-- ko i18n: 'OR'--><!-- /ko --></span>
+                            </div>
+                            <!-- /ko -->
+                            <div class="standard-delivery-option" data-bind="click: function() { return selectShippingMethod(economyRate());}">
+                                <div class="message">
+                                    <p data-bind="text: economyRate().carrier_title"></p>
+                                    <span><!-- ko i18n: 'Not in a hurry? Use our standard delivery option, delivered within 3-5 working days'--><!-- /ko --></span>
+                                </div>
+                                <div class="select-economy">
+                                    <span data-bind="
+                                        text: economyRate().amount.toLocaleString(locale, { style: 'currency', currency: 'EUR' }),
+                                        visible: economyRate().method_title.length > 0"
+                                    >4,99 €</span>
+                                    <input type="radio"
+                                           data-bind="
+                                                visible: economyRate().method_code !== '',
+                                                value: economyRate().carrier_code + '_' + economyRate().method_code,
+                                                checked: isSelected,
+                                                attr: {
+                                                    'id': 's_method_' + economyRate().carrier_code + '_' + economyRate().method_code,
+                                                    'aria-labelledby': 'label_method_' + economyRate().method_code + '_' + economyRate().carrier_code + ' ' + 'label_carrier_' + economyRate().method_code + '_' + economyRate().carrier_code
+                                                }"
+                                           class="radio"/>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="onepage-checkout-shipping-method-additional-load">
+                    <!-- ko foreach: getRegion('shippingAdditional') -->
+                    <!-- ko template: getTemplate() --><!-- /ko -->
+                    <!-- /ko -->
+                </div>
+                <!-- ko if: errorValidationMessage().length > 0 -->
+                <div class="message notice">
+                    <span><!-- ko text: errorValidationMessage()--><!-- /ko --></span>
+                </div>
+                <!-- /ko -->
+                <div class="actions-toolbar" id="shipping-method-buttons-container">
+                    <div class="primary">
+                        <button data-role="opc-continue" type="submit" class="button action continue primary">
+                            <span><!-- ko i18n: 'Next'--><!-- /ko --></span>
+                        </button>
+                    </div>
+                </div>
+            </form>
+            <!-- /ko -->
+            <!-- ko ifnot: rates().length > 0 --><div class="no-quotes-block"><!-- ko i18n: 'Sorry, no quotes are available for this order at this time'--><!-- /ko --></div><!-- /ko -->
+        </div>
+    </div>
+</li>

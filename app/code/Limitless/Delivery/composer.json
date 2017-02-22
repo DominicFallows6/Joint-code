@@ -1,0 +1,19 @@
+{
+  "name": "limitless/delivery",
+  "description": "n.a.",
+  "require": {
+    "php": "~5.6.0|^7.0.0"
+  },
+  "type": "magento2-module",
+  "license": [
+    "BSD-3-Clause"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\Delivery\\": ""
+    }
+  }
+}

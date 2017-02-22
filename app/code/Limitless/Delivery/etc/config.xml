@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <delivery>
+                <active>1</active>
+                <key>cf720d4c-edc3-443a-9cf7-febec4e6733b</key>
+                <url>https://dmo.metapack.com</url>
+                <warehouse_code>DC</warehouse_code>
+                <premium_groups>NEXTDAY,NEXTDAY12,SAT12</premium_groups>
+                <economy_group>ECONOMY</economy_group>
+                <economy_group_price>0</economy_group_price>
+                <delivery_charge_threshold>0</delivery_charge_threshold>
+                <sallowspecific>0</sallowspecific>
+                <name>Limitless Delivery</name>
+                <model>Limitless\Delivery\Model\Carrier</model>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+            </delivery>
+        </carriers>
+    </default>
+</config>
