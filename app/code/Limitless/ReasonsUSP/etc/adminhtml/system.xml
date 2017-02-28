@@ -2,13 +2,13 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
         <section id="general">
-            <group id="limitless_reasons_usp" translate="label" sortOrder="999" showInDefault="1" showInWebsite="1" showInStore="0">
+            <group id="limitless_reasons_usp" translate="label" sortOrder="999" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Site USP Bar</label>
-                <field id="usp_one" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                <field id="usp_one" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>USP One</label>
                     <comment>Please enter your text</comment>
                 </field>
-                <field id="usp_one_url" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                <field id="usp_one_url" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>USP One Url</label>
                     <comment>If empty, USP will not link anywhere</comment>
                 </field>
@@ -16,7 +16,7 @@
                     <label>USP One Tip</label>
                     <comment>Please enter your text</comment>
                 </field>
-                <field id="usp_one_icon" translate="label" type="image" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                <field id="usp_one_icon" translate="label" type="image" sortOrder="31" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Usp One Icon</label>
                     <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
                     <upload_dir config="system/filesystem/media" scope_info="1">usp</upload_dir>
@@ -26,11 +26,11 @@
                     </depends>
                     <comment>Please upload your icon in jpg, png, or gif format</comment>
                 </field>
-                <field id="usp_two" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                <field id="usp_two" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>USP Two</label>
                     <comment>Please enter your text</comment>
                 </field>
-                <field id="usp_two_url" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                <field id="usp_two_url" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>USP Two Url</label>
                     <comment>If empty, USP will not link anywhere</comment>
                 </field>
@@ -38,7 +38,7 @@
                     <label>USP Two Tip</label>
                     <comment>Please enter your text</comment>
                 </field>
-                <field id="usp_two_icon" translate="label" type="image" sortOrder="61" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                <field id="usp_two_icon" translate="label" type="image" sortOrder="61" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Usp Two Icon</label>
                     <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
                     <upload_dir config="system/filesystem/media" scope_info="1">usp</upload_dir>
@@ -48,11 +48,11 @@
                     </depends>
                     <comment>Please upload your icon in jpg, png, or gif format</comment>
                 </field>
-                <field id="usp_three" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                <field id="usp_three" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>USP Three</label>
                     <comment>Please enter your text</comment>
                 </field>
-                <field id="usp_three_url" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                <field id="usp_three_url" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>USP Three Url</label>
                     <comment>If empty, USP will not link anywhere</comment>
                 </field>
@@ -60,7 +60,7 @@
                     <label>USP Three Tip</label>
                     <comment>Please enter your text</comment>
                 </field>
-                <field id="usp_three_icon" translate="label" type="image" sortOrder="91" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                <field id="usp_three_icon" translate="label" type="image" sortOrder="91" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Usp Three Icon</label>
                     <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
                     <upload_dir config="system/filesystem/media" scope_info="1">usp</upload_dir>
@@ -70,11 +70,11 @@
                     </depends>
                     <comment>Please upload your icon in jpg, png, or gif format</comment>
                 </field>
-                <field id="usp_four" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                <field id="usp_four" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>USP Four</label>
                     <comment>Please enter your text</comment>
                 </field>
-                <field id="usp_four_url" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                <field id="usp_four_url" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>USP Four Url</label>
                     <comment>If empty, USP will not link anywhere</comment>
                 </field>
@@ -82,7 +82,7 @@
                     <label>USP Four Tip</label>
                     <comment>Please enter your text</comment>
                 </field>
-                <field id="usp_four_icon" translate="label" type="image" sortOrder="121" showInDefault="1" showInWebsite="1" showInStore="0" canRestore="1">
+                <field id="usp_four_icon" translate="label" type="image" sortOrder="121" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Usp Four Icon</label>
                     <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
                     <upload_dir config="system/filesystem/media" scope_info="1">usp</upload_dir>

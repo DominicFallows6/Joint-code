@@ -35,7 +35,11 @@
                     <label>Open Text</label>
                     <comment>Please enter the stores open text</comment>
                 </field>
-                <field id="helpcentre_link" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="helpcentre_text" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Help Centre Text</label>
+                    <comment>Please enter the text for the link to the help centre</comment>
+                </field>
+                <field id="helpcentre_link" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Help Centre Link</label>
                     <comment>Please enter the link to the help centre</comment>
                 </field>

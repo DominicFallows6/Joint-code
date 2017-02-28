@@ -142,10 +142,11 @@ class View extends Template
 
         $helpCentreLinkHtml = "";
 
+        $helpCentreText = $this->scopeConfig->getValue('general/limitless_sales_hotline/helpcentre_text');
         $helpCentreLink = $this->scopeConfig->getValue('general/limitless_sales_hotline/helpcentre_link');
 
         if($helpCentreLink != "") {
-            $helpCentreLinkHtml = "<a href='" . $helpCentreLink . "' target='_blank' class='help-centre'>Hilfe</a>";
+            $helpCentreLinkHtml = "<a href='" . $helpCentreLink . "' target='_blank' class='help-centre'>" . $helpCentreText . "</a>";
         }
 
         return $helpCentreLinkHtml;
