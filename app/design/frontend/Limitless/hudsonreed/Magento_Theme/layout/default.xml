@@ -6,19 +6,19 @@
         <referenceBlock name="report.bugs" remove="true" />
         <referenceBlock name="footer_links" remove="true"/>
         <referenceBlock name="wish-list-link" remove="true" />
+        <referenceBlock name="invitation_link_top" remove="true" />
         <referenceBlock name="multiple-wish-list-link" remove="true" />
 
         <referenceBlock name="header-wrapper">
             <block class="Magento\Framework\View\Element\Template" name="myaccount.link" template="Magento_Theme::hr-myaccount-link.phtml" after="minicart" />
         </referenceBlock>
 
-        <!--<move element="top.links" destination="header-wrapper" before="sales.hotline"/>
-        <referenceBlock name="register-link" remove="true" />
-        <referenceBlock name="authorization-link" remove="true" />
-        <referenceBlock name="wish-list-link" remove="true" />-->
-
         <referenceContainer name="footer-container">
-            <block class="Magento\Framework\View\Element\Template" name="footer.trustpilot" template="Magento_Theme::hr-trustpilot.phtml" before="-" />
+            <block class="Magento\Cms\Block\Block" name="trustpilot_footer_widget" before="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">trustpilot_footer_widget</argument>
+                </arguments>
+            </block>
             <block class="Magento\Framework\View\Element\Template" name="footer.payment" template="Magento_Theme::hr-footer-payment.phtml" after="-" />
         </referenceContainer>
 

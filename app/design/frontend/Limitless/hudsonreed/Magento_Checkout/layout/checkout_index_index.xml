@@ -8,9 +8,9 @@
         <referenceBlock name="minicart" remove="true" />
         <referenceBlock name="top.search" remove="true" />
         <referenceBlock name="top.container" remove="true" />
-        <referenceBlock name="footer.trustpilot" remove="true" />
         <referenceBlock name="footer" remove="true" />
         <referenceBlock name="reasons.usp" remove="true" />
         <referenceBlock name="sales_hotline" remove="true" />
+        <referenceBlock name="trustpilot_footer_widget" remove="true" />
     </body>
 </page>

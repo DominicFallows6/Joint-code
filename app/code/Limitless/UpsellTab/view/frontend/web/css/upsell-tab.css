@@ -1,0 +1,139 @@
+.product-tabs {
+    margin:0 0 20px 0;
+}
+
+.product-tabs ul {
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+.product-tabs ul li {
+    width:50%;
+    display:inline-block;
+    text-align:center;
+    background:#E6E6E6;
+    margin:0;
+    cursor:pointer;
+}
+
+.page-layout-1column .products-upsell .product-items .product-item {
+    width:33.33333333%;
+    padding-left:0;
+    padding-right:15px;
+}
+
+.product-info-main .products-upsell .action.tocompare, .product-info-main .products-upsell .action.towishlist {
+    background:#FFF;
+    border:none;
+    padding:0;
+    display:inline-block;
+}
+
+.product-info-main .products-upsell .product-item-name {
+    font-size:12px;
+    height:52px;
+    overflow:hidden;
+    margin:5px 0 15px 0;
+}
+
+.product-info-main .products-upsell .product-item {
+    margin-bottom:0;
+    padding-left:10px;
+}
+
+.product-info-main .products-upsell .product-item .product-item-info  {
+    width:140px;
+}
+
+.product-info-main .products-upsell .price-box {
+    margin:0;
+}
+
+.product-info-main .products-upsell .price-box .price-wrapper .price {
+    font-size:1.6rem;
+    font-weight:700;
+}
+
+.product-info-main .products-upsell .price-box .price-label {
+    display:none;
+}
+
+.product-info-main .products-upsell .price-box .special-price {
+    margin:0;
+    color:#333333;
+    float:left;
+    margin-right:5px;
+}
+
+.product-info-main .products-upsell .price-box .special-price .price-container {
+    font-size:1.2em;
+}
+
+.product-info-main .products-upsell .price-box .old-price {
+    margin:0 5px 0 0;
+    color:#adadad;
+    float:left;
+}
+
+
+.product-info-main .upsell .products {
+    margin:15px 0 0 0;
+}
+
+.products-upsell .product-item-actions .actions-primary + .actions-secondary {
+    width:100%;
+    display:inline-block;
+    padding:7px 0 0 0;
+}
+
+.product-tabs ul li a {
+    text-transform:uppercase;
+    font-size:15px;
+    display:inline-block;
+    padding:10px 0 10px 0;
+    width:100%;
+    color:#888;
+}
+
+.product-tabs ul li a:hover {
+    text-decoration:none;
+}
+
+.product-tabs ul li.active a {
+    background: #FFFFFF;
+    font-weight:bold;
+    border-top:3px solid #333;
+    color:#333;
+}
+
+.upsell {
+    display:none;
+}
+
+.upsell .block-title strong {
+    font-weight:600;
+}
+
+.column.main .products-upsell .product-items {
+    margin:0;
+}
+
+.products-upsell .product-item-actions {
+    display:inline-block;
+    margin:15px 0;
+}
+
+.product-info-main .products-upsell .product-item-actions .actions-primary button {
+    padding:7px 6px;
+}
+
+@media screen and (min-width: 1024px) {
+    .product-info-main .products-upsell .product-item {
+        padding-left:32px;
+    }
+    .product-info-main .products-upsell .product-item-actions .actions-primary button {
+        padding:7px 15px;
+    }
+}
+

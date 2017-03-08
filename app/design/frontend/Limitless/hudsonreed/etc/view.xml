@@ -78,8 +78,8 @@
                 <height>700</height>
             </image>
             <image id="product_page_image_small" type="thumbnail">
-                <width>90</width>
-                <height>90</height>
+                <width>80</width>
+                <height>80</height>
             </image>
             <image id="product_page_main_image" type="image">
                 <width>700</width>
@@ -187,6 +187,7 @@
             <var name="loop">true</var> <!-- Gallery navigation loop (true/false) -->
             <var name="keyboard">true</var> <!-- Turn on/off keyboard arrows navigation (true/false) -->
             <var name="arrows">true</var> <!-- Turn on/off arrows on the sides preview (true/false) -->
+            <var name="thumbmargin">10</var>
             <var name="caption">false</var> <!-- Display alt text as image title (true/false) -->
             <var name="allowfullscreen">true</var> <!-- Turn on/off fullscreen (true/false) -->
             <var name="navdir">horizontal</var> <!-- Sliding direction of thumbnails (horizontal/vertical) -->
@@ -199,7 +200,7 @@
             <var name="fullscreen">
                 <var name="nav">thumbs</var> <!-- Fullscreen navigation style (false/thumbs/dots) -->
                 <var name="loop">true</var> <!-- Fullscreen navigation loop (true/false/null) -->
-                <var name="arrows">false</var> <!-- Turn on/off arrows on the sides preview in fullscreen (true/false/null) -->
+                <var name="arrows">true</var> <!-- Turn on/off arrows on the sides preview in fullscreen (true/false/null) -->
                 <var name="caption">false</var> <!-- Display alt text as image title in fullscreen(true/false) -->
                 <var name="navdir">horizontal</var> <!--Sliding direction of thumbnails in fullscreen(horizontal/vertical)  -->
                 <var name="navtype">slides</var> <!-- Sliding type of thumbnails (slides/thumbs) -->
@@ -227,7 +228,7 @@
                 </var>
                 <var name="options">
                     <var name="options">
-                        <var name="navigation">dots</var>
+                        <var name="nav">dots</var>
                     </var>
                 </var>
             </var>

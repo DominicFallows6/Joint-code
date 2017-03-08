@@ -147,9 +147,9 @@
         margin: 0;
 
         &.greet.welcome {
-          border-top: 1px solid @color-gray82;
+          //border-top: 1px solid @color-gray82;
           font-weight: 700;
-          padding: .8rem @indent__base;
+          padding: 1.6rem @indent__base 0 @indent__base;
         }
 
         &:first-child {
@@ -159,7 +159,7 @@
         }
 
         > a {
-          border-top: 1px solid @color-gray82;
+          //border-top: 1px solid @color-gray82;
         }
       }
 
@@ -169,7 +169,11 @@
         .lib-css(text-decoration, @navigation-level0-item__text-decoration);
         display: block;
         font-weight: 500;
-        padding: .8rem @indent__base;
+        padding: 1.3rem @indent__base;
+        text-align:center;
+        border: 1px solid @color-black;
+        margin:20px;
+        text-transform:uppercase;
       }
 
       .header.links {

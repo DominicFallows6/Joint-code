@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceContainer name="product.info.main">
+            <container name="product.info.content" as="product.info.content" htmlTag="div" htmlClass="product-info-content" after="-"/>
+        </referenceContainer>
+
+        <referenceBlock name="product.info.content">
+            <block class="Magento\Framework\View\Element\Template" name="delivery.message" template="Magento_Theme::hr-delivery-message.phtml" />
+        </referenceBlock>
+
+        <referenceBlock name="product.info.mailto" remove="true" />
+        <!-- Move the below into the created container above for tabbed up-sell functionality -->
+        <move element="product.info.price" destination="product.info.content" before="product.info"/>
+        <move element="product.info" destination="product.info.content" />
+        <move element="alert.urls" destination="product.info.content" after="product.price.tier"/>
+        <move element="product.info.extrahint" destination="product.info.content"/>
+        <move element="product.info.review" destination="product.info.content" before="product.info.overview" />
+        <move element="product.info.social" destination="product.info.content" after="product.info.price" />
+        <move element="product.info.stock.sku" destination="product.info.content" after="product.info.price" />
+        <move element="delivery.message" destination="product.info.content" before="product.info.social" />
+        <move element="product.info.sku" destination="product.info.content" before="-" />
+        <move element="product.price.final" destination="product.info.price" before="-" />
+        <move element="product.price.tier" destination="product.info.price" after="-" />
+        <move element="product.info.overview" destination="product.info.details" before="-" />
+        <move element="reviews.tab" destination="content" after="-" />
+        <move element="catalog.product.related" destination="content" after="product.info.details" />
+
+        <referenceBlock name="product.info.details">
+            <referenceBlock name="product.info.description">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Full Description</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="product.info.overview">
+                <arguments>
+                    <argument name="title" translate="true" xsi:type="string">Details</argument>
+                </arguments>
+            </referenceBlock>
+            <block class="Magento\Catalog\Block\Product\View" name="deliveryandreturns" as="deliveryandreturns" template="product/view/delivery-and-returns.phtml" group="detailed_info" >
+                <arguments>
+                    <argument translate="true" name="title" xsi:type="string">Delivery &amp; Returns</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+
+        <referenceContainer name="content.aside">
+            <block class="Magento\Cms\Block\Block" name="trustpilot_product_widget" after="-">
+                <arguments>
+                    <argument name="block_id" xsi:type="string">trustpilot_product_widget</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+
+    </body>
+</page>

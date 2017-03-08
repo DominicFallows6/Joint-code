@@ -17,11 +17,6 @@
           color: #666666;
         }
       }
-      .price-box {
-        .price {
-          font-size: 1.6rem;
-        }
-      }
       .product-item-actions {
         display: none;
       }
@@ -110,7 +105,39 @@
       }
     }
   }
+}
 
+
+.widget-product-grid {
+  .product-item {
+    margin-bottom:20px;
+    .product-item-info {
+      .product-item-details {
+        .price-label {
+          display:none;
+        }
+        .price-box {
+          font-size: 1.8rem;
+          font-weight:700;
+          .old-price {
+            float:left;
+            margin:0 10px 0 0;
+            color:#a8a8a8;
+          }
+          .special-price {
+            float:left;
+          }
+          .minimal-price-link {
+            display:none;
+          }
+          .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
 }
 
 
@@ -139,47 +166,42 @@ div.social-links {
       display:none;
     }
     &:before {
+      width:37px;
+      height:37px;
+      content:'';
       float:left;
+      background:url('../images/hr-eu-sprite.svg') no-repeat 0 0;
+      background-size:137px 2700px;
     }
   }
 
   a.facebook {
     &:before {
-      content:url('../images/facebook.svg');
-      width:36px;
-      height:36px;
+      background-position:-52px -275px;
     }
   }
 
   a.pinterest {
     &:before {
-      content:url('../images/pinterest.svg');
-      width:36px;
-      height:36px;
+      background-position:-53px -384px;
     }
   }
 
   a.twitter {
     &:before {
-      content:url('../images/twitter.svg');
-      width:36px;
-      height:36px;
+      background-position:-52px -435px;
     }
   }
 
   a.google-plus {
     &:before {
-      content:url('../images/google-plus.svg');
-      width:36px;
-      height:36px;
+      background-position:-52px -328px;
     }
   }
 
   a.you-tube {
     &:before {
-      content:url('../images/you-tube.svg');
-      width:36px;
-      height:36px;
+      background-position:-52px -488px;
     }
   }
 
@@ -227,7 +249,11 @@ div.social-links {
         border-bottom:1px solid #ccc;
         margin: 0 0 20px 0;
         padding: 0 0 10px 0;
-        span {
+        > span {
+          content:"";
+          background:url('../images/hr-eu-sprite.svg') no-repeat 0 0;
+          background-size:137px 2700px;
+          display:inline-block;
           margin:0 5px 5px 0;
         }
         p {
@@ -236,109 +262,93 @@ div.social-links {
           font-size:10px;
         }
         .visa {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-69px -14px;
-          width:41px;
+          background-position:-51px -1014px;
+          width:42px;
           height:28px;
-          display:inline-block;
         }
 
         .mastercard {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-69px -52px;
-          width:41px;
+          background-position:-51px -1307px;
+          width:42px;
           height:28px;
-          display:inline-block;
         }
 
         .paypal {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-69px -90px;
-          width:41px;
-          height:28px;
-          display:inline-block;
+          background-position:-50px -1254px;
+          width:42px;
+          height:29px;
         }
 
         .amex {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-69px -166px;
-          width:41px;
+          background-position:-50px -1061px;
+          width:42px;
           height:28px;
-          display:inline-block;
         }
 
         .klarna {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-69px -128px;
-          width:41px;
+          background-position:-51px -1107px;
+          width:42px;
           height:28px;
-          display:inline-block;
         }
 
         .giro-pay {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-57px -204px;
-          width:65px;
+          background-position:-39px -1203px;
+          width:66px;
           height:28px;
-          display:inline-block;
         }
 
         .bank-transfer {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-53px -242px;
+          background-position:-35px -1365px;
           width:74px;
-          height:28px;
-          display:inline-block;
+          height:29px;
         }
 
         .worldpay {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-51px -277px;
+          background-position:-30px -1155px;
           width:98px;
           height:28px;
-          display:inline-block;
         }
       }
       .hr-flags {
-        a {
+        > a {
           width:32px;
-          height:21px;
-          display:inline-block;
+          height:22px;
           margin:0 7px 0 0;
+          content:"";
+          background:url('../images/hr-eu-sprite.svg') no-repeat 0 0;
+          background-size:137px 2700px;
+          display:inline-block;
         }
         .hr-fr-flag {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-73px -314px;
+          background-position:-54px -971px;
+        }
+
+        .hr-de-flag {
+          background-position:-54px -1859px;
         }
 
         .hr-es-flag {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-73px -345px;
+          background-position:-54px -929px;
         }
 
         .hr-it-flag {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-73px -375px;
+          background-position:-54px -890px;
         }
 
         .hr-nl-flag {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-73px -406px;
+          background-position:-54px -850px;
         }
 
         .hr-at-flag {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-73px -437px;
+          background-position:-54px -809px;
         }
 
         .hr-be-flag {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-73px -468px;
+          background-position:-54px -769px;
         }
 
         .hr-lu-flag {
-          background-image:url("../images/hr-icons.svg");
-          background-position:-73px -499px;
+          background-position:-54px -728px;
         }
       }
     }
@@ -365,7 +375,12 @@ div.social-links {
 }
 
 #my-account-link a:after {
-  content: url("../images/hr-my-account.svg");
+  content:"";
+  background:url('../images/hr-eu-sprite.svg') no-repeat 0 0;
+  background-size:137px 2700px;
+  background-position:-55px -634px;
+  height:32px;
+  width:32px;
   float:right;
   margin-top:6px;
 }
@@ -464,7 +479,7 @@ div.featured-categories {
         i.muebles {
           background-position:-8px -310px;
         }
-        i.illuminación {
+        i.iluminación {
           background-position:-8px -354px;
         }
         i.ofertas {

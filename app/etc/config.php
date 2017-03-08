@@ -8,6 +8,7 @@ return array (
     'Limitless_HomepageBanner' => 1,
     'Limitless_ReasonsUSP' => 1,
     'Limitless_SalesHotline' => 1,
+    'Limitless_UpsellTab' => 1,
     'Magento_Directory' => 1,
     'Magento_Theme' => 1,
     'Magento_Eav' => 1,
