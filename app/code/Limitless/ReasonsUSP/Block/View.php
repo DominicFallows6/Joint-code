@@ -3,6 +3,7 @@
 namespace Limitless\ReasonsUSP\Block;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 
@@ -24,7 +25,7 @@ class View extends Template
 
     private function getConfig($path)
     {
-        return $this->scopeConfig->getValue('general/limitless_reasons_usp/' . $path);
+        return $this->scopeConfig->getValue('general/limitless_reasons_usp/' . $path, ScopeInterface::SCOPE_STORE);
     }
 
     public function getIcon($path) {

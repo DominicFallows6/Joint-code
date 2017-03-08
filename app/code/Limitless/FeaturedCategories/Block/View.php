@@ -3,6 +3,7 @@
 namespace Limitless\FeaturedCategories\Block;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
 
@@ -50,7 +51,7 @@ class View extends Template
     }
 
     public function getConfig($path) {
-        return $this->scopeConfig->getValue('general/limitless_featured_categories/' . $path);
+        return $this->scopeConfig->getValue('general/limitless_featured_categories/' . $path, ScopeInterface::SCOPE_STORE);
     }
 
     public function getFeaturedImageUrl($path) {

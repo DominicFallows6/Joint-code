@@ -5,6 +5,7 @@ namespace Limitless\SalesHotline\Block\System\Config\Form\Field;
 use Magento\Backend\Block\Template\Context;
 use Magento\Config\Block\System\Config\Form\Field;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\Data\Form\Element\AbstractElement;
 
 class Custom extends Field
@@ -27,7 +28,7 @@ class Custom extends Field
 
     public function getConfigDropDownValues() {
 
-        $tableConfig = $this->scopeConfig->getValue('general/limitless_sales_hotline/days', ScopeConfigInterface::SCOPE_TYPE_DEFAULT);
+        $tableConfig = $this->scopeConfig->getValue('general/limitless_sales_hotline/days', ScopeInterface::SCOPE_STORE);
 
         $tableConfigResults = unserialize($tableConfig);
 

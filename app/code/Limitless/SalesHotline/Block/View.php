@@ -4,6 +4,7 @@ namespace Limitless\SalesHotline\Block;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
+use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Framework\View\Element\Template;
 
@@ -47,9 +48,14 @@ class View extends Template
         );
     }
 
+    private function getScopeConfigValue($path)
+    {
+        return $this->scopeConfig->getValue('general/limitless_sales_hotline/' . $path, ScopeInterface::SCOPE_STORE);
+    }
+
     public function getConfigDropDownValues() {
 
-        $tableConfig = $this->scopeConfig->getValue('general/limitless_sales_hotline/days');
+        $tableConfig = $this->getScopeConfigValue('days');
 
         $tableConfigResults = unserialize($tableConfig);
 
@@ -63,7 +69,7 @@ class View extends Template
 
         if (($this->timezone instanceof \DateTime) === false) {
             $this->timezone = new \DateTime;
-            $this->timezone->setTimeZone(new \DateTimeZone($this->scopeConfig->getValue('general/limitless_sales_hotline/timezone')));
+            $this->timezone->setTimeZone(new \DateTimeZone($this->getScopeConfigValue('timezone')));
         }
 
         return $this->timezone;
@@ -113,7 +119,7 @@ class View extends Template
 
         $salesNumberHtml = "";
 
-        $salesNumber = $this->scopeConfig->getValue('general/limitless_sales_hotline/sales_number');
+        $salesNumber = $this->getScopeConfigValue('sales_number');
 
         $salesNumberCtc = str_replace(' ', '', $salesNumber);
 
@@ -125,16 +131,16 @@ class View extends Template
     }
 
     public function checkInterval() {
-        return $this->scopeConfig->getValue('general/limitless_sales_hotline/check_interval');
+        return $this->getScopeConfigValue('check_interval');
     }
 
     public function getOpenText() {
-        $openText = $this->scopeConfig->getValue('general/limitless_sales_hotline/open_text');
+        $openText = $this->getScopeConfigValue('open_text');
         return '<span>' . $openText . '</span>';
     }
 
     public function getClosedText() {
-        $closedText = $this->scopeConfig->getValue('general/limitless_sales_hotline/closed_text');
+        $closedText = $this->getScopeConfigValue('closed_text');
         return '<span>' . $closedText . '</span>';
     }
 
@@ -142,8 +148,8 @@ class View extends Template
 
         $helpCentreLinkHtml = "";
 
-        $helpCentreText = $this->scopeConfig->getValue('general/limitless_sales_hotline/helpcentre_text');
-        $helpCentreLink = $this->scopeConfig->getValue('general/limitless_sales_hotline/helpcentre_link');
+        $helpCentreText = $this->getScopeConfigValue('helpcentre_text');
+        $helpCentreLink = $this->getScopeConfigValue('helpcentre_link');
 
         if($helpCentreLink != "") {
             $helpCentreLinkHtml = "<a href='" . $helpCentreLink . "' target='_blank' class='help-centre'>" . $helpCentreText . "</a>";
