@@ -53,7 +53,7 @@
           margin-right:7px;
         }
         span.action.customer {
-          float:right;
+          float:left;
           font-weight:@font-weight__bold;
         }
       }
@@ -165,7 +165,7 @@
       display: table-cell;
       vertical-align: middle;
       float:left;
-      margin-right:20px;
+      width:100%;
 
       a.action.view {
         display:inline-block;
@@ -186,10 +186,6 @@
   .product-reviews-summary {
     .products.wrapper.list & {
       margin: 0;
-    }
-    .rating-summary {
-      float:right;
-      margin:0;
     }
   }
 }
@@ -441,4 +437,23 @@
     }
   }
 
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+  .product-info-main {
+    .product-reviews-summary {
+      .reviews-actions {
+        float: left;
+        width: auto;
+        span.action.customer {
+          float: right;
+        }
+      }
+      .rating-summary {
+        float: right;
+        margin: 0;
+      }
+    }
+  }
 }
