@@ -33,9 +33,10 @@
     text-align: center;
 
     select {
-      .lib-css(background-color, @toolbar-element-background);
+      .lib-css(background-color, @color-white);
       .lib-css(box-shadow, @button__shadow);
-      border-radius: 3px;
+      border-radius: 0;
+      border: 1px solid @color-gray54;
     }
 
     &-amount {
@@ -186,16 +187,16 @@
     .lib-css(background-color, @toolbar-element-background);
     .lib-css(box-shadow, @button__shadow);
     .lib-css(color, @text__color__muted);
-    border: 1px solid @border-color__base;
+    border: 1px solid @color-gray54;
     border-right: 0;
     float: left;
     font-weight: @font-weight__regular;
     line-height: 1;
-    padding: 7px 10px;
+    padding: 2px;
     text-align: center;
 
     .modes-label + & {
-      border-radius: 3px 0 0 3px;
+      //border-radius: 3px 0 0 3px;
     }
 
     &:hover {
@@ -204,21 +205,25 @@
     }
 
     &:last-child {
-      border-radius: 0 3px 3px 0;
-      border-right: 1px solid @border-color__base;
+      //border-radius: 0 3px 3px 0;
+      border-right: 1px solid @color-gray54;
     }
 
     &.active {
       .lib-css(box-shadow, @button__shadow-active);
-      background: darken(@toolbar-element-background, 7%);
+      background: @color-white;
       color: @color-gray62;
+      &:before {
+        color: @color-gray54;
+      }
     }
 
     .lib-icon-font(
             @icon-grid,
-      @_icon-font-size: @toolbar-mode-icon-font-size,
+      //@_icon-font-size: @toolbar-mode-icon-font-size,
+      @_icon-font-size: 30px,
       @_icon-font-text-hide: true,
-      @_icon-font-color: @text__color__muted,
+      @_icon-font-color: @color-gray-light4,
       @_icon-font-color-hover: @text__color__muted
     );
   }

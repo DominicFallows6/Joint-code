@@ -26,10 +26,10 @@
       strong {
         @_shadow: inset 0 1px 0 0 @color-white, inset 0 -1px 0 0 fade(@border-color__base, 30);
 
-        .lib-css(background-color, @toolbar-element-background);
+        .lib-css(background-color, @color-white);
         .lib-css(box-shadow, @_shadow);
-        border: 1px solid @border-color__base;
-        border-radius: 3px;
+        border: 1px solid @color-gray54;
+        border-radius: 0;
         font-weight: 400;
         left: 0;
         line-height: 16px;
@@ -38,6 +38,7 @@
         text-align: center;
         top: 0;
         z-index: 2;
+        cursor: pointer;
 
         &[data-count]:after {
           .lib-css(color, @color-white);
@@ -64,6 +65,7 @@
       font-weight: @font-weight__semibold;
       line-height: 1em;
       padding: @indent__s @indent__s @indent__base;
+      display: none;
     }
 
     &-subtitle {
@@ -135,7 +137,7 @@
         z-index: 1;
 
         .lib-icon-font(
-          @_icon-font-content: @icon-down,
+          @_icon-font-content: @icon-expand,
           @_icon-font-size: 28px,
           @_icon-font-position: after,
           @_icon-font-display: block
@@ -153,7 +155,7 @@
 
         .active > & {
           .lib-icon-font-symbol(
-            @_icon-font-content: @icon-up,
+            @_icon-font-content: @icon-collapse,
             @_icon-font-position: after
           );
         }
