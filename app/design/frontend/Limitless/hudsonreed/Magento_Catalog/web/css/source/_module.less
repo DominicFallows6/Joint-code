@@ -44,32 +44,37 @@
   //  ---------------------------------------------
 
   .catalog-category-view {
-    .product-item .price-box {
-      .price {
-        font-size: 1.6rem;
-      }
-      span.special-price{
-        display: inline-block;
-        color: #C0272D;
-        .price-label{
-          display: none;
-        }
-      }
-      span.old-price {
-        text-decoration: none;
-        float: left;
-        &:after {
-          content: "/\00a0";
-          font-size: 1.6rem;
-          font-weight: 700;
-        }
-        .price-label{
-          display: none;
-        }
+    .product-item {
+      .price-box {
         .price {
-          text-decoration: line-through;
-          font-weight: 700;
+          font-size: 1.6rem;
         }
+        span.special-price{
+          display: inline-block;
+          color: #C0272D;
+          .price-label{
+            display: none;
+          }
+        }
+        span.old-price {
+          text-decoration: none;
+          float: left;
+          &:after {
+            content: "/\00a0";
+            font-size: 1.6rem;
+            font-weight: 700;
+          }
+          .price-label{
+            display: none;
+          }
+          .price {
+            text-decoration: line-through;
+            font-weight: 700;
+          }
+        }
+      }
+      .product-item-details .product-item-inner .stock.unavailable {
+        white-space: nowrap;
       }
     }
   }
