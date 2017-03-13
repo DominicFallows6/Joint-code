@@ -227,6 +227,25 @@
   content+_: @_icon-content;
 }
 
+.lib-rating-category-summary(
+  @_icon-count: @rating-icon__count,
+  @_icon-letter-spacing: @rating-icon__letter-spacing,
+  @_icon-font-size-category: @rating-icon__font-size-category
+) {
+  .rating-summary {
+    .rating-result {
+      .lib-css(width, (@_icon-font-size-category * @_icon-count) + ceil(@_icon-letter-spacing * (@_icon-count - 1)));
+      &:before {
+        font-size:@_icon-font-size-category;
+      }
+      > span {
+        &:before {
+          font-size:@_icon-font-size-category;
+        }
+      }
+    }
+  }
+}
 
 .lib-rating-product-summary(
     @_icon-count: @rating-icon__count,
@@ -247,6 +266,8 @@
     }
   }
 }
+
+
 
 
 
