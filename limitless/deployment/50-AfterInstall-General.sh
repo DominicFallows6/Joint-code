@@ -21,10 +21,5 @@ esac
 
 echo "Attaching Media Mount"
 if [ ! -L $DIR/pub/media ]; then
-  ln -s "${DIR}/limitless/config.php" "${DIR}/app/etc/config.php"
-fi
-
-echo "Attaching Media Mount"
-if [ ! -L $DIR/pub/media ]; then
   ln -s "/efs/magento2/media" "${DIR}/pub/media"
 fi
