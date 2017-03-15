@@ -61,7 +61,7 @@ return array(
                             'backend' => 'Cm_Cache_Backend_Redis',
                             'backend_options' =>
                                 array(
-                                    'server' => 'main.tyrt1z.ng.0001.euw1.cache.amazonaws.com',
+                                    'server' => 'm2s-main.tyrt1z.0001.euw1.cache.amazonaws.com',
                                     'port' => '6379',
                                 ),
                         ),
@@ -70,7 +70,7 @@ return array(
                             'backend' => 'Cm_Cache_Backend_Redis',
                             'backend_options' =>
                                 array(
-                                    'server' => 'page.tyrt1z.ng.0001.euw1.cache.amazonaws.com',
+                                    'server' => 'm2s-page.tyrt1z.0001.euw1.cache.amazonaws.com',
                                     'port' => '6379',
                                     'compress_data' => '0'
                                 )
@@ -81,17 +81,12 @@ return array(
         array(
             'key' => '9aa17b9681659942c0276caeb60d8d1b',
         ),
-    'session' =>
-        array(
-            'save' => 'memcached',
-            'save_path' => 'sessions.tyrt1z.cfg.euw1.cache.amazonaws.com:11211',
-        ),
     'session' => 
         array (
             'save' => 'redis',
             'redis' => 
                 array (
-                    'host' => 'session.tyrt1z.ng.0001.euw1.cache.amazonaws.com',
+                    'host' => 'm2s-session.tyrt1z.0001.euw1.cache.amazonaws.com',
                     'port' => '6379',
                     'password' => '',
                     'timeout' => '2.5',

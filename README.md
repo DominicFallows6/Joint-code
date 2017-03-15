@@ -11,46 +11,36 @@ Now deploying to AWS!
 composer install --no-dev --no-progress
 ```
 
-### 2) Database Install
+### 2) Core Hack - Permission from Vinai
 
 ```
-php bin/magento --quiet setup:install --admin-firstname=Admin --admin-lastname=User \
---admin-email=admin@example.com --admin-user=admin.user --admin-password='k4zVlGvaQhk5U&Y5' \
---backend-frontname=limitless --db-host=127.0.0.1 --db-name=magento2 --db-user=root \
---db-password='0B2zJX6Ad^@H$aa1' --language=en_GB -s
+sed -i'tmp' 's/\$hasCustomization = false;/\$hasCustomization = true;/' vendor/magento/module-deploy/Model/DeployStrategyProvider.php
+sed -i'tmp' 's/foreach (\$this->getCustomizationDirectories(\$area, \$themePath, \$locale) as $directory)/if(false)/' vendor/magento/module-deploy/Model/DeployStrategyProvider.php
 ```
 
-### 3) JS & CSS config
+### 3) Copy core config to app/etc/
 
 ```
-n98-magerun2.phar config:set dev/js/merge_files 1
-n98-magerun2.phar config:set dev/js/enable_js_bundling 1
-n98-magerun2.phar config:set dev/js/minify_files 1
-n98-magerun2.phar config:set dev/css/merge_css_files 1
-n98-magerun2.phar config:set dev/css/minify_files 1
-n98-magerun2.phar config:set dev/static/sign 1
+cp limitless/config.local.php app/etc/config.local.php
 ```
 
-### 4) Enable Production
+### 4) Compile DI
 
 ```
-php bin/magento --quiet deploy:mode:set production -s
+php bin/magento setup:di:compile
 ```
 
-### 5) Compile DI
+### 5) Build Static Content
 
 ```
-php bin/magento --quiet setup:di:compile
+php bin/magento setup:static-content:deploy en_GB en_US es_ES de_DE
 ```
 
-### 6) Build Static Content
-
-```
-php bin/magento --quiet setup:static-content:deploy en_GB en_US
-```
-
-### 7) Remove config (Replaced on deployment)
+### 6) Cleanup before deployment
 
 ```
 rm app/etc/env.php
+rm app/etc/config.local.php
+rm var/session -Rf
+rm pub/media -Rf
 ```

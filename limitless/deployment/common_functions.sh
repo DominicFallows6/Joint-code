@@ -15,9 +15,17 @@
 # express or implied. See the License for the specific language governing
 # permissions and limitations under the License.
 
-# TARGET_LIST defines which target groups behind Load Balancer this instance should be part of.
-# The elements in TARGET_LIST should be seperated by space.
-TARGET_GROUP_LIST="WebServers"
+# TARGET_GROUP_LIST defines which target groups behind Load Balancer this instance should be part of.
+# The elements in TARGET_GROUP_LIST should be seperated by space.
+# Deploy the local.xml file.
+case "${DEPLOYMENT_GROUP_NAME}" in
+  Staging)
+    TARGET_GROUP_LIST="WebServers"
+    ;;
+  Production)
+    TARGET_GROUP_LIST="M2P-Application"
+    ;;
+esac
 
 # PORT defines which port the application is running at.
 # If PORT is not specified, the script will use the default port set in target groups
