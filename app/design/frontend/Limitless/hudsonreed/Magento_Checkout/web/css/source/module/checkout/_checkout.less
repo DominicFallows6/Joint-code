@@ -23,10 +23,41 @@
 
 & when (@media-common = true) {
 
-  .checkout-index-index,
-  .checkout-onepage-success {
+  .checkout-index-index {
     .page-title-wrapper {
       &:extend(.abs-visually-hidden all);
+    }
+  }
+
+  .checkout-onepage-success {
+    #maincontent {
+      text-align: center;
+      a {
+        color: @color-gray20;
+      }
+      .page-title-wrapper {
+        padding-top: 30px;
+        h1 {
+          margin-bottom: 0;
+        }
+      }
+      .thankyou-message {
+        padding: 5px 0 20px 0;
+        font-weight: 600;
+        font-size: 1.9rem;
+      }
+      .print {
+        text-decoration: underline;
+      }
+      .actions-toolbar .primary {
+        float: none;
+      }
+      .action.primary {
+        background: #ffffff;
+        border: 1px solid #333333;
+        color: #333333;
+        margin-top: 20px;
+      }
     }
   }
 
@@ -107,6 +138,11 @@
   .checkout-index-index {
     .page-header {
       margin-bottom:20px;
+    }
+  }
+  .checkout-onepage-success {
+    .thankyou-message {
+      font-size: 25px;
     }
   }
 }
