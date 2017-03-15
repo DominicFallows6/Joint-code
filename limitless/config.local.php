@@ -334,9 +334,9 @@ return array(
                                 ),
                             'js' =>
                                 array(
-                                    'merge_files' => '0',
-                                    'enable_js_bundling' => '0',
-                                    'minify_files' => '0',
+                                    'merge_files' => '1',
+                                    'enable_js_bundling' => '1',
+                                    'minify_files' => '1',
                                 ),
                             'css' =>
                                 array(
