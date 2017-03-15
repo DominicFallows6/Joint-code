@@ -234,7 +234,7 @@ define(
                 function padShippingRates(shippingGroup) {
                     var maxDeliveryOptions = metapackData.getMaxOptionsPerDay(shippingService.getShippingRates()());
                     var toFill = maxDeliveryOptions - shippingGroup.rates.length;
-                    var emptyRates = new Array(toFill).fill(dummyRate);
+                    var emptyRates = Array.apply(null, new Array(toFill)).map(function(){return dummyRate});
                     return shippingGroup.rates.concat(emptyRates);
                 }
 
