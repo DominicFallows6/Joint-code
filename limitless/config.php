@@ -188,6 +188,7 @@ return array (
     'Limitless_UpsellTab' => 1,
     'Limitless_Delivery' => 1,
     'Limitless_MinifyExcludeWorldpay' => 1,
+    'Limitless_Worldpay_TDS' => 1,
     'Worldpay_Payments' => 1,
   ),
 );
