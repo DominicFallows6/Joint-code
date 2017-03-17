@@ -25,6 +25,22 @@ class MetapackResponse
     }
 
     /**
+     * @param int $orderValue
+     * @param $deliveryOption
+     * @return mixed
+     */
+    public function buildEconomyDeliveryOption(int $orderValue, $deliveryOption)
+    {
+        $economyOption = $deliveryOption;
+        $economyOption['deliveryTimeString'] = (__('3 - 5 Working days'));
+        $economyOption['allocationFilter'] = 'acceptableCarrierServiceGroupCodes:' . $this->getConfig('carriers/delivery/economy_group');
+        $economyOption['deliveryServiceLevelString'] = (__("I'm not in a hurry"));
+        $economyOption['shippingCharge'] = $this->calculateEconomyDeliveryCharge($economyOption['shippingCharge'],
+            $orderValue);
+        return $economyOption;
+    }
+
+    /**
      * @param $deliveryOption
      * @param $filteredDeliveryOptions
      * @return array
@@ -96,22 +112,6 @@ class MetapackResponse
         $acceptableDeliverySlots = $option['delivery']['from'] . ',' . $option['delivery']['to'];
 
         return 'acceptableCarrierServiceGroupCodes:' . $acceptableCarrierServiceGroupCodes . '|acceptableCollectionSlots:' . $acceptableCollectionSlots . '|acceptableDeliverySlots:' . $acceptableDeliverySlots;
-    }
-
-    /**
-     * @param int $orderValue
-     * @param $deliveryOption
-     * @return mixed
-     */
-    public function buildEconomyDeliveryOption(int $orderValue, $deliveryOption)
-    {
-        $economyOption = $deliveryOption;
-        $economyOption['deliveryTimeString'] = (__('3 - 5 Working days'));
-        $economyOption['allocationFilter'] = $this->getConfig('carriers/delivery/economy_group');
-        $economyOption['deliveryServiceLevelString'] = (__("I'm not in a hurry"));
-        $economyOption['shippingCharge'] = $this->calculateEconomyDeliveryCharge($economyOption['shippingCharge'],
-            $orderValue);
-        return $economyOption;
     }
 
     /**

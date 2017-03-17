@@ -76,17 +76,20 @@ class MetapackOptionsApiCallTest extends \PHPUnit_Framework_TestCase
         $rateRequest = $this->buildRateRequest();
         $options = $this->metapackApi->call($rateRequest);
 
-        //print_r(json_encode($options));
+        foreach($options as $option) {
+            $dateToDeliver = [];
+            $dateToShip = [];
 
-//        foreach($options as $option) {
-//            echo $option['deliveryServiceLevelString'] . ' ' . $option['deliveryTimeString'].PHP_EOL;
-//        }
+            preg_match('/acceptableCollectionSlots:(\d+-\d+-\d+)/', $option['allocationFilter'], $dateToShip);
+            if(!empty($dateToShip)) {
+                echo 'Collection date = ' . $dateToShip[1] . PHP_EOL;
+            }
 
-        /*foreach($options as $option) {
-            echo $option['bookingCode'].PHP_EOL;
-        }*/
-
-        print_r($options);
+            preg_match('/acceptableDeliverySlots:(\d+-\d+-\d+)/', $option['allocationFilter'], $dateToDeliver);
+            if(!empty($dateToDeliver)) {
+                echo 'Delivery date = ' . $dateToDeliver[1] . PHP_EOL.PHP_EOL;
+            }
+        }
 
         $this->assertNotEmpty($options);
     }

@@ -17,11 +17,15 @@
     </type>
 
     <type name="Magento\Sales\Model\OrderRepository">
-        <plugin name="limitless_allocationfilter" type="Limitless\Delivery\Plugin\AddAllocationFilterToOrderApiPlugin" />
+        <plugin name="limitless_allocationfilter" type="Limitless\Delivery\Plugin\AddDeliveryFiltersToOrderApiPlugin" />
     </type>
 
     <type name="Magento\Shipping\Model\Rate\Result">
         <plugin name="limitless_allocationfilter" type="Limitless\Delivery\Plugin\BypassSortRatesByPrice" />
+    </type>
+
+    <type name="Magento\Quote\Model\Quote\Address\Total\Shipping">
+        <plugin name="limitless_shippingdescription" type="Limitless\Delivery\Plugin\SetDateInShippingDescriptionPlugin" />
     </type>
 
 </config>

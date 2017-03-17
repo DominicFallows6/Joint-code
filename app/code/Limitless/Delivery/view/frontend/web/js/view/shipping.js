@@ -272,7 +272,7 @@ define(
 
                 var findEconomyRate = function () {
                     var economyRates = shippingService.getShippingRates()().filter(function (rate) {
-                        return rate.method_code === 'ECONOMY';
+                        return rate.method_code === 'acceptableCarrierServiceGroupCodes:ECONOMY';
                     });
                     return economyRates[0] || null;
                 };
@@ -281,8 +281,6 @@ define(
                     var economy = findEconomyRate();
                     return economy ? economy : dummyRate;
                 });
-
-
 
                 return this;
             },
@@ -378,7 +376,7 @@ define(
                 var carrier_method_code = shippingMethod.carrier_code + '_' + shippingMethod.method_code;
                 selectShippingMethodAction(shippingMethod);
                 checkoutData.setSelectedShippingRate(carrier_method_code);
-                if(carrier_method_code === shippingMethod.carrier_code + '_' + "ECONOMY"){
+                if(carrier_method_code === shippingMethod.carrier_code + '_' + "acceptableCarrierServiceGroupCodes:ECONOMY"){
                     $('.table-checkout-shipping-method select').prop('selectedIndex',0);
                 }
                 return true;
@@ -414,10 +412,13 @@ define(
              * @return {Boolean}
              */
             validateShippingInformation: function () {
+
                 var shippingAddress,
                     addressData,
                     loginFormSelector = 'form[data-role=email-with-possible-login]',
-                    emailValidationResult = customer.isLoggedIn();
+                    emailValidationResult = customer.isLoggedIn(),
+                    initialPostcode = quote.shippingAddress().postcode.replace(' ', '').toLowerCase(),
+                    initialCountry = quote.shippingAddress().countryId.toLowerCase();
 
                 if (!quote.shippingMethod()) {
                     this.errorValidationMessage('Please specify a shipping method.');
@@ -467,6 +468,16 @@ define(
                         shippingAddress.save_in_address_book = 1;
                     }
                     selectShippingAddress(shippingAddress);
+
+                    var currentPostcode = shippingAddress.postcode.replace(' ', '').toLowerCase();
+                    var currentCountry = shippingAddress.countryId.toLowerCase();
+                }
+
+                // If address has been altered since initial request to metapack, reselect delivery option based on new address
+                if (initialCountry != currentCountry || initialPostcode != currentPostcode) {
+                    this.onSubmit();
+                    this.errorValidationMessage($.mage.__('Address details have been changed. Please re-select your delivery option.'));
+                    return false;
                 }
 
                 if (!emailValidationResult) {

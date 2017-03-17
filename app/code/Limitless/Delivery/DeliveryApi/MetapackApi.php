@@ -13,9 +13,6 @@ class MetapackApi implements DeliveryApiInterface
     private $metapackRequest;
     private $metapackResponse;
     private $scopeConfig;
-    private $optionLimit = 192;
-    private $responseDeliveryOptionsType = 'ggg';
-    private $responseFormatType = 'json';
     private $logger;
 
     public function __construct(
@@ -67,27 +64,32 @@ class MetapackApi implements DeliveryApiInterface
         $recipientPhone = ($data['phone'] ? $data['phone'] : '');
         $consignmentValue = ($data['package_value'] ? $data['package_value'] : 0.00);
 
+        $deliveryWeeks = 2;
+        if(is_numeric($this->getConfig('carriers/delivery/delivery_weeks'))) {
+            $deliveryWeeks = $this->getConfig('carriers/delivery/delivery_weeks');
+        }
+        $dateTo = date("Y-m-d", strtotime('+'.$deliveryWeeks.' weeks'));
+
         $request = $this->getConfig('carriers/delivery/url').'/find'.
             '?wh_code='.$this->getConfig('carriers/delivery/warehouse_code').
             '&wh_l1='.$this->getConfig('general/store_information/street_line1').
             '&wh_l2='.$this->getConfig('general/store_information/street_line2').
             '&wh_pc='.$this->getConfig('general/store_information/postcode').
             '&wh_cc='.$this->getConfig('general/store_information/country_id').
+            '&acceptableDeliverySlots='.date("Y-m-d").'T00:00:00.000Z,'.$dateTo.'T23:59:59.999Z'.
             '&c_phone='.$recipientPhone.
             '&c_l1='.$data['dest_street'].
             '&c_l2='.$data['dest_city'].
             '&c_pc='.$data['dest_postcode'].
             '&c_cc='.$data['dest_country_id'].
             '&e_v='.$consignmentValue.
-            '&e_n=1'.
+            '&e_n=1'.                                       // TODO: Work this out based on contents of basket
             '&e_w='.$data['package_weight'].
-            '&e_maxweight='.$data['package_weight'].
-            '&limit='.$this->optionLimit.
+            '&e_maxweight='.$data['package_weight'].        // TODO: Rework this based on the max parcel
             $customField.
             $includedGroups.
-            //'&e_maxdim='.$data['consig = 7;mentEstimatedMaxParcelDim'].
-            '&r_t='.$this->responseDeliveryOptionsType.
-            '&r_f='.$this->responseFormatType.
+            '&r_t=ggg'.
+            '&r_f=json'.
             '&key='.$this->getConfig('carriers/delivery/key')
         ;
 
@@ -100,16 +102,13 @@ class MetapackApi implements DeliveryApiInterface
      */
     public function call($request)
     {
-        $this->logger->addDebug('Metapack Call: '.PHP_EOL.$this->buildRequest($request).PHP_EOL);
         $curl = curl_init($this->buildRequest($request));
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         $response = curl_exec($curl);
         $deliveryOptions = json_decode($response,true);
 
         if ($deliveryOptions === false) {
-            $info = curl_getinfo($curl);
             curl_close($curl);
-            $this->logger->addError('Metapack Error: '.PHP_EOL.print_r($info,1));
 
             return array($this->offlineDeliveryOption());
         }
