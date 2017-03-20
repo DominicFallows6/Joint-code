@@ -474,10 +474,12 @@ define(
                 }
 
                 // If address has been altered since initial request to metapack, reselect delivery option based on new address
-                if (initialCountry != currentCountry || initialPostcode != currentPostcode) {
-                    this.onSubmit();
-                    this.errorValidationMessage($.mage.__('Address details have been changed. Please re-select your delivery option.'));
-                    return false;
+                if (typeof currentCountry !== 'undefined' &&  typeof currentPostcode !== 'undefined') {
+                    if (initialCountry != currentCountry || initialPostcode != currentPostcode) {
+                        this.onSubmit();
+                        this.errorValidationMessage($.mage.__('Address details have been changed. Please re-select your delivery option.'));
+                        return false;
+                    }
                 }
 
                 if (!emailValidationResult) {
