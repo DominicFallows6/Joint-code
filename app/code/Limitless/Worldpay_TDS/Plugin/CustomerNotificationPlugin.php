@@ -2,12 +2,12 @@
 
 namespace Limitless\Worldpay_TDS\Plugin;
 
-use Magento\Backend\Block\Template\Context;
-use \Magento\Customer\Model\Plugin\CustomerNotification;
+use Magento\Customer\Model\Plugin\CustomerNotification;
 use Magento\Framework\App\Action\AbstractAction;
+use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\RequestInterface;
 use Magento\Customer\Model\Customer\NotificationStorage;
-use Magento\Customer\Model\Session;
+use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Framework\App\Area;
 use Magento\Framework\App\State;
 use Magento\Customer\Api\CustomerRepositoryInterface;
@@ -15,7 +15,7 @@ use Magento\Store\Model\ScopeInterface as ScopeInterface;
 
 class CustomerNotificationPlugin
 {
-    /** @var Session */
+    /** @var CustomerSession */
     private $customerSession;
 
     /** @var NotificationStorage */
@@ -27,21 +27,21 @@ class CustomerNotificationPlugin
     /** @var State */
     private $state;
 
-    /** @var Context */
-    private $context;
+    /** @var ScopeConfigInterface */
+    private $scopeConfig;
 
     public function __construct(
-        Session $session,
+        CustomerSession $customerSession,
         NotificationStorage $notificationStorage,
         State $state,
         CustomerRepositoryInterface $customerRepository,
-        Context $context
+        ScopeConfigInterface $scopeConfig
     ) {
-        $this->customerSession = $session;
+        $this->customerSession = $customerSession;
         $this->notificationStorage = $notificationStorage;
         $this->state = $state;
         $this->customerRepository = $customerRepository;
-        $this->context = $context;
+        $this->scopeConfig = $scopeConfig;
     }
 
     public function aroundBeforeDispatch(
@@ -51,7 +51,7 @@ class CustomerNotificationPlugin
         RequestInterface $request
     ) {
 
-        $usePlugin = $this->context->getScopeConfig()
+        $usePlugin = $this->scopeConfig
             ->getValue('payment/worldpay_payments_card/uselimitless3ds', ScopeInterface::SCOPE_WEBSITE);
 
         if (false == $usePlugin) {
