@@ -23,3 +23,8 @@ echo "Attaching Media Mount"
 if [ ! -L $DIR/pub/media ]; then
   ln -s "/efs/magento2/media" "${DIR}/pub/media"
 fi
+
+echo "Attaching static cache"
+if [ ! -L $DIR/pub/static/_cache ]; then
+  ln -s "/efs/magento2/static/_cache" "${DIR}/pub/static/_cache"
+fi
