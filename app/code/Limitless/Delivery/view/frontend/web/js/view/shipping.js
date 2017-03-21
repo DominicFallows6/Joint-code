@@ -119,7 +119,7 @@ define(
                     if (this.submitWasClicked() && !this.source.get('params.invalid')) {
                         return true;
                     }
-                    if (customer.isLoggedIn()) {
+                    if (customer.isLoggedIn() && addressList().length) {
                         this.isContinueToShippingMethodButtonVisible(false);
                         return checkoutData.getSelectedShippingRate() || addressList().length;
                     }
