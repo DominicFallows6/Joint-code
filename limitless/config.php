@@ -190,5 +190,6 @@ return array (
     'Limitless_MinifyExcludeWorldpay' => 1,
     'Limitless_Worldpay_TDS' => 1,
     'Worldpay_Payments' => 1,
+    'Limitless_SubCategoryList' => 1
   ),
 );
