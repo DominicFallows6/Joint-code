@@ -42,25 +42,21 @@
 
 @media screen and (min-width:1024px) {
     #sub-category-list > a {
-        width:15%;
-        margin-left:calc((100% - 6 * 15%) / 5);
-    }
-
-    #sub-category-list > a span.title {
-        font-size:12px;
+        width:23.5%;
+        margin-left:calc((100% - 4 * 23.5%) / 3);
     }
 
     #sub-category-list > a:nth-child(2n + 1) {
         clear:none;
-        margin-left:calc((100% - 6 * 15%) / 5);
+        margin-left:calc((100% - 4 * 23.5%) / 3);
     }
 
     #sub-category-list > a:nth-child(3n + 1) {
-        margin-left:calc((100% - 6 * 15%) / 5);
+        margin-left:calc((100% - 4 * 23.5%) / 3);
         clear:none;
     }
 
-    #sub-category-list > a:nth-child(6n + 1) {
+    #sub-category-list > a:nth-child(4n + 1) {
         margin-left:0;
         clear:left;
     }
