@@ -1,0 +1,23 @@
+{
+  "name": "limitless/module-subcategorylist",
+  "description": "N/A",
+  "require": {
+    "php": "^7.0.0",
+    "magento/module-store": "100.1.5",
+    "magento/framework": "100.1.5",
+    "magento/catalog": "101.0.5"
+  },
+  "type": "magento2-module",
+  "version": "0.1.0",
+  "license": [
+    "BSD-3-Clause"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\SubCategoryList\\": ""
+    }
+  }
+}

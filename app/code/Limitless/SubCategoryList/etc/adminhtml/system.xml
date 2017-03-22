@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="general">
+            <group id="limitless_sub_category_list" translate="label" sortOrder="1000" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Subcategory List</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="limitless_sub_category_list_level" translate="label comment" type="text" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Category Level</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <comment>
+                        <![CDATA[Specify the category levels at which you want to show the subcategory list block, separated by a comma ONLY, no spaces.<br /><br />
+                        e.g Enter 2 for top level category pages.<br />
+                        Enter 3 for first level of subcategory pages.<br />
+                        Or enter 2,3,4 for top level, first subcategory AND second subcategory level.]]>
+                    </comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
