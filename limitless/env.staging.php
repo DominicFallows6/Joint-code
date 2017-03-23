@@ -124,6 +124,7 @@ return array(
             0 => 
                 array (
                     'host' => '10.4.42.141',
+                    'host' => 'm2s-worker-751818775.eu-west-1.elb.amazonaws.com',
                 ),
         ),
 );

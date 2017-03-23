@@ -8,11 +8,13 @@ echo "Linking the configuration to /app/etc"
 # Deploy the local.xml file.
 case "${DEPLOYMENT_GROUP_NAME}" in
   Staging)
+  StagingWorker)
     if [ ! -L ${DIR}/app/etc/env.php ]; then
       ln -s "${DIR}/limitless/env.staging.php" "${DIR}/app/etc/env.php"
     fi
     ;;
   Production)
+  ProductionWorker)
     if [ ! -L ${DIR}/app/etc/env.php ]; then
       ln -s "${DIR}/limitless/env.production.php" "${DIR}/app/etc/env.php"
     fi
