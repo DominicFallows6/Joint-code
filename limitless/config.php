@@ -182,6 +182,7 @@ return array (
     'Magento_Worldpay' => 1,
     'Limitless_EmergencyMessage' => 1,
     'Limitless_FeaturedCategories' => 1,
+    'Limitless_GlobalListerBanner' => 1,
     'Limitless_HomepageBanner' => 1,
     'Limitless_ReasonsUSP' => 1,
     'Limitless_SalesHotline' => 1,

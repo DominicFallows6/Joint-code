@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="general">
+            <group id="limitless_global_lister_banner" translate="label" sortOrder="999" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Global Lister Banner</label>
+                <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="banner_url" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Banner Url</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <comment>If empty the banner will not link anywhere</comment>
+                </field>
+                <field id="banner_alt_text" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Banner Alt Text</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <comment>Please enter the alt text for the banner</comment>
+                </field>
+                <field id="desktop_banner_image" translate="label comment" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Desktop Banner</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">global_lister_banner</upload_dir>
+                    <base_url type="media" scope_info="1">global_lister_banner</base_url>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <comment>Please upload your image in jpg or png format</comment>
+                </field>
+                <field id="mobile_banner_image" translate="label comment" type="image" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Mobile Banner</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">global_lister_banner</upload_dir>
+                    <base_url type="media" scope_info="1">global_lister_banner</base_url>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <comment>Please upload your image in jpg or png format</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

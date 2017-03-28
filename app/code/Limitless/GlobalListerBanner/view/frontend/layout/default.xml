@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Limitless_GlobalListerBanner::css/global-lister-banner.css" />
+    </head>
+    <body>
+        <referenceContainer name="page.top">
+            <block class="Limitless\GlobalListerBanner\Block\View" name="global.lister.banner"
+               template="Limitless_GlobalListerBanner::global-lister-banner.phtml" before="breadcrumbs"
+               ifconfig="general/limitless_global_lister_banner/enabled" />
+        </referenceContainer>
+    </body>
+</page>
