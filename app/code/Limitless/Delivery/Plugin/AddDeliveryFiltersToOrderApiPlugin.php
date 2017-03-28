@@ -14,10 +14,10 @@ class AddDeliveryFiltersToOrderApiPlugin
      * @var OrderExtensionFactory
      */
     private $orderExtensionAttributesFactory;
+
     /**
      * @var AllocationFilterFactory
      */
-    
     private $allocationFilterFactory;
     
     public function __construct(
@@ -41,7 +41,7 @@ class AddDeliveryFiltersToOrderApiPlugin
         /** @var \Magento\Sales\Api\Data\OrderSearchResultInterface $searchResults */
         $searchResults = $proceed($searchCriteria);
         $orders = $searchResults->getItems();
-        foreach ($orders AS $key=>$order) {
+        foreach ($orders as $key => $order) {
             $this->addExtensionAttributesToOrder($order->getEntityId(), $order);
         }
         return $searchResults;
@@ -54,10 +54,10 @@ class AddDeliveryFiltersToOrderApiPlugin
     }
     
     /**
-     * @param $orderId
-     * @param $order
+     * @param string $orderId
+     * @param OrderInterface $order
      */
-    protected function addExtensionAttributesToOrder($orderId, $order)
+    private function addExtensionAttributesToOrder($orderId, $order)
     {
         /** @var AllocationFilter $allocationFilter */
         $allocationFilter = $this->allocationFilterFactory->create();
@@ -75,7 +75,7 @@ class AddDeliveryFiltersToOrderApiPlugin
             $dateToShip = $this->extractDateFromAllocationFilter($allocationFilterString, 'Collection');
             $dateToDeliver = $this->extractDateFromAllocationFilter($allocationFilterString, 'Delivery');
 
-            if($dateToShip !== '' && $dateToDeliver !== '') {     // If customer has selected a delivery date
+            if ($dateToShip && $dateToDeliver) {
                 $extensionAttributes->setDateToShip($dateToShip);
                 $extensionAttributes->setDateToDeliver($dateToDeliver);
             }
@@ -83,14 +83,14 @@ class AddDeliveryFiltersToOrderApiPlugin
         }
     }
 
-    private function extractDateFromAllocationFilter($allocationFilter, $shipmentSlotType = 'Collection')
+    private function extractDateFromAllocationFilter($allocationFilter, $shipmentSlotType)
     {
         $date = false;
         $datePieces = [];
-        if(in_array($shipmentSlotType, ['Collection','Delivery'])) {
-            preg_match('/acceptable' . $shipmentSlotType . 'Slots:(\d+-\d+-\d+)/', $allocationFilter, $datePieces);
+        if (in_array($shipmentSlotType, ['Collection','Delivery'])) {
+            preg_match('/acceptable' . $shipmentSlotType . 'Slots:(?<date>\d+-\d+-\d+)/', $allocationFilter, $datePieces);
             if (!empty($datePieces)) {
-                $date = $datePieces[1];
+                $date = $datePieces['date'];
             }
         }
         return $date;

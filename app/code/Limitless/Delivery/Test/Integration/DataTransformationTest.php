@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Limitless\Delivery\Test\Integration;
 
 use Limitless\Delivery\Helper\MetapackData;
@@ -54,7 +53,11 @@ class DataTransformationTest extends \PHPUnit_Framework_TestCase
 
         $groupedDays = $this->transformation->groupByDaysFromToday($mpData);
 
-        $this->assertSame([1,2,3,4,5,6,7,8,9,10,11,12], array_keys($this->transformation->fillGaps($groupedDays)));
+        $keys = array_keys($this->transformation->fillGaps($groupedDays));
+        for ($i = 0; $i < count($keys) - 1; $i++)
+        {
+            $this->assertLessThan($keys[$i + 1], $keys[$i]);
+        }
 
     }
 
@@ -77,12 +80,6 @@ class DataTransformationTest extends \PHPUnit_Framework_TestCase
         ];
 
         $this->assertSame($expected, $this->transformation->groupByDaysFromToday($input));
-
-        $mpData = array_map([$this->transformation, 'addDaysFromToday'],
-            array_map([$this->transformation, 'addDate'], json_decode($this->metapackDataFixture, true))
-        );
-
-        $this->assertSame([1,2,3,5,6,7,8,9,10,12],array_keys($this->transformation->groupByDaysFromToday($mpData)));
     }
 
     public function testReturnsMaxOptionsPerDay()

@@ -2,11 +2,21 @@
   "name": "limitless/delivery",
   "description": "n.a.",
   "require": {
-    "php": "~5.6.0|^7.0.0"
+    "php": "^7.0.0",
+    "magento/framework": "100.1.*",
+    "magento/module-store": "100.1.*",
+    "magento/module-quote": "100.1.*",
+    "magento/module-shipping": "100.1.*",
+    "psr/log": "~1.0",
+    "magento/module-sales": "^100.1.4",
+    "magento/module-eav": "100.1.*",
+    "magento/magento2-base": "2.1.*",
+    "magento/module-theme": "100.1.*",
+    "magento/module-checkout": "100.1.4"
   },
   "type": "magento2-module",
   "license": [
-    "BSD-3-Clause"
+    "proprietary"
   ],
   "autoload": {
     "files": [

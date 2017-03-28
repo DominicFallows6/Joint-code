@@ -7,15 +7,18 @@ use Magento\Quote\Model\Quote;
 use Magento\Quote\Model\Quote\Address\Total;
 use Magento\Quote\Model\Quote\Address\Total\Shipping;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Store\Model\ScopeInterface;
+use Magento\Framework\Stdlib\DateTime\DateTimeFormatterInterface;
 
 class SetDateInShippingDescriptionPlugin
 {
-    private $scopeConfig;
+    /**
+     * @var DateTimeFormatterInterface
+     */
+    private $dateTimeFormatter;
 
-    public function __construct(ScopeConfigInterface $scopeConfig)
+    public function __construct(DateTimeFormatterInterface $dateTimeFormatter)
     {
-        $this->scopeConfig = $scopeConfig;
+        $this->dateTimeFormatter = $dateTimeFormatter;
     }
 
     public function aroundCollect(
@@ -25,25 +28,24 @@ class SetDateInShippingDescriptionPlugin
         ShippingAssignmentInterface $shippingAssignment,
         Total $total
     ) {
-        $proceed($quote,$shippingAssignment,$total);
+        $result = $proceed($quote, $shippingAssignment, $total);
 
+        /** @var \Magento\Quote\Model\Quote\Address $address */
         $address = $shippingAssignment->getShipping()->getAddress();
         $method = $shippingAssignment->getShipping()->getMethod();
 
-        if($method && strpos($method, 'acceptableDeliverySlots') !== false) {
+        if ($method && strpos($method, 'acceptableDeliverySlots') !== false) {
 
             $datePieces = [];
-            preg_match('/acceptableDeliverySlots:(\d+-\d+-\d+)/', $method, $datePieces);
+            preg_match('/acceptableDeliverySlots:(?<date>\d+-\d+-\d+)/', $method, $datePieces);
             if (!empty($datePieces)) {
-                $locale = $this->scopeConfig->getValue('general/locale/code', ScopeInterface::SCOPE_STORE);
-                setlocale(LC_TIME, $locale);
+                $date = $this->dateTimeFormatter->formatObject(new \DateTime($datePieces['date']), 'MMMM d yyyy');
 
-                $date = strftime("%B %e %Y", strtotime($datePieces[1]));
-
+                /** @var \Magento\Quote\Model\Quote\Address\Rate $rate */
                 foreach ($address->getAllShippingRates() as $rate) {
-                    if ($rate->getCode() == $method) {
+                    if ($rate->getCode() === $method) {
                         $shippingDescription = $date . ' (' . $rate->getMethodTitle() . ')';
-                        $total->setShippingDescription($shippingDescription);
+                        $total->setData('shipping_description', $shippingDescription);
                         break;
                     }
                 }
@@ -51,6 +53,6 @@ class SetDateInShippingDescriptionPlugin
 
         }
 
-        return $this;
+        return $result;
     }
 }

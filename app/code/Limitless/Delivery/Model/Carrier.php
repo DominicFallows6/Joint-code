@@ -5,14 +5,15 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Quote\Model\Quote\Address\RateRequest;
 use Magento\Quote\Model\Quote\Address\RateResult\ErrorFactory;
 use Magento\Quote\Model\Quote\Address\RateResult\MethodFactory;
+use Magento\Shipping\Model\Carrier\AbstractCarrier;
+use Magento\Shipping\Model\Carrier\CarrierInterface;
 use Magento\Shipping\Model\Rate\Result;
 use Limitless\Delivery\DeliveryApi\DeliveryApiInterface;
 use Magento\Shipping\Model\Rate\ResultFactory;
 use Psr\Log\LoggerInterface;
 
 
-class Carrier extends \Magento\Shipping\Model\Carrier\AbstractCarrier implements
-    \Magento\Shipping\Model\Carrier\CarrierInterface
+class Carrier extends AbstractCarrier implements CarrierInterface
 {
 
     public $_code = 'delivery';

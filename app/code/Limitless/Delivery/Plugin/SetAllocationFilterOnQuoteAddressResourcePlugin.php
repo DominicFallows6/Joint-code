@@ -29,6 +29,7 @@ class SetAllocationFilterOnQuoteAddressResourcePlugin
             $allocationFilterModel = $this->allocationFilterFactory->create();
             $quoteId = $address->getQuote()->getId();
             $allocationFilterModel->getResource()->load($allocationFilterModel, $quoteId, AllocationFilter::QUOTE_ID);
+
             if ($allocationFilterModel->getData(AllocationFilter::ALLOCATION_FILTER) !== $address->getShippingMethod()) {
                 $allocationFilterModel->setData(AllocationFilter::QUOTE_ID, $quoteId);
                 $allocationFilterModel->setData(AllocationFilter::ALLOCATION_FILTER, $this->extractAllocationFilter($address));

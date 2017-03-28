@@ -2,11 +2,14 @@
 
 namespace Limitless\Delivery\Test\Integration\Plugin;
 use Limitless\Delivery\Model\AllocationFilter;
-use Limitless\Delivery\Plugin\SetAllocationFilterOnShippingAddressPlugin;
+use Limitless\Delivery\Plugin\SetAllocationFilterOnQuoteAddressResourcePlugin;
 use Limitless\Delivery\Plugin\SetPlaceOrderIdPlugin;
 use Magento\Framework\App\ObjectManager;
 use Magento\Quote\Api\CartManagementInterface;
 use Magento\Quote\Api\Data\AddressInterface;
+use Magento\Quote\Model\Quote;
+use Magento\Quote\Model\ResourceModel\Quote\Address;
+use Magento\Quote\Model\Quote\Address as AddressModel;
 use Magento\Quote\Model\ShippingAddressManagementInterface;
 /**
  * @magentoDbIsolation enabled
@@ -14,20 +17,36 @@ use Magento\Quote\Model\ShippingAddressManagementInterface;
 class SetAllocationFilterOnShippingAddressPluginTest extends \PHPUnit_Framework_TestCase
 {
     protected $cartID = '123';
+    private $shippingMethod = 'acceptableCarrierServiceGroupCodes:ECONOMY';
+
     public function testPluginSavesAllocationFilter()
     {
-        $subject= $this->getMock(ShippingAddressManagementInterface::class);
+        /** @var Address $subject */
+        $subject = $this->getMockBuilder(Address::class)
+            ->disableOriginalConstructor()
+            ->getMock();
         $proceed = function(){};
         $cartId = $this->cartID;
-        $address = $this->getMock(AddressInterface::class);
-        $address->method('getPostcode')->willReturn('I don\'t Care');
-        /** @var SetAllocationFilterOnShippingAddressPlugin $plugin */
-        $plugin = ObjectManager::getInstance()->create(SetAllocationFilterOnShippingAddressPlugin::class);
-        $plugin->aroundAssign($subject, $proceed, $cartId, $address);
+        /** @var AddressModel|\PHPUnit_Framework_MockObject_MockObject $addressModel */
+        $addressModel = $this->getMockBuilder(AddressModel::class)
+            ->setMethods(array_merge(get_class_methods(AddressModel::class), ['getAddressType']))
+            ->disableOriginalConstructor()
+            ->getMock();
+        $addressModel->method('getAddressType')->willReturn(AddressModel::ADDRESS_TYPE_SHIPPING);
+        $addressModel->method('getShippingMethod')->willReturn($this->shippingMethod);
+        $quote = $this->getMockBuilder(Quote::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+        $quote->method('getId')->willReturn($this->cartID);
+        $addressModel->method('getQuote')->willReturn($quote);
+
+        /** @var SetAllocationFilterOnQuoteAddressResourcePlugin $plugin */
+        $plugin = ObjectManager::getInstance()->create(SetAllocationFilterOnQuoteAddressResourcePlugin::class);
+        $plugin->aroundSave($subject, $proceed, $addressModel);
         /** @var \Limitless\Delivery\Model\AllocationFilter $allocationFilter */
         $allocationFilter = ObjectManager::getInstance()->create(AllocationFilter::class);
         $allocationFilter->getResource()->load($allocationFilter, $cartId, AllocationFilter::QUOTE_ID);
-        $this->assertNotNull($allocationFilter->getId(), "NO AllocationFilter Code for $cartId exists");
+        $this->assertNotNull($allocationFilter->getId(), "NO AllocationFilter Code for quote $cartId exists");
     }
     
     public function testAllocationFilterIsSaved()

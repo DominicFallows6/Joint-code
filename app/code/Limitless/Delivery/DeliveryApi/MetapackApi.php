@@ -6,25 +6,21 @@ use Limitless\Delivery\Helper\MetapackRequest;
 use Limitless\Delivery\Helper\MetapackResponse;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
-use Psr\Log\LoggerInterface;
 
 class MetapackApi implements DeliveryApiInterface
 {
     private $metapackRequest;
     private $metapackResponse;
     private $scopeConfig;
-    private $logger;
 
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         MetapackRequest $metapackRequest,
-        MetapackResponse $metapackResponse,
-        LoggerInterface $logger
+        MetapackResponse $metapackResponse
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->metapackRequest = $metapackRequest;
         $this->metapackResponse = $metapackResponse;
-        $this->logger = $logger;
     }
 
     /**
