@@ -1,35 +1,40 @@
 <?php
 
+
 namespace Limitless\Delivery\Plugin;
 
 use Limitless\Delivery\Model\AllocationFilter;
 use Limitless\Delivery\Model\AllocationFilterFactory;
-use Magento\Quote\Api\CartManagementInterface;
-use Magento\Quote\Api\Data\PaymentInterface;
+use Magento\Sales\Api\Data\OrderInterface;
+use Magento\Sales\Api\OrderManagementInterface;
 
 class SetPlaceOrderIdPlugin
 {
+    /** @var AllocationFilterFactory */
+    private $allocationFilterFactory;
+
     public function __construct(AllocationFilterFactory $allocationFilterFactory)
     {
         $this->allocationFilterFactory = $allocationFilterFactory;
     }
-    
-    public function aroundPlaceOrder(
-        CartManagementInterface $subject,
+
+    public function aroundPlace (
+        OrderManagementInterface $subject,
         \Closure $proceed,
-        $cartID,
-        PaymentInterface $payment = null
+        OrderInterface $order
     ) {
-        $orderId = $proceed($cartID, $payment);
+        /** @var OrderInterface $placedOrder */
+        $placedOrder = $proceed($order);
+
         /** @var AllocationFilter $allocationFilterModel */
         $allocationFilterModel = $this->allocationFilterFactory->create();
-        $allocationFilterModel->getResource()->load($allocationFilterModel, $cartID, AllocationFilter::QUOTE_ID);
-        
+        $allocationFilterModel->getResource()->load($allocationFilterModel, $placedOrder->getQuoteId(), AllocationFilter::QUOTE_ID);
+
         if ($allocationFilterModel->getId()) {
-            $allocationFilterModel->setData(AllocationFilter::ORDER_ID, $orderId);
+            $allocationFilterModel->setData(AllocationFilter::ORDER_ID, $placedOrder->getEntityId());
             $allocationFilterModel->getResource()->save($allocationFilterModel);
         }
-        
-        return $orderId;
+
+        return $placedOrder;
     }
 }
