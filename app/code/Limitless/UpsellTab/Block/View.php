@@ -1,7 +1,6 @@
 <?php
 
 namespace Limitless\UpsellTab\Block;
-use Magento\Catalog\Model\ProductFactory;
 use Magento\Catalog\Block\Product\Context;
 use Magento\Framework\View\Element\Template;
 
@@ -9,32 +8,24 @@ class View extends Template
 
 {
     /**
-     * @var ProductFactory
-     */
-    protected $productFactory;
-
-    /**
      * @var \Magento\Framework\Registry
      */
-    protected $_coreRegistry;
+    protected $coreRegistry;
 
     /**
      * View constructor.
      * @param Context $context
-     * @param ProductFactory $productFactory
      */
     public function __construct(
-        Context $context,
-        ProductFactory $productFactory
+        Context $context
     )
     {
-        $this->productFactory = $productFactory;
-        $this->_coreRegistry = $context->getRegistry();
+        $this->coreRegistry = $context->getRegistry();
         parent::__construct($context);
     }
 
     public function getUpsellProducts() {
-        $product = $this->_coreRegistry->registry('product');
+        $product = $this->coreRegistry->registry('product');
         $upsellProductIds = $product->getUpsellProductIds();
 
         $tabHtml = "";
