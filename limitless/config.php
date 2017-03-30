@@ -186,6 +186,7 @@ return array (
     'Limitless_HomepageBanner' => 1,
     'Limitless_ReasonsUSP' => 1,
     'Limitless_SalesHotline' => 1,
+    'Limitless_SchemaOrg' => 1,
     'Limitless_UpsellTab' => 1,
     'Limitless_Delivery' => 1,
     'Limitless_DiscountSplat' => 1,
