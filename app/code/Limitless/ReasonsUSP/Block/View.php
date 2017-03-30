@@ -70,9 +70,9 @@ class View extends Template
     private function buildUspItemHtml($value, $icon, $tip):string
     {
         if ($value['usp_url'] != '') {
-            $site_usp = '<li><div class="usp-box"><a href="' . $value['usp_url'] . '">' . $icon . $value['usp_name'] . '</a>' . $tip . '</div></li>';
+            $site_usp = '<li><div class="usp-box"><a href="' . $value['usp_url'] . '">' . $icon . '<div class="usp-value">' . $value['usp_name'] . '</div>' .'</a>' . $tip . '</div></li>';
         } else {
-            $site_usp = '<li><div class="usp-box">' . $icon . $value['usp_name'] . $tip . '</div></li>';
+            $site_usp = '<li><div class="usp-box">' . $icon . '<div class="usp-value">' . $value['usp_name'] . '</div>' . $tip . '</div></li>';
         }
         return $site_usp;
     }
