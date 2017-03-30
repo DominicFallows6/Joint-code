@@ -1,0 +1,22 @@
+{
+  "name": "limitless/tagmanagerdatalayer",
+  "description": "To add further data into datalayer for Google Tag Manager to use in tags",
+  "require": {
+    "php": "^7.0.0",
+    "magento/module-catalog": "^101.0.3",
+    "magento/module-sales" : "^100.1.3",
+    "magento/module-google-tag-manager": "^100.1.2"
+  },
+  "type": "magento2-module",
+  "license": [
+    "BSD-3-Clause"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\TagManagerDataLayer\\": ""
+    }
+  }
+}

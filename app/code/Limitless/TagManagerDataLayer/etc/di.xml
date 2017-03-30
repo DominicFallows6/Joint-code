@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Limitless\TagManagerDataLayer\Helper\DataLayerBlockLocator">
+        <arguments>
+            <argument name="contentBlockPool" xsi:type="array">
+                <item name="cms_index_index" xsi:type="string">Limitless\TagManagerDataLayer\Block\DataLayer\HomeDataLayer</item>
+                <item name="catalog_category_view" xsi:type="string">Limitless\TagManagerDataLayer\Block\DataLayer\CategoryDataLayer</item>
+                <item name="catalog_product_view" xsi:type="string">Limitless\TagManagerDataLayer\Block\DataLayer\ProductDataLayer</item>
+                <item name="catalogsearch_advanced_result" xsi:type="string">Limitless\TagManagerDataLayer\Block\DataLayer\AdvanceSearchDataLayer</item>
+                <item name="catalogsearch_result_index" xsi:type="string">Limitless\TagManagerDataLayer\Block\DataLayer\SearchDataLayer</item>
+                <item name="checkout_cart_index" xsi:type="string">Limitless\TagManagerDataLayer\Block\DataLayer\CartDataLayer</item>
+                <item name="checkout_onepage_success" xsi:type="string">Limitless\TagManagerDataLayer\Block\DataLayer\SuccessDataLayer</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Limitless\TagManagerDataLayer\Helper\AffiliateHelperLocator">
+        <arguments>
+            <argument name="affiliateHelperPool" xsi:type="array">
+                <item name="webgains" xsi:type="string">Limitless\TagManagerDataLayer\Helper\AffiliatesDataLayer\WebgainsDataLayer</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

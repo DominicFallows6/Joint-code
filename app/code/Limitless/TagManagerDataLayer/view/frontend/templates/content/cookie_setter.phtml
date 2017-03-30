@@ -1,0 +1,15 @@
+<?php
+
+/** @see Limitless/TagManagerDataLayer/view/frontend/web/js/cookie_setter.js */
+/** @var \Limitless\TagManagerDataLayer\Block\AffiliateTrackingCookieHandler $block */
+?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Limitless_TagManagerDataLayer/js/cookie_setter" : {
+            "url_param_name": "<?= $block->escapeJsQuote($block->getAffiliateUrlParameter()) ?>",
+            "cookie_name": "<?= $block->escapeJsQuote($block->getAffiliateCookieName()) ?>"
+        }
+    }
+}
+</script>

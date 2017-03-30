@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <referenceContainer name="after.body.start">
+            <block class="Limitless\TagManagerDataLayer\Block\AffiliateTrackingCookieHandler"
+                   name="limitless_affiliatetracking_cookie_setter"
+                   template="Limitless_TagManagerDataLayer::content/cookie_setter.phtml"
+                   ifconfig="google/limitless_tagmanager_datalayer/general_settings/enabled"/>
+
+            <block class="Limitless\TagManagerDataLayer\Block\GTMDataLayerDynamicPageLoad"
+                   name="limitless_gtm_datalayer_page_load"
+                   ifconfig="google/limitless_tagmanager_datalayer/general_settings/enabled"/>
+
+        </referenceContainer>
+    </body>
+</page>
