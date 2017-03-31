@@ -14,6 +14,7 @@ return array (
     'Magento_Theme' => 1,
     'Limitless_SubCategoryList' => 1,
     'Magento_Backend' => 1,
+    'Limitless_TopTips' => 1,
     'Limitless_UpsellTab' => 1,
     'Limitless_Worldpay_TDS' => 1,
     'Magento_Eav' => 1,

@@ -1,0 +1,19 @@
+<?php
+/** @var \Limitless\TopTips\Block\View $block */
+?>
+
+<?php if ($block->hasTopTips()): ?>
+    <div class="product-top-tips-container">
+        <div class="product-top-tips">
+            <div class="hdr">
+                <h2><?=__('Top Tips')?></h2>
+            </div>
+            <span><?=__('Read our Top Tips')?></span>
+            <div class="tips">
+                <?=$block->getTopTipsHtml()?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+

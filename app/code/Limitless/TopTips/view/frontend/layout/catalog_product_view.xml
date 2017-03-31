@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Limitless_TopTips::css/top-tips.css" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Limitless\TopTips\Block\View" name="top.tips" template="Limitless_TopTips::top-tips.phtml" after="product.info.details"/>
+        </referenceContainer>
+    </body>
+</page>
