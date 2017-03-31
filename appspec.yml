@@ -45,7 +45,7 @@ hooks:
       timeout: 300
       runas: root
     - location: limitless/deployment/51-AfterInstall-Upgrade.sh
-      timeout: 300
+      timeout: 600
       runas: nginx
 # Step 6. Application Start
   ApplicationStart:
