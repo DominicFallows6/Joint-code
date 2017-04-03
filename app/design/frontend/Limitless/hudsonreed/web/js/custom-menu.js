@@ -325,25 +325,6 @@ define([
                 }
             });
 
-            var subMenus = this.element.find('.level-top');
-            $.each(subMenus, $.proxy(function (index, item) {
-                var category = $(item).find('> a span').not('.ui-menu-icon').text(),
-                    categoryUrl = $(item).find('> a').attr('href'),
-                    menu = $(item).find('> .ui-menu');
-
-                this.categoryLink = $('<a>')
-                    .attr('href', categoryUrl)
-                    .text($.mage.__('All ') + category);
-
-                this.categoryParent = $('<li>')
-                    .addClass('ui-menu-item all-category')
-                    .html(this.categoryLink);
-
-                if (menu.find('.all-category').length === 0) {
-                    menu.prepend(this.categoryParent);
-                }
-
-            }, this));
         },
 
         _toggleDesktopMode: function () {
