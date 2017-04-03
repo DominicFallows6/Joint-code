@@ -5,4 +5,5 @@
         <plugin name="Limitless_Worldpay_TDS"
                 type="Limitless\Worldpay_TDS\Plugin\CustomerNotificationPlugin"/>
     </type>
+    <preference for="Worldpay\Payments\Model\Config" type="Limitless\Worldpay_TDS\Model\WorldpayConfig" />
 </config>
