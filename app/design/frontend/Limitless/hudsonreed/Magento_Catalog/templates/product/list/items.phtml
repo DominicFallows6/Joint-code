@@ -20,7 +20,7 @@ switch ($type = $block->getType()) {
             $image = 'related_products_list';
             $title = __('Similar Products');
             $items = $block->getAllItems();
-            $limit = 6;
+            $limit = $block->getPositionLimit();
             $shuffle = (int) $block->isShuffled();
             $canItemsAddToCart = false;
 
@@ -40,7 +40,7 @@ switch ($type = $block->getType()) {
             $image = 'related_products_list';
             $title = __('Related Products');
             $items = $block->getItems();
-            $limit = 6;
+            $limit = 0;
             $shuffle = 0;
             $canItemsAddToCart = false;
 
@@ -59,7 +59,7 @@ switch ($type = $block->getType()) {
             $image = 'upsell_products_list';
             $title = __('We recommend the following essential products:');
             $items = $block->getAllItems();
-            $limit = 3;
+            $limit = $block->getPositionLimit();
             $shuffle = (int) $block->isShuffled();
 
             $showAddTo = true;
@@ -79,7 +79,7 @@ switch ($type = $block->getType()) {
             $image = 'upsell_products_list';
             $title = __('We recommend the following essential products:');
             $items = $block->getItemCollection()->getItems();
-            $limit = 3;
+            $limit = $block->getItemLimit('upsell');
             $shuffle = 0;
 
             $showAddTo = true;

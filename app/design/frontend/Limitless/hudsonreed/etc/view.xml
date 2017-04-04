@@ -13,20 +13,20 @@
                 <height>140</height>
             </image>
             <image id="cart_cross_sell_products" type="thumbnail">
-                <width>152</width>
-                <height>188</height>
+                <width>140</width>
+                <height>140</height>
             </image>
             <image id="cart_page_product_thumbnail" type="small_image">
-                <width>110</width>
-                <height>160</height>
+                <width>100</width>
+                <height>100</height>
             </image>
             <image id="category_page_grid" type="small_image">
                 <width>240</width>
-                <height>300</height>
+                <height>240</height>
             </image>
             <image id="category_page_list" type="small_image">
                 <width>240</width>
-                <height>300</height>
+                <height>240</height>
             </image>
             <image id="customer_account_my_tags_tag_view" type="small_image">
                 <width>100</width>
@@ -37,8 +37,8 @@
                 <height>285</height>
             </image>
             <image id="customer_shared_wishlist" type="small_image">
-                <width>113</width>
-                <height>113</height>
+                <width>100</width>
+                <height>100</height>
             </image>
             <image id="gift_messages_checkout_small_image" type="small_image">
                 <width>75</width>
@@ -107,11 +107,11 @@
             </image>
             <image id="recently_compared_products_grid_content_widget" type="small_image">
                 <width>240</width>
-                <height>300</height>
+                <height>240</height>
             </image>
             <image id="recently_compared_products_images_names_widget" type="thumbnail">
                 <width>75</width>
-                <height>90</height>
+                <height>75</height>
             </image>
             <image id="recently_compared_products_images_only_widget" type="thumbnail">
                 <width>76</width>
@@ -123,11 +123,11 @@
             </image>
             <image id="recently_viewed_products_grid_content_widget" type="small_image">
                 <width>240</width>
-                <height>300</height>
+                <height>240</height>
             </image>
             <image id="recently_viewed_products_images_names_widget" type="small_image">
                 <width>75</width>
-                <height>90</height>
+                <height>75</height>
             </image>
             <image id="recently_viewed_products_images_only_widget" type="small_image">
                 <width>76</width>
@@ -159,7 +159,7 @@
             </image>
             <image id="side_column_widget_product_thumbnail" type="thumbnail">
                 <width>75</width>
-                <height>90</height>
+                <height>75</height>
             </image>
             <image id="upsell_products_list" type="small_image">
                 <width>140</width>
@@ -167,7 +167,7 @@
             </image>
             <image id="wishlist_sidebar_block" type="thumbnail">
                 <width>75</width>
-                <height>90</height>
+                <height>75</height>
             </image>
             <image id="wishlist_small_image" type="small_image">
                 <width>113</width>
@@ -175,7 +175,7 @@
             </image>
             <image id="wishlist_thumbnail" type="small_image">
                 <width>240</width>
-                <height>300</height>
+                <height>240</height>
             </image>
         </images>
     </media>
