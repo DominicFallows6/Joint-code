@@ -77,6 +77,39 @@
         white-space: nowrap;
       }
     }
+
+    #category-filter-block {
+      display:none;
+      .content {
+        dl.options {
+          padding-left:@indent__s;
+          dt {
+            text-transform:uppercase;
+            font-weight:@font-weight__semibold;
+          }
+          dd {
+            margin-top:@indent__base;
+            ol {
+              li {
+                line-height:1.5em;
+                a {
+                  color: @color-gray-darken4;
+                }
+                span {
+                  color:@color-gray52;
+                  &:before {
+                    content:'(';
+                  }
+                  &:after {
+                    content:')';
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
   }
   .old-price,
   .old.price {
@@ -843,6 +876,12 @@
 //  _____________________________________________
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .catalog-category-view {
+    #category-filter-block {
+      display: block;
+    }
+  }
+
   .product-info-main,
   .product-options-bottom {
     .box-tocart {
