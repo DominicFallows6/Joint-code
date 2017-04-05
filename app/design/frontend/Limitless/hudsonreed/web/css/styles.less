@@ -256,10 +256,21 @@ div.social-links {
           display:inline-block;
           margin:0 5px 5px 0;
         }
-        p {
+        .security-text {
           display:inline-block;
           width:100%;
           font-size:10px;
+          span.aws-secure {
+              content:"";
+              background:url('../images/hr-eu-sprite.svg') no-repeat 0 0;
+              background-size:137px 2700px;
+              display:inline-block;
+              margin:0 5px 5px 0;
+          }
+          span.secure-text {
+            float:left;
+            width:100%;
+          }
         }
         .visa {
           background-position:-51px -1014px;
@@ -307,6 +318,14 @@ div.social-links {
           background-position:-30px -1155px;
           width:98px;
           height:28px;
+        }
+        .security-text {
+          span.aws-secure {
+            background-position: -58px -1897px;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+          }
         }
       }
       .hr-flags {
@@ -510,12 +529,6 @@ div.featured-categories {
 }
 
 @media screen and (min-width: 768px) {
-  .payment-footer {
-      p {
-        float: right;
-        width: 30%;
-      }
-   }
 
   .page-footer {
     .trust-pilot-footer-banner {
@@ -536,6 +549,18 @@ div.featured-categories {
         }
         a {
           font-size:12px;
+        }
+      }
+    }
+    .payment-footer {
+      .payment-footer-wrapper {
+        .payment-icons {
+          .security-text {
+            width: 30%;
+            span.secure-text {
+              width:70%;
+            }
+          }
         }
       }
     }
@@ -633,9 +658,9 @@ div.featured-categories {
           span {
             float:left;
           }
-          p {
+          .security-text {
             float:left;
-            width:30%;
+            width:45%;
             margin:0 0 0 10px;
             text-align:left;
           }
@@ -680,8 +705,13 @@ div.featured-categories {
     .payment-footer {
       .payment-footer-wrapper {
         .payment-icons {
-          span {
+          > span {
             margin: 0 20px 5px 0;
+          }
+          .security-text {
+            span.secure-text {
+              width:75%;
+            }
           }
         }
       }
