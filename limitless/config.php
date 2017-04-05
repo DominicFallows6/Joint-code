@@ -197,5 +197,6 @@ return array (
     'Magento_ProductVideoStaging' => 1,
     'Magento_Worldpay' => 1,
     'Limitless_MinifyExcludeWorldpay' => 1,
+    'Limitless_VarnishInterceptor' => 1,
   ),
 );
