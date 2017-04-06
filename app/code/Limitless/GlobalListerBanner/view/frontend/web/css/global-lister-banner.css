@@ -4,6 +4,7 @@
     margin-right:auto;
     margin-bottom:10px;
     margin-top:-22px;
+    width:100%;
 }
 
 .global-lister-banner .desktop {
@@ -14,10 +15,11 @@
 @media screen and (min-width: 768px) {
 
     .global-lister-banner {
-        padding-left:20px;
-        padding-right:20px;
+        padding-left:2%;
+        padding-right:2%;
         margin-bottom:20px;
         margin-top:0;
+        width:96%;
     }
 
     .global-lister-banner .mobile {
