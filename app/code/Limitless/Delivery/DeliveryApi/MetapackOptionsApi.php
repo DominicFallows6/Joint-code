@@ -3,11 +3,12 @@
 namespace Limitless\Delivery\DeliveryApi;
 
 use Limitless\Delivery\Helper\MetapackRequest;
-use Limitless\Delivery\Helper\MetapackResponse;
+use Limitless\Delivery\Helper\MetapackOptionsResponse;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\Helper\Context;
 use Magento\Store\Model\ScopeInterface;
 
-class MetapackApi implements DeliveryApiInterface
+class MetapackOptionsApi implements DeliveryApiInterface
 {
     private $metapackRequest;
     private $metapackResponse;
@@ -16,7 +17,7 @@ class MetapackApi implements DeliveryApiInterface
     public function __construct(
         ScopeConfigInterface $scopeConfig,
         MetapackRequest $metapackRequest,
-        MetapackResponse $metapackResponse
+        MetapackOptionsResponse $metapackResponse
     ) {
         $this->scopeConfig = $scopeConfig;
         $this->metapackRequest = $metapackRequest;
@@ -106,7 +107,7 @@ class MetapackApi implements DeliveryApiInterface
         if ($deliveryOptions === false) {
             curl_close($curl);
 
-            return array($this->offlineDeliveryOption());
+            return [$this->offlineDeliveryOption()];
         }
 
         $value = $request['package_value'] ? $request['package_value'] : 0.00;
@@ -114,7 +115,7 @@ class MetapackApi implements DeliveryApiInterface
         return $this->filterResponse($deliveryOptions['results'], $value);
     }
 
-    public function filterResponse($deliveryOptions, $orderValue = 0)
+    public function filterResponse($deliveryOptions, $orderValue)
     {
         setlocale(LC_TIME, $this->getConfig('general/locale/code'));
 

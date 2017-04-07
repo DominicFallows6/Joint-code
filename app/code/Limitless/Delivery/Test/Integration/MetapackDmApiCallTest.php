@@ -4,11 +4,10 @@ namespace Limitless\Delivery\Test\Integration;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\TestFramework\ObjectManager;
-use Magento\Framework\App\Helper\Context;
-use Limitless\Delivery\DeliveryApi\MetapackOptionsApi;
+use Limitless\Delivery\DeliveryApi\MetapackDmApi;
 use Magento\Quote\Model\Quote\Address\RateRequest;
 
-class MetapackOptionsApiCallTest extends \PHPUnit_Framework_TestCase
+class MetapackDmApiCallTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @var ObjectManager
@@ -16,10 +15,10 @@ class MetapackOptionsApiCallTest extends \PHPUnit_Framework_TestCase
     private $objectManager;
 
     /**
-     * @var MetapackOptionsApi
+     * @var MetapackDmApi
      */
-    private $metapackOptionsApi;
-    
+    private $metapackDmApi;
+
     public function setUp()
     {
         $this->objectManager = ObjectManager::getInstance();
@@ -27,18 +26,16 @@ class MetapackOptionsApiCallTest extends \PHPUnit_Framework_TestCase
         $scopeConfigMock = $this->getMock(ScopeConfigInterface::class);
         $scopeConfigMock->method('getValue')->willReturnCallback([$this, 'scopeConfigGetValue']);
 
-        $context = $this->objectManager->create(Context::class, ['scopeConfig' => $scopeConfigMock]);
-
-        $this->metapackOptionsApi = $this->objectManager->create(MetapackOptionsApi::class, ['context' => $context]);
-
+        $this->metapackDmApi = $this->objectManager->create(MetapackDmApi::class, ['scopeConfig' => $scopeConfigMock]);
     }
 
     public function scopeConfigGetValue($path)
     {
         $pathMap = [
             'carriers/delivery/warehouse_code' => 'DC',
-            'carriers/delivery/url' => 'https://dmo.metapack.com',
-            'carriers/delivery/key' => 'cf720d4c-edc3-443a-9cf7-febec4e6733b',
+            'carriers/delivery/username' => 'soap_ts',
+            'carriers/delivery/password' => 'd1lb3rt75',
+            'carriers/delivery/wsdl' => 'https://dm-delta.metapack.com/api/5.x/services/',
             'carriers/delivery/premium_groups' => 'NEXTDAY,NEXTDAY12,NEXTDAY930,SAT930,SATURDAYPM,SATURDAYAM',
             'carriers/delivery/economy_group' => 'ECONOMY',
             'general/store_information/phone' => '01282 471385',
@@ -67,16 +64,18 @@ class MetapackOptionsApiCallTest extends \PHPUnit_Framework_TestCase
         $rateRequest->setDestCity('Rubi');
         $rateRequest->setDestPostcode('08191');
         $rateRequest->setDestCountryId('ESP');
+//        $rateRequest->setDestStreet('26 Fell View');
+//        $rateRequest->setDestCity('Burnley');
+//        $rateRequest->setDestPostcode('BB10 2SF');
+//        $rateRequest->setDestCountryId('GBR');
         return $rateRequest;
     }
-    
+
     public function testFindServiceGroups()
     {
         $rateRequest = $this->buildRateRequest();
-        $options = $this->metapackOptionsApi->call($rateRequest);
+        $options = $this->metapackDmApi->call($rateRequest);
 
-//        print_r($options);
-//        die();
         foreach($options as $option) {
             $dateToDeliver = [];
             $dateToShip = [];
