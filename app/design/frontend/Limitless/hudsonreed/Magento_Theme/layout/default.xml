@@ -22,6 +22,10 @@
             <block class="Magento\Framework\View\Element\Template" name="footer.payment" template="Magento_Theme::hr-footer-payment.phtml" after="-" />
         </referenceContainer>
 
+        <referenceContainer name="footer-container">
+            <container name="footer.links.container" as="footer.links.container" htmlTag="div" htmlClass="footer-links-container" before="footer.payment"/>
+        </referenceContainer>
+
         <referenceBlock name="footer">
             <block class="Magento\Framework\View\Element\Template" name="footer.links" template="Magento_Theme::hr-footer-links.phtml" after="-" />
             <block class="Magento\Framework\View\Element\Template" name="social.links" template="Magento_Theme::hr-social-links.phtml" after="-" />
@@ -30,6 +34,8 @@
         <move element="copyright" destination="footer" after="social.links" />
 
         <move element="form.subscribe" destination="footer" after="social.links" />
+
+        <move element="footer" destination="footer.links.container" after="-" />
 
     </body>
 </page>
