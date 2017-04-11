@@ -40,7 +40,7 @@ class View extends Template
     private function getProductTopTipsCmsBlockId()
     {
         $product = $this->getCurrentProduct();
-        if ($product && $product->getAttributeText('product_top_tips')) {
+        if ($product && $product->getCustomAttribute('product_top_tips')) {
             return $product->getAttributeText('product_top_tips');
         } else {
             return "";

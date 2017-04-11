@@ -3,27 +3,24 @@
     text-align:center;
     display:inline-block;
     margin:20px 0 20px 0;
-}
-
-.product-top-tips {
-    padding:55px 20px 30px 20px;
+    width:100%;
 }
 
 .product-top-tips-container .hdr {
     border-top:1px solid #cccccc;
-    height:25px;
+    height:15px;
 }
 
 .product-top-tips-container .hdr h2 {
     text-transform:uppercase;
     font-weight:500;
-    font-size:28px;
+    font-size:24px;
     overflow:hidden;
     white-space:nowrap;
     display:inline-block;
     position:relative;
     margin:0;
-    padding:0 20px 0 20px;
+    padding:0 2% 0 2%;
     bottom:18px;
     background:#ffffff;
 }
@@ -31,7 +28,7 @@
 .product-top-tips-container .product-top-tips > span {
     color:#888888;
     text-transform:uppercase;
-    font-size:22px;
+    font-size:18px;
     font-weight:300;
     display:inline-block;
     margin-top:-5px;
@@ -101,6 +98,18 @@
 
     .product-top-tips-container .product-top-tips .top-tip .tip > p {
         width:70%;
+    }
+
+    .product-top-tips-container .hdr {
+        height:25px;
+    }
+
+    .product-top-tips-container .hdr h2 {
+        font-size:28px;
+    }
+
+    .product-top-tips-container .product-top-tips > span {
+        font-size:22px;
     }
 }
 
