@@ -131,6 +131,7 @@
 .product-info-main .products-upsell .product-item-actions .actions-primary button {
     padding:7px 6px;
     margin:15px 0 0 0;
+    white-space:normal;
 }
 
 @media screen and (min-width: 1024px) {
@@ -138,7 +139,7 @@
         padding-left:32px;
     }
     .product-info-main .products-upsell .product-item-actions .actions-primary button {
-        padding:7px 15px;
+        padding:7px 10px;
     }
 }
 
