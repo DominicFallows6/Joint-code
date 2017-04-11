@@ -7,6 +7,7 @@ use Magento\Checkout\Model\Session;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Sales\Api\Data\OrderInterface;
 use Magento\Sales\Api\OrderRepositoryInterface;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\View\Element\Template\Context;
 
 class WebgainsDataLayer implements AffiliateHelperInterface
@@ -25,14 +26,19 @@ class WebgainsDataLayer implements AffiliateHelperInterface
     /** @var OrderInterface */
     private $lastOrder;
 
+    /** @var ProductRepositoryInterface */
+    private $productRepository;
+
     public function __construct(
         Session $checkoutSession,
         OrderRepositoryInterface $orderRepository,
+        ProductRepositoryInterface $productRepository,
         Context $context
     ) {
         $this->checkoutSession = $checkoutSession;
         $this->orderRepository = $orderRepository;
         $this->scopeConfig = $context->getScopeConfig();
+        $this->productRepository = $productRepository;
     }
 
     /**
@@ -89,13 +95,20 @@ class WebgainsDataLayer implements AffiliateHelperInterface
 
         foreach ($orderItems as $orderItem)
         {
+            $itemCode = $orderItem->getSku();
+            $product = $this->productRepository->get($itemCode);
+
+            if (!empty($product->getData('alias'))){
+                $itemCode = $product->getData('alias');
+            }
+
             $wgProductStrings[] = implode(
                 $wgDelimiter,
                 [
                     $trackingEventId,
                     $this->getWebgainsItemPrice($orderItem),
                     $orderItem->getName(),
-                    $orderItem->getSku(),
+                    $itemCode,
                     $orderCouponCode
                 ]
             );

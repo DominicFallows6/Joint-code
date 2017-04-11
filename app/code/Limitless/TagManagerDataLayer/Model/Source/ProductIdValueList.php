@@ -16,6 +16,10 @@ class ProductIdValueList implements ArrayInterface
             array(
                 'value' => 'id',
                 'label' => __('Product ID')
+            ),
+            array(
+                'value' => 'alias_fallback_sku',
+                'label' => __('Product Alias - Fallback SKU')
             )
         );
     }

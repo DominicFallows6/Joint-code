@@ -38,7 +38,13 @@ class LeGuide
             $productSkus = $productPrices = $productQtys = [];
 
             foreach ($orderItems as $productItem) {
-                $productSkus[] = $productItem->getProduct()->getId();
+
+                $itemCode = $productItem->getProduct()->getSku();
+                if (!empty($productItem->getProduct()->getData('alias'))){
+                    $itemCode = $productItem->getProduct()->getData('alias');
+                }
+
+                $productSkus[] = htmlspecialchars($itemCode);
                 $productPrices[] = $this->getLeGuideItemPrice($productItem);
                 $productQtys[] = intval($productItem->getQtyOrdered());
             }

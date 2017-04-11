@@ -4,7 +4,7 @@ namespace Limitless\TagManagerDataLayer\Helper\TagsDataLayer;
 
 use Magento\Catalog\Model\Product;
 use Magento\Framework\View\Element\Template\Context;
-use Magento\Catalog\Model\ProductFactory;
+use Magento\Catalog\Api\ProductRepositoryInterface;
 
 class DynamicRemarketing
 {
@@ -12,11 +12,13 @@ class DynamicRemarketing
 
     const DR_DATALAYER_NAME = 'google_tag_params';
 
+    const PAGENAMES_ALIASCODE = ['cart', 'searchresults'];
+
     /** @var \Magento\Framework\App\Config\ScopeConfigInterface */
     private $scopeConfig;
 
-    /** @var ProductFactory */
-    private $productFactory;
+    /** @var ProductRepositoryInterface */
+    private $productRepository;
 
     /** @var string */
     private $pagetype;
@@ -35,11 +37,11 @@ class DynamicRemarketing
 
     public function __construct(
         Context $context,
-        ProductFactory $productFactory,
+        ProductRepositoryInterface $productRepository,
         array $data = []
     ) {
         $this->scopeConfig = $context->getScopeConfig();
-        $this->productFactory = $productFactory;
+        $this->productRepository = $productRepository;
     }
 
     /**
@@ -73,17 +75,30 @@ class DynamicRemarketing
         $productsArray = null,
         $categoryName = '',
         $total = 0,
-        $quantitites = null
+        $quantities = null
     ) {
 
         if ($this->getEnabled()) {
             $ecommProdId = '';
             $ecommValue = 0;
 
+            //Trim products and $quantities
+            if(count($productsArray) > $this->getMaxProductDisplayed()) {
+                $productsArray = array_slice($productsArray, 0, $this->getMaxProductDisplayed());
+            }
+            if(count($quantities) > $this->getMaxProductDisplayed()) {
+                $quantities = array_slice($quantities, 0, $this->getMaxProductDisplayed());
+            }
+
+            if ((strcmp($this->getProductIdValue(), 'alias_fallback_sku') === 0) &&
+                (in_array($pageName, self::PAGENAMES_ALIASCODE))) {
+                $productsArray = $this->convertProductsForAliasCode($productsArray);
+            }
+
             if ($productsArray != null) {
                 $ecommProductValues = $this->getEcommProdIdsAndEcommValueArraysInMatchingOrder(
                     $productsArray,
-                    $quantitites
+                    $quantities
                 );
 
                 $ecommProdId = $ecommProductValues['ecommProdId'];
@@ -165,6 +180,13 @@ class DynamicRemarketing
             case 'id':
                 $ecommProdId = $product->getId();
                 break;
+            case 'alias_fallback_sku':
+                $itemCode = $product->getSku();
+                if (!empty($product->getData('alias'))) {
+                    $itemCode = $product->getData('alias');
+                }
+                $ecommProdId = htmlspecialchars($itemCode);
+                break;
             case 'sku':
             default:
                 $ecommProdId = htmlspecialchars($product->getSku());
@@ -209,6 +231,32 @@ class DynamicRemarketing
                 break;
         }
         return $this->ukNumberFormat($productPrice);
+    }
+
+    /**
+     * Fix to convert products to contain product alias
+     * Will slow down loading
+     *
+     * @param Product[] $productsArray
+     */
+    private function convertProductsForAliasCode($productsArray)
+    {
+        $products = [];
+
+        $maxToDisplay = $this->getMaxProductDisplayed();
+        $counter = 0;
+
+        foreach ($productsArray as $productInfo) {
+
+            if ($counter >= $maxToDisplay) {
+                break;
+            }
+
+            $product = $this->productRepository->get($productInfo->getSku());
+            $products[] = $product;
+            $counter++;
+        }
+        return $products;
     }
 
     /**

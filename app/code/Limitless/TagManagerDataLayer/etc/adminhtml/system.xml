@@ -56,7 +56,7 @@
                             <source_model>Limitless\TagManagerDataLayer\Model\Source\VatSettingList</source_model>
                         </field>
                         <field id="webgains_total_shipping_setting" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                            <label>VAT Settings</label>
+                            <label>Shipping Settings</label>
                             <source_model>Limitless\TagManagerDataLayer\Model\Source\ShippingSettingList</source_model>
                         </field>
                     </group>
