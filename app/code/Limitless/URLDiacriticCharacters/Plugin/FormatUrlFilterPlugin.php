@@ -17,10 +17,10 @@ class FormatUrlFilterPlugin
 
     /**
      * @param TranslitUrl $subject
-     * @param string $string
+     * @param mixed $string - should be string but could be null
      * @return array
      */
-    public function beforeFilter(TranslitUrl $subject, string $string)
+    public function beforeFilter(TranslitUrl $subject, $string)
     {
         $translationListString = $this->getTranslationLists();
         if ($translationListString) {
