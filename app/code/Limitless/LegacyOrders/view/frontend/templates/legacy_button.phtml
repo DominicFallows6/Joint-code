@@ -1,0 +1,12 @@
+<?php
+
+/** @var \Limitless\LegacyOrders\Block\CheckForLegacy $block */
+
+$block->checkForLegacyOrderListFromCustomerData();
+
+if ($block->getShowLegacyButton()) {
+    ?>
+    <a href="/legacy-orders/order/list/"><?=__('view legacy orders')?></a>
+    <?php
+
+}

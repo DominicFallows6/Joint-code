@@ -1,0 +1,66 @@
+<?php 
+/** @var \Limitless\LegacyOrders\Block\LegacyOrderList $block */
+$block->initLegacyOrderList();
+?>
+
+<div class="table-wrapper orders-history">
+    <?php
+    if ($block->getOrderList()->getSize() > 0) {
+        ?>
+        <table class="data table table-order-items history" id="my-orders-table">
+            <caption class="table-caption"><?=  __('orders');?></caption>
+            <thead>
+            <tr>
+                <th scope="col" class="col id"><?= __('order')?> #</th>
+                <th scope="col" class="col date"><?= __('date')?></th>
+                <th scope="col" class="col shipping"><?= __('ship to')?></th>
+                <th scope="col" class="col total"><?= __('order to')?></th>
+                <th scope="col" class="col status"><?= __('status')?></th>
+                <th scope="col" class="col actions">&nbsp;</th>
+            </tr>
+            </thead>
+            <tbody>
+            <?php
+            foreach ($block->getOrderList() AS $item) {
+                ?>
+                <tr>
+                    <td data-th="Order #" class="col id"><?= $item['legacy_order_id'] ?></td>
+                    <td data-th="Date" class="col date"><?=date('d-m-Y',strtotime($item['order_date']))?></td>
+                    <td data-th="Ship To" class="col shipping"><?= $item['user_email'] ?></td>
+                    <td data-th="Order Total" class="col total"><span class="price"><?= $item['currency_type'] ?><?= $item['order_total'] ?></span>
+                    </td>
+                    <td data-th="Status" class="col status">
+                        <?= __($block->getOrderPhase(strtolower($item['order_phase']))) ?>
+                    </td>
+                    <td data-th="Actions" class="col actions">
+                        <a href="<?= $block->getUrl('limitless_legacyorders/order/view', ['order' => $item['legacy_order_id']]) ?>" class="action view">
+                            <span><?= __('view order')?></span>
+                        </a>
+                    </td>
+                </tr>
+                <?php
+            }
+            ?>
+            </tbody>
+        </table>
+        <?php
+    } else {
+        ?>
+        <p><?= __('no orders found')?></p>
+        <?php
+    }
+    ?>
+</div>
+
+<div class="order-products-toolbar toolbar bottom">
+    <div class="pager">
+
+        <p class="toolbar-amount">
+            <span class="toolbar-number"><?=$block->getOrderList()->getSize()?> <?= __('items')?> </span>
+        </p>
+
+
+
+    </div>
+
+</div>

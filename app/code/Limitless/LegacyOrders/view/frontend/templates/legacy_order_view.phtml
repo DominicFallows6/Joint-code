@@ -1,0 +1,189 @@
+<?php
+/** @var \Limitless\LegacyOrders\Block\LegacyOrderView $block */
+$block->initLegacyOrderData();
+
+if ($block->getLegacyOrderData()) {
+
+    $orderDetail = $block->getLegacyOrderData()->getData();
+
+    ?>
+
+    <h2><?= __('order placed on') ?> <?=date('d-m-Y',strtotime($orderDetail['order_date']))?> <?= __($block->getOrderPhase(strtolower($orderDetail['order_phase']))) ?></h2>
+
+    <div class="order-details-items ordered">
+
+        <div class="order-title">
+            <strong><?= __('items ordered') ?></strong>
+        </div>
+
+        <div class="table-wrapper order-items">
+            <table class="data table table-order-items" id="my-orders-table" summary="Items Ordered">
+                <caption class="table-caption"><?= __('items ordered') ?></caption>
+                <thead>
+                <tr>
+                    <th class="col name"><?= __('product name') ?></th>
+                    <th class="col sku"><?= __('SKU') ?></th>
+                    <th class="col price"><?= __('price') ?></th>
+                    <th class="col qty"><?= __('qty') ?></th>
+                    <th class="col subtotal"><?= __('subtotal')?></th>
+                </tr>
+                </thead>
+
+                <?php
+                $orderItems = json_decode($orderDetail['order_items']);
+                foreach ($orderItems->items as $orderItem) {
+
+                    $productName = $orderItem->productname;
+                    if ($productName =='') {
+                        $productName = $orderItem->native_productname;
+                    }
+
+                    ?>
+                    <tbody>
+                    <tr id="order-item-row-7">
+                        <td class="col name" data-th="Product Name">
+                            <strong class="product name product-item-name"><?= $productName ?></strong>
+                        </td>
+                        <td class="col sku" data-th="SKU"><?= $orderItem->productref ?></td>
+                        <td class="col price" data-th="Price">
+                            <span class="price-excluding-tax" data-label="Excl. Tax">
+                                <span class="cart-price">
+                                    <span class="price"><?= $orderDetail['currency_type'] ?><?= $orderItem->unitprice ?></span>
+                                </span>
+                            </span>
+                        </td>
+                        <td class="col qty" data-th="Qty">
+                            <ul class="items-qty">
+                                <li class="item">
+                                    <span class="content"><?= $orderItem->quantity ?></span>
+                                </li>
+                            </ul>
+                        </td>
+                        <td class="col subtotal" data-th="Subtotal">
+                            <span class="price-excluding-tax" data-label="Excl. Tax">
+                                <span class="cart-price">
+                                    <span class="price"><?= $orderDetail['currency_type'] ?><?= $orderItem->rowtotal ?></span>
+                                </span>
+                            </span>
+                        </td>
+                    </tr>
+                    </tbody>
+                    <?php
+
+                }
+                ?>
+
+                <tfoot>
+                <tr class="subtotal">
+                    <th colspan="4" class="mark" scope="row">
+                        <?= __('Subtotal') ?>
+                    </th>
+                    <td class="amount" data-th="Subtotal">
+                        <span class="price"><?= $orderDetail['currency_type'] ?><?=$orderDetail['order_subtotal'] ?></span></td>
+                </tr>
+                <tr class="discount">
+                    <th colspan="4" class="mark" scope="row">
+                        <?=__('Discount')?>
+                    </th>
+                    <td class="amount" data-th="Discount">
+                        <span class="price"><?= $orderDetail['currency_type'] ?><?= $orderDetail['order_discount'] ?></span></td>
+                </tr>
+                <tr class="VAT Exemption">
+                    <th colspan="4" class="mark" scope="row">
+                        <?=__('VAT Exemption')?>
+                    </th>
+                    <td class="amount" data-th="VAT Exemption">
+                        <span class="price"><?= $orderDetail['currency_type'] ?><?= $orderDetail['vat_value'] ?></span></td>
+                </tr>
+                <tr class="shipping">
+                    <th colspan="4" class="mark" scope="row">
+                        <?=__('Shipping &amp; Handling')?>
+                    </th>
+                    <td class="amount" data-th="Shipping &amp; Handling">
+                        <span class="price"><?= $orderDetail['currency_type'] ?><?= $orderDetail['delivery_value'] ?></span></td>
+                </tr>
+                <tr class="grand_total">
+                    <th colspan="4" class="mark" scope="row">
+                        <strong><?=__('Grand Total')?></strong>
+                    </th>
+                    <td class="amount" data-th="Grand Total">
+                        <strong><span class="price"><?= $orderDetail['currency_type'] ?><?= $orderDetail['order_total'] ?></span></strong>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+
+        <div class="block block-order-details-view">
+            <div class="block-title">
+                <strong><?=__('Order Information')?></strong>
+            </div>
+            <div class="block-content">
+                <div class="box box-order-shipping-address">
+                    <strong class="box-title"><span><?=__('Shipping Address')?></span></strong>
+                    <div class="box-content">
+                        <address>
+                            <?php
+                            $shippingAddress = str_replace(",","<br />",$orderDetail['delivery_address']);
+                            echo __($shippingAddress);
+                            ?>
+                        </address>
+                    </div>
+                </div>
+
+                <div class="box box-order-shipping-method">
+                    <strong class="box-title">
+                        <span><?=__('Shipping Method')?></span>
+                    </strong>
+                    <div class="box-content">
+                        <?php
+                        $orderShipping = $orderDetail['shipping_method'];
+                            echo __($orderDetail['shipping_method']);
+                        ?>
+
+                    </div>
+                </div>
+
+                <div class="box box-order-billing-address">
+                    <strong class="box-title">
+                        <span><?=__('Billing Address')?></span>
+                    </strong>
+                    <div class="box-content">
+                        <address>
+                            <?php
+                            $billingAddress = str_replace(",","<br />",$orderDetail['billing_address']);
+                            echo __($billingAddress);
+                            ?>
+                        </address>
+                    </div>
+                </div>
+                <div class="box box-order-billing-method">
+                    <strong class="box-title">
+                        <span><?=__('Payment Method')?></span>
+                    </strong>
+                    <div class="box-content">
+                        <dl class="payment-method checkmemo">
+                            <dt class="title"><?php $paymentType = ucwords($orderDetail['payment_type']);
+                                echo __($paymentType);
+                                ?></dt>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-toolbar">
+            <div class="secondary">
+                <a class="action back" href="<? $block->getUrl('sales/order/history') ?>">
+                    <span><? __('Back to My Orders') ?></span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <?php
+} else {
+    ?>
+    <p><?= __('No order details found') ?></p>
+    <?php
+}

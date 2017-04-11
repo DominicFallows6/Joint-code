@@ -1,0 +1,34 @@
+"your legacy orders","Sus pedidos anteriores"
+"Legacy Order","Pedido anterior"
+"view legacy orders","ver pedidos anteriores"
+orders,pedidos
+order,pedido
+date,Fecha
+"ship to","Enviado a"
+"order to","monto de pedido"
+status,estado
+dispatched,despachado
+"cancelled","cancelado"
+"view order","ver pedido"
+"no orders found","no se ha encontrado ningún pedido"
+items,artículos
+"order placed on","Pedido procesado en"
+"items ordered","artículos ordenados"
+"product name","nombre del producto"
+SKU,"Referencia del producto"
+price,precio
+qty,cantidad
+subtotal,subtotal
+Subtotal,Subtotal
+Discount,Descuento
+"VAT Exemption","Exclusión de IVA"
+"Shipping &amp; Handling","Costes de envío"
+"Grand Total",Total
+"Order Information","Información del pedido"
+"Shipping Address","Dirección de envío"
+"Shipping Method","Tipo de envío"
+Standard,Estándar
+"Billing Address","Dirección de facturación"
+"Payment Method","Método de pago"
+"Bank Transfer","Transferencia bancaria"
+"No order details found","Detalles del pedido no encontrados"

@@ -8,6 +8,7 @@ return array (
     'Limitless_FeaturedCategories' => 1,
     'Limitless_GlobalListerBanner' => 1,
     'Limitless_HomepageBanner' => 1,
+    'Limitless_LegacyOrders' => 1,
     'Magento_Directory' => 1,
     'Magento_Eav' => 1,
     'Magento_Theme' => 1,
