@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Magento\Sales\Block\Order\Item\Renderer\DefaultRenderer" type="Limitless\AliasCode\Block\Order\Item\Renderer\DefaultRenderer" />
+    <preference for="Magento\Sales\Block\Order\Email\Items\Order\DefaultOrder" type="Limitless\AliasCode\Block\Order\Email\Items\Order\DefaultOrder" />
+    <preference for="Magento\Sales\Block\Order\Email\Items\DefaultItems" type="Limitless\AliasCode\Block\Order\Email\Items\DefaultItems" />
+</config>

@@ -112,6 +112,7 @@ return array (
     'Magento_GroupedProduct' => 1,
     'Magento_GroupedProductStaging' => 1,
     'Magento_DownloadableImportExport' => 1,
+    'Limitless_AliasCode' => 1,
     'Magento_Vault' => 1,
     'Magento_Security' => 1,
     'Magento_Invitation' => 1,
