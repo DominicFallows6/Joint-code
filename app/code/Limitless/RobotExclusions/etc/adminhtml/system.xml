@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="web">
+            <group id="limitless_robot_exclusions" translate="label" sortOrder="999" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Robots Exclusions</label>
+                <field id="robot_exclusions" translate="label" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Filters to exclude from indexing</label>
+                    <comment>Please separate each filter by a comma.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

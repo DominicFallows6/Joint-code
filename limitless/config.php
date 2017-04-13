@@ -13,6 +13,7 @@ return array (
     'Magento_Eav' => 1,
     'Magento_Theme' => 1,
     'Limitless_ReasonsUSP' => 1,
+    'Limitless_RobotExclusions' => 1,
     'Limitless_SalesHotline' => 1,
     'Magento_Customer' => 1,
     'Limitless_SubCategoryList' => 1,
