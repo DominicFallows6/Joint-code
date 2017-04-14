@@ -95,12 +95,7 @@ class WebgainsDataLayer implements AffiliateHelperInterface
 
         foreach ($orderItems as $orderItem)
         {
-            $itemCode = $orderItem->getSku();
-            $product = $this->productRepository->get($itemCode);
-
-            if (!empty($product->getData('alias'))){
-                $itemCode = $product->getData('alias');
-            }
+            $itemCode = $this->getWebgainsItemCode($orderItem);
 
             $wgProductStrings[] = implode(
                 $wgDelimiter,
@@ -135,6 +130,32 @@ class WebgainsDataLayer implements AffiliateHelperInterface
         return $productPrice;
     }
 
+    /**
+     * @param $orderItem
+     */
+    private function getWebgainsItemCode($orderItem)
+    {
+        $productIdValueSetting = $this->getWebgainsProductIdValue();
+
+        switch ($productIdValueSetting) {
+            case 'id':
+                $ecommProdId = $orderItem->getProductId();
+                break;
+            case 'alias_fallback_sku':
+                $itemCode = $orderItem->getSku();
+                if (!empty($orderItem->getData('alias'))) {
+                    $itemCode = $orderItem->getData('alias');
+                }
+                $ecommProdId = htmlspecialchars($itemCode);
+                break;
+            case 'sku':
+            default:
+                $ecommProdId = htmlspecialchars($orderItem->getSku());
+                break;
+        }
+        return $ecommProdId;
+    }
+
     private function ukNumberFormat($number)
     {
         return number_format($number, 2);
@@ -167,4 +188,10 @@ class WebgainsDataLayer implements AffiliateHelperInterface
     {
         return $this->getWebgainsConfigSettings('webgains_total_shipping_setting') ?? 'include';
     }
+
+    private function getWebgainsProductIdValue()
+    {
+        return $this->getWebgainsConfigSettings('webgains_product_id_value') ?? 'sku';
+    }
+
 }

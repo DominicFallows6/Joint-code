@@ -174,6 +174,15 @@ class DynamicRemarketing
      */
     private function getEcommProdIdsOutputFromProduct(Product $product): string
     {
+        // Aaah!! has to match from old backoffice to keep product history
+        // this is shortcode + pid -> then fall back to normal setting
+        // if this is blank :(
+        $ecommProdId = $this->getProductIdIfOverridden($product);
+
+        if (!empty($ecommProdId)) {
+            return $ecommProdId;
+        }
+
         $productIdValueSetting = $this->getProductIdValue();
         $productPreText = trim($this->getProductIdPrefix());
         switch ($productIdValueSetting) {
@@ -193,6 +202,20 @@ class DynamicRemarketing
                 break;
         }
         return '"'. $productPreText . $ecommProdId. '"';
+    }
+
+    /**
+     * @param Product $product
+     * @return string
+     */
+    public function getProductIdIfOverridden($product): string
+    {
+        if ($this->getProductIdOverrideSetting()) {
+            //This name may need to be changed
+            //New product Attribute
+            return $product->getData('legacy_product_id');
+        }
+        return '';
     }
 
     /**
@@ -286,6 +309,11 @@ class DynamicRemarketing
     private function getEnabled()
     {
         return $this->getDynamicMarketingGeneralSettingConfig('enabled');
+    }
+
+    private function getProductIdOverrideSetting()
+    {
+        return $this->getDynamicMarketingGeneralSettingConfig('product_id_override');
     }
 
     private function getProductIdValue()

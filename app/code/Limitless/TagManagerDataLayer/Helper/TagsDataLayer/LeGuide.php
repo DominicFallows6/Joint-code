@@ -39,10 +39,7 @@ class LeGuide
 
             foreach ($orderItems as $productItem) {
 
-                $itemCode = $productItem->getProduct()->getSku();
-                if (!empty($productItem->getProduct()->getData('alias'))){
-                    $itemCode = $productItem->getProduct()->getData('alias');
-                }
+                $itemCode = $this->getLeguideItemCode($productItem);
 
                 $productSkus[] = htmlspecialchars($itemCode);
                 $productPrices[] = $this->getLeGuideItemPrice($productItem);
@@ -70,8 +67,11 @@ class LeGuide
         }
     }
 
-    //->getProduct()->getPrice()
-    private function getLeGuideItemPrice($productItem)
+    /**
+     * @param $productItem
+     * @return string
+     */
+    private function getLeGuideItemPrice($productItem): string
     {
         $vatSetting = $this->getLeguideVATSetting();
         $productItemPrice = $productItem->getPriceInclTax();
@@ -84,7 +84,39 @@ class LeGuide
         return $this->ukNumberFormat($productItemPrice);
     }
 
-    private function ukNumberFormat($number)
+    /**
+     * @param $orderItem
+     * @return string
+     */
+    private function getLeguideItemCode($productItem): string
+    {
+        $productIdValueSetting = $this->getLeguideProductIdValue();
+
+        switch ($productIdValueSetting) {
+            case 'id':
+                $ecommProdId = $productItem->getProductId();
+                break;
+            case 'alias_fallback_sku':
+                $orderItem = $productItem->getProduct();
+                $itemCode = $orderItem->getSku();
+                if (!empty($orderItem->getData('alias'))) {
+                    $itemCode = $orderItem->getData('alias');
+                }
+                $ecommProdId = htmlspecialchars($itemCode);
+                break;
+            case 'sku':
+            default:
+                $ecommProdId = htmlspecialchars($productItem->getSku());
+                break;
+        }
+        return $ecommProdId;
+    }
+
+    /**
+     * @param $number
+     * @return string
+     */
+    private function ukNumberFormat($number): string
     {
         return number_format($number, 2);
     }
@@ -105,5 +137,10 @@ class LeGuide
     private function getLeguideVATSetting()
     {
         return $this->getLeGuideGeneralSettingConfig('leguide_total_vat_setting') ?? 'include';
+    }
+
+    private function getLeguideProductIdValue()
+    {
+        return $this->getLeGuideGeneralSettingConfig('leguide_product_id_value') ?? 'sku';
     }
 }

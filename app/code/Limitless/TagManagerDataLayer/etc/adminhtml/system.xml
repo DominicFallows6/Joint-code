@@ -44,9 +44,14 @@
 
                     <group id="webgains" translate="label" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Webgains</label>
+
                         <field id="webgains_tracking_event_id" translate="label comment"  sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                             <label>Webgains Tracking ID</label>
                             <comment>Needed for Webgains Items List (must match in GTM)</comment>
+                        </field>
+                        <field id="webgains_product_id_value" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Use for Product Id</label>
+                            <source_model>Limitless\TagManagerDataLayer\Model\Source\ProductIdValueList</source_model>
                         </field>
                         <field id="webgains_comment" translate="label"  sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                             <label>Webgains Comment</label>
@@ -73,36 +78,35 @@
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <comment>This will only disable variables in DataLayer: You will need to disable in GTM</comment>
                     </field>
-
+                    <field id="product_id_override" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Override Product ID with BO format if available</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                        <depends><field id="enabled">1</field></depends>
+                    </field>
                     <field id="product_id_value" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Use for Product Id</label>
                         <source_model>Limitless\TagManagerDataLayer\Model\Source\ProductIdValueList</source_model>
                         <depends><field id="enabled">1</field></depends>
                     </field>
-
                     <field id="product_id_prefix" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Product Id Prefix</label>
                         <depends><field id="enabled">1</field></depends>
                     </field>
-
                     <field id="total_vat_setting" translate="label" type="select" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>VAT Settings For Total</label>
                         <source_model>Limitless\TagManagerDataLayer\Model\Source\VatSettingList</source_model>
                         <depends><field id="enabled">1</field></depends>
                     </field>
-
                     <field id="total_shipping_setting" translate="label" type="select" sortOrder="54" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Shipping Settings For Total</label>
                         <source_model>Limitless\TagManagerDataLayer\Model\Source\ShippingSettingList</source_model>
                         <depends><field id="enabled">1</field></depends>
                     </field>
-
                     <field id="total_display_summary" translate="label" type="select" sortOrder="58" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Display prodvalue as Individual or Line Totals in Cart / Purcahse</label>
                         <source_model>Limitless\TagManagerDataLayer\Model\Source\ProductTotalSummary</source_model>
                         <depends><field id="enabled">1</field></depends>
                     </field>
-
                     <field id="max_products_displayed" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Max number of products to display in Catalog / Search / Cart / Purchase</label>
                         <source_model>Limitless\TagManagerDataLayer\Model\Source\MaxProductsToDisplay</source_model>
@@ -121,13 +125,17 @@
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <comment>This will only disable variables in DataLayer: You will need to disable in GTM</comment>
                     </field>
+                    <field id="leguide_product_id_value" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Use for Product Id</label>
+                        <source_model>Limitless\TagManagerDataLayer\Model\Source\ProductIdValueList</source_model>
+                        <depends><field id="enabled">1</field></depends>
+                    </field>
                     <field id="leguide_total_vat_setting" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>VAT Settings</label>
                         <source_model>Limitless\TagManagerDataLayer\Model\Source\VatSettingList</source_model>
                         <depends><field id="enabled">1</field></depends>
                     </field>
                 </group>
-
             </group>
         </section>
     </system>
