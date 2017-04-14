@@ -79,7 +79,7 @@
                         <comment>This will only disable variables in DataLayer: You will need to disable in GTM</comment>
                     </field>
                     <field id="product_id_override" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Override Product ID with BO format if available</label>
+                        <label>Override Product ID with Legacy format if available</label>
                         <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                         <depends><field id="enabled">1</field></depends>
                     </field>

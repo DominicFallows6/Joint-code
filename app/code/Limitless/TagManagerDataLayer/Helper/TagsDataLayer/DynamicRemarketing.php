@@ -180,7 +180,7 @@ class DynamicRemarketing
         $ecommProdId = $this->getProductIdIfOverridden($product);
 
         if (!empty($ecommProdId)) {
-            return $ecommProdId;
+            return '"'. $ecommProdId. '"';
         }
 
         $productIdValueSetting = $this->getProductIdValue();
@@ -213,7 +213,7 @@ class DynamicRemarketing
         if ($this->getProductIdOverrideSetting()) {
             //This name may need to be changed
             //New product Attribute
-            return $product->getData('legacy_product_id');
+            return ''. $product->getData('legacy_product_id');
         }
         return '';
     }
