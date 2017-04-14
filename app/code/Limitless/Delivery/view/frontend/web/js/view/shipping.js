@@ -169,6 +169,12 @@ define(
                     deliveryDatepickerOffset(Math.max(1, deliveryDatepickerOffset() - 7));
                 };
 
+                this.ucwords = function (str) {
+                    return (str + '').replace(/^([a-z])|\s+([a-z])/g, function ($1) {
+                        return $1.toUpperCase();
+                    });
+                };
+
                 this.deliveryDatepickerWindow = ko.computed(function () {
                     var week = [];
                     var deliveryDatepickerData = getDeliveryDatepickerData();
@@ -182,6 +188,13 @@ define(
                     }
                     return week;
                 });
+
+                this.selectDeliveryDateTranslate = function () {
+                    return $t('Select a delivery date...');
+                };
+
+                var countryId = quote.shippingAddress().countryId;
+                this.siteLocale = countryId.toLowerCase() + '-' + countryId;
 
                 this.selectedRates = ko.observable();
                 this.selectedRates.subscribe(function(newValue){

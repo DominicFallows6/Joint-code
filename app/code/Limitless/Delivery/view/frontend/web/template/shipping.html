@@ -88,9 +88,9 @@
                                     class="mobile-delivery-rates"
                                     data-bind="
                                     options: mobileDeliveryDatepickerWindow(),
-                                    optionsCaption: 'Select a delivery date...',
+                                    optionsCaption: selectDeliveryDateTranslate(),
                                     optionsText: function(item) {
-                                        return item.date.toLocaleString($parent.locale, {weekday: 'short'}) + ' ' + item.date.getDate() + ' ' + item.from_price.toLocaleString($parent.locale, { style: 'currency', currency: 'EUR' });
+                                        return item.date.toLocaleString(siteLocale, {weekday: 'short'}) + ' ' + item.date.getDate() + ' ' + item.from_price.toLocaleString(siteLocale, { style: 'currency', currency: 'EUR' });
                                     },
                                     css: {'default-select-value': isDefaultSelected},
                                     value: selectedRates,
@@ -107,7 +107,7 @@
                                 <option value=""><!-- ko i18n: 'Select a delivery time...'--><!-- /ko --></option>
                                 <!-- ko foreach: mobileDeliveryRatesForDay -->
                                 <option data-bind="
-                                text: carrier_title + ' ' + method_title + ' ' + amount.toLocaleString($parent.locale, { style: 'currency', currency: 'EUR' }),
+                                text: carrier_title + ' ' + method_title + ' ' + amount.toLocaleString($parent.siteLocale, { style: 'currency', currency: 'EUR' }),
                                 value: carrier_code + '_' + method_code,
                                 attr: {
                                     'id': 's_method_' + carrier_code + '_' + method_code,
@@ -127,8 +127,8 @@
                                 <ul id="week-picker" class="desktop-delivery-rates">
                                     <li>
                                         <span class="previous-arrow" data-bind="click: previousWeek"></span>
-                                        <span data-bind="text: deliveryWindowStartDay().toLocaleString(locale, {month: 'short', day: '2-digit'})">Feb 01</span> -
-                                        <span data-bind="text: deliveryWindowEndDay().toLocaleString(locale, {month: 'short', day: '2-digit'})">Feb 07</span>
+                                        <span data-bind="text: ucwords(deliveryWindowStartDay().toLocaleString(siteLocale, {month: 'short', day: '2-digit'}))">Feb 01</span> -
+                                        <span data-bind="text: ucwords(deliveryWindowEndDay().toLocaleString(siteLocale, {month: 'short', day: '2-digit'}))">Feb 07</span>
                                         <span class="next-week" data-bind="click: nextWeek"></span>
                                     </li>
                                 </ul>
@@ -136,12 +136,12 @@
                                 <!--DESKTOP - Choose your delivery date-->
                                 <ul id="date-picker-window" class="desktop-delivery-rates" data-bind="foreach: deliveryDatepickerWindow()">
                                     <li data-bind="css: { 'no-rates': rates.length === 0}, click: $parent.selectDeliveryDate">
-                                        <div class="day" data-bind="text: date.toLocaleString($parent.locale, {weekday: 'short'})">Mon</div>
+                                        <div class="day" data-bind="text: $parent.ucwords(date.toLocaleString($parent.siteLocale, {weekday: 'short'}))">Mon</div>
                                         <div class="date" data-bind="text: date.getDate()">26</div>
                                         <div class="availability" data-bind="visible: rates.length > 1"><!-- ko i18n: 'From'--><!-- /ko --></div>
                                         <div class="availability" data-bind="visible: rates.length === 1">&nbsp;</div>
                                         <div class="availability" data-bind="visible: rates.length === 0"><!-- ko i18n: 'Not available'--><!-- /ko --></div>
-                                        <div class="date-price" data-bind="visible: rates.length > 0, text: from_price.toLocaleString($parent.locale, { style: 'currency', currency: 'EUR' })">9,99 €</div>
+                                        <div class="date-price" data-bind="visible: rates.length > 0, text: from_price.toLocaleString($parent.siteLocale, { style: 'currency', currency: 'EUR' })">9,99 €</div>
                                     </li>
                                 </ul>
                             </div>
@@ -152,7 +152,7 @@
                                     <span class="carrier-title" data-bind="text: carrier_title">Anytime Delivery</span>
                                     <span class="method_title" data-bind="text: method_title">7:00am - 6:00pm</span>
                                     <div>
-                                        <span class="del-amount" data-bind="text: amount.toLocaleString($parent.locale, { style: 'currency', currency: 'EUR' }), visible: method_title.length > 0">9,99 €</span>
+                                        <span class="del-amount" data-bind="text: amount.toLocaleString($parent.siteLocale, { style: 'currency', currency: 'EUR' }), visible: method_title.length > 0">9,99 €</span>
                                         <input type="radio"
                                                data-bind="
                                                 visible: method_code !== '',
@@ -184,7 +184,7 @@
                                 </div>
                                 <div class="select-economy">
                                     <span data-bind="
-                                        text: economyRate().amount.toLocaleString(locale, { style: 'currency', currency: 'EUR' }),
+                                        text: economyRate().amount.toLocaleString(siteLocale, { style: 'currency', currency: 'EUR' }),
                                         visible: economyRate().method_title.length > 0"
                                     >4,99 €</span>
                                     <input type="radio"
