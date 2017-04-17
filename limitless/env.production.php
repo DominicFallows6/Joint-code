@@ -119,11 +119,4 @@ return array(
         array(
             'date' => 'Wed, 15 Mar 2017 15:24:36 +0000',
         ),
-    'http_cache_hosts' => 
-        array (
-            0 => 
-                array (
-                    'host' => '10.5.47.171',
-                ),
-        ),
 );

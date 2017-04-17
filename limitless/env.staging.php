@@ -119,12 +119,4 @@ return array(
         array(
             'date' => 'Sat, 22 Oct 2016 19:30:47 +0000',
         ),
-    'http_cache_hosts' => 
-        array (
-            0 => 
-                array (
-                    'host' => '10.4.42.141',
-                    'host' => 'm2s-worker-751818775.eu-west-1.elb.amazonaws.com',
-                ),
-        ),
 );

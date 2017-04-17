@@ -327,7 +327,7 @@ class MetapackDmApi implements DeliveryApiInterface
 
     public function call($request)
     {
-        if ($request['dest_postcode'] === '*') {
+        if ($request['dest_postcode'] === '*' || $request['dest_postcode'] === '') {
             return [$this->offlineDeliveryOption()];
         }
         $allocationService = new AllocationService($this->getConfig('carriers/delivery/wsdl').'AllocationService?wsdl',array("login" => $this->getConfig('carriers/delivery/username'), "password" => $this->getConfig('carriers/delivery/password')));
