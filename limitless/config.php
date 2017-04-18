@@ -16,6 +16,7 @@ return array (
     'Limitless_RobotExclusions' => 1,
     'Limitless_SalesHotline' => 1,
     'Magento_Customer' => 1,
+    'Limitless_SortCategoryProducts' => 1,
     'Limitless_SubCategoryList' => 1,
     'Magento_Backend' => 1,
     'Limitless_TopTips' => 1,

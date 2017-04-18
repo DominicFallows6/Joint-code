@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Limitless_SortCategoryProducts::batch_process"
+                title="Batch Update Product Positions"
+                translate="title"
+                module="Limitless_SortCategoryProducts"
+                sortOrder="60"
+                parent="Magento_Catalog::inventory"
+                action="limitless_sortcategoryproducts/step/index"
+                resource="Limitless_SortCategoryProducts::batch_process"/>
+    </menu>
+</config>

@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Limitless\SortCategoryProducts\Model\ValidationStep\Validation\ValidateBatchData">
+        <arguments>
+            <argument name="validators" xsi:type="array">
+                <item name="validateRowCellCount" xsi:type="object">Limitless\SortCategoryProducts\Model\ValidationStep\Validation\ValidateBatchSourceRowCellCount</item>
+                <item name="validateCategoryIds" xsi:type="object">Limitless\SortCategoryProducts\Model\ValidationStep\Validation\ValidateBatchSourceCategoryIds</item>
+                <item name="validateSkus" xsi:type="object">Limitless\SortCategoryProducts\Model\ValidationStep\Validation\ValidateBatchSourceSkus</item>
+                <item name="validatePositions" xsi:type="object">Limitless\SortCategoryProducts\Model\ValidationStep\Validation\ValidateBatchSourcePositions</item>
+                <item name="validateCategorySkus" xsi:type="object">Limitless\SortCategoryProducts\Model\ValidationStep\Validation\ValidateBatchSourceSkusAreAssignedToTheCategories</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

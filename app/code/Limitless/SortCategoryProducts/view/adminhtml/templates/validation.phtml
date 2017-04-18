@@ -1,0 +1,44 @@
+<?php
+
+/** @var \Limitless\SortCategoryProducts\Block\Adminhtml\ValidationStep\Validation $block */
+
+declare(strict_types=1);
+
+?>
+<?php if ($block->hasValidationErrors()): ?>
+    <h2><?= __('There are %1 invalid records.', $block->getNumberOfInvalidRecords()) ?></h2>
+    
+    <?php if ($block->canContinueToProcessStep()): ?>
+        <div><?= __('Continue to process the %1 valid record(s).', $block->getNumberOfValidRecords()) ?></div>
+    <?php else: ?>
+        <div><?= __('No valid records found.') ?></div>
+    <?php endif ?>
+    <br>
+    
+    <table id="category-product-sorting-batch-data-validation-errors">
+        <thead>
+        <tr>
+            <th><?= __('Row Number') ?></th>
+            <th><?= __('Error') ?></th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php $_previousLine = null;
+        foreach ($block->getValidationErrors() as $lineNumber => $rowErrors):
+            foreach ($rowErrors as $error): ?>
+                <tr>
+                    <?php if ($lineNumber !== $_previousLine): $_previousLine = $lineNumber ?>
+                        <td rowspan="<?= count($rowErrors) ?>" class="error-line-number"><?= $lineNumber ?></td>
+                    <?php endif ?>
+                    <td class="error-message"><?= $error ?></td>
+                </tr>
+            <?php endforeach ?>
+        <?php endforeach ?>
+        </tbody>
+    </table>
+<?php else: ?>
+    <div>
+        <h2><?= __('Batch data valid.') ?></h2>
+        <?= __('Continue to process %1 record(s).', $block->getNumberOfValidRecords()) ?>
+    </div>
+<?php endif ?>

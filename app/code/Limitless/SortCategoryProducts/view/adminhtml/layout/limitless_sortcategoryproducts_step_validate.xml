@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Limitless_SortCategoryProducts::css/sort-category-products.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Limitless\SortCategoryProducts\Block\Adminhtml\ValidationStep\ValidationContainer"
+                name="limitless_sortcategoryproducts_validationstep"/>
+        </referenceContainer>
+    </body>
+</page>

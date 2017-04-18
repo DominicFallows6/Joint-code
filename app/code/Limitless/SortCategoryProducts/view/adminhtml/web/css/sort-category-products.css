@@ -1,0 +1,11 @@
+#category-product-sorting-batch-data-validation-errors,
+#category-product-sorting-batch-data-validation-errors th,
+#category-product-sorting-batch-data-validation-errors td {
+    border: 1px solid black;
+    padding: 1em;
+}
+
+#category-product-sorting-batch-data-validation-errors .error-line-number {
+    text-align: center;
+    vertical-align: top;
+}
