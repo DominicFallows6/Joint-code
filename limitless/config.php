@@ -204,5 +204,6 @@ return array (
     'Magento_ProductVideoStaging' => 1,
     'Magento_Worldpay' => 1,
     'Limitless_Worldpay_TDS' => 1,
+    'Limitless_WorldpayFixStaticCall' => 1,
   ),
 );
