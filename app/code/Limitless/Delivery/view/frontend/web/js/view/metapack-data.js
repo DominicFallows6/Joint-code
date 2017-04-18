@@ -14,7 +14,7 @@ define([], function() {
     }
 
     var hasDateInMethodCode = function (shippingRate) {
-        const slot = getDeliverySlotFromRate(shippingRate);
+        var slot = getDeliverySlotFromRate(shippingRate);
         return !isNaN(new Date(slot).getTime());
     };
 
