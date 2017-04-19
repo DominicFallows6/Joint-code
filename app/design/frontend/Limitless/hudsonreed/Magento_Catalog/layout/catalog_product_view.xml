@@ -37,6 +37,7 @@
             <referenceBlock name="product.info.overview">
                 <arguments>
                     <argument name="title" translate="true" xsi:type="string">Details</argument>
+                    <argument name="at_label" xsi:type="string">none</argument>
                 </arguments>
             </referenceBlock>
             <block class="Magento\Catalog\Block\Product\View" name="deliveryandreturns" as="deliveryandreturns" template="product/view/delivery-and-returns.phtml" group="detailed_info" >
