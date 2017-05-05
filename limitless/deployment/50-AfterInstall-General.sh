@@ -38,3 +38,8 @@ echo "Attaching static cache"
 if [ ! -L $DIR/pub/static/_cache ]; then
   ln -s "/efs/magento2/static/_cache" "${DIR}/pub/static/_cache"
 fi
+
+echo "Attaching sitemaps EFS mount"
+if [ ! -L $DIR/pub/sitemaps ]; then
+  ln -s "/efs/magento2/sitemaps" "${DIR}/pub/sitemaps"
+fi
