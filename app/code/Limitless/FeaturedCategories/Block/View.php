@@ -3,9 +3,11 @@
 namespace Limitless\FeaturedCategories\Block;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\UrlInterface;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Magento\Store\Model\StoreManagerInterface;
 
 class View extends Template
 {
@@ -14,6 +16,11 @@ class View extends Template
     * @var ScopeConfigInterface
     * */
     private $scopeConfig;
+
+    /**
+     * @var StoreManagerInterface
+     */
+    protected $storeManager;
 
     /**
      * View constructor.
@@ -27,6 +34,7 @@ class View extends Template
     {
         parent::__construct($context, $data);
         $this->scopeConfig = $context->getScopeConfig();
+        $this->storeManager = $context->getStoreManager();
 
     }
 
@@ -55,11 +63,11 @@ class View extends Template
     }
 
     public function getFeaturedImageUrl($path) {
-        return $this->getBaseUrl() . 'media/featured/' . $this->getConfig($path);
+        return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . 'featured/' . $this->getConfig($path);
     }
 
     public function getMobileFeaturedImageUrl() {
-        return $this->getBaseUrl() . 'media/featured/' . $this->getConfig('featured_five_image_mobile');
+        return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . 'featured/' . $this->getConfig('featured_five_image_mobile');
     }
 
     public function getMobileFeaturedImageHtml() {

@@ -2,11 +2,25 @@
 
 namespace Limitless\HomepageBanner\Block;
 
+use Magento\Framework\UrlInterface;
 use Magento\Framework\View\Element\Template;
 use Magento\Store\Model\ScopeInterface;
+use Magento\Store\Model\StoreManagerInterface;
 
 class View extends Template
 {
+
+    /**
+     * @var StoreManagerInterface
+     */
+    protected $storeManager;
+
+    public function __construct(Template\Context $context, array $data = [])
+    {
+        $this->storeManager = $context->getStoreManager();
+        parent::__construct($context, $data);
+    }
+
     public function getConfig($path)
     {
         return $this->_scopeConfig->getValue('general/limitless_homepage_banner/' . $path,
@@ -35,13 +49,11 @@ class View extends Template
     }
     public function getDesktopHomepageBanner()
     {
-        $mediaDir = 'media/homepage_banners/';
-        return $this->getBaseUrl() . $mediaDir . $this->getDesktopBannerImageConfig();
+        return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . 'homepage_banners/' . $this->getDesktopBannerImageConfig();
     }
     public function getMobileHomepageBanner()
     {
-        $mediaDir = 'media/homepage_banners/';
-        return $this->getBaseUrl() . $mediaDir . $this->getMobileBannerImageConfig();
+        return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . 'homepage_banners/' . $this->getMobileBannerImageConfig();
     }
     public function getBannerLink()
     {
