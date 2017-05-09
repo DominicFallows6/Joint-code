@@ -9,12 +9,14 @@ if($order) {
 
     $productTPString = $block->getTrustpilotOrderItemsString($order);
 
+    //TODO could decide between shipping / billing address
+
     $tp_snippet = <<<EON
 <!--
 <script type="application/json+trustpilot">
 {
   "recipientEmail": "{$order->getCustomerEmail()}",
-  "recipientName": "{$order->getCustomerFirstname()} {$order->getCustomerLastname()}",
+  "recipientName": "{$order->getShippingAddress()->getFirstName()} {$order->getShippingAddress()->getLastname()}",
   "referenceId": "{$order->getIncrementId()}",
   "locale": "{$block->getLocaleFromCountry($order->getShippingAddress()->getCountryId())}",
   "products": [{$productTPString}]
