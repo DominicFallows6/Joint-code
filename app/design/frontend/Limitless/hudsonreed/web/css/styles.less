@@ -321,8 +321,8 @@ div.social-links {
         }
 
         .worldpay {
-          background-position:-30px -1155px;
-          width:98px;
+          background-position:-8px -1155px;
+          width:120px;
           height:28px;
         }
         .security-text {
@@ -440,7 +440,7 @@ div.featured-categories {
         i {
           background:url("../images/menu-icons.svg");
           background-position:0 32px;
-          display:inline-block;
+          float:left;
           height:32px;
           width:32px;
           vertical-align:middle;
@@ -510,8 +510,11 @@ div.featured-categories {
         i.ofertas {
           background-position:-8px -398px;
         }
+
         span {
-          display:inline-block;
+          &:last-child {
+            width:75%;
+          }
         }
       }
     }
@@ -657,7 +660,7 @@ div.featured-categories {
       text-align:left;
       .payment-footer-wrapper {
         .payment-icons {
-          width:70%;
+          width:72%;
           border:none;
           margin:0;
           padding:0;
@@ -667,7 +670,7 @@ div.featured-categories {
           .security-text {
             float:left;
             width:45%;
-            margin:0 0 0 10px;
+            margin:0;
             text-align:left;
           }
         }
