@@ -11,6 +11,7 @@ return array (
             'Limitless_GlobalListerBanner' => 1,
             'Limitless_HomepageBanner' => 1,
             'Limitless_LegacyOrders' => 1,
+            'Limitless_TrustpilotEmail' => 1,
             'Magento_Theme' => 1,
             'Magento_Customer' => 1,
             'Magento_AdminNotification' => 1,

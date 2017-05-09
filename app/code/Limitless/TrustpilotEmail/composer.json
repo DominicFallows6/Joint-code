@@ -1,0 +1,20 @@
+{
+  "name": "limitless/trustpilotemail",
+  "description": "Layout for Trustpilot service and product reviews in order emails",
+  "require": {
+    "php": "~5.6.0|~7.0.0",
+    "magento/framework": "100.1.*"
+  },
+  "type": "magento2-module",
+  "license": [
+    "BSD-3-Clause"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\TrustpilotEmail\\": ""
+    }
+  }
+}

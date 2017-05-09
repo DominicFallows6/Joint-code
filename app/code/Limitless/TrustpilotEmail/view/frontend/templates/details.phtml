@@ -1,0 +1,32 @@
+<?php
+/** @var \Limitless\TrustpilotEmail\Block\Details $block */
+
+/** @var \Magento\Sales\Model\Order $order */
+$order = $block->getData('order');
+$tp_snippet = '';
+
+if($order) {
+
+    $productTPString = $block->getTrustpilotOrderItemsString($order);
+
+    $tp_snippet = <<<EON
+<!--
+<script type="application/json+trustpilot">
+{
+  "recipientEmail": "{$order->getCustomerEmail()}",
+  "recipientName": "{$order->getCustomerFirstname()} {$order->getCustomerLastname()}",
+  "referenceId": "{$order->getIncrementId()}",
+  "locale": "{$block->getLocaleFromCountry($order->getShippingAddress()->getCountryId())}",
+  "products": [{$productTPString}]
+}
+</script>
+-->
+EON;
+
+}
+
+print $tp_snippet;
+
+?>
+
+
