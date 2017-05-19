@@ -47,8 +47,8 @@
 
 .product-top-tips-container .product-top-tips .tips > div.top-tip .tip:before {
     content:"";
-    background:url("../images/top-tip-icons.svg") no-repeat 0 0;
-    background-size:84px 878px;
+    background:url("../images/top-tip-icons.svg") no-repeat 0 80px;
+    background-size:84px 1307px;
     float:left;
     width:80px;
     height:80px;
@@ -71,6 +71,37 @@
     background-position:-3px -281px;
 }
 
+.product-top-tips-container .product-top-tips .tips > div.design .tip:before {
+    background-position:-0px -442px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.safety .tip:before {
+    background-position:-2px -920px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.water-consumption .tip:before {
+    background-position:0 -848px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.maintenance .tip:before {
+    background-position:0 -682px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.materials .tip:before {
+    background-position:0 -758px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.high-quality .tip:before {
+    background-position:0 -598px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.dimensions .tip:before {
+    background-position:0 -524px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.accessories .tip:before {
+    background-position:2px -368px;
+}
 
 .product-top-tips-container .product-top-tips .top-tip .tip > p {
     text-align:left;
@@ -123,5 +154,9 @@
     }
     .product-top-tips-container .product-top-tips .top-tip .tip > p {
         width:65%;
+    }
+
+    .product-top-tips-container .product-top-tips .top-tip .tip-title {
+        min-height:44px;
     }
 }
