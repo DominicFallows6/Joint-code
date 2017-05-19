@@ -3,6 +3,7 @@ return array (
     'modules' =>
         array (
             'Magento_Store' => 1,
+            'Limitless_BlankProductMetaData' => 1,
             'Magento_Directory' => 1,
             'Magento_Eav' => 1,
             'Limitless_DiscountSplat' => 1,
