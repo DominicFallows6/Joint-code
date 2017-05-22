@@ -21,6 +21,11 @@
             <p><?php /* @escapeNotVerified */ echo __('You will receive an order confirmation email with details of your order and a link to track its progress.') ?></p>
     <?php endif;?>
 
+    <?php if ($block->getCanViewOrder() && $block->getCanPrintOrder()) :?>
+        <?php /* @escapeNotVerified */ echo __('Click <a href="%1" onclick="this.target=\'_blank\'" class="print">here</a> to print a copy of your order confirmation', $block->getPrintUrl()) ?>
+        <?php echo $block->getChildHtml() ?>
+    <?php endif;?>
+
     <?php echo $block->getAdditionalInfoHtml() ?>
 
     <div class="actions-toolbar">

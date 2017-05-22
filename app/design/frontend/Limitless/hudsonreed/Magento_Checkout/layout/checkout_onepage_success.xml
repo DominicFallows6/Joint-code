@@ -2,6 +2,6 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <move element="checkout.success.print.button" destination="order.success.additional.info" />
+        <referenceBlock name="checkout.success.print.button" remove="true" />
     </body>
 </page>
