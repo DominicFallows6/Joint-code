@@ -25,7 +25,7 @@
     letter-spacing:1px;
 }
 
-/* Splat Styles for product grid/view once implemented */
+/* Splat Styles for product grid/view */
 .products-grid .product-item, .products-list .product-item {
     position:relative;
 }
@@ -33,10 +33,18 @@
 .products-grid .product-item .discount-splat, .products-list .product-item .discount-splat {
     width:40px;
     height:40px;
-    top:8%;
-    z-index:2;
+    top:5px;
+    right:5px;
+    z-index:1;
 }
 
 .products-grid .product-item .discount-splat > span, .products-list .product-item .discount-splat > span {
     font-size:14px;
+}
+
+@media (min-width:640px) {
+    .products-grid .product-item-info:hover .discount-splat {
+        top: 14px;
+        right: 14px;
+    }
 }
