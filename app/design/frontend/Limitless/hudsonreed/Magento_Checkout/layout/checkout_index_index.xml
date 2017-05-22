@@ -12,5 +12,6 @@
         <referenceBlock name="reasons.usp" remove="true" />
         <referenceBlock name="sales_hotline" remove="true" />
         <referenceBlock name="trustpilot_footer_widget" remove="true" />
+        <referenceBlock name="navigation.sections" remove="true" />
     </body>
 </page>
