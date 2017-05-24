@@ -3,6 +3,7 @@
 namespace Limitless\BlankProductMetaData\Block;
 
 use Magento\Catalog\Block\Product\View;
+use Magento\Framework\View\Element\Template;
 
 class BlankProductMetaData extends View
 {
@@ -49,14 +50,9 @@ class BlankProductMetaData extends View
             $pageMainTitle->setPageTitle($product->getName());
         }
 
-        return parent::_prepareLayout();
+        return Template::_prepareLayout();
     }
-    protected function _toHtml()
-    {
-        $this->setModuleName($this->extractModuleName('Magento\Catalog\Block\Product\View'));
-        return parent::_toHtml();
-    }
-
+    
     protected function _toHtml()
     {
         $this->setModuleName($this->extractModuleName('Magento\Catalog\Block\Product\View'));
