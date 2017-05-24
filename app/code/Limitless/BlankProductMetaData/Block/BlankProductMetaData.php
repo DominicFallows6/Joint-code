@@ -56,4 +56,10 @@ class BlankProductMetaData extends View
         $this->setModuleName($this->extractModuleName('Magento\Catalog\Block\Product\View'));
         return parent::_toHtml();
     }
+
+    protected function _toHtml()
+    {
+        $this->setModuleName($this->extractModuleName('Magento\Catalog\Block\Product\View'));
+        return parent::_toHtml();
+    }
 }
