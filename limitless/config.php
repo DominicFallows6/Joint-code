@@ -15,6 +15,7 @@ return array (
             'Limitless_TrustpilotEmail' => 1,
             'Magento_Theme' => 1,
             'Magento_Customer' => 1,
+            'Limitless_ProductApiPerformance' => 1,
             'Magento_AdminNotification' => 1,
             'Limitless_ReasonsUSP' => 1,
             'Limitless_RobotExclusions' => 1,
