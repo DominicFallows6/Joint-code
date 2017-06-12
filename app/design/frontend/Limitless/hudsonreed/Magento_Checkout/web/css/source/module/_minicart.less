@@ -110,7 +110,7 @@
       @_dropdown-toggle-active-icon-content: url("../images/hr-shopping-bag.svg"),
       @_dropdown-list-item-padding: false,
       @_dropdown-list-item-hover: false,
-      @_icon-font-position: before,
+      @_icon-font-position: after,
       @_icon-font-size: 35px,
       @_icon-font-line-height: 33px,
       @_icon-font-color: @minicart-icons-color,
@@ -180,7 +180,7 @@
         border:none;
 
         .text {
-          &:extend(.abs-visually-hidden all);
+          display:none;
         }
 
         .counter.qty {
@@ -196,8 +196,8 @@
           white-space: normal;
           position:absolute;
           top:7px;
-          left:0;
-          width:100%;
+          right:0;
+          width:25px;
           font-weight:600;
           font-size: @font-size__xs;
 
@@ -441,16 +441,19 @@
 
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
   .minicart-wrapper {
-    &:before {
-      content: 'Su Cesta';
-      color: #fff;
-      line-height: 40px;
-      float: left;
-      margin: 0 12px 0 0;
-      font-size:11px;
-      text-transform:uppercase;
-      display:inline-block;
+    .action {
+      &.showcart {
+        .text {
+          color: #fff;
+          line-height: 40px;
+          margin: 0 12px 0 0;
+          font-size:11px;
+          text-transform:uppercase;
+          display:inline-block;
+        }
+      }
     }
+
     &:after {
       display:inline;
     }
