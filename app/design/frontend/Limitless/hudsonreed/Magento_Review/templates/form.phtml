@@ -32,18 +32,18 @@
                                                 <?php $options = $_rating->getOptions();?>
                                                 <?php $iterator = 1; foreach ($options as $_option): ?>
                                                     <input
-                                                        type="radio"
-                                                        name="ratings[<?php /* @escapeNotVerified */ echo $_rating->getId() ?>]"
-                                                        id="<?php echo $block->escapeHtml($_rating->getRatingCode()) ?>_<?php /* @escapeNotVerified */ echo $_option->getValue() ?>"
-                                                        value="<?php /* @escapeNotVerified */ echo $_option->getId() ?>"
-                                                        class="radio"
-                                                        data-validate="{required:true, messages:{required:'Please select one of each of the ratings above.'}}"
-                                                        aria-labelledby="<?php echo $block->escapeHtml($_rating->getRatingCode()) ?>_rating_label <?php echo $block->escapeHtml($_rating->getRatingCode()) ?>_<?php /* @escapeNotVerified */ echo $_option->getValue() ?>_label" />
+                                                            type="radio"
+                                                            name="ratings[<?php /* @escapeNotVerified */ echo $_rating->getId() ?>]"
+                                                            id="<?php echo $block->escapeHtml($_rating->getRatingCode()) ?>_<?php /* @escapeNotVerified */ echo $_option->getValue() ?>"
+                                                            value="<?php /* @escapeNotVerified */ echo $_option->getId() ?>"
+                                                            class="radio"
+                                                            data-validate="{required:true, messages:{required:'<?php /* @escapeNotVerified */ echo __('Please select one of each of the ratings above.') ?>'}}"
+                                                            aria-labelledby="<?php echo $block->escapeHtml($_rating->getRatingCode()) ?>_rating_label <?php echo $block->escapeHtml($_rating->getRatingCode()) ?>_<?php /* @escapeNotVerified */ echo $_option->getValue() ?>_label" />
                                                     <label
-                                                        class="rating-<?php /* @escapeNotVerified */ echo $iterator; ?>"
-                                                        for="<?php echo $block->escapeHtml($_rating->getRatingCode()) ?>_<?php /* @escapeNotVerified */ echo $_option->getValue() ?>"
-                                                        title="<?php /* @escapeNotVerified */ echo __('%1 %2', $iterator, $iterator > 1 ? 'stars' : 'star') ?>"
-                                                        id="<?php echo $block->escapeHtml($_rating->getRatingCode()) ?>_<?php /* @escapeNotVerified */ echo $_option->getValue() ?>_label">
+                                                            class="rating-<?php /* @escapeNotVerified */ echo $iterator; ?>"
+                                                            for="<?php echo $block->escapeHtml($_rating->getRatingCode()) ?>_<?php /* @escapeNotVerified */ echo $_option->getValue() ?>"
+                                                            title="<?php /* @escapeNotVerified */ echo __('%1 %2', $iterator, $iterator > 1 ? 'stars' : 'star') ?>"
+                                                            id="<?php echo $block->escapeHtml($_rating->getRatingCode()) ?>_<?php /* @escapeNotVerified */ echo $_option->getValue() ?>_label">
                                                         <span><?php /* @escapeNotVerified */ echo __('%1 %2', $iterator, $iterator > 1 ? 'stars' : 'star') ?></span>
                                                     </label>
                                                     <?php $iterator++; ?>
