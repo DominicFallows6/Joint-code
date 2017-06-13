@@ -18,6 +18,7 @@ return array (
             'Limitless_ProductApiPerformance' => 1,
             'Magento_AdminNotification' => 1,
             'Limitless_ReasonsUSP' => 1,
+            'Limitless_ReindexRanging' => 1,
             'Limitless_RobotExclusions' => 1,
             'Limitless_SalesHotline' => 1,
             'Magento_Indexer' => 1,
