@@ -34,36 +34,49 @@
                     <label>Metapack Premium Service Groups</label>
                     <comment>Service group codes for paid delivery</comment>
                 </field>
-                <field id="economy_group_price" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="sort_order1" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Carrier sorting 1</label>
+                    <source_model>Limitless\Delivery\Model\Source\Metapack\Carrier</source_model>
+                </field>
+                <field id="sort_order2" translate="label" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Carrier sorting 2</label>
+                    <source_model>Limitless\Delivery\Model\Source\Metapack\Carrier</source_model>
+                </field>
+                <field id="sort_order3" translate="label" type="select" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Carrier sorting 3</label>
+                    <source_model>Limitless\Delivery\Model\Source\Metapack\Carrier</source_model>
+                    <comment>Above 3 settings help influence the sort order for carriers being returned. For front-end, this will alter the charges displayed. More information here: http://dev.metapack.com/devcentre/guide/allocation-using-the-allocationfilter/</comment>
+                </field>
+                <field id="economy_group_price" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Offline Delivery Price</label>
                     <validate>validate-number validate-zero-or-greater</validate>
                 </field>
-                <field id="delivery_charge_threshold" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="delivery_charge_threshold" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Delivery Charge Threshold</label>
                     <validate>validate-number validate-zero-or-greater</validate>
                 </field>
-                <field id="delivery_weeks" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="delivery_weeks" translate="label" type="text" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Metapack Delivery Weeks</label>
                     <comment>Number of weeks customer can select delivery date from</comment>
                 </field>
-                <field id="sort_order" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="sort_order" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort Order</label>
                 </field>
-                <field id="sallowspecific" translate="label" type="select" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="sallowspecific" translate="label" type="select" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Ship to Applicable Countries</label>
                     <frontend_class>shipping-applicable-country</frontend_class>
                     <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
                 </field>
-                <field id="specificcountry" translate="label" type="multiselect" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="specificcountry" translate="label" type="multiselect" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Ship to Specific Countries</label>
                     <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
                     <can_be_empty>1</can_be_empty>
                 </field>
-                <field id="showmethod" translate="label" type="select" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="0">
+                <field id="showmethod" translate="label" type="select" sortOrder="19" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Show Method if Not Applicable</label>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="specificerrmsg" translate="label" type="textarea" sortOrder="17" showInDefault="1" showInWebsite="1" showInStore="1">
+                <field id="specificerrmsg" translate="label" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Displayed Error Message</label>
                 </field>
             </group>

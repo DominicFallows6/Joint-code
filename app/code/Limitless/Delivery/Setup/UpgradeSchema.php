@@ -4,6 +4,8 @@ namespace Limitless\Delivery\Setup;
 
 use Limitless\Delivery\Model\AllocationFilter as AllocationFilterModel;
 use Limitless\Delivery\Model\ResourceModel\AllocationFilter;
+use Limitless\Delivery\Model\MetapackCarrierSorting;
+use Limitless\Delivery\Model\ResourceModel\MetapackCarrierSorting as MetapackCarrierSortingResource;
 use Magento\Framework\DB\Ddl\Table;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
@@ -27,5 +29,21 @@ class UpgradeSchema implements UpgradeSchemaInterface
                 'comment' => 'String for Solvitt integration (duplicate of shipping_method without carrier prefix)'
             ]);
         }
+
+        $table = $setup->getConnection()->newTable($setup->getTable(MetapackCarrierSortingResource::TABLE));
+        $table->addColumn(MetapackCarrierSortingResource::ID_FIELD, Table::TYPE_INTEGER, null, [
+            'primary' => true,
+            'identity' => true,
+            'unsigned' => true,
+            'nullable' => false
+        ]);
+        $table->addColumn(MetapackCarrierSorting::CODE, Table::TYPE_INTEGER, null, [
+            'unsigned' => true,
+            'nullable' => false
+        ]);
+        $table->addColumn(MetapackCarrierSorting::SORT_REF_NAME, Table::TYPE_TEXT, 64, [
+            'nullable' => false,
+        ]);
+        $setup->getConnection()->createTable($table);
     }
 }

@@ -263,11 +263,14 @@ class MetapackDmApi implements DeliveryApiInterface
         $allocationFilter = new AllocationFilter();
         $allocationFilter->acceptableDeliverySlots = date("Y-m-d").'T00:00:00.000Z,'. $this->getDateTo() .'T23:59:59.999Z';
         $includedGroups = $this->includedGroups();
+
         if ($includedGroups) {
             $allocationFilter->acceptableCarrierServiceGroupCodes = $includedGroups;
         }
 
-        //TODO: Add custom field
+        $allocationFilter->sortOrder1 = $this->getConfig('carriers/delivery/sort_order1');
+        $allocationFilter->sortOrder2 = $this->getConfig('carriers/delivery/sort_order2');
+        $allocationFilter->sortOrder3 = $this->getConfig('carriers/delivery/sort_order3');
 
         return $allocationFilter;
     }
