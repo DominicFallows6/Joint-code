@@ -30,6 +30,7 @@ return array (
             'Limitless_UpsellTab' => 1,
             'Limitless_VarnishInterceptor' => 1,
             'Worldpay_Payments' => 1,
+            'Limitless_WorldpayOrderExtensions' => 1,
             'Limitless_Worldpay_TDS' => 1,
             'Magento_Cms' => 1,
             'Magento_Rule' => 1,

@@ -6,7 +6,7 @@
  * Time: 14:16
  */
 
-namespace Limitless\Worldpay_TDS\Model;
+namespace Limitless\WorldpayOrderExtensions\Model;
 
 use Magento\Backend\Model\Session\Quote;
 use Magento\Customer\Model\Session;

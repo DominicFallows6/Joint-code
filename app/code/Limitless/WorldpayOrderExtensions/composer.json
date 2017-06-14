@@ -1,0 +1,23 @@
+{
+  "name": "limitless/module-worldpay-order-prefix",
+  "description": "Module for order prefix and risk score -> preference over Worldpay Card",
+  "require": {
+    "php": "^7.0.0",
+    "worldpay/magento2-module-payments":"<=2.0.25",
+    "magento/module-sales": "100.1.*",
+    "magento/framework": "^100.1.5",
+    "magento/module-store": "100.1.5"
+  },
+  "type": "magento2-module",
+  "license": [
+    "proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\WorldpayOrderExtensions\\": ""
+    }
+  }
+}

@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+
+    <!-- First tried to create plugin aroung just the Worldpay class that creates the order -->
+    <!-- However this was a problem as class is initialised via "new" call (not in O.M)     -->
+    <!-- @see \Worldpay\Payments\Model\Methods\WorldpayPayments setupWorldpay()             -->
+
+    <!--
+    <type name="\Worldpay\Worldpay">
+        <plugin name="Limitless_WorldpayOrderPrefixPlugin"
+                type="Limitless\WorldpayOrderPrefix\Plugin\OrderPrefixPlugin"/>
+    </type>
+    -->
+
+    <!-- Then tried to create a plugin around the setupWorldpay() method to create the      -->
+    <!-- object in the Object Manager or via a class Factory- this didn't work              -->
+
+    <!--
+    //$worldpay = new \Worldpay\Worldpay($service_key);
+    $worldpay = $this->objectManager->create(\Worldpay\Worldpay::class, ['service_key' => $service_key]);
+    $worldpay = $this->worldpayFactory->create(['service_key' => $service_key]);
+    -->
+
+    <!--
+    <type name="\Worldpay\Payments\Model\Methods\WorldpayPayments">
+        <plugin name="Limitless_WorldpayPaymentsPlugin"
+                type="Limitless\WorldpayOrderPrefix\Plugin\WorlpayPaymentsObjectManagerPlugin"/>
+    </type>
+    -->
+
+    <!-- Do not do plugin as will not call procede function -->
+    <!--
+    <type name="\Worldpay\Payments\Model\Methods\Card">
+        <plugin name="Limitless_WorldpayCardPlugin"
+                type="Limitless\WorldpayOrderExtensions\Plugin\CardPlugin"/>
+    </type>
+    -->
+
+    <!-- Has it come to this??? -->
+    <!-- These preference will override current behaviour -->
+    <preference for="Worldpay\Payments\Model\Methods\Card"
+                type="Limitless\WorldpayOrderExtensions\Model\CardModify" />
+
+    <preference for="Worldpay\Payments\Model\Config"
+                type="Limitless\WorldpayOrderExtensions\Model\WorldpayConfig" />
+
+    <!-- Plugin for Extension Attributes -->
+    <type name="Magento\Sales\Model\OrderRepository">
+        <plugin name="limitless_riskscore" type="Limitless\WorldpayOrderExtensions\Plugin\AddRiskScoreToOrderApiPlugin" />
+    </type>
+
+</config>

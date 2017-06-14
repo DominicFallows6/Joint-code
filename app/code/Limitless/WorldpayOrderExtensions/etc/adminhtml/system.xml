@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="worldpay_payments_card">
+                <field id="enable_wp_order_code_prefix" translate="label comment" sortOrder="7" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Order Code Prefix</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Allow OrderCode in Worldpay to be prefixed by "{OrderID}_"</comment>
+                </field>
+            </group>
+
+            <group id="worldpay_payments">
+                <field id="enable_wp_moto_override" translate="label comment" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Enable Moto Override</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Use Worldpay Site Code for MOTO orders set at each website level (blank to default as normal)</comment>
+                </field>
+                <field id="wp_moto_override_site_code" translate="label comment" sortOrder="21" type="text" showInDefault="0" showInWebsite="1" showInStore="0">
+                    <label>Moto Override Site Code</label>
+                    <comment>Worldpay Site Code for MOTO orders</comment>
+                    <depends>
+                        <field id="enable_wp_moto_override">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
