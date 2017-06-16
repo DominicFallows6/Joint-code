@@ -34,6 +34,21 @@ class AddRiskScoreToOrderApiPlugin
     }
 
     /**
+     * @param OrderRepositoryInterface $subject
+     * @param \Magento\Sales\Model\ResourceModel\Order\Collection $searchResults
+     * @return \Magento\Sales\Model\ResourceModel\Order\Collection
+     */
+    public function afterGetList(OrderRepositoryInterface $subject, $searchResults)
+    {
+        /** @var \Magento\Sales\Model\Order[] $orders */
+        $orders = $searchResults->getItems();
+        foreach ($orders as $key => $order) {
+            $this->addExtensionAttributesToOrderPayment($order);
+        }
+        return $searchResults;
+    }
+
+    /**
      * @param Order $order
      */
     private function addExtensionAttributesToOrderPayment($order)
