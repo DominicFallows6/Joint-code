@@ -68,6 +68,7 @@ return array (
             'Magento_GiftCard' => 1,
             'Magento_Staging' => 1,
             'Magento_Widget' => 1,
+            'Limitless_DeliveryPriority' => 1,
             'Limitless_LocalStorageCacheFix' => 1,
             'Magento_CheckoutAgreements' => 1,
             'Magento_CheckoutStaging' => 1,

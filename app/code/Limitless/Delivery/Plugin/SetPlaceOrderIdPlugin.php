@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Limitless\Delivery\Plugin;
 
 use Limitless\Delivery\Model\AllocationFilter;

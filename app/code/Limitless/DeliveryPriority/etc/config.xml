@@ -1,0 +1,21 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <delivery_priority>
+                <timed>HI_PRIORITY</timed>
+                <all_premium>HI_PRIORITY</all_premium>
+                <aftersales_nextday>HI_PRIORITY</aftersales_nextday>
+                <uk_eco_paid>MED_PRIORITY</uk_eco_paid>
+                <non_uk_eco_paid>MED_PRIORITY</non_uk_eco_paid>
+                <aftersales_eco>MED_PRIORITY</aftersales_eco>
+                <uk_non_paid_premium>LOW_PRIORITY</uk_non_paid_premium>
+                <eu_non_paid_premium>LOW_PRIORITY</eu_non_paid_premium>
+                <row_non_paid_premium>LOW_PRIORITY</row_non_paid_premium>
+                <uk_eco_free>LOW_PRIORITY</uk_eco_free>
+                <row_eco_free>LOW_PRIORITY</row_eco_free>
+                <eu_eco_free>LOW_PRIORITY</eu_eco_free>
+            </delivery_priority>
+        </carriers>
+    </default>
+</config>

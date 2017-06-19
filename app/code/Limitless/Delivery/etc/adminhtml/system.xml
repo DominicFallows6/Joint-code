@@ -34,6 +34,10 @@
                     <label>Metapack Premium Service Groups</label>
                     <comment>Service group codes for paid delivery</comment>
                 </field>
+                <field id="timed_groups" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Metapack Timed Service Groups</label>
+                    <comment>Service group codes for paid, timed delivery (IE pre 9:30am)</comment>
+                </field>
                 <field id="sort_order1" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Carrier sorting 1</label>
                     <source_model>Limitless\Delivery\Model\Source\Metapack\Carrier</source_model>

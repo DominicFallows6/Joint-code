@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="carriers" translate="label" type="text" sortOrder="320" showInDefault="1" showInWebsite="1" showInStore="1">
+            <group id="delivery_priority" translate="label" type="text" sortOrder="0" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Limitless Delivery Priority</label>
+                <field id="timed" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Timed delivery service</label>
+                </field>
+                <field id="all_premium" translate="label" type="text" sortOrder="4" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Frontend / Aftersales - Premium Services</label>
+                </field>
+                <field id="aftersales_nextday" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Aftersales - Next day (including Saturday ordered on a Friday)</label>
+                </field>
+                <field id="uk_eco_paid" translate="label" type="text" sortOrder="8" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>UK Economy service - Paid</label>
+                </field>
+                <field id="non_uk_eco_paid" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Non-UK Economy service - Paid</label>
+                </field>
+                <field id="aftersales_eco" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Aftersales - Economy</label>
+                </field>
+                <field id="uk_non_paid_premium" translate="label" type="text" sortOrder="14" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>UK Non-paid Premium</label>
+                </field>
+                <field id="eu_non_paid_premium" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>EU Non-paid Premium</label>
+                </field>
+                <field id="row_non_paid_premium" translate="label" type="text" sortOrder="18" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Rest of World Non-paid Premium</label>
+                </field>
+                <field id="uk_eco_free" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>UK Economy - Free</label>
+                </field>
+                <field id="row_eco_free" translate="label" type="text" sortOrder="22" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Rest of the World Economy service - Free</label>
+                </field>
+                <field id="eu_eco_free" translate="label" type="text" sortOrder="24" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>EU Economy service - Free</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

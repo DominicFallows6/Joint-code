@@ -10,7 +10,8 @@
                 <key>cf720d4c-edc3-443a-9cf7-febec4e6733b</key>
                 <url>https://dmo.metapack.com</url>
                 <warehouse_code>DC</warehouse_code>
-                <premium_groups>NEXTDAY,NEXTDAY12,NEXTDAY930,SAT930,SATURDAYPM,SATURDAYAM</premium_groups>
+                <timed_groups>NEXTDAY12,NEXTDAY930,SAT930,SATURDAYAM</timed_groups>
+                <premium_groups>NEXTDAY,SATURDAYPM</premium_groups>
                 <economy_group>ECONOMY</economy_group>
                 <economy_group_price>0</economy_group_price>
                 <delivery_charge_threshold>0</delivery_charge_threshold>

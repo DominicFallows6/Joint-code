@@ -69,6 +69,7 @@ class MetapackRequest
     public function includedGroups()
     {
         $includedGroups = '';
+        $timedGroups = $this->getConfig('carriers/delivery/timed_groups');
         $premiumGroups = $this->getConfig('carriers/delivery/premium_groups');
         $economyGroup = $this->getConfig('carriers/delivery/economy_group');
 
@@ -78,6 +79,10 @@ class MetapackRequest
 
         if ($premiumGroups != '') {
             $includedGroups = ($includedGroups != '' ? $includedGroups . ',' . $premiumGroups : $premiumGroups);
+        }
+
+        if ($timedGroups != '') {
+            $includedGroups = ($includedGroups != '' ? $includedGroups . ',' . $timedGroups : $timedGroups);
         }
 
         return $includedGroups != '' ? '&incgrp=' . $includedGroups : '';

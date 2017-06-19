@@ -311,6 +311,7 @@ class MetapackDmApi implements DeliveryApiInterface
     public function includedGroups()
     {
         $includedGroups = '';
+        $timedGroups = $this->getConfig('carriers/delivery/timed_groups');
         $premiumGroups = $this->getConfig('carriers/delivery/premium_groups');
         $economyGroup = $this->getConfig('carriers/delivery/economy_group');
 
@@ -322,8 +323,9 @@ class MetapackDmApi implements DeliveryApiInterface
             $includedGroups = ($includedGroups != '' ? $includedGroups . ',' . $premiumGroups : $premiumGroups);
         }
 
-        //$includedGroups = ['ECONOMY','NEXTDAY','NEXTDAY12','NEXTDAY930','SAT930','SATURDAYPM','SATURDAYAM','NEXTDAYMORNING','NEXTDAYAFTERNOON','NEXTDAYEVENING','NEXTDAYEARLYMORNING'];
-        //return ['JAKETEST'];
+        if ($timedGroups != '') {
+            $includedGroups = ($includedGroups != '' ? $includedGroups . ',' . $timedGroups : $timedGroups);
+        }
 
         return explode(',', $includedGroups);
     }
@@ -348,6 +350,7 @@ class MetapackDmApi implements DeliveryApiInterface
         $groupDateMapping = [];
         $filteredDeliveryOptions = [];
         $economyOption = [];
+        $timedGroups = explode(',', $this->getConfig('carriers/delivery/timed_groups'));
         $premiumGroups = explode(',', $this->getConfig('carriers/delivery/premium_groups'));
         $economyGroup = $this->getConfig('carriers/delivery/economy_group');
 
@@ -356,7 +359,7 @@ class MetapackDmApi implements DeliveryApiInterface
                 $deliveryOption = get_object_vars($deliveryOption);
             }
             foreach ($deliveryOption['groupCodes'] as $groupCode) {
-                if (in_array($groupCode, $premiumGroups)) {
+                if (in_array($groupCode, $timedGroups) || in_array($groupCode, $premiumGroups)) {
                     $date = explode('T',$deliveryOption['deliveryWindow']->to)[0];
                     if (isset($groupDateMapping[$groupCode])) {
                         foreach ($groupDateMapping[$groupCode] as $k => $v) {

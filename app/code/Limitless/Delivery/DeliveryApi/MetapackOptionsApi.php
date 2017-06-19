@@ -121,11 +121,12 @@ class MetapackOptionsApi implements DeliveryApiInterface
 
         $filteredDeliveryOptions = [];
         $economyOption = [];
+        $timedGroups = explode(',', $this->getConfig('carriers/delivery/timed_groups'));
         $premiumGroups = explode(',', $this->getConfig('carriers/delivery/premium_groups'));
         $economyGroup = $this->getConfig('carriers/delivery/economy_group');
 
         foreach($deliveryOptions as $deliveryOption) {
-            if (in_array($deliveryOption['groupCodes'][0], $premiumGroups)) {
+            if (in_array($deliveryOption['groupCodes'][0], $timedGroups) || in_array($deliveryOption['groupCodes'][0], $premiumGroups)) {
                 list($deliveryOption, $filteredDeliveryOptions) = $this->metapackResponse->buildPremiumDeliveryOption($deliveryOption,
                     $filteredDeliveryOptions);
             } else if ($deliveryOption['groupCodes'][0] == $economyGroup) {
