@@ -2,24 +2,23 @@
 
 namespace Limitless\Delivery\Model\Source\Metapack;
 
+use Limitless\Delivery\Model\MetapackCarrierSorting;
+use Limitless\Delivery\Model\MetapackCarrierSortingFactory;
 use Magento\Framework\Option\ArrayInterface;
-use Magento\Framework\Setup\ModuleDataSetupInterface;
-use Limitless\Delivery\Model\ResourceModel\MetapackCarrierSorting as MetapackCarrierSortingResource;
 
 class Carrier implements ArrayInterface
 {
     /**
-     * @var ModuleDataSetupInterface setup
+     * @var MetapackCarrierSortingFactory
      */
-    private $setup;
+    private $metapackCarrierSortingFactory;
 
     /**
      * Carrier constructor.
-     * @param ModuleDataSetupInterface $setup
+     * @param MetapackCarrierSortingFactory $metapackCarrierSortingFactory
      */
-    public function __construct(ModuleDataSetupInterface $setup)
-    {
-        $this->setup = $setup->startSetup();
+    public function __construct(MetapackCarrierSortingFactory $metapackCarrierSortingFactory) {
+        $this->metapackCarrierSortingFactory = $metapackCarrierSortingFactory;
     }
 
     /**
@@ -27,12 +26,10 @@ class Carrier implements ArrayInterface
      */
     public function toOptionArray()
     {
-        $sortVals = [];
-        $select = $this->setup->getConnection()->select()->from(
-            ['cso' => $this->setup->getTable(MetapackCarrierSortingResource::TABLE)]
-        );
-        $metapackCarrierSortValues = $this->setup->getConnection()->fetchAll($select);
+        /** @var MetapackCarrierSorting $metapackCarrierSorting */
+        $metapackCarrierSortValues = $this->metapackCarrierSortingFactory->create()->getCollection();
 
+        $sortVals = [];
         foreach ($metapackCarrierSortValues as $sortVal) {
             $sortVals[] = ['value' => $sortVal['code'], 'label' => $sortVal['sort_ref_name']];
         }
