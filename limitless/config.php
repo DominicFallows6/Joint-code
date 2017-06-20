@@ -212,5 +212,6 @@ return array (
             'Magento_ProductVideoStaging' => 1,
             'Magento_Worldpay' => 1,
             'Limitless_WorldpayFixStaticCall' => 1,
+            'Limitless_WorldpaySelectForm' => 1,
         ),
 );
