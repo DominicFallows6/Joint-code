@@ -22,6 +22,7 @@
       }
     }
   }
+
   .block-products-list {
     .pager {
       display:none;
@@ -113,7 +114,6 @@
   }
 }
 
-
 .widget-product-grid {
   .product-item {
     margin-bottom:20px;
@@ -147,72 +147,6 @@
 }
 
 
-div.social-links {
-  float:left;
-  width:100%;
-  margin:0 0 20px 0;
-  p {
-    color:#666;
-    font-size:14px;
-    line-height:26px;
-  }
-  p.hdr {
-    font-size:18px;
-    padding:20px 0 20px 0;
-    margin:0;
-  }
-  a {
-    color:#fff;
-    font-size:14px;
-    float:left;
-    line-height:36px;
-    margin:0 15px 12px 0;
-    span {
-      margin-left:10px;
-      display:none;
-    }
-    &:before {
-      width:37px;
-      height:37px;
-      content:'';
-      float:left;
-      background:url('../images/hr-eu-sprite.svg') no-repeat 0 0;
-      background-size:137px 2700px;
-    }
-  }
-
-  a.facebook {
-    &:before {
-      background-position:-52px -275px;
-    }
-  }
-
-  a.pinterest {
-    &:before {
-      background-position:-53px -384px;
-    }
-  }
-
-  a.twitter {
-    &:before {
-      background-position:-52px -435px;
-    }
-  }
-
-  a.google-plus {
-    &:before {
-      background-position:-52px -328px;
-    }
-  }
-
-  a.you-tube {
-    &:before {
-      background-position:-52px -488px;
-    }
-  }
-
-}
-
 .page-footer {
   div.trustpilot-footer-banner {
     background:#424242;
@@ -240,144 +174,97 @@ div.social-links {
     }
   }
 
-  .payment-footer {
+  .worldpay-icon {
     display:inline-block;
-    width:100%;
-    background:#fff;
-    padding:20px 0 20px 0;
-    text-align:center;
-    .payment-footer-wrapper {
-      max-width:1280px;
-      margin-left:auto;
-      margin-right:auto;
-      .payment-icons {
-        display:inline-block;
-        border-bottom:1px solid #ccc;
-        margin: 0 0 20px 0;
-        padding: 0 0 10px 0;
-        > span {
-          content:"";
-          background:url('../images/hr-eu-sprite.svg') no-repeat 0 0;
-          background-size:137px 2700px;
-          display:inline-block;
-          margin:0 5px 5px 0;
-        }
-        .security-text {
-          display:inline-block;
-          width:100%;
-          font-size:10px;
-          span.aws-secure {
-              content:"";
-              background:url('../images/hr-eu-sprite.svg') no-repeat 0 0;
-              background-size:137px 2700px;
-              display:inline-block;
-              margin:0 5px 5px 0;
-          }
-          span.secure-text {
-            float:left;
-            width:100%;
-          }
-        }
-        .visa {
-          background-position:-51px -1014px;
-          width:42px;
-          height:28px;
-        }
+    > span {
+      content: "";
+      background: url('../images/hr-eu-sprite.svg') no-repeat 0 0;
+      background-size: 137px 2700px;
+      display: inline-block;
+      margin: 0 0 5px 10px;
+    }
+    > span.worldpay {
+      background-position:-9px -1157px;
+      width:118px;
+      height:28px;
+    }
+  }
 
-        .mastercard {
-          background-position:-49px -1307px;
-          width:46px;
-          height:29px;
-        }
-
-        .paypal {
-          background-position:-50px -1254px;
-          width:42px;
-          height:29px;
-        }
-
-        .amex {
-          background-position:-50px -1061px;
-          width:42px;
-          height:28px;
-        }
-
-        .klarna {
-          background-position:-51px -1107px;
-          width:42px;
-          height:28px;
-        }
-
-        .giro-pay {
-          background-position:-39px -1203px;
-          width:66px;
-          height:28px;
-        }
-
-        .bank-transfer {
-          background-position:-35px -1365px;
-          width:74px;
-          height:29px;
-        }
-
-        .worldpay {
-          background-position:-8px -1155px;
-          width:120px;
-          height:28px;
-        }
-        .security-text {
-          span.aws-secure {
-            background-position: -58px -1897px;
-            width: 30px;
-            height: 30px;
-            margin-right: 10px;
-          }
-        }
-      }
-      .hr-flags {
-        > a {
-          width:32px;
-          height:22px;
-          margin:0 7px 0 0;
-          content:"";
-          background:url('../images/hr-eu-sprite.svg') no-repeat 0 0;
-          background-size:137px 2700px;
-          display:inline-block;
-        }
-        .hr-fr-flag {
-          background-position:-54px -971px;
-        }
-
-        .hr-de-flag {
-          background-position:-54px -1859px;
-        }
-
-        .hr-es-flag {
-          background-position:-54px -929px;
-        }
-
-        .hr-it-flag {
-          background-position:-54px -890px;
-        }
-
-        .hr-nl-flag {
-          background-position:-54px -850px;
-        }
-
-        .hr-at-flag {
-          background-position:-54px -809px;
-        }
-
-        .hr-be-flag {
-          background-position:-54px -769px;
-        }
-
-        .hr-lu-flag {
-          background-position:-54px -728px;
-        }
+  .security {
+    display: inline-block;
+    width: 100%;
+    font-size: 9px;
+    padding:0 0 15px 0;
+    span.aws-secure {
+      content: "";
+      background: url('../images/hr-eu-sprite.svg') no-repeat 0 0;
+      background-size: 137px 2700px;
+      display: inline-block;
+      margin: 0 0 5px 10px;
+    }
+    span.secure-text {
+      display:inline-block;
+      width: 96%;
+    }
+    .security-text {
+      span.aws-secure {
+        background-position: -58px -1897px;
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
       }
     }
   }
+
+  .hr-flags {
+    border-top:1px solid #ccc;
+    padding:15px 0 0 0;
+    margin:10px 0 0 0;
+    > span {
+      width:32px;
+      height:22px;
+      margin:0 0 0 7px;
+      content:"";
+      background:url('../images/hr-eu-sprite.svg') no-repeat 0 0;
+      background-size:137px 2700px;
+      display:inline-block;
+      &:first-child {
+        margin:0;
+      }
+    }
+    .hr-fr-flag {
+      background-position:-54px -971px;
+    }
+
+    .hr-de-flag {
+      background-position:-54px -1859px;
+    }
+
+    .hr-es-flag {
+      background-position:-54px -929px;
+    }
+
+    .hr-it-flag {
+      background-position:-54px -890px;
+    }
+
+    .hr-nl-flag {
+      background-position:-54px -850px;
+    }
+
+    .hr-at-flag {
+      background-position:-54px -809px;
+    }
+
+    .hr-be-flag {
+      background-position:-54px -769px;
+    }
+
+    .hr-lu-flag {
+      background-position:-54px -728px;
+    }
+  }
+
 }
 
 .hr-home-blurb {
@@ -408,11 +295,6 @@ div.social-links {
   width:32px;
   float:right;
   margin-top:6px;
-}
-
-
-div.homepage-banner {
-  margin:0 0 20px 0;
 }
 
 div.featured-categories {
@@ -617,22 +499,6 @@ div.featured-categories {
   }
 }
 
-
-@media screen and (min-width: 640px) {
-  div.social-links {
-    a {
-      width:110px;
-      span {
-        display:inline-block;
-      }
-    }
-    p.hdr {
-      padding: 10px 0 8px 0;
-      font-size:14px;
-    }
-  }
-}
-
 @media screen and (min-width: 768px) {
 
   .page-footer {
@@ -640,32 +506,6 @@ div.featured-categories {
       .tp-footer-wrapper {
         div.trustpilot-widget {
           width:100%;
-        }
-      }
-    }
-    .footer.content {
-      div.social-links {
-        width:50%;
-        p {
-          font-size:12px;
-        }
-        p.hdr {
-          text-transform:uppercase;
-        }
-        a {
-          font-size:12px;
-        }
-      }
-    }
-    .payment-footer {
-      .payment-footer-wrapper {
-        .payment-icons {
-          .security-text {
-            width: 30%;
-            span.secure-text {
-              width:70%;
-            }
-          }
         }
       }
     }
@@ -679,15 +519,6 @@ div.featured-categories {
     a {
       color:#fff;
       text-decoration:none;
-    }
-  }
-
-  div.social-links {
-    a {
-      width:110px;
-      span {
-        display:inline-block;
-      }
     }
   }
 
@@ -747,38 +578,26 @@ div.featured-categories {
         }
       }
     }
-    .footer.content {
-      div.social-links {
-        width:26%;
-      }
-    }
-    .payment-footer {
-      text-align:left;
-      .payment-footer-wrapper {
-        .payment-icons {
-          width:72%;
-          border:none;
-          margin:0;
-          padding:0;
-          span {
-            float:left;
-          }
-          .security-text {
-            float:left;
-            width:45%;
-            margin:0;
-            text-align:left;
-          }
-        }
-        .hr-flags {
-          float:right;
-        }
-      }
-    }
-  }
 
-  div.social-links {
-    margin:0;
+    .security {
+      width:30%;
+      float:right;
+      text-align:left;
+      padding:0 20px 0 0;
+      span.secure-text {
+        float:none;
+        vertical-align:middle;
+        display:inline;
+      }
+      span.aws-secure {
+        float:left;
+      }
+    }
+
+    .hr-flags {
+      text-align:center;
+    }
+
   }
 
   .cms-index-index {
@@ -792,7 +611,6 @@ div.featured-categories {
 }
 
 @media screen and (min-width: 1180px) {
-
   #my-account-link {
     span {
       display: inline-block;
@@ -802,27 +620,26 @@ div.featured-categories {
       font-size:11px;
     }
   }
-
 }
 
 @media screen and (min-width: 1280px) {
   .page-footer {
-    .payment-footer {
-      .payment-footer-wrapper {
-        .payment-icons {
-          > span {
-            margin: 0 20px 5px 0;
-          }
-          .security-text {
-            span.secure-text {
-              width:75%;
-            }
-          }
-        }
-      }
+    .security {
+      width: 25%;
+      float:none;
+      padding:0;
+      vertical-align:top;
+    }
+    .hr-flags {
+      border:none;
+      float:right;
+      margin:0;
+      padding:0;
     }
   }
 }
+
+
 
 
 

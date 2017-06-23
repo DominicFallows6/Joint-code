@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="general">
+            <group id="limitless_payment_icons" translate="label" sortOrder="998" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Payent Methods Display</label>
+                <field id="paymentmethods" translate="true" type="multiselect" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled Payment Methods</label>
+                    <comment>Please select the payment methods you would like to be visible on the FE.</comment>
+                    <source_model>Limitless\PaymentIcons\Model\Config\Source\Custom</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

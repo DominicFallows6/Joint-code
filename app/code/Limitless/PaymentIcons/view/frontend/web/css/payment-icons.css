@@ -1,0 +1,135 @@
+.payment-cards {
+    display:inline-block;
+}
+
+.payment-cards > span:first-child {
+    margin-left:0;
+}
+
+.payment-cards > span {
+    content:"";
+    background:url('../images/payment-icons.svg') no-repeat 0 0;
+    background-size:118px 859px;
+    display:inline-block;
+    margin:0 0 5px 10px;
+}
+
+.payment-cards > span.visa {
+    background-position:-38px -10px;
+    width:42px;
+    height:28px;
+}
+
+.payment-cards > span.visa_electron {
+    background-position:-38px -50px;
+    width:42px;
+    height:28px;
+}
+
+.payment-cards > span.mastercard {
+    background-position:-38px -90px;
+    width:42px;
+    height:28px;
+}
+
+.payment-cards > span.amex {
+    background-position:-37px -174px;
+    width:42px;
+    height:28px;
+}
+
+.payment-cards > span.maestro {
+    background-position:-38px -133px;
+    width:42px;
+    height:28px;
+}
+
+.payment-cards > span.paypal {
+    background-position:-37px -257px;
+    width:42px;
+    height:30px;
+}
+
+.payment-cards > span.amazon {
+    background-position:-38px -304px;
+    width:42px;
+    height:28px;
+}
+
+.payment-cards > span.bank_transfer_es {
+    background-position:-22px -432px;
+    width:73px;
+    height:28px;
+}
+
+.payment-cards > span.bank_transfer_it {
+    background-position:-22px -475px;
+    width:73px;
+    height:28px;
+}
+
+.payment-cards > span.bank_transfer_de {
+    background-position:-22px -389px;
+    width:73px;
+    height:28px;
+}
+
+.payment-cards > span.klarna {
+    background-position:-37px -215px;
+    width:42px;
+    height:28px;
+}
+
+.payment-cards > span.giro_pay {
+    background-position:-26px -346px;
+    width:65px;
+    height:28px;
+}
+
+.payment-cards > span.mistercash {
+    background-position:-37px -516px;
+    width:42px;
+    height:30px;
+}
+
+.payment-cards > span.ideal {
+    background-position:-42px -563px;
+    width:34px;
+    height:30px;
+}
+
+.payment-cards > span.carte_bleue {
+    background-position:-28px -608px;
+    width:61px;
+    height:30px;
+}
+
+.payment-cards > span.commerzbank {
+    background-position:-3px -651px;
+    width:114px;
+    height:28px;
+}
+
+.payment-cards > span.mastercard_secure_code {
+    background-position: -22px -705px;
+    width:70px;
+    height:28px;
+}
+
+.payment-cards > span.verified_by_visa {
+    background-position:-31px -762px;
+    width:55px;
+    height:28px;
+}
+
+@media screen and (min-width:1024px) {
+    .payment-cards {
+        padding:0 0 0 20px;
+    }
+}
+
+@media screen and (min-width:1280px){
+    .payment-cards {
+        padding:0;
+    }
+}

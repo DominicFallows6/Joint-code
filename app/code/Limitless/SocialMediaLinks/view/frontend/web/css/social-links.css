@@ -1,0 +1,164 @@
+.social-media-links {
+    display:inline-block;
+    margin:20px 0 20px 0;
+}
+
+.social-media-links .header {
+    display:block;
+    margin:0 0 10px 0;
+}
+
+.social-media-links a {
+    float:left;
+    margin:0 15px 12px 0;
+    line-height:36px;
+}
+
+.social-media-links a .social-icon {
+    float:left;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    width:36px;
+    height:36px;
+    border-radius:50%;
+}
+
+.social-media-links a > span {
+    display:inline-block;
+    float:left;
+    line-height:36px;
+    margin:0 0 0 10px;
+}
+
+
+.social-media-links a .icon {
+    height: 36px;
+    float: left;
+    background: url(../images/social-media-icons.svg) no-repeat 50% 50%;
+    background-size: 26px 708px;
+    background-position:0 60px;
+}
+
+/* White Icon */
+.social-media-links.white a.facebook .icon {
+    background-position:center -25px;
+    height:16px;
+}
+
+.social-media-links.white a.twitter .icon {
+    background-position:center -97px;
+    height:15px;
+}
+
+.social-media-links.white a.pinterest .icon {
+    background-position:center -175px;
+    height:20px;
+}
+
+.social-media-links.white a.google-plus .icon {
+    background-position:center -259px;
+    height:13px;
+}
+
+.social-media-links.white a.you-tube .icon {
+    background-position:center -335px;
+    height:18px;
+}
+
+.social-media-links.white a.blog .icon {
+    background-position:center -417px;
+    height:16px;
+}
+
+.social-media-links.white a.houzz .icon {
+    background-position:center -495px;
+    height:20px;
+}
+
+.social-media-links.white a.instagram .icon {
+    background-position:center -554px;
+    height:18px;
+}
+
+/* Gray Icon */
+.social-media-links.gray a.facebook .icon {
+    background-position:center -1px;
+    height:16px;
+}
+
+.social-media-links.gray a.twitter .icon {
+    background-position:center -74px;
+    height:15px;
+}
+
+.social-media-links.gray a.pinterest .icon {
+    background-position:center -146px;
+    height:20px;
+}
+
+.social-media-links.gray a.google-plus .icon {
+    background-position:center -238px;
+    height:13px;
+}
+
+.social-media-links.gray a.you-tube .icon {
+    background-position:center -304px;
+    height:18px;
+}
+
+.social-media-links.gray a.blog .icon {
+    background-position:center -394px;
+    height:16px;
+}
+
+.social-media-links.gray a.houzz .icon {
+    background-position:center -470px;
+    height:20px;
+}
+
+.social-media-links.gray a.instagram .icon {
+    background-position:center -582px;
+    height:18px;
+}
+
+/* Black Icon */
+.social-media-links.black a.facebook .icon {
+    background-position:center -47px;
+    height:16px;
+}
+
+.social-media-links.black a.twitter .icon {
+    background-position:center -121px;
+    height:15px;
+}
+
+.social-media-links.black a.pinterest .icon {
+    background-position:center -204px;
+    height:20px;
+}
+
+.social-media-links.black a.google-plus .icon {
+    background-position:center -281px;
+    height:13px;
+}
+
+.social-media-links.black a.you-tube .icon {
+    background-position:center -364px;
+    height:18px;
+}
+
+.social-media-links.black a.blog .icon {
+    background-position:center -442px;
+    height:16px;
+}
+
+.social-media-links.black a.houzz .icon {
+    background-position:center -523px;
+    height:20px;
+}
+
+.social-media-links.black a.instagram .icon {
+    background-position:center -610px;
+    height:18px;
+}

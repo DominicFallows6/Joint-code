@@ -1,0 +1,15 @@
+<?php
+/** @var \Limitless\FooterLinks\Block\View $block */
+?>
+
+<div class="footer-links">
+    <?=$block->getFooterLinksByBlock(); ?>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Limitless_FooterLinks/js/footer-links": {}
+        }
+    }
+</script>

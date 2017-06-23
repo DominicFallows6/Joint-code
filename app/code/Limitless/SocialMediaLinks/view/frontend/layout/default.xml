@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Limitless_SocialMediaLinks::css/social-links.css" />
+    </head>
+    <body>
+        <referenceContainer name="footer">
+            <block class="Limitless\SocialMediaLinks\Block\View" name="social.links" template="Limitless_SocialMediaLinks::social-links.phtml" after="footer.links" ifconfig="general/limitless_social_media/enabled" />
+        </referenceContainer>
+    </body>
+</page>

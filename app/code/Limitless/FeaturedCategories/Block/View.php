@@ -13,8 +13,8 @@ class View extends Template
 {
 
     /**
-    * @var ScopeConfigInterface
-    * */
+     * @var ScopeConfigInterface
+     * */
     private $scopeConfig;
 
     /**
@@ -116,7 +116,7 @@ class View extends Template
     public function getFeaturedConfig()
     {
 
-       return [
+        return [
             [
                 "featured_category" => $this->getConfig('featured_one_title'),
                 "featured_category_url" => $this->getConfig('featured_one_url'),
@@ -128,19 +128,19 @@ class View extends Template
                 "featured_category_image" => $this->getFeaturedImageUrl("featured_two_image"),
             ],
             [
-               "featured_category" => $this->getConfig('featured_three_title'),
-               "featured_category_url" => $this->getConfig('featured_three_url'),
-               "featured_category_image" => $this->getFeaturedImageUrl("featured_three_image"),
+                "featured_category" => $this->getConfig('featured_three_title'),
+                "featured_category_url" => $this->getConfig('featured_three_url'),
+                "featured_category_image" => $this->getFeaturedImageUrl("featured_three_image"),
             ],
             [
-               "featured_category" => $this->getConfig('featured_four_title'),
-               "featured_category_url" => $this->getConfig('featured_four_url'),
-               "featured_category_image" => $this->getFeaturedImageUrl("featured_four_image"),
+                "featured_category" => $this->getConfig('featured_four_title'),
+                "featured_category_url" => $this->getConfig('featured_four_url'),
+                "featured_category_image" => $this->getFeaturedImageUrl("featured_four_image"),
             ],
             [
-               "featured_category" => $this->getConfig('featured_five_title'),
-               "featured_category_url" => $this->getConfig('featured_five_url'),
-               "featured_category_image" => $this->getFeaturedImageUrl("featured_five_image"),
+                "featured_category" => $this->getConfig('featured_five_title'),
+                "featured_category_url" => $this->getConfig('featured_five_url'),
+                "featured_category_image" => $this->getFeaturedImageUrl("featured_five_image"),
             ]
         ];
 

@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Limitless_PaymentIcons::css/payment-icons.css" />
+    </head>
+    <body>
+        <referenceContainer name="footer.bottom.container">
+            <block class="Limitless\PaymentIcons\Block\View" name="payment.icons" template="Limitless_PaymentIcons::payment-icons.phtml" before="-"/>
+        </referenceContainer>
+    </body>
+</page>

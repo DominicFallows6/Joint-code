@@ -1,0 +1,21 @@
+{
+  "name": "limitless/module-footer-links",
+  "description": "n/a",
+  "require": {
+    "php": "~7.0.0",
+    "magento/framework": "100.1.*",
+    "magento/module-store" : "100.1.*"
+  },
+  "type": "magento2-module",
+  "license": [
+    "Commercial"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\FooterLinks\\": ""
+    }
+  }
+}
