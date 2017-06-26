@@ -67,6 +67,21 @@ class MetapackRequest
      * @param $data
      * @return int
      */
+    public function getMaxDimension($data)
+    {
+        $maxLength = $maxWidth = $maxHeight = 0;
+
+        foreach ($data['all_items'] as $item) {
+            $product = $this->productRepository->getById($item->getProductId());
+
+            $maxLength = ($product->getLength() > $maxLength) ? $product->getLength() : $maxLength;
+            $maxWidth = ($product->getWidth() > $maxWidth) ? $product->getWidth() : $maxWidth;
+            $maxHeight = ($product->getHeight() > $maxHeight) ? $product->getHeight() : $maxHeight;
+        }
+
+        return max($maxLength,$maxWidth,$maxHeight);
+    }
+  
     public function parcelCount($data)
     {
         // Return estimated number of parcels in Customer's basket (based on max parcel weight set in admin)

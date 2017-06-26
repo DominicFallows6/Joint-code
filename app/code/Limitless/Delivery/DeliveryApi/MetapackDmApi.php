@@ -160,7 +160,7 @@ class MetapackDmApi implements DeliveryApiInterface
      * @param $request
      * @return Consignment
      */
-    public function buildRequest($request)
+    public function buildRequest($request,$parcels = null)
     {
         $senderAddress = $this->buildSenderAddress();
         $recipientAddress = $this->buildRecipientAddress($request,$senderAddress);
@@ -174,6 +174,7 @@ class MetapackDmApi implements DeliveryApiInterface
         $consignment->consignmentValue = ($request['value'] ? $request['value'] : 0.00);
         $consignment->consignmentWeight = $request['package_weight'];
         $consignment->languageCode = strtoupper(explode('_',$this->getStoreLocale())[0]);
+        $consignment->maxDimension = $this->metapackRequest->getMaxDimension($request);
         $consignment->orderNumber = ($request['order_number'] ? $request['order_number'] : '123456');
         $consignment->orderValue = ($request['value'] ? $request['value'] : 0.00);
         $consignment->parcelCount = $this->metapackRequest->parcelCount($request);
