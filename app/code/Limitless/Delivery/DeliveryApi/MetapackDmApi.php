@@ -44,53 +44,6 @@ class MetapackDmApi implements DeliveryApiInterface
         return $this->scopeConfig->getValue($configPath, ScopeInterface::SCOPE_STORE);
     }
 
-    /**
-     * @param $data
-     * @return string
-     */
-    public function buildRequest($data, $parcels = null)
-    {
-        $senderAddress = $this->buildSenderAddress();
-        $recipientAddress = $this->buildRecipientAddress($data,$senderAddress);
-
-        $consignment = new Consignment();
-        $consignment->cashOnDeliveryCurrency = $this->getStoreBaseCurrency();
-        $consignment->CODAmount = 0.00;
-        $consignment->CODFlag = 0;
-        $consignment->consignmentLevelDetailsFlag = 1;
-        $consignment->consignmentValue = ($data['value'] ? $data['value'] : 0.00);
-        $consignment->consignmentWeight = $data['package_weight'];
-        $consignment->languageCode = strtoupper(explode('_',$this->getStoreLocale())[0]);
-        $consignment->orderNumber = ($data['order_number'] ? $data['order_number'] : '123456');
-        $consignment->orderValue = ($data['value'] ? $data['value'] : 0.00);
-        $consignment->parcelCount = 1;
-        //$consignment->podRequired = 'signature';
-        $consignment->recipientAddress = $recipientAddress;
-        $consignment->recipientContactPhone = '';
-        $consignment->recipientEmail = '';
-        $consignment->recipientFirstName = ($data['first_name'] ? $data['first_name'] : '');
-        $consignment->recipientLastName = ($data['last_name'] ? $data['last_name'] : '');
-        $consignment->recipientMobilePhone = '';
-        $consignment->recipientName = $data['first_name'] . ' ' . $data['last_name'];
-        $consignment->recipientPhone = ($data['phone'] ? $data['phone'] : '');
-        $consignment->recipientTimeZone = '';
-        $consignment->recipientTitle = '';
-        $consignment->senderAddress = $senderAddress;
-        $consignment->senderCode = $this->getWarehouseCode();
-        $consignment->senderFirstName = $this->getStoreName();
-        $consignment->senderLastName = '';
-        $consignment->senderName = $this->getStoreName();
-        $consignment->senderPhone = $this->getStorePhoneNumber();
-        $consignment->transactionType = 'delivery';
-        $consignment->twoManLiftFlag = 0;
-
-        if($parcels !== null) {
-            $consignment->parcels = $parcels;
-        }
-
-        return $consignment;
-    }
-
     // TODO: Get rid of these utility functions and call getConfig directly?
     private function getStoreName()
     {
@@ -207,7 +160,7 @@ class MetapackDmApi implements DeliveryApiInterface
      * @param $request
      * @return Consignment
      */
-    private function buildConsignment($request,$parcels = null)
+    public function buildRequest($request)
     {
         $senderAddress = $this->buildSenderAddress();
         $recipientAddress = $this->buildRecipientAddress($request,$senderAddress);
@@ -223,7 +176,7 @@ class MetapackDmApi implements DeliveryApiInterface
         $consignment->languageCode = strtoupper(explode('_',$this->getStoreLocale())[0]);
         $consignment->orderNumber = ($request['order_number'] ? $request['order_number'] : '123456');
         $consignment->orderValue = ($request['value'] ? $request['value'] : 0.00);
-        $consignment->parcelCount = 1;
+        $consignment->parcelCount = $this->metapackRequest->parcelCount($request);
         //$consignment->podRequired = 'signature';
         $consignment->recipientAddress = $recipientAddress;
         $consignment->recipientContactPhone = ($request['phone'] ? $request['phone'] : $this->getStorePhoneNumber());
@@ -243,10 +196,6 @@ class MetapackDmApi implements DeliveryApiInterface
         $consignment->senderPhone = $this->getStorePhoneNumber();
         $consignment->transactionType = 'delivery';
         $consignment->twoManLiftFlag = 0;
-
-        if($parcels !== null) {
-            $consignment->parcels = $parcels;
-        }
 
         if ($customField) {
             $consignment->custom6 = $customField;
@@ -336,7 +285,7 @@ class MetapackDmApi implements DeliveryApiInterface
             return [$this->offlineDeliveryOption()];
         }
         $allocationService = new AllocationService($this->getConfig('carriers/delivery/wsdl').'AllocationService?wsdl',array("login" => $this->getConfig('carriers/delivery/username'), "password" => $this->getConfig('carriers/delivery/password')));
-        $deliveryOptions = $allocationService->findDeliveryOptions($this->buildConsignment($request),$this->buildAllocationFilter($request),0);
+        $deliveryOptions = $allocationService->findDeliveryOptions($this->buildRequest($request),$this->buildAllocationFilter($request),0);
 
         $value = $request['package_value'] ? $request['package_value'] : 0.00;
 

@@ -63,6 +63,10 @@
                     <label>Metapack Delivery Weeks</label>
                     <comment>Number of weeks customer can select delivery date from</comment>
                 </field>
+                <field id="max_parcel_weight" translate="label" type="text" sortOrder="13" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max Parcel Weight</label>
+                    <comment>Orders for multiple items will be split into parcels with a max weight of XXkgs (single items with a weight greater than XXkg will be added into their own parcel).</comment>
+                </field>
                 <field id="sort_order" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="0">
                     <label>Sort Order</label>
                 </field>

@@ -16,6 +16,7 @@
                 <economy_group_price>0</economy_group_price>
                 <delivery_charge_threshold>0</delivery_charge_threshold>
                 <delivery_weeks>2</delivery_weeks>
+                <max_parcel_weight>30</max_parcel_weight>
                 <sallowspecific>0</sallowspecific>
                 <name>Limitless Delivery</name>
                 <model>Limitless\Delivery\Model\Carrier</model>

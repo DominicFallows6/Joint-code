@@ -32,10 +32,10 @@ class MetapackDmApiCallTest extends \PHPUnit_Framework_TestCase
     public function scopeConfigGetValue($path)
     {
         $pathMap = [
-            'carriers/delivery/warehouse_code' => 'DC',
+            'carriers/delivery/warehouse_code' => 'HR',
             'carriers/delivery/username' => 'soap_ts',
             'carriers/delivery/password' => 'd1lb3rt75',
-            'carriers/delivery/wsdl' => 'https://dm-delta.metapack.com/api/5.x/services/',
+            'carriers/delivery/wsdl' => 'https://dm.metapack.com/api/5.x/services/',
             'carriers/delivery/premium_groups' => 'NEXTDAY,NEXTDAY12,NEXTDAY930,SAT930,SATURDAYPM,SATURDAYAM',
             'carriers/delivery/economy_group' => 'ECONOMY',
             'general/store_information/phone' => '01282 471385',
@@ -58,11 +58,11 @@ class MetapackDmApiCallTest extends \PHPUnit_Framework_TestCase
     {
         /** @var \Magento\Quote\Model\Quote\Address\RateRequest $rateRequest */
         $rateRequest = $this->objectManager->create(RateRequest::class);
-        $rateRequest->setPackageValue(99.99);
-        $rateRequest->setPackageWeight(30);
-        $rateRequest->setDestStreet('Avenida olimpiadas, 25, 3-2');
-        $rateRequest->setDestCity('Rubi');
-        $rateRequest->setDestPostcode('08191');
+        $rateRequest->setPackageValue(7.99);
+        $rateRequest->setPackageWeight(0.06);
+        $rateRequest->setDestStreet('Unit 1 and 2');
+        $rateRequest->setDestCity('Barcelona');
+        $rateRequest->setDestPostcode('08041');
         $rateRequest->setDestCountryId('ESP');
 //        $rateRequest->setDestStreet('26 Fell View');
 //        $rateRequest->setDestCity('Burnley');
