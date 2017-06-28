@@ -12,9 +12,22 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
 
         $percentage = "";
         $specialPrice = $product->getFinalPrice();
-        $originalPrice = $product->getPrice();
+        $productType = $product->getTypeId();
         $minusSymbol = "-";
         $percentSymbol = "%";
+
+        if ($productType === 'configurable') {
+            $configurableProducts = $product->getTypeInstance()->getUsedProducts($product);
+            $configurablePrices = [];
+            foreach ($configurableProducts as $value) {
+                foreach ($value as $configProduct) {
+                    $configurablePrices[] = $configProduct['price'];
+                }
+            }
+            $originalPrice = min($configurablePrices);
+        } else {
+            $originalPrice = $product->getPrice();
+        }
 
         if ($specialPrice) {
             if ($originalPrice > $specialPrice) {

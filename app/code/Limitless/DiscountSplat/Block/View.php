@@ -13,7 +13,6 @@ class View extends Template
      */
     protected $registry;
 
-
     public function __construct(
         Context $context,
         Registry $registry,
@@ -27,9 +26,23 @@ class View extends Template
     {
         $percentage = "";
         $specialPrice = $this->registry->registry('product')->getFinalPrice();
-        $originalPrice = $this->registry->registry('product')->getPrice();
+        $productType = $this->registry->registry('product')->getTypeId();
+        $product = $this->registry->registry('product');
         $minusSymbol = "-";
         $percentSymbol = "%";
+
+        if ($productType === 'configurable') {
+            $configurableProducts = $product->getTypeInstance()->getUsedProducts($product);
+            $configurablePrices = [];
+            foreach ($configurableProducts as $value) {
+                foreach ($value as $configProduct) {
+                    $configurablePrices[] = $configProduct['price'];
+                }
+            }
+            $originalPrice = min($configurablePrices);
+        } else {
+            $originalPrice = $this->registry->registry('product')->getPrice();
+        }
 
         if ($specialPrice) {
             if ($originalPrice > $specialPrice) {
