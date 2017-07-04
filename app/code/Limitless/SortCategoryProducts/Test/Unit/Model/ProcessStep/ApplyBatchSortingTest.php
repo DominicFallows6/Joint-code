@@ -4,57 +4,63 @@ declare(strict_types=1);
 
 namespace Limitless\SortCategoryProducts\Model\ProcessStep;
 
-use Magento\Catalog\Api\CategoryLinkRepositoryInterface;
 use Magento\Catalog\Api\CategoryRepositoryInterface;
-use Magento\Catalog\Api\Data\CategoryInterface;
-use Magento\Catalog\Api\Data\CategoryProductLinkInterface;
-use Magento\Catalog\Api\Data\CategoryProductLinkInterfaceFactory;
 use Magento\Catalog\Model\Category;
+use Magento\Catalog\Model\ResourceModel\Category as CategoryResource;
+use Magento\Catalog\Model\ResourceModel\Product as ProductResource;
 
 class ApplyBatchSortingTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @return CategoryProductLinkInterfaceFactory|\PHPUnit_Framework_MockObject_MockObject
-     */
-    private function createFakeCategoryProductLinkFactory(): \PHPUnit_Framework_MockObject_MockObject
-    {
-        $fakeCategoryLinkFactory = $this->getMockBuilder(CategoryProductLinkInterfaceFactory::class)
-            ->disableOriginalConstructor()
-            ->setMethods(['create'])
-            ->getMock();
-
-        $fakeCategoryLinkFactory->expects($this->atLeastOnce())->method('create')->willReturnCallback(function () {
-            $mockCategoryLink = $this->getMock(CategoryProductLinkInterface::class);
-            $mockCategoryLink->expects($this->once())->method('setCategoryId');
-            $mockCategoryLink->expects($this->once())->method('setSku');
-            $mockCategoryLink->expects($this->once())->method('setPosition');
-
-            return $mockCategoryLink;
-        });
-
-        return $fakeCategoryLinkFactory;
-    }
-
     public function testAppliesSortBatchRowsToCategoryLinks()
     {
-        $fakeCategoryLinkFactory = $this->createFakeCategoryProductLinkFactory();
-
-        /** @var CategoryLinkRepositoryInterface|\PHPUnit_Framework_MockObject_MockObject $mockCategoryLinkRepository */
-        $mockCategoryLinkRepository = $this->getMock(CategoryLinkRepositoryInterface::class);
-        $mockCategoryLinkRepository->expects($this->atLeastOnce())->method('save');
+        $productAId = 1;
+        $productASKU = 'foo';
+        $productBId = 2;
+        $productBSKU = 'bar';
         
+        $mockCategoryA = $this->getMockBuilder(Category::class)->disableOriginalConstructor()->getMock();
+        $mockCategoryA->method('getProductsPosition')->willReturn([$productAId => 5, $productBId => 6]);
+        $mockCategoryA->expects($this->once())->method('setData')->with(
+            'posted_products',
+            [$productAId => 10, $productBId => 6]
+        );
+        $mockCategoryB = $this->getMockBuilder(Category::class)->disableOriginalConstructor()->getMock();
+        $mockCategoryB->method('getProductsPosition')->willReturn([$productBId => 5, 3 => 6]);
+        $mockCategoryB->expects($this->once())->method('setData')->with(
+            'posted_products',
+            [$productBId => 20, 3 => 6]
+        );
+
         /** @var CategoryRepositoryInterface|\PHPUnit_Framework_MockObject_MockObject $stubCategoryRepository */
         $stubCategoryRepository = $this->getMock(CategoryRepositoryInterface::class);
-        $stubCategoryRepository->method('get')->willReturn(
-            $this->getMockBuilder(Category::class)->disableOriginalConstructor()->getMock()
+        $stubCategoryRepository->method('get')->willReturnOnConsecutiveCalls($mockCategoryA, $mockCategoryB);
+
+        /** @var ProductResource|\PHPUnit_Framework_MockObject_MockObject $stubProductResource */
+        $stubProductResource = $this->getMockBuilder(ProductResource::class)->disableOriginalConstructor()->getMock();
+        $stubProductResource->method('getProductsIdsBySkus')->willReturn(
+            [$productASKU => $productAId, $productBSKU => $productBId]
+        );
+        
+        /** @var CategoryResource|\PHPUnit_Framework_MockObject_MockObject $mockCategoryResource */
+        $mockCategoryResource = $this->getMockBuilder(CategoryResource::class)->disableOriginalConstructor()->getMock();
+        $mockCategoryResource->expects($this->exactly(2))->method('save')->withConsecutive(
+            [$mockCategoryA],
+            [$mockCategoryB]
         );
 
-        $applicator = new ApplyBatchSorting(
-            $fakeCategoryLinkFactory,
-            $mockCategoryLinkRepository,
-            $stubCategoryRepository
-        );
-        $batchData = [[1, 'foo', 10]];
+        $batchData = [
+            [
+                ApplyBatchSorting::CATEGORY_COLUMN => 1,
+                ApplyBatchSorting::SKU_COLUMN      => $productASKU,
+                ApplyBatchSorting::POSITION_COLUMN => 10,
+            ],
+            [
+                ApplyBatchSorting::CATEGORY_COLUMN => 2,
+                ApplyBatchSorting::SKU_COLUMN      => $productBSKU,
+                ApplyBatchSorting::POSITION_COLUMN => 20,
+            ],
+        ];
+        $applicator = new ApplyBatchSorting($stubCategoryRepository, $stubProductResource, $mockCategoryResource);
         $applicator->apply($batchData);
     }
 }
