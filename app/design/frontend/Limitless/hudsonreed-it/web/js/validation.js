@@ -566,8 +566,8 @@
                 if (counter < passwordMinCharacterSets) {
                     result = false;
                     validator.passwordErrorMessage = $.mage.__(
-                        "La password deve essere composta da un minimo di %1 di diversi caratteri." +
-                        " Classi di caratteri: maiuscole,minuscole,cifre e caratteri speciali."
+                        "La password deve essere composta da un minimo di %1 diversi tipi di caratteri." +
+                        " Classi di caratteri: maiuscole, minuscole, cifre e caratteri speciali."
                     ).replace('%1', passwordMinCharacterSets);
                 }
                 return result;
