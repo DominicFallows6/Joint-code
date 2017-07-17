@@ -1,0 +1,72 @@
+<?php
+/**
+ * @var $block \Limitless\Elastic\Block\PriceFilters;
+ */
+$priceFiltersRequired = $block->arePriceFiltersRequired();
+$filters = $block->getActiveFilters()
+?>
+
+<?php if (!empty($filters) || $priceFiltersRequired) : ?>
+    <div class="filter-current"
+         data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false }}'>
+        <strong class="block-subtitle filter-current-subtitle"
+                role="heading"
+                aria-level="2"
+                data-role="title"
+                data-count="<?php echo count($filters); ?>"><?php /* @escapeNotVerified */
+            echo __('Now Shopping by') ?></strong>
+        <ol class="items">
+
+            <?php
+            if ($priceFiltersRequired) {
+                foreach ($block->getPriceFilters() as $keyFilter => $valueFilter) {
+                    if ($valueFilter['removal_link'] == 1) {
+                        ?>
+                        <li class="item">
+                            <span class="filter-label"><?php echo $block->escapeHtml(__('Price')); ?></span>
+                            <span class="filter-value"><?php echo $valueFilter['display_value'] ?></span>
+                            <a class="action remove" href="<?php echo $valueFilter['url'] ?>"></a>
+                        </li>
+                        <?php
+                    }
+                }
+            }
+            ?>
+
+            <?php foreach ($filters as $filter) { ?>
+                <li class="item">
+                    <span class="filter-label"><?php echo $block->escapeHtml(__($filter->getName())); ?></span>
+                    <span class="filter-value"><?php /* @escapeNotVerified */
+                        echo $block->stripTags($filter->getLabel()) ?></span>
+                    <?php
+                    $clearLinkUrl = $filter->getClearLinkUrl();
+                    $currentFilterName = $block->escapeHtml(__($filter->getName())) . " " . $block->stripTags($filter->getLabel());
+                    if ($clearLinkUrl) {
+                        ?>
+                        <a class="action previous" href="<?php /* @escapeNotVerified */
+                        echo $filter->getRemoveUrl() ?>"
+                           title="<?php /* @escapeNotVerified */
+                           echo __('Previous') ?>">
+                            <span><?php /* @escapeNotVerified */
+                                echo __('Previous') ?></span>
+                        </a>
+                        <a class="action remove"
+                           title="<?php echo $block->escapeHtml($filter->getFilter()->getClearLinkText()) ?>"
+                           href="<?php /* @escapeNotVerified */
+                           echo $clearLinkUrl ?>">
+                            <span><?php echo $block->escapeHtml($filter->getFilter()->getClearLinkText()) ?></span>
+                        </a>
+                    <?php } else { ?>
+                        <a class="action remove" href="<?php /* @escapeNotVerified */
+                        echo $filter->getRemoveUrl() ?>"
+                           title="<?php /* @escapeNotVerified */
+                           echo $block->escapeHtml(__('Remove')) . " " . $currentFilterName; ?>">
+                            <span><?php /* @escapeNotVerified */
+                                echo __('Remove This Item') ?></span>
+                        </a>
+                    <?php } ?>
+                </li>
+            <?php } ?>
+        </ol>
+    </div>
+<?php endif; ?>

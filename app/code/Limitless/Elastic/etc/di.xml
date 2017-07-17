@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Search\Model\AdapterFactory">
+        <arguments>
+            <argument name="adapters" xsi:type="array">
+                <item name="elasticsearch" xsi:type="string">Limitless\Elastic\Adapter\SearchAdapter</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Model\Layer\Filter\Item">
+        <plugin name="limitless_elastic" type="Limitless\Elastic\Plugin\FacetRenderingFixes"></plugin>
+    </type>
+
+    <preference for="Magento\CatalogSearch\Model\Layer\Filter\Attribute" type="Limitless\Elastic\Model\Layer\Filter\AttributeRewrite"/>
+    <type name="Magento\Swatches\Block\LayeredNavigation\RenderLayered">
+        <plugin name="limitless_swatches" type="Limitless\Elastic\Plugin\SwatchesFacetRenderingFixesPlugin"></plugin>
+    </type>
+
+    <preference for="Magento\LayeredNavigation\Block\Navigation\State" type="Limitless\Elastic\Block\PriceFilters" />
+
+    <preference for="Magento\Catalog\Model\Layer\State" type="Limitless\Elastic\Model\Layer\State" />
+
+</config>
