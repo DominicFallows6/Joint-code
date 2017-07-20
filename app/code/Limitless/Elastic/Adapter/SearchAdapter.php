@@ -161,7 +161,7 @@ class SearchAdapter implements AdapterInterface
                 $categoryId = $this->query['body']['query']['bool']['must'][0]['term']['category_ids'];
 
                 $withoutPrices = $this->queryBuilder->createCategoryRequest(
-                    [],
+                    $pricePreferenceParameters,
                     $this->createRequestAggregationsArray(),
                     $this->createQueryFieldsArray(),
                     $categoryId,
@@ -227,6 +227,7 @@ class SearchAdapter implements AdapterInterface
 
         }
 
+        //skips to here when search is "basic"
         $completeAggregations = $this->aggregationBuilder->build($request, $rawResponse);
 
         if (!empty($prePriceAggregations) && isset($completeAggregations['price_bucket'])) {
@@ -271,7 +272,7 @@ class SearchAdapter implements AdapterInterface
 
 
                     //todo when we do the price filter work
-                    //add an arbitrary filter in. think magento does some sort of count in category view page - 
+                    //add an arbitrary filter in. think magento does some sort of count in category view page -
                     if (isset($completeAggregations['price_bucket']) && count($completeAggregations['price_bucket']) == 1) {
                         $completeAggregations['price_bucket']['0'] = ['value'=>'0', 'count'=>0];
                     }

@@ -1,25 +1,34 @@
 <?php
+
 /**
  * @var $block \Limitless\Elastic\Block\PriceFilters;
  */
 $priceFiltersRequired = $block->arePriceFiltersRequired();
-$filters = $block->getActiveFilters()
-?>
+$filters = $block->getActiveFilters();
 
-<?php if (!empty($filters) || $priceFiltersRequired) : ?>
+if (!empty($filters) || $priceFiltersRequired) {
+
+    $filterCount = count($filters);
+
+    if ($priceFiltersRequired) {
+        $priceFilters = $block->getPriceFilters();
+        $filterCount = $filterCount + count($priceFilters);
+    }
+
+    ?>
     <div class="filter-current"
          data-mage-init='{"collapsible":{"openedState": "active", "collapsible": true, "active": false }}'>
         <strong class="block-subtitle filter-current-subtitle"
                 role="heading"
                 aria-level="2"
                 data-role="title"
-                data-count="<?php echo count($filters); ?>"><?php /* @escapeNotVerified */
+                data-count="<?php echo $filterCount ?>"><?php /* @escapeNotVerified */
             echo __('Now Shopping by') ?></strong>
         <ol class="items">
 
             <?php
             if ($priceFiltersRequired) {
-                foreach ($block->getPriceFilters() as $keyFilter => $valueFilter) {
+                foreach ($priceFilters as $keyFilter => $valueFilter) {
                     if ($valueFilter['removal_link'] == 1) {
                         ?>
                         <li class="item">
@@ -69,4 +78,4 @@ $filters = $block->getActiveFilters()
             <?php } ?>
         </ol>
     </div>
-<?php endif; ?>
+<?php } ?>

@@ -2,6 +2,7 @@
 
 **Version 2**
 
+* Remove filter output when count is zero or same number as current result hits
 * Convert Elasticsearch request from string to array
 * Add getters / setters for QueryBuilder Properties
 * Add the dynamic filter types in to config
