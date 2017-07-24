@@ -1,0 +1,482 @@
+a, .alink {
+  color:#333333;
+}
+
+a:visited, .alink:visited {
+  color:#333333;
+}
+
+a:hover, .alink:hover {
+  color:#333333;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  text-transform:uppercase;
+}
+
+.cms-index-index {
+
+  .columns {
+    .column.main {
+      padding-bottom:0;
+    }
+  }
+
+  .bh-homepage-block {
+    .btu-banner {
+      margin-bottom:15px;
+    }
+  }
+
+  .widget-product-grid {
+    .product-item {
+      .product-item-name {
+        height: 58px;
+        overflow: hidden;
+        font-size: 1.3rem;
+        > a {
+          color: #666666;
+        }
+      }
+      .product-item-actions {
+        display: none;
+      }
+    }
+  }
+
+  .block-products-list {
+    .pager {
+      display:none;
+    }
+  }
+
+  .featured-products {
+      h3 {
+        text-transform:uppercase;
+        text-align:center;
+        font-size:24px;
+        margin-bottom:3rem;
+        margin-top:3rem;
+        span {
+          font-weight:600;
+        }
+      }
+  }
+
+  .page-wrapper {
+    .page-bottom {
+      max-width: 100%;
+      padding: 0;
+      margin: 0;
+      -webkit-flex-grow: 1;
+      flex-grow: 1;
+      -webkit-flex-shrink: 0;
+      flex-shrink: 0;
+      -webkit-flex-basis: auto;
+      flex-basis: auto;
+    }
+  }
+
+  .homepage-txt-container {
+    margin:0 0 40px 0;
+    .homepage-txt {
+      background-color:#efefef;
+      max-width:1280px;
+      margin-left:auto;
+      margin-right:auto;
+      padding:40px 40px 30px 40px;
+      .hdr {
+        text-align:center;
+        margin:0 0 20px 0;
+        h1 {
+          margin:0;
+          font-size:23px;
+          display: inline-block;
+          text-transform:uppercase;
+        }
+        span {
+          font-weight:600;
+        }
+      }
+
+      .title {
+        color:#8F9EAA;
+        font-size:18px;
+        font-weight:300;
+        display:inline-block;
+        margin:0 0 20px 0;
+      }
+      .text {
+        p {
+          color:#666666;
+          margin:0 0 15px 0;
+          line-height:22px;
+        }
+      }
+    }
+  }
+
+  .homepage-featured-categories .cta {
+    background:#ff8000;
+  }
+
+  .bh-homepage-block {
+    > div {
+      img {
+        width:100%;
+      }
+    }
+  }
+
+}
+
+.widget-product-grid {
+  .product-item {
+    margin-bottom:20px;
+    .product-item-info {
+      .product-item-details {
+        .price-label {
+          display:none;
+        }
+        .price-box {
+          font-size: 1.8rem;
+          font-weight:700;
+          display:inline-block;
+          margin:0;
+          .old-price {
+            float:left;
+            margin:0 10px 0 0;
+            color:#a8a8a8;
+          }
+          .special-price {
+            float:left;
+          }
+          .minimal-price-link {
+            display:none;
+          }
+          .price {
+            font-size: 1.8rem;
+            font-weight: 700;
+          }
+        }
+      }
+    }
+  }
+}
+
+.page-footer {
+  div.trustpilot-footer-banner {
+    background:#333333;
+    width:100%;
+    float:left;
+    padding:10px 0 10px 0;
+    height:45px;
+    div.tp-footer-wrapper {
+      max-width:1280px;
+      margin-left:auto;
+      margin-right:auto;
+      div.tp-footer-logo {
+        display:none;
+        img {
+          width:220px;
+          height:45px;
+        }
+      }
+      div.trustpilot-widget {
+        width:100%;
+        iframe {
+          margin:12px 0 0;
+        }
+      }
+    }
+  }
+
+  .worldpay-icon {
+    display:inline-block;
+    > span {
+      content: "";
+      background: url('../images/hr-eu-sprite.svg') no-repeat 0 0;
+      background-size: 137px 2700px;
+      display: inline-block;
+      margin: 0 0 5px 10px;
+    }
+    > span.worldpay {
+      background-position:-9px -1157px;
+      width:118px;
+      height:28px;
+    }
+  }
+
+  .security {
+    display: inline-block;
+    width: 100%;
+    font-size: 9px;
+    padding:0 0 15px 0;
+    span.aws-secure {
+      content: "";
+      background: url('../images/hr-eu-sprite.svg') no-repeat 0 0;
+      background-size: 137px 2700px;
+      display: inline-block;
+      margin: 0 0 5px 10px;
+    }
+    span.secure-text {
+      display:inline-block;
+      width: 96%;
+    }
+    .security-text {
+      span.aws-secure {
+        background-position: -58px -1897px;
+        width: 30px;
+        height: 30px;
+        margin-right: 5px;
+      }
+    }
+  }
+
+}
+
+.hr-home-blurb {
+  background:#efefef;
+  font-size:12px;
+  text-align:center;
+  padding:20px;
+  h2 {
+    margin:0 0 20px 0;
+    padding:0;
+    font-weight:500;
+  }
+  p {
+    line-height:20px;
+  }
+}
+
+#my-account-link, #my-account-link span {
+  display:none;
+  font-family:'Montserrat', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#my-account-link a:after {
+  content:"";
+  background:url('../images/bh-sprite.svg') no-repeat 0 0;
+  background-size:137px 2700px;
+  background-position:-55px -375px;
+  height:32px;
+  width:32px;
+  float:right;
+  margin-top:6px;
+}
+
+.navigation {
+  ul {
+    li {
+      a > {
+        i {
+          background:url("../images/menu-icons.svg");
+          background-position:0 32px;
+          background-size:51px 563px;
+          float:left;
+          height:32px;
+          width:32px;
+          vertical-align:middle;
+          margin-right:20px;
+        }
+
+        i.radiators {
+          background-position:-9px -6px;
+        }
+        i.heatedtowelrails {
+          background-position:-9px -47px;
+        }
+        i.underfloorheating {
+          background-position:-9px -443px;
+        }
+        i.bathrooms {
+          background-position:-8px -266px;
+        }
+        i.offers {
+          background-position:-9px -399px;
+        }
+        i.brands {
+          background-position:-8px -478px;
+        }
+        i.advicecentre {
+          background-position:-8px -515px;
+        }
+
+        span {
+          &:last-child {
+            width:75%;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 480px) {
+  .cms-index-index {
+    .bh-homepage-block {
+      width:100%;
+      display:inline-block;
+      .btu-banner {
+        margin-bottom:0;
+        width:32.33333333%;
+        float:left;
+      }
+      .advice-centre-banner {
+        width:66.11111111%;
+        float:right;
+      }
+      > div {
+        img {
+          width:100%;
+        }
+      }
+    }
+
+      .block.widget {
+        .products-grid {
+          .product-item {
+            width:25%;
+          }
+        }
+      }
+  }
+}
+
+@media screen and (min-width: 768px) {
+
+  .page-footer {
+    .trust-pilot-footer-banner {
+      .tp-footer-wrapper {
+        div.trustpilot-widget {
+          width:100%;
+        }
+      }
+    }
+  }
+
+  #my-account-link {
+    float:right;
+    margin:0 40px 0 0;
+    font-size:12px;
+    display:inline-block;
+    a {
+      color:#777777;
+      text-decoration:none;
+    }
+  }
+
+  .cms-index-index {
+    .homepage-txt-container {
+      .homepage-txt {
+        .hdr {
+          h1 {
+            font-size: 24px;
+          }
+        }
+      }
+    }
+  }
+
+  .menu-overlay {
+    opacity:0.2;
+    background:#000;
+    height:100%;
+    position:absolute;
+    width:100%;
+    z-index:2;
+    display:none;
+  }
+
+  .navigation {
+    ul {
+      li {
+        > a {
+          i {
+            display:none;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+
+  .page-footer {
+    text-align:left;
+    div.trustpilot-footer-banner {
+      div.tp-footer-wrapper {
+        div.tp-footer-logo {
+          display:block;
+          width:20%;
+          float:left;
+        }
+        div.trustpilot-widget {
+          width:80%;
+          float:right;
+        }
+      }
+    }
+
+    .security {
+      width:30%;
+      float:right;
+      text-align:left;
+      padding:0 20px 0 0;
+      span.secure-text {
+        float:none;
+        vertical-align:middle;
+        display:inline;
+      }
+      span.aws-secure {
+        float:left;
+      }
+    }
+
+    .payment-cards {
+      float:right;
+    }
+
+  }
+
+  .cms-index-index {
+    .widget-product-grid {
+      .product-item {
+        width:21.866666% !important;
+      }
+    }
+
+    .homepage-featured-categories {
+      .featured-text {
+        span.title {
+          font-size:24px;
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1180px) {
+  #my-account-link {
+    span {
+      display: inline-block;
+      line-height: 40px;
+      margin: 0 12px 0 0;
+      text-transform:uppercase;
+      font-size:11px;
+    }
+  }
+}
+
+@media screen and (min-width: 1280px) {
+  .page-footer {
+    .security {
+      width: 25%;
+      float:none;
+      padding:0;
+      vertical-align:top;
+    }
+  }
+}

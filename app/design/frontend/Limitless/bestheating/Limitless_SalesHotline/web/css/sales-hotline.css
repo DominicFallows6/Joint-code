@@ -1,0 +1,173 @@
+div#sales-hotline {
+    position: absolute;
+    top: 6px;
+    right: 45px;
+}
+
+div#sales-wrapper > a {
+    color:#777777;
+    text-decoration:none;
+}
+
+div#sales-wrapper {
+    position:relative;
+}
+
+div#sales-wrapper > a > span {
+    display:none;
+    font-family:'Montserrat', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+div#sales-wrapper > a:after {
+    content:'';
+    background:url("../images/tel-icon.svg");
+    float:right;
+    margin-top:6px;
+    width:28px;
+    height:28px;
+}
+
+
+#opening-times-container {
+    background:#fff;
+    border:1px solid #bbbbbb;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+    width:220px;
+    display:none;
+    position:absolute;
+    right:-8px;
+    top:37px;
+    text-align:left;
+    padding:30px 20px 20px 20px;
+    z-index:100;
+    font-size:14px;
+}
+
+#opening-times-container button:before {
+    -webkit-font-smoothing: antialiased;
+    font-size: 32px;
+    line-height: 32px;
+    color: inherit;
+    content: '\e616';
+    font-family: 'icons-blank-theme';
+    margin: 0;
+    vertical-align: top;
+    display: inline-block;
+    font-weight: normal;
+    overflow: hidden;
+    speak: none;
+    text-align: center;
+}
+
+#opening-times-container:before, #opening-times-container:after {
+    border-bottom-style: solid;
+    content: '';
+    display: block;
+    height: 0;
+    position: absolute;
+    width: 0;
+}
+
+#opening-times-container:before {
+    border: 6px solid;
+    border-color: transparent transparent #ffffff transparent;
+    z-index: 99;
+}
+
+#opening-times-container:after {
+    border: 7px solid;
+    border-color: transparent transparent #bbbbbb transparent;
+    z-index: 98;
+}
+
+#opening-times-container:before {
+    right:14px;
+    top:-12px;
+}
+
+#opening-times-container:after {
+    right:13px;
+    top:-14px;
+}
+
+#opening-times-container div.open {
+    width:100%;
+    display:inline-block;
+    margin:0 0 15px 0;
+}
+
+#opening-times-container div.closed {
+    display:inline-block;
+}
+
+#opening-times-container a.sales-number {
+    text-decoration:none;
+    color:#333333;
+    font-weight:700;
+    font-size:16px;
+    display:inline-block;
+}
+
+#opening-times-container a.sales-number:hover {
+    color:#333333;
+}
+
+#opening-times-container a.help-centre {
+    color:#333333;
+    font-weight:700;
+    float:right;
+    line-height:19px;
+}
+
+#opening-times-container a.help-centre:before {
+    content: url('../images/help-icon.svg');
+    float: left;
+    margin-right:3px;
+    height:20px;
+    width:20px;
+}
+
+#opening-times-container .opening-hours {
+    font-weight:600;
+}
+
+#opening-times-container button.close {
+    position:absolute;
+    right:0;
+    top:0;
+    padding:0;
+    margin:0;
+    background:none;
+    line-height:inherit;
+    border:none;
+}
+
+@media screen and (min-width: 768px) {
+    div#sales-hotline {
+        float: right;
+        margin: 0 40px 0 0;
+        font-size: 12px;
+        position: static;
+    }
+
+    #opening-times-container {
+        top:44px;
+        width:260px;
+    }
+}
+
+
+@media screen and (min-width: 1180px) {
+    div#sales-wrapper > a > span {
+        line-height: 40px;
+        margin: 0 12px 0 0;
+        display: inline-block;
+        text-transform:uppercase;
+        font-size:11px;
+    }
+}
+
+
+
+
+

@@ -1,0 +1,17 @@
+<?php
+/** @var \Limitless\TopTips\Block\View $block */
+?>
+
+<?php if ($block->hasTopTips()): ?>
+    <div class="product-top-tips-container">
+        <div class="product-top-tips">
+            <div class="hdr">
+                <h2><?=__('Top Tips')?> <span><?=__('Not all radiators are created equally')?></span></h2>
+            </div>
+            <div class="tips">
+                <?=$block->getTopTipsHtml()?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+

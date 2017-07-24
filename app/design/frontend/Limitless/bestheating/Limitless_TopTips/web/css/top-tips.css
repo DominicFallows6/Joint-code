@@ -1,0 +1,159 @@
+.product-top-tips-container {
+    background:#ffffff;
+    text-align:center;
+    display:inline-block;
+    margin:20px 0 20px 0;
+    width:100%;
+}
+
+.product-top-tips-container .hdr {
+    display:inline-block;
+    width:100%;
+    background:#333333;
+    color:#ffffff;
+}
+
+.product-top-tips-container .hdr h2 {
+    text-transform:uppercase;
+    font-size:24px;
+    text-align:left;
+    margin:0;
+    padding:12px 0 12px 20px;
+    font-weight:500;
+}
+
+
+.product-top-tips-container .hdr h2 span {
+    font-weight:300;
+    color:#ff8000;
+    display:none;
+}
+.product-top-tips-container .product-top-tips .top-tip {
+    width:100%;
+    display:inline-block;
+    margin-bottom:20px;
+    vertical-align:top;
+}
+
+.product-top-tips-container .product-top-tips .tips {
+    background:#efefef;
+    padding:30px 0 0 0;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.top-tip .tip:before {
+    content:"";
+    background:url("../images/top-tip-icons-bh.svg") no-repeat 0 90px;
+    background-size:93px 1307px;
+    display:inline-block;
+    width:90px;
+    height:90px;
+    margin:0 10px 0 10px;
+    float:left;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.thickness .tip:before {
+    background-position:-2px -100px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.weight .tip:before {
+    background-position:0 -196px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.guarantee .tip:before {
+    background-position:-2px -294px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.certified .tip:before {
+    background-position:-1px 4px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.testing .tip:before {
+    background-position:-1px -405px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.finish .tip:before {
+    background-position:-2px -526px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.brand .tip:before {
+    background-position:-2px -636px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.eco .tip:before {
+    background-position:-2px -750px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.maintenance .tip:before {
+    background-position:-2px -872px;
+}
+
+.product-top-tips-container .product-top-tips .tips > div.electric .tip:before {
+    background-position:-1px -994px;
+}
+
+.product-top-tips-container .product-top-tips .top-tip .tip > p {
+    width:60%;
+    font-size:12px;
+    line-height:18px;
+    float:left;
+    text-align:left;
+    color:#333333;
+}
+
+.product-top-tips-container .product-top-tips .top-tip .tip-title {
+    float:left;
+    text-align:left;
+    width:60%;
+    margin-bottom:10px;
+    text-transform:uppercase;
+    font-size:14px;
+    font-family:'Montserrat', 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight:500;
+}
+
+@media screen and (min-width: 768px) {
+    .product-top-tips-container .product-top-tips .top-tip {
+        width:49%;
+    }
+
+    .product-top-tips-container .hdr h2 span {
+        display:inline-block;
+    }
+
+}
+
+@media screen and (min-width: 1280px) {
+
+    .product-top-tips-container .product-top-tips .tips {
+        display:flex;
+    }
+
+    .product-top-tips-container .product-top-tips .top-tip {
+        width:21%;
+        padding:0 22px 0 22px;
+        border-right:1px dashed #cccccc;
+        flex:1;
+    }
+
+    .product-top-tips-container .product-top-tips .top-tip:last-child {
+        border:none;
+    }
+
+    .product-top-tips-container .product-top-tips .top-tip .tip-title {
+        width:100%;
+        text-align:center;
+    }
+
+    .product-top-tips-container .product-top-tips .top-tip .tip > p {
+        width:100%;
+        text-align:center;
+    }
+
+    .product-top-tips-container .product-top-tips .top-tip:last-child {
+        margin-right:0;
+    }
+
+    .product-top-tips-container .product-top-tips .tips > div.top-tip .tip:before {
+        float:none;
+    }
+}

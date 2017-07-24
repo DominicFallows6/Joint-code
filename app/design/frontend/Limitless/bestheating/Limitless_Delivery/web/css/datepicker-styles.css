@@ -1,0 +1,223 @@
+.table-checkout-shipping-method ul {
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+@media (max-width:480px) {
+    .table-checkout-shipping-method {
+        border-spacing: 2px 0!important;
+    }
+    .table-checkout-shipping-method .date {
+        font-size: 34px!important;
+    }
+    #del-rates {
+        padding: 0 2px!important;
+    }
+    .rates-for-day {
+        height: 60px!important;
+    }
+    .rates-for-day span {
+        padding: 10px 2px!important;
+    }
+}
+@media (min-width:768px) {
+    #on-submit {
+        max-width: 600px;
+    }
+    #on-submit .primary {
+        float: right;
+    }
+
+    #co-shipping-method-form {
+        max-width: 600px;
+    }
+    #delivery-threshold {
+        margin-bottom: 20px;
+    }
+    .actions-toolbar .primary {
+        float: right;
+    }
+}
+
+#week-picker {
+    font-weight: bold;
+    font-size: 17px;
+}
+
+#date-picker-window li {
+    width: 10%;
+    border-top: 2px solid #118a37;
+    display: table-cell;
+    padding-top: 10px;
+    cursor: pointer;
+}
+
+.checkout-shipping-method .step-title {
+    border-bottom: 0;
+    clear: both;
+}
+
+.date-price {
+    background-color: #118a37;
+    color: #ffffff;
+    padding: 3px 0;
+}
+
+.previous-arrow {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url('../images/date-picker-arrows.svg');
+    background-position: 48px 2px;
+    background-size:53px 27px;
+    cursor: pointer;
+}
+.next-week {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background: url('../images/date-picker-arrows.svg');
+    background-position: -25px 2px;
+    background-size:53px 27px;
+    cursor: pointer;
+}
+#del-rates {
+    padding: 0 8px;
+    font-size: 12px;
+}
+.rates-for-day {
+    height: 40px;
+    cursor: pointer;
+}
+.choose-delivery-message {
+    margin:10px 0 5px 0;
+}
+.rates-for-day span {
+    float:left;
+    padding: 10px;
+}
+.rates-for-day div {
+    display:inline-block;
+    float:right;
+}
+.rates-for-day input[type="radio"] {
+    margin:13px 5px 0 0!important;
+}
+.rates-for-day .carrier-title {
+    width: 50%;
+}
+.rates-for-day .method-title {
+    width: 25%;
+}
+#standard-delivery {
+    padding: 8px;
+    font-size: 12px;
+}
+.standard-delivery-option {
+    display: inline-block;
+    width: 100%;
+    cursor: pointer;
+}
+#standard-delivery .message {
+    width: 80%;
+    display: inline-block;
+    float: left;
+}
+#standard-delivery .message p {
+    font-weight: bold;
+
+}
+#standard-delivery .select-economy {
+    /*display: inline-block;*/
+    float: right;
+    padding: 25px 0;
+}
+#standard-delivery .select-economy span {
+    font-weight: bold;
+}
+.or-container {
+    text-align: center;
+    border-top: 1px solid #ccc;
+    margin-top: 30px;
+}
+.or-container span {
+    position: relative;
+    background-color: #fff;
+    bottom: 7px;
+    display: inline-block;
+    width: 70px;
+    font-size: 20px;
+}
+#shipping-method-buttons-container {
+    clear:both;
+}
+#date-picker-window .selected {
+    background-color: #efefef;
+}
+.message.notice {
+    clear: both;
+}
+.table-checkout-shipping-method {
+    width: 100% !important;
+    table-layout: fixed;
+    border-spacing: 8px 0;
+    border-collapse: separate;
+}
+.table-checkout-shipping-method select {
+    margin-top: 10px;
+    height: 50px;
+}
+.default-select-value {
+    background-color: #EFEFEF;
+    color: #999999;
+}
+.table-checkout-shipping-method thead td {
+    text-align: center;
+    vertical-align: top;
+    padding: 0;
+}
+.table-checkout-shipping-method thead tr:nth-child(2) .day {
+    border-top: 2px #78b44c solid;
+    padding-top: 10px;
+}
+.table-checkout-shipping-method .availability {
+    font-size: 11px;
+    padding: 5px;
+}
+.table-checkout-shipping-method .no-rates {
+    color: #cecece;
+    background-color: #efefef;
+    border-top: 2px #ff0000 solid !important;
+}
+.table-checkout-shipping-method .date {
+    font-size: 40px;
+    font-weight: 600;
+    line-height: 1;
+}
+.table-checkout-shipping-method .del-price {
+    background-color: #78b44c;
+    color: #ffffff;
+}
+thead td div:last-of-type {
+    padding: 4px;
+    margin-top: 10px;
+}
+
+#delivery-threshold:before {
+    content: url('../images/delivery.svg');
+    float:left;
+    padding-top:7px;
+    padding-right: 7px;
+}
+#delivery-threshold {
+    padding: 8px;
+    background-color: #e4f0db;
+    border: 1px solid #67aa3c;
+    font-size: 12px;
+}
+#delivery-threshold div {
+    display: inline-block;
+    width: 80%;
+    padding: 10px 5px;
+}

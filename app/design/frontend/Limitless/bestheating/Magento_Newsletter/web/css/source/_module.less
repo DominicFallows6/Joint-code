@@ -1,0 +1,137 @@
+// /**
+//  * Copyright © 2016 Magento. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+  //  Newsletter subscription
+  .block.newsletter {
+    margin-bottom: @indent__xl;
+    display:inline-block;
+    margin-bottom:0;
+    width: 100%;
+
+    .form.subscribe {
+      display: inline-block;
+      width: 100%;
+    }
+
+    .fieldset {
+      display: table-cell;
+      margin: 0;
+      padding: 0;
+      vertical-align: top;
+    }
+
+    .field {
+      margin: 0 0 5px 0;
+
+      .control {
+        display: block;
+
+        input {
+          height:45px;
+          border:1px solid @color-gray20;
+        }
+
+        &:before {
+          position: absolute;
+        }
+      }
+    }
+
+    input {
+      padding-left: 10px;
+    }
+
+    .title {
+      strong {
+        color:@color-gray20;
+        font-weight:@font-weight__heavier;
+        font-size:18px;
+        text-transform:uppercase;
+      }
+    }
+
+    .label {
+      &:extend(.abs-visually-hidden all);
+    }
+
+    .actions {
+      display: table-cell;
+      vertical-align: top;
+      width: 1%;
+    }
+
+    .action.subscribe {
+      margin-left: -1px;
+      background:@color-gray20;
+      border:1px solid @color-gray20;
+      text-transform:uppercase;
+      width:100%;
+      padding:12px 15px;
+      font-family: @font-family__base_secondary;
+      font-weight:@font-weight__light;
+    }
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+  .block.newsletter {
+    .form.subscribe {
+      display:table;
+    }
+    .action.subscribe {
+      width:auto;
+      padding:7px 15px;
+    }
+    .field {
+      margin:0;
+      .control {
+        input {
+          height:32px;
+        }
+      }
+    }
+    .title {
+      strong {
+        font-size:14px;
+        letter-spacing:1px;
+      }
+    }
+  }
+}
+
+//
+//  Desktop
+//  _____________________________________________
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__m) {
+  .block.newsletter {
+    width: 50%;
+
+    .field {
+      .control {
+        width: 100%;
+      }
+    }
+
+    .action.subscribe {
+      background:@color-gray20;
+    }
+
+  }
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+  .block.newsletter {
+    width: 26%;
+    margin:15px 0 55px 0;
+  }
+}
