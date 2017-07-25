@@ -4,6 +4,7 @@ return array (
         array (
             'Magento_Store' => 1,
             'Limitless_BlankProductMetaData' => 1,
+            'Limitless_BtuCalculator' => 1,
             'Magento_Directory' => 1,
             'Magento_Eav' => 1,
             'Limitless_DiscountSplat' => 1,

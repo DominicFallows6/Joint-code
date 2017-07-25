@@ -1,0 +1,133 @@
+<div id="btu_calc">
+    <form name="btuForm" id="btuForm">
+       <h3><?=__('PLEASE ENTER YOUR INFORMATION BELOW')?>:</h3>
+        <div id="measurement">
+            <span class="metric current"><label><input type="radio" name="units" checked="checked" value="metric" /><?=__('Metric (metres)')?></label></span>
+            <span class="imperial"><label><input type="radio" name="units" value="imperial" /><?=__('Imperial (feet)')?></label></span>
+        </div>
+        <h3><?=__('Room Dimensions')?></h3>
+        <div class="dimensions">
+            <div>
+                <div class="label"><?=__('Width')?> <span class="required">*</span></div>
+                <input type="text" placeholder="<?= __('Width')?>" class="input-css" name="width" />
+            </div>
+            <div>
+                <div class="label"><?=__('Height')?> <span class="required">*</span></div>
+                <input type="text" placeholder="<?=__('Height')?>" class="input-css" name="height" />
+            </div>
+            <div>
+                <div class="label"><?=__('Length')?> <span class="required">*</span></div>
+                <input type="text" placeholder="<?=__('Length')?>" class="input-css" name="depth" />
+            </div>
+        </div>
+        <div class="label"><?=__('Window Area X²')?>: <span class="required">*</span></div>
+        <div class="dimensions">
+           <input type="text" class="input-css" placeholder="<?=__('Please enter window area')?>" name="windarea" size="2" />
+        </div>
+        <h3><?=__('Room Information')?></h3>
+        <div class="label"><?=__('Type of room')?>: <span class="required">*</span></div>
+        <div class="dropdown">
+            <select id="roomtype" name="roomtype" size="1" class="option-grey">
+                <option value="" SELECTED>-- <?=__('Please select')?> --</option>
+                <option value="22"><?=__('Living Room')?></option>
+                <option value="19"><?=__('Bedroom')?></option>
+                <option value="17"><?=__('Hallway or Kitchen')?></option>
+                <option value="23"><?=__('Bathroom')?></option>
+            </select>
+        </div>
+        <div class="label"><?=__('What is below the room?')?> <span class="required">*</span></div>
+        <div class="dropdown">
+            <select name="belowroom" size="1" class="option-grey">
+                <option value="" SELECTED>-- <?=__('Please select')?> --</option>
+                <option value="1"><?=__('A heated room')?></option>
+                <option value="2"><?=__('A wooden floor')?></option>
+                <option value="3"><?=__('A concrete floor')?></option>
+            </select>
+        </div>
+        <div class="label"><?=__('What is above the room?')?> <span class="required">*</span></div>
+        <div class="dropdown">
+            <select name="aboveroom" size="1" class="option-grey">
+                <option value="" SELECTED>-- <?=__('Please select')?> --</option>
+                <option value="0"><?=__('A heated room')?></option>
+                <option value="2.7"><?=__('Roof space with no insulation')?></option>
+                <option value=".61"><?=__('Roof space with approx. 50mm insulation')?></option>
+                <option value=".35"><?=__('Roof space with 100mm+ insulation')?></option>
+                <option value="1.66"><?=__('A flat roof with no insulation')?></option>
+                <option value="0.5"><?=__('A flat roof with insulation')?></option>
+            </select>
+        </div>
+        <div class="label"><?=__('Select type of outside wall')?>: <span class="required">*</span></div>
+        <div class="dropdown">
+            <select name="walltype" size="1" class="option-grey">
+                <option value="" SELECTED>-- <?=__('Please select')?> --</option>
+                <option value="1.5"><?=__('Brick Cavity')?></option>
+                <option value="0.92"><?=__('Insulated Brick Cavity')?></option>
+                <option value="3"><?=__('105mm Solid Brick')?></option>
+                <option value="2.1"><?=__('220mm Solid Brick')?></option>
+                <option value="0.4"><?=__('Wood frame')?></option>
+            </select>
+        </div>
+        <div class="label"><?=__('Select type of window')?>: <span class="required">*</span></div>
+        <div class="dropdown">
+            <select name="windtype" size="1" class="option-grey">
+                <option value="" SELECTED>-- <?=__('Please select')?> --</option>
+                <option value="2.9"><?=__('Wood/Plastic double glazed')?></option>
+                <option value="4"><?=__('Metal Single glazed')?></option>
+                <option value="5"><?=__('Wood/Plastic single glazed')?></option>
+                <option value="6.4"><?=__('Wood Single glazed')?></option>
+            </select>
+        </div>
+        <div class="label"><?=__('Select number of outside walls')?>: <span class="required">*</span></div>
+        <div class="dropdown">
+            <select name="walls" size="1" class="option-grey">
+                <option value="" SELECTED>-- <?=__('Please select')?> --</option>
+                <option value="1"><?=__('None or One')?></option>
+                <option value="2"><?=__('Two')?></option>
+                <option value="3"><?__('Three')?></option>
+            </select>
+        </div>
+        <div class="scrolldown"></div>
+        <div class="reset-btu"><?=__('Reset')?></div>
+        <input class="calculate" type="submit" value="<?=__('Calculate')?>" />
+        <div class="calculated" style="display:none;">
+            <div class="req-info-data">
+                <div class="requirements-info">
+                    <div><?=__('Your Requirements')?></div>
+                </div>
+                <div class="radial-progress" data-progress="0">
+                    <div class="circle">
+                        <div class="mask half">
+                            <div class="fill"></div>
+                        </div>
+                        <div class="mask full">
+                            <div class="fill"></div>
+                            <div class="fill fix"></div>
+                        </div>
+                    </div>
+                    <div class="inset">
+                        <div class="btus">
+                            <span><?=__("BTU's Required")?></span><input placeholder="0" name="subtotalal2" size="20" value="" class="total" disabled="disabled" />
+                        </div>
+                    </div>
+                </div>
+                <div class="watts-req">
+                    <span><?=__('Watts Required')?></span><input placeholder="0" name="subtotalal" size="10" value="" class="total" disabled="disabled" />
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+<?php if($this->getData('css_changes') != "") { ?>
+<style type="text/css">
+    <?= $this->getData('css_changes')?>
+</style>
+<?php } ?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Limitless_BtuCalculator/js/btu-calculator": {}
+        }
+    }
+</script>

@@ -1,0 +1,14 @@
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="btu_calculator" class="Limitless\BtuCalculator\Block\Widget\BtuCalculator"
+            placeholder_image="Limitless_BtuCalculator::images/btu_widget_block.png">
+        <label>BTU Calculator</label>
+        <description>Show BTU Calculator</description>
+        <parameters>
+            <parameter name="css_changes" xsi:type="block" visible="true" sort_order="0">
+                <label>Custom CSS</label>
+                <block class="Limitless\BtuCalculator\Block\Adminhtml\Widget\TextField" />
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

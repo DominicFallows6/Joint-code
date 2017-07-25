@@ -1,0 +1,85 @@
+/* Page Layout for 2 Column */
+.cms-page-view.page-layout-2columns-right .column.main{width:71.166667%;}
+.cms-page-view.page-layout-2columns-right .sidebar-additional {width:28.833333%;}
+
+/* BTU Calculator */
+#btu_calc {display:inline-block;width:100%;}
+#btu_calc input, select, textarea, button { margin: 0 10px 0 0; }
+#btu_calc form select { -webkit-appearance: none; -webkit-border-radius: 0; border: 1px solid #CECECE; width: 100%; color: black; height: 43px; margin-bottom: 10px; }
+#btu_calc select { -webkit-appearance: none; -moz-appearance: none; text-indent: 1px; text-overflow: ''; }
+#btu_calc .option-grey {color: #CECECE;}
+#btu_calc h3 {font-weight:500;font-size:21px;margin-bottom:1.5rem;}
+#btu_calc select option {color: black;}
+#btu_calc select option:first-child {color: #CECECE;}
+#btu_calc select::-ms-expand {display: none;}
+#btu_calc #measurement {border: 1px solid #CFCFCF;width:100%;display:inline-block;}
+#btu_calc #measurement .current {background-color: #00B233; color: #FFFFFF;}
+#btu_calc #measurement > span {width:50%; float:left;}
+#btu_calc #measurement > span > label {display:inline-block;width:100%; padding:7px 0;}
+#btu_calc .dimensions {width:100%;display:inline-block;margin:0 0 10px 0;}
+#btu_calc .dimensions > div {width:32%;float:left; margin-right:2%;}
+#btu_calc .dimensions > div:last-child {margin-right:0;}
+#btu_calc .dropdown {margin:0 0 10px 0;}
+#btu_calc .metric {text-align:center;color: #333333; font-size: 17px;font-weight:lighter; width:50%;}
+#btu_calc .metric input[type="radio"], #btu_calc .imperial input[type="radio"] {visibility:hidden; margin:0; width:0;}
+#btu_calc .imperial {text-align:center;color: #333333; font-size: 17px;font-weight:lighter;}
+#btu_calc .input-css { -webkit-appearance: none; -webkit-border-radius: 0; border: 1px solid #CECECE; width: 100%; color: black; height: 43px; background-color: white;}
+#btu_calc .required {color: red;}
+#btu_calc .reset-btu, #btu_calc .calculate {background-color: #7B7B7B; color: white; width: 48%; display: inline-block; text-align: center; font-size: 19px; cursor:pointer;text-transform:uppercase;line-height:40px;min-height:40px;}
+#btu_calc .calculate {background-color: #00B233; float:right; border:none; margin:0;line-height:normal;}
+#btu_calc .btu_container a {text-decoration: none;}
+#btu_calc .requirements-info {width:100%; background-color: #444444; color: white; font-size: 19px; font-weight: lighter;}
+#btu_calc .requirements-info div {padding: 2%;}
+#btu_calc .inset input {background-color: transparent; border: none; font-size: 48px; color: white; text-align: center;}
+#btu_calc .inset .btus span {display: block; padding-top: 48px; text-align:center;}
+#btu_calc .inset .btus input {width: 180px;}
+#btu_calc .watts-req {text-align: right; padding:0 2% 1% 0;}
+#btu_calc .watts-req span {display: block;}
+#btu_calc .watts-req input { width: 100%; text-align: right; background-color: transparent; border: none; font-size: 34px; color: white; }
+#btu_calc .suitable-products { background-color: #00B233; color: white; text-align: center; font-size: 19px; padding: 2% 0; text-transform:uppercase; width:100%; display:block;text-decoration:none;}
+#btu_calc .top-img {width: 100%; margin-top: 20px;}
+#btu_calc .req-info-data {width: 100%; background-color: #444444; color: white; font-size: 17px; font-weight: lighter;margin:10px 0;}
+#btu_calc input.error, #btu_calc select.error {background-color:#fff7f5;border:1px solid #f47d4e;}
+#btu_calc .label {margin:0 0 7px 0;}
+
+/* BTU Circle Load */
+#btu_calc .radial-progress { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; }
+.radial-progress .circle .mask {clip: rect(0px, 200px, 200px, 100px);}
+.radial-progress .circle .mask, .radial-progress .circle .fill {width: 200px; height: 200px; position: absolute; -webkit-backface-visibility: hidden; transition: -webkit-transform 1s; transition: -ms-transform 1s; transition: transform 1s; border-radius: 50%; }
+.radial-progress[data-progress="100"] .circle .mask.full, .radial-progress[data-progress="100"] .circle .fill { -webkit-transform: rotate(180deg); -ms-transform: rotate(180deg); transform: rotate(180deg); }
+.radial-progress .circle .mask .fill {clip: rect(0px, 100px, 200px, 0px); background: #FF7F02;}
+.radial-progress .inset { width: 180px; height: 180px; position: absolute; margin-left: 10px; margin-top: 10px; background: #444444; border-radius: 50%; }
+.mobile.btu-app-calc-wrap {display: none;}
+.desktop.btu-app-calc-wrap {display: block;}
+.mobile.btu-app-calc-wrap img.top-img {display: block;}
+
+/* BTU Filter */
+.btu_footer .btu_navigation {width: 898px; float: left; padding: 5px 20px 0; height: 27px; background: #efefef; margin: 0 0 0 -20px;}
+.btu_footer .btu_navigation .prev_next_butts { width: auto; float: right; background: none; text-align: right; }
+.btu_footer .btu_navigation .prev_next_butts button.button {background: none; line-height: 22px;}
+.btu_footer .btu_navigation .prev_next_butts button.button span {color: #333; text-decoration: underline;}
+.btu_footer .btu_navigation .prev_next_butts button.button span:hover {text-decoration: none;}
+.btu_pp {color: #333; display: inline-block;}
+
+/* BTU Results */
+.btu_matchrad_header {width: 100%; float: left; margin: 0 0 20px 0;}
+.btu_matchrad_header h2 {font-family: helvetica, arial, verdana, sans-serif; font-size: 16px; letter-spacing: -0.4px;}
+
+/* BTU Results Layout */
+.btu_result_box {width: 180px; height: 280px; padding: 10px; float: left; margin: 11px; background-image: -moz-linear-gradient(center bottom , #F2EFF0 0%, #FFFFFF 25%);}
+.btu_result_box img {margin: 0 0 10px 0;}
+.btu_result_box a {text-decoration: none;}
+.btu_result_box a:hover {text-decoration: underline;}
+.btu_result_box a span {color: #555; font-weight: bold; font-size: 1em; display: inline-block; height: 56px;}
+.btu_result_box a span:hover {text-decoration: underline;}
+.btu_result_box .btu_price {font-size: 12px; color: #000; font-weight: bold;}
+.btu_mi {color: #ff7f01; font-weight: bold; letter-spacing: -0.4px; float: right;}
+
+/* Sidebar */
+.btu-sidebar img {width:100%;display:block;}
+.btu-iframe-link img {margin:0 0 20px 0;}
+.btu-app {position:relative;margin:0 0 20px 0;}
+.btu-app-links {position:absolute;top:20%;right:0;width:50%;}
+.btu-app-links a {width:90%;display:inline-block;margin:0 0 10px 0;}
+
+
