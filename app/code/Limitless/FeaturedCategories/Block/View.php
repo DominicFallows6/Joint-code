@@ -62,6 +62,14 @@ class View extends Template
         return $this->scopeConfig->getValue('general/limitless_featured_categories/' . $path, ScopeInterface::SCOPE_STORE);
     }
 
+    public function getLayoutConfig() {
+        return $this->getConfig('featured_layout');
+    }
+
+    public function getCtaText() {
+        return $this->getConfig('featured_cta_text');
+    }
+
     public function getFeaturedImageUrl($path) {
         return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . 'featured/' . $this->getConfig($path);
     }
@@ -81,13 +89,13 @@ class View extends Template
     public function getFeaturedCategories()
     {
         $featured_html = "";
-        $featured_html_right = "";
+        $featured_html_side = "";
 
         foreach ($this->getFeaturedConfig() as $key => $value) {
             if($key === 4) {
                 $image = $this->getFeaturedImageHtml($value) .  $this->getMobileFeaturedImageHtml();
                 $featured_category = $this->buildFeaturedCategoryHtml($value, $image);
-                $featured_html_right .= $featured_category;
+                $featured_html_side .= $featured_category;
             } else {
                 $image = $this->getFeaturedImageHtml($value);
                 $featured_category = $this->buildFeaturedCategoryHtml($value, $image);
@@ -95,20 +103,54 @@ class View extends Template
             }
         }
 
-        return '<div class="featured-left">' . $featured_html . "</div>" . '<div class="featured-right">' . $featured_html_right . "</div>";
+        if($this->getLayoutConfig() == 'one_column') {
+            return '<div class="featured">' . $featured_html . "</div>";
+        } else {
+            return '<div class="featured">' .  $featured_html . "</div>" . '<div class="featured-side">' . $featured_html_side . '</div>';
+        }
+
     }
 
     private function buildFeaturedCategoryHtml($value, $image)
     {
 
-        if($value['featured_category'] != "") {
-            $featured_title = "active-title";
+        $callToAction = $this->getCtaText();
+
+        if($value['featured_sub_title'] != "") {
+            $featured_sub_title = '<span class="sub-title">' . $value['featured_sub_title'] . '</span>';
         } else {
-            $featured_title="no-title";
+            $featured_sub_title = "";
         }
 
-        $callToAction = __('Zu den Produkten');
-        $featured_category = '<a href="' . $value['featured_category_url'] . '">' . $image . '<div class="featured-text ' . $featured_title . '"><div><span>' . $value['featured_category'] . '</span><span class="cta">' . $callToAction . '</span></div></div></a>';
+        if($callToAction !='') {
+            $featured_cta_active = "cta-active";
+            $cta_html = '<span class="cta action primary">' . $callToAction . '</span>';
+        } else {
+            $cta_html = "";
+            $featured_cta_active = "";
+        }
+
+        if($value['featured_category'] != "") {
+            $featured_title = '<div class="featured-text '.$featured_cta_active.'">' .
+                '<div>' .
+                    '<span class="title">' .
+                        $value['featured_category'] .
+                    '</span>' .
+                        $featured_sub_title .
+                '</div>' .
+            '</div>' . $cta_html;
+        } else {
+            $featured_title = "";
+        }
+
+
+        if($value['featured_enabled'] == true) {
+            $featured_category = '<div class="featured-category">' .
+                '<a href="' . $value['featured_category_url'] . '">' . $image . $featured_title.'</a>' .
+            '</div>';
+        } else {
+            $featured_category = "";
+        }
 
         return $featured_category;
     }
@@ -118,27 +160,37 @@ class View extends Template
 
         return [
             [
+                "featured_enabled" => $this->getConfig('featured_one_enabled'),
                 "featured_category" => $this->getConfig('featured_one_title'),
+                "featured_sub_title" => $this->getConfig('featured_one_sub_title'),
                 "featured_category_url" => $this->getConfig('featured_one_url'),
                 "featured_category_image" => $this->getFeaturedImageUrl("featured_one_image"),
             ],
             [
+                "featured_enabled" => $this->getConfig('featured_two_enabled'),
                 "featured_category" => $this->getConfig('featured_two_title'),
+                "featured_sub_title" => $this->getConfig('featured_two_sub_title'),
                 "featured_category_url" => $this->getConfig('featured_two_url'),
                 "featured_category_image" => $this->getFeaturedImageUrl("featured_two_image"),
             ],
             [
+                "featured_enabled" => $this->getConfig('featured_three_enabled'),
                 "featured_category" => $this->getConfig('featured_three_title'),
+                "featured_sub_title" => $this->getConfig('featured_three_sub_title'),
                 "featured_category_url" => $this->getConfig('featured_three_url'),
                 "featured_category_image" => $this->getFeaturedImageUrl("featured_three_image"),
             ],
             [
+                "featured_enabled" => $this->getConfig('featured_four_enabled'),
                 "featured_category" => $this->getConfig('featured_four_title'),
+                "featured_sub_title" => $this->getConfig('featured_four_sub_title'),
                 "featured_category_url" => $this->getConfig('featured_four_url'),
                 "featured_category_image" => $this->getFeaturedImageUrl("featured_four_image"),
             ],
             [
+                "featured_enabled" => $this->getConfig('featured_five_enabled'),
                 "featured_category" => $this->getConfig('featured_five_title'),
+                "featured_sub_title" => $this->getConfig('featured_five_sub_title'),
                 "featured_category_url" => $this->getConfig('featured_five_url'),
                 "featured_category_image" => $this->getFeaturedImageUrl("featured_five_image"),
             ]
