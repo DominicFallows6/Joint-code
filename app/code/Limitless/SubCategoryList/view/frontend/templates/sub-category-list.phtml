@@ -5,7 +5,7 @@
 ?>
 <div id="sub-category-list">
     <?php foreach ($block->getCurrentCategoryChildren() as $currentCategoryChild): ?>
-        <a href="<?= $currentCategoryChild->getUrl() ?>">
+        <a href="<?= $currentCategoryChild->getUrl() ?>" class="sub-cat-box">
             <img src=" <?= $currentCategoryChild->getImageUrl() ?>" alt="<?= $currentCategoryChild->getName() ?>" />
             <span class="title"><?= $currentCategoryChild->getName() ?></span>
         </a>

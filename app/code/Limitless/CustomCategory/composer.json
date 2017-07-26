@@ -1,0 +1,23 @@
+{
+  "name": "limitless/module-customcategory",
+  "description": "To create custom category landing pages which display custom headings, descriptions and static blocks.",
+  "require": {
+    "php": "^7.0.0",
+    "magento/framework": "100.1.*",
+    "limitless/module-subcategorylist": "0.1.0",
+    "magento/module-catalog": "101.0.5",
+    "magento/module-store": "100.1.5"
+  },
+  "type": "magento2-module",
+  "license": [
+    "proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\CustomCategory\\": ""
+    }
+  }
+}

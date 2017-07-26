@@ -197,6 +197,7 @@ return array (
             'Magento_GiftCardStaging' => 1,
             'Magento_BundleStaging' => 1,
             'Magento_TaxImportExport' => 1,
+            'Limitless_CustomCategory' => 1,
             'Magento_AdvancedCatalog' => 1,
             'Magento_Translation' => 1,
             'Magento_UrlRewrite' => 1,

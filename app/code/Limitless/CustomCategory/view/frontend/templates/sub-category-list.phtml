@@ -1,0 +1,24 @@
+<?php
+/**
+ * @var \Limitless\CustomCategory\Block\SubCategoryListWithStaticBlocks $block
+ */
+?>
+<div id="sub-category-list">
+    <?php foreach ($block->getCurrentCategoryChildren() as $currentCategoryChild): ?>
+        <a href="<?= $currentCategoryChild->getUrl() ?>" class="sub-cat-box">
+            <img src=" <?= $currentCategoryChild->getImageUrl() ?>" alt="<?= $currentCategoryChild->getName() ?>" />
+            <span class="title"><?= $currentCategoryChild->getName() ?></span>
+        </a>
+    <?php endforeach ?>
+
+    <?php if ($block->customCategory->hasCustomCategory() == true) {
+        if($block->getStaticBlocksForSubCategoryList()) {
+            foreach ($block->getStaticBlocksForSubCategoryList() as $staticBlock): ?>
+                <div class="custom-category-block sub-cat-box"><?php echo $block->getLayout()->createBlock('Magento\Cms\Block\Block')->setBlockId($staticBlock)->toHtml(); ?></div>
+            <?php endforeach;
+        }
+    } else {
+        echo '';
+    } ?>
+
+</div>
