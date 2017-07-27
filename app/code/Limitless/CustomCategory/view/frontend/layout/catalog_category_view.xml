@@ -2,9 +2,6 @@
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
-        <referenceBlock name="limitless-subcategory-list">
-            <block class="Limitless\CustomCategory\Block\Html\CustomCategory" name="customcategory"/>
-        </referenceBlock>
         <referenceBlock name="category.description">
             <action method="setTemplate">
                 <argument name="template" xsi:type="string">Limitless_CustomCategory::category/description.phtml</argument>
