@@ -2,7 +2,7 @@
 
 namespace Limitless\CustomCategory\Block;
 
-use Limitless\CustomCategory\Block\Html\CustomCategory;
+use Limitless\CustomCategory\Block\Category\View as CustomCategory;
 use Limitless\SubCategoryList\Block\View;
 use Limitless\SubCategoryList\Model\SubCategories;
 use Magento\Framework\View\Element\Template\Context;
