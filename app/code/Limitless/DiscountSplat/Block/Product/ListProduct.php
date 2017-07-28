@@ -11,7 +11,7 @@ class ListProduct extends \Magento\Catalog\Block\Product\ListProduct
     {
 
         $percentage = "";
-        $specialPrice = $product->getFinalPrice();
+        $specialPrice = $product->getPriceInfo()->getPrice('final_price')->getAmount()->getValue();
         $productType = $product->getTypeId();
         $minusSymbol = "-";
         $percentSymbol = "%";
