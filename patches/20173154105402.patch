@@ -1,0 +1,19 @@
+This patch is to resolve an issue where Magento fails to detect that our themes have customizations causing them the
+build to fail.
+--- vendor/magento/module-deploy/Model/DeployStrategyProvider.php	2017-07-31 10:53:58.000000000 +0100
++++ vendor/magento/module-deploy/Model/DeployStrategyProvider.new.php	2017-07-31 10:51:25.000000000 +0100
+@@ -89,13 +89,7 @@
+         $deployStrategies = [];
+ 
+         foreach ($locales as $locale) {
+-            $hasCustomization = false;
+-            foreach ($this->getCustomizationDirectories($area, $themePath, $locale) as $directory)
+-                if (glob($directory . DIRECTORY_SEPARATOR . '*', GLOB_NOSORT)) {
+-                    $hasCustomization = true;
+-                    break;
+-                }
+-            }
++            $hasCustomization = true;
+             if ($baseLocale === null && !$hasCustomization) {
+                 $baseLocale = $locale;
+             } else {

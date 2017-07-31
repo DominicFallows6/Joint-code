@@ -1,0 +1,21 @@
+This is a replication of a Magento Support issued patch MAGETWO_63819_2.1.3_composer.patch for ticket no #03208059 but
+modified to work with our deployment system.
+--- vendor/magento/framework/Setup/FilePermissions.php	2017-02-16 10:59:14.000000000 +0000
++++ vendor/magento/framework/Setup/FilePermissions.php	2017-07-31 10:40:49.000000000 +0100
+@@ -137,6 +137,7 @@
+      */
+     private function checkRecursiveDirectories($directory)
+     {
++        /** @var $directoryIterator \RecursiveIteratorIterator   */
+         $directoryIterator = new \RecursiveIteratorIterator(
+             new \RecursiveDirectoryIterator($directory, \RecursiveDirectoryIterator::SKIP_DOTS),
+             \RecursiveIteratorIterator::CHILD_FIRST
+@@ -155,6 +156,8 @@
+             ]
+         );
+ 
++        $directoryIterator->setMaxDepth(1);
++
+         $foundNonWritable = false;
+ 
+         try {
