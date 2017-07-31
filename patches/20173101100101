@@ -1,0 +1,16 @@
+--- vendor/magento/module-catalog/Model/Product.php	2017-02-16 10:59:18.000000000 +0000
++++ vendor/magento/module-catalog/Model/Product.php	2017-07-31 09:58:17.000000000 +0100
+@@ -923,13 +923,6 @@
+         $this->_getResource()->addCommitCallback([$this, 'reindex']);
+         $this->reloadPriceInfo();
+ 
+-        // Resize images for catalog product and save results to image cache
+-        /** @var Product\Image\Cache $imageCache */
+-        if (!$this->_appState->isAreaCodeEmulated()) {
+-            $imageCache = $this->imageCacheFactory->create();
+-            $imageCache->generate($this);
+-        }
+-
+         return $result;
+     }
+ 
