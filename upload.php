@@ -45,8 +45,6 @@ if(isset($_POST["Submit"])){
 
 }
 
-$id = $_GET['id'];
+$id = $_POST['imagehiddenid'];
 
-require "upload.image.view.php"
-
-?>
+require "upload.image.view.php";

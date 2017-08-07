@@ -1,4 +1,7 @@
 <?php
+
+require "bootstrap.php";
+
 $target_dir = "uploads/";
 $taget_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $uploadOk = 1;
