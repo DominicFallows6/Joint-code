@@ -4,7 +4,6 @@ namespace Limitless\TagManagerDataLayer\Block\DataLayer;
 
 use Limitless\TagManagerDataLayer\Api\DataLayerAbstract;
 use Limitless\TagManagerDataLayer\Helper\AffiliateHelperLocator;
-use Limitless\TagManagerDataLayer\Helper\TagsDataLayer\LeGuide;
 use Magento\Catalog\Model\ProductFactory;
 use Magento\Framework\View\Element\Template\Context;
 use Magento\Sales\Api\OrderRepositoryInterface;
@@ -47,9 +46,6 @@ class SuccessDataLayer extends DataLayerAbstract
     /** @var \Magento\Sales\Model\Order\Item[] */
     private $orderItems;
 
-    /** @var LeGuide */
-    private $leGuideHelper;
-
     public function __construct(
         Context $context,
         Session $checkoutSession,
@@ -58,7 +54,6 @@ class SuccessDataLayer extends DataLayerAbstract
         DynamicRemarketing $dynamicRemarketingHelper,
         TrackingCookie $trackingCookieHelper,
         AffiliateHelperLocator $affiliateHelperLocator,
-        LeGuide $leGuideHelper,
         $data = []
     ) {
         parent::__construct($context, $data);
@@ -69,7 +64,6 @@ class SuccessDataLayer extends DataLayerAbstract
         $this->dynamicRemarketingHelper = $dynamicRemarketingHelper;
         $this->trackingCookieHelper = $trackingCookieHelper;
         $this->affiliateHelperLocator = $affiliateHelperLocator;
-        $this->leGuideHelper = $leGuideHelper;
         $this->affiliateDataLayer = false;
         $this->dataLayerVariables = [];
     }
@@ -89,7 +83,6 @@ class SuccessDataLayer extends DataLayerAbstract
 
         $this->initAffiliateDLVariables();
         $this->initDynamicRemarketingDLVariables();
-        $this->initLeGuideDLVariables();
     }
 
     /**
@@ -118,13 +111,6 @@ class SuccessDataLayer extends DataLayerAbstract
         );
 
         $this->mergeIntoDataLayer($this->dynamicRemarketingHelper->getAllDynamicRemarketingValuesInArray());
-    }
-
-    private function initLeGuideDLVariables()
-    {
-        $this->leGuideHelper->buildLeGuideValues($this->orderItems);
-
-        $this->mergeIntoDataLayer($this->leGuideHelper->getLeGuideValues());
     }
 
     private function getDRTotalValue()
@@ -193,7 +179,10 @@ class SuccessDataLayer extends DataLayerAbstract
 
     private function ukNumberFormat($number)
     {
-        return number_format($number, 2);
+        if (is_numeric($number)) {
+            return number_format($number, 2, '.', '');
+        }
+        return '';
     }
 
     private function getAffiliateCodeFromCookie()

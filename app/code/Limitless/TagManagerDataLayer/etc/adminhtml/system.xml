@@ -57,11 +57,52 @@
                             <label>Webgains Comment</label>
                         </field>
                         <field id="webgains_total_vat_setting" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                            <label>VAT Settings</label>
+                            <label>VAT Settings (Product and Order total)</label>
                             <source_model>Limitless\TagManagerDataLayer\Model\Source\VatSettingList</source_model>
                         </field>
                         <field id="webgains_total_shipping_setting" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                            <label>Shipping Settings</label>
+                            <label>Shipping Settings (Order total)</label>
+                            <source_model>Limitless\TagManagerDataLayer\Model\Source\ShippingSettingList</source_model>
+                        </field>
+                    </group>
+                    <group id="leguide" translate="label" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>LeGuide</label>
+
+                        <field id="leguide_product_id_value" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Use for Product Id</label>
+                            <source_model>Limitless\TagManagerDataLayer\Model\Source\ProductIdValueList</source_model>
+                        </field>
+                        <field id="leguide_total_vat_setting" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>VAT Settings (Product)</label>
+                            <source_model>Limitless\TagManagerDataLayer\Model\Source\VatSettingList</source_model>
+                        </field>
+                    </group>
+                    <group id="shopping_com" translate="label" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Shopping.com</label>
+
+
+                        <field id="shoppingcom_product_id_value" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Use for Product Id</label>
+                            <source_model>Limitless\TagManagerDataLayer\Model\Source\ProductIdValueList</source_model>
+                        </field>
+                        <field id="shoppingcom_total_vat_setting" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>VAT Settings (Order total)</label>
+                            <source_model>Limitless\TagManagerDataLayer\Model\Source\VatSettingList</source_model>
+                        </field>
+                        <field id="shoppingcom_total_shipping_setting" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Shipping Settings (Order total)</label>
+                            <source_model>Limitless\TagManagerDataLayer\Model\Source\ShippingSettingList</source_model>
+                        </field>
+                    </group>
+                    <group id="shopzilla" translate="label" sortOrder="400" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Shopzilla</label>
+
+                        <field id="shopzilla_total_vat_setting" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>VAT Settings (Order total)</label>
+                            <source_model>Limitless\TagManagerDataLayer\Model\Source\VatSettingList</source_model>
+                        </field>
+                        <field id="shopzilla_total_shipping_setting" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Shipping Settings (Order total)</label>
                             <source_model>Limitless\TagManagerDataLayer\Model\Source\ShippingSettingList</source_model>
                         </field>
                     </group>
@@ -110,29 +151,6 @@
                     <field id="max_products_displayed" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
                         <label>Max number of products to display in Catalog / Search / Cart / Purchase</label>
                         <source_model>Limitless\TagManagerDataLayer\Model\Source\MaxProductsToDisplay</source_model>
-                        <depends><field id="enabled">1</field></depends>
-                    </field>
-                </group>
-
-                <group id="leguide" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>LeGuide Settings</label>
-                    <depends>
-                        <field id="google/limitless_tagmanager_datalayer/general_settings/enabled">1</field>
-                    </depends>
-
-                    <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Enabled</label>
-                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
-                        <comment>This will only disable variables in DataLayer: You will need to disable in GTM</comment>
-                    </field>
-                    <field id="leguide_product_id_value" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>Use for Product Id</label>
-                        <source_model>Limitless\TagManagerDataLayer\Model\Source\ProductIdValueList</source_model>
-                        <depends><field id="enabled">1</field></depends>
-                    </field>
-                    <field id="leguide_total_vat_setting" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
-                        <label>VAT Settings</label>
-                        <source_model>Limitless\TagManagerDataLayer\Model\Source\VatSettingList</source_model>
                         <depends><field id="enabled">1</field></depends>
                     </field>
                 </group>

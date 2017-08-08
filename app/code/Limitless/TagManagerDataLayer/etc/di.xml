@@ -19,6 +19,9 @@
         <arguments>
             <argument name="affiliateHelperPool" xsi:type="array">
                 <item name="webgains" xsi:type="string">Limitless\TagManagerDataLayer\Helper\AffiliatesDataLayer\WebgainsDataLayer</item>
+                <item name="leguide" xsi:type="string">Limitless\TagManagerDataLayer\Helper\AffiliatesDataLayer\LeGuide</item>
+                <item name="shoppingcom" xsi:type="string">Limitless\TagManagerDataLayer\Helper\AffiliatesDataLayer\ShoppingCom</item>
+                <item name="shopzilla" xsi:type="string">Limitless\TagManagerDataLayer\Helper\AffiliatesDataLayer\Shopzilla</item>
             </argument>
         </arguments>
     </type>

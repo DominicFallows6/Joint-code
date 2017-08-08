@@ -158,7 +158,10 @@ class WebgainsDataLayer implements AffiliateHelperInterface
 
     private function ukNumberFormat($number)
     {
-        return number_format($number, 2);
+        if (is_numeric($number)) {
+            return number_format($number, 2, '.', '');
+        }
+        return '';
     }
 
     private function getWebgainsConfigSettings($setting)

@@ -235,8 +235,10 @@ class DynamicRemarketing
                     $product->getPriceInfo()->getPrice('final_price')->getAmount()->getBaseAmount()
                 );
 
-                if (strcasecmp($this->getTotalDisplaySummary(), 'total') === 0) {
-                    $productPrice = $productPrice * $quantity;
+                if (!empty($productPrice)) {
+                    if (strcasecmp($this->getTotalDisplaySummary(), 'total') === 0) {
+                        $productPrice = $productPrice * $quantity;
+                    }
                 }
 
                 break;
@@ -247,8 +249,10 @@ class DynamicRemarketing
                     $product->getPriceInfo()->getPrice('final_price')->getAmount()->getValue()
                 );
 
-                if (strcasecmp($this->getTotalDisplaySummary(), 'total') === 0) {
-                    $productPrice = $productPrice * $quantity;
+                if (!empty($productPrice)) {
+                    if (strcasecmp($this->getTotalDisplaySummary(), 'total') === 0) {
+                        $productPrice = $productPrice * $quantity;
+                    }
                 }
 
                 break;
@@ -286,9 +290,12 @@ class DynamicRemarketing
      * @param int|float $number
      * @return string
      */
-    private function ukNumberFormat($number):string
+    private function ukNumberFormat($number): string
     {
-        return number_format($number, 2);
+        if (is_numeric($number)) {
+            return number_format($number, 2, '.', '');
+        }
+        return '';
     }
 
     public function getMaxProductsDisplayedPublic()

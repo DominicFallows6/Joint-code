@@ -89,7 +89,7 @@ class ProductDataLayer extends DataLayerAbstract
 
         if ($this->category) {
             return $this->escapeHtml($this->category->getName());
-        } else if ($categoryIds[0]) {
+        } else if (isset($categoryIds[0])) {
             $category = $this->categoryFactory->create();
             $category->getResource()->load($category, $categoryIds[0], 'category_id');
             return $this->escapeHtml($category->getName());

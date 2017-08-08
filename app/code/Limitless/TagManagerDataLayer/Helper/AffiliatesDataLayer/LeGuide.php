@@ -1,12 +1,16 @@
 <?php
 
-namespace Limitless\TagManagerDataLayer\Helper\TagsDataLayer;
+namespace Limitless\TagManagerDataLayer\Helper\AffiliatesDataLayer;
 
+use Limitless\TagManagerDataLayer\Api\AffiliateHelperInterface;
 use Magento\Framework\View\Element\Template\Context;
+use Magento\Checkout\Model\Session;
+use Magento\Sales\Api\Data\OrderInterface;
+use Magento\Sales\Api\OrderRepositoryInterface;
 
-class LeGuide
+class LeGuide implements AffiliateHelperInterface
 {
-    const LG_GENERAL_SETTINGS_CONFIGPATH = 'google/limitless_tagmanager_datalayer/leguide/';
+    const LG_GENERAL_SETTINGS_CONFIGPATH = 'google/limitless_tagmanager_datalayer/affiliate_tracking/leguide/';
 
     const LG_DATALAYER_NAME = 'leguide';
 
@@ -22,49 +26,65 @@ class LeGuide
     /** @var array */
     private $leGuideProductQtys;
 
-    public function __construct(Context $context)
-    {
+    /** @var Session */
+    private $checkoutSession;
+
+    /** @var OrderRepositoryInterface */
+    private $orderRepository;
+
+    /** @var OrderInterface */
+    private $lastOrder;
+
+    public function __construct(
+        Session $checkoutSession,
+        OrderRepositoryInterface $orderRepository,
+        Context $context
+    ){
         $this->scopeConfig = $context->getScopeConfig();
+        $this->checkoutSession = $checkoutSession;
+        $this->orderRepository = $orderRepository;
     }
 
-    /**
-     * @param \Magento\Sales\Model\Order\Item[] $orderItems
-     */
+    /** @return mixed[] */
+    public function getAffiliateDataLayer(): array
+    {
+        $this->initLastOrder();
+        $orderItems = $this->lastOrder->getItems();
+        $this->buildLeGuideValues($orderItems);
+
+        return [self::LG_DATALAYER_NAME =>
+            [
+                'productlistSkus' => $this->leGuideProductSkus,
+                'productlistPrices' => $this->leGuideProductPrices,
+                'productlistQtys' => $this->leGuideProductQtys
+            ]
+        ];
+    }
+
+    private function initLastOrder()
+    {
+        $orderId = $this->checkoutSession->getData('last_order_id');
+        $this->lastOrder =  $this->orderRepository->get($orderId);
+    }
+
     public function buildLeGuideValues($orderItems)
     {
-        if ($this->getEnabled()) {
-            $delimiter = ',';
+        $delimiter = ',';
 
-            $productSkus = $productPrices = $productQtys = [];
+        $productSkus = $productPrices = $productQtys = [];
 
-            foreach ($orderItems as $productItem) {
+        foreach ($orderItems as $productItem) {
 
-                $itemCode = $this->getLeguideItemCode($productItem);
+            $itemCode = $this->getLeguideItemCode($productItem);
 
-                $productSkus[] = htmlspecialchars($itemCode);
-                $productPrices[] = $this->getLeGuideItemPrice($productItem);
-                $productQtys[] = intval($productItem->getQtyOrdered());
-            }
-
-            $this->leGuideProductSkus = '\\'.implode($delimiter, $productSkus);
-            $this->leGuideProductPrices = '\\'.implode($delimiter, $productPrices);
-            $this->leGuideProductQtys = '\\'.implode($delimiter, $productQtys);
+            $productSkus[] = htmlspecialchars($itemCode);
+            $productPrices[] = $this->getLeGuideItemPrice($productItem);
+            $productQtys[] = intval($productItem->getQtyOrdered());
         }
-    }
 
-    public function getLeGuideValues(): array
-    {
-        if ($this->getEnabled()) {
-            return [self::LG_DATALAYER_NAME =>
-                    [
-                        'productlistSkus' => $this->leGuideProductSkus,
-                        'productlistPrices' => $this->leGuideProductPrices,
-                        'productlistQtys' => $this->leGuideProductQtys
-                    ]
-                ];
-        } else {
-            return [];
-        }
+        $this->leGuideProductSkus = '\\'.implode($delimiter, $productSkus);
+        $this->leGuideProductPrices = '\\'.implode($delimiter, $productPrices);
+        $this->leGuideProductQtys = '\\'.implode($delimiter, $productQtys);
     }
 
     /**
@@ -112,13 +132,12 @@ class LeGuide
         return $ecommProdId;
     }
 
-    /**
-     * @param $number
-     * @return string
-     */
-    private function ukNumberFormat($number): string
+    private function ukNumberFormat($number)
     {
-        return number_format($number, 2);
+        if (is_numeric($number)) {
+            return number_format($number, 2, '.', '');
+        }
+        return '';
     }
 
     private function getLeGuideGeneralSettingConfig($setting)
@@ -127,11 +146,6 @@ class LeGuide
             self::LG_GENERAL_SETTINGS_CONFIGPATH . $setting,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
-    }
-
-    private function getEnabled()
-    {
-        return $this->getLeGuideGeneralSettingConfig('enabled');
     }
 
     private function getLeguideVATSetting()
