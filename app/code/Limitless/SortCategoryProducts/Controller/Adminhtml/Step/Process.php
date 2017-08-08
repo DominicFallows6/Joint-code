@@ -52,8 +52,10 @@ class Process extends Action
     public function execute()
     {
         try {
+            $startTime = microtime(true);
             $this->processStep->setCategoryProductPositions($this->getBatchData(), $this->getRowNumbersWithErrors());
-            $this->getMessageManager()->addSuccessMessage($this->buildSuccessMessage());
+            $processingTime = microtime(true) - $startTime;
+            $this->getMessageManager()->addSuccessMessage($this->buildSuccessMessage($processingTime));
             return $this->redirectToInitialStepPage();
         } catch (\Exception $e) {
             $this->getMessageManager()->addErrorMessage($e->getMessage());
@@ -77,10 +79,14 @@ class Process extends Action
         return (array) $this->session->getBatchData();
     }
 
-    private function buildSuccessMessage(): string
+    private function buildSuccessMessage(float $processingTime): string
     {
         $validRecordCount = count($this->getBatchData()) - count($this->getValidationErrorsFromSession());
-        return (string) __('Successfully applied %1 product positions.', $validRecordCount);
+        return (string) __(
+            'Successfully applied %1 product positions in %2 seconds.',
+            $validRecordCount,
+            sprintf('%.2f', $processingTime)
+        );
     }
 
     private function getValidationErrorsFromSession(): array

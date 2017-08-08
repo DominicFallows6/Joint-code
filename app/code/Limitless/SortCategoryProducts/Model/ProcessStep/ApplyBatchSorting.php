@@ -72,7 +72,9 @@ class ApplyBatchSorting
         try {
             $this->categoryResource->save($category);
         } catch (\Exception $e) {
-            throw new CouldNotSaveException(__('Could not save product positions to category %3', $categoryId), $e);
+            throw new CouldNotSaveException(
+                __('Could not save product positions to category %1, (%2)', $categoryId, $e->getMessage())
+            );
         }
     }
 
