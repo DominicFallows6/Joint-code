@@ -20,7 +20,7 @@ class AddVarnishCacheHostsToGetUris
 
     public function aroundGetUris(Server $subject, \Closure $proceed)
     {
-        $servers = $proceed();
+        $servers = [];
 
         $awsOutput = shell_exec($this->scopeConfig->getValue('system/full_page_cache/varnish/varnish_cli_command', ScopeInterface::SCOPE_STORE));
         $awsHosts = explode("\n",$awsOutput);
