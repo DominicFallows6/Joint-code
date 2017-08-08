@@ -16,6 +16,7 @@ return array (
             'Limitless_LegacyOrders' => 1,
             'Limitless_TrustpilotEmail' => 1,
             'Magento_Theme' => 1,
+            'Limitless_ConfigurablePrice' => 1,
             'Magento_Customer' => 1,
             'Limitless_ProductApiPerformance' => 1,
             'Magento_AdminNotification' => 1,
