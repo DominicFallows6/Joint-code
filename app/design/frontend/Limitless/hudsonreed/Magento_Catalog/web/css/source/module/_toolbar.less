@@ -79,6 +79,7 @@
 
   .sorter {
     float: right;
+    width:50%;
 
     .page-products & {
       position: absolute;
@@ -91,9 +92,13 @@
       display: none;
     }
 
+    &-label {
+      display:none;
+    }
+
     &-options {
       margin: 0 @indent__xs 0 7px;
-      width: auto;
+      width: 100%;
     }
 
     &-action {
@@ -108,6 +113,7 @@
       &.sort-desc:before {
         content: @icon-arrow-down;
       }
+      display:none;
     }
   }
 
@@ -135,6 +141,19 @@
       display: inline-block;
     }
   }
+}
+
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .sorter {
+      width:auto;
+      &-options {
+        width:auto;
+      }
+      &-label {
+        display: inline-block;
+      }
+    }
 }
 
 //
