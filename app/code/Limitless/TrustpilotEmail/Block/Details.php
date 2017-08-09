@@ -4,6 +4,7 @@ namespace Limitless\TrustpilotEmail\Block;
 
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
+use Magento\Sales\Model\Order;
 
 class Details extends Template
 {
@@ -36,6 +37,10 @@ class Details extends Template
         }
     }
 
+    /**
+     * @param Order $order
+     * @return string
+     */
     public function getTrustpilotOrderItemsString($order)
     {
         $tpItemString = '';
@@ -54,8 +59,8 @@ class Details extends Template
                 $itemCode = $itemProduct->getData('alias');
             }
 
-            $tpItemString .= '"sku": "' . $this->escapeHtml($itemCode) . '",';
-            $tpItemString .= '"name": "' . $this->escapeHtml($item->getName()) . '",';
+            $tpItemString .= '"sku": "' . str_replace('"', '', $itemCode) . '",';
+            $tpItemString .= '"name": "' . str_replace('"', '', $item->getName()) . '",';
             $tpItemString .= '"productUrl": "' . $this->escapeHtml($itemProduct->getProductUrl()) . '",';
 
             //Image - TODO append image site link?
