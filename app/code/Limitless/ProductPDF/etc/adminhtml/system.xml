@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="catalog">
+            <group id="limitless_product_pdf" translate="label" type="text" sortOrder="355" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Page PDF Settings</label>
+                <field id="enabled" translate="label" sortOrder="10" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Product Page PDFs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="base_url" translate="label" sortOrder="13" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Base URL Settings</label>
+                    <source_model>Limitless\ProductPDF\Model\Source\PDFBaseUrl</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="base_url_security" translate="label" sortOrder="14" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Use Base URL Security</label>
+                    <source_model>Limitless\ProductPDF\Model\Source\PDFSecurityUrl</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="filename_extensions" translate="label" sortOrder="15" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show filename extensions</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="pdf_default_address" translate="label" sortOrder="20" type="text" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>PDF Server Default Address</label>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="pdf_website_address" translate="label comment" sortOrder="30" type="text" showInDefault="0" showInWebsite="1" showInStore="0">
+                    <label>PDF Server Website Address</label>
+                    <comment>Appended to the PDF Default Address</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="pdf_store_address" translate="label comment" sortOrder="40" type="text" showInDefault="0" showInWebsite="0" showInStore="1">
+                    <label>PDF Server Store Address</label>
+                    <comment>Appended to the PDF Default and Website Addresses</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

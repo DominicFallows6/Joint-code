@@ -222,5 +222,6 @@ return array (
             'Limitless_WorldpayFixStaticCall' => 1,
             'Limitless_VATMessage' => 1,
             'Limitless_WorldpaySelectForm' => 1,
+            'Limitless_Product_PDF' => 1,
         ),
 );

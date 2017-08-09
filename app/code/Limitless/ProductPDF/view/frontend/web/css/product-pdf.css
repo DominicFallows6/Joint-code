@@ -1,0 +1,20 @@
+#product-pdf {
+    padding: 10px 3px;
+}
+#product-pdf .pdf-list {
+    min-height: 35px;
+    padding-top: 10px;
+    display: table;
+}
+#product-pdf .pdf-img {
+    background: url('../images/pdf-icon.svg') no-repeat 0 0;
+    width: 40px;
+    height: 31px;
+    float: left;
+    display: table-cell;
+    vertical-align: middle;
+}
+#product-pdf a {
+    display: table-cell;
+    vertical-align: middle;
+}
