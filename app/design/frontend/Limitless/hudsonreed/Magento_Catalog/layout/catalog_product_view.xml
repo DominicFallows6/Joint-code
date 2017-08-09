@@ -23,7 +23,7 @@
         <move element="delivery.message" destination="product.info.content" before="product.info.social" />
         <move element="product.info.sku" destination="product.info.content" before="-" />
         <move element="product.price.final" destination="product.info.price" before="-" />
-        <move element="product.price.tier" destination="product.info.price" after="-" />
+        <move element="product.price.tier" destination="product.info.content" after="product.info.stock.sku" />
         <move element="product.info.overview" destination="product.info.details" before="-" />
         <move element="reviews.tab" destination="content" after="-" />
         <move element="catalog.product.related" destination="content" after="product.info.details" />

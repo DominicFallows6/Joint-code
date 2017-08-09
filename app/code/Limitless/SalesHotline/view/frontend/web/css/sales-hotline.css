@@ -28,7 +28,7 @@ div#sales-wrapper > a:after {
     background:#fff;
     border:1px solid #bbbbbb;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
-    width:260px;
+    width:220px;
     display:none;
     position:absolute;
     right:-8px;
@@ -148,6 +148,7 @@ div#sales-wrapper > a:after {
 
     #opening-times-container {
         top:44px;
+        width:260px;
     }
 }
 

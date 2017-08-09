@@ -53,7 +53,7 @@ define([
                     var headerPlusNavHeight = headerHeight + navHeight + siteMessageHeight;
 
                     //Show overlay on mouseenter
-                    $(".navigation > ul").mouseenter(function () {
+                    $(".navigation > ul > li.parent").mouseenter(function () {
                         $('.menu-overlay').css({
                             "top" : headerPlusNavHeight,
                             "position" : "absolute"
@@ -67,6 +67,10 @@ define([
                             "position" : "fixed"
                         });
                     });
+
+                    //Add sub-menu top position
+                    $('.navigation .level0 .submenu').css({"top" : navHeight});
+
                 } else {
                     //Remove overlay on mobile
                     $('.menu-overlay').remove();
@@ -397,6 +401,9 @@ define([
                     // to avoid a jump caused by adjacent elements both having a class with a border
                     target.siblings().children(".ui-state-active").removeClass("ui-state-active");
                     this.focus(event, target);
+                },
+                "mouseenter .level-top.ui-menu-item:not('.parent')": function () {
+                    $('.menu-overlay').delay(300).stop(true,true).fadeOut();
                 },
                 "mouseleave": function (event) {
                     this.collapseAll(event, true);

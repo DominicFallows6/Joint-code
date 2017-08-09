@@ -43,13 +43,11 @@
 
       &-name {
         &:extend(.abs-product-link all);
-        -moz-hyphens: auto;
-        -ms-hyphens: auto;
-        -webkit-hyphens: auto;
         display: block;
-        hyphens: auto;
         margin: @indent__xs 0;
         word-wrap: break-word;
+        height:58px;
+        overflow:hidden;
       }
 
       &-info {
@@ -88,8 +86,9 @@
       }
 
       .product-reviews-summary {
+        margin:-15px 0 @indent__s;
         .rating-summary {
-          margin: 0 4px 0 0;
+          margin: 0 4px 0 4px;
         }
 
         .reviews-actions {
@@ -103,7 +102,7 @@
       }
 
       .price-box {
-        margin: @indent__s 0 @indent__m;
+        margin: @indent__s 0 15px;
 
         .price {
           .lib-font-size(14);
@@ -315,6 +314,12 @@
         .actions-primary {
           display: table-cell;
         }
+      }
+      .price-box {
+        margin: @indent__s 0 0 0;
+      }
+      .product-reviews-summary {
+        margin:0;
       }
     }
   }

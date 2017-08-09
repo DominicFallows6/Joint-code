@@ -48,6 +48,7 @@
 
 .product-info-main .products-upsell .price-box {
     margin:0;
+    min-height:50px;
 }
 
 .product-info-main .products-upsell .price-box .price-wrapper .price {
@@ -83,12 +84,13 @@
 
 .product-info-main .upsell .stock.unavailable {
     font-size:11px;
+    margin:15px 0 0 0;
 }
 
 .products-upsell .product-item-actions .actions-primary + .actions-secondary {
     width:100%;
+    margin:0;
     display:inline-block;
-    padding:7px 0 0 0;
 }
 
 .product-tabs ul li a {
@@ -134,12 +136,30 @@
     white-space:normal;
 }
 
+@media screen and (min-width: 640px) {
+    .product-info-main .products-upsell .price-box {
+        min-height:initial;
+    }
+}
+
+@media screen and (min-width: 768px) {
+    .product-info-main .products-upsell .price-box {
+        min-height:50px;
+    }
+}
+
 @media screen and (min-width: 1024px) {
     .product-info-main .products-upsell .product-item {
         padding-left:32px;
     }
     .product-info-main .products-upsell .product-item-actions .actions-primary button {
         padding:7px 10px;
+    }
+}
+
+@media screen and (min-width: 1280px) {
+    .product-info-main .products-upsell .price-box {
+        min-height:initial;
     }
 }
 
