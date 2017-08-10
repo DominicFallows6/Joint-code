@@ -190,6 +190,7 @@ return array (
             'Magento_Sitemap' => 1,
             'Magento_Solr' => 1,
             'Magento_CatalogInventoryStaging' => 1,
+            'Limitless_ValvesRequired' => 1,
             'Magento_BannerCustomerSegment' => 1,
             'Magento_Support' => 1,
             'Magento_Swagger' => 1,

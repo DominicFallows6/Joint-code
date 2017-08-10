@@ -1,0 +1,94 @@
+.modal-popup.valves-pop-up .modal-title, .modal-popup.valves-pop-up .modal-footer {
+    border:none;
+}
+
+.modal-popup.valves-pop-up #valves-pop-up {
+    display:table;
+}
+
+.modal-popup.valves-pop-up .modal-header {
+    padding-top:0;
+    padding-bottom:0;
+}
+
+.modal-popup.valves-pop-up .modal-content {
+    padding-left:0;
+    padding-right:0;
+}
+
+.modal-popup.valves-pop-up .which-valves-content {
+    width:100%;
+    display:table-cell;
+    vertical-align:middle;
+    padding:50px 25px 25px 25px;
+}
+
+.modal-popup.valves-pop-up .valves-required-image {
+    display:none;
+}
+
+.modal-popup.valves-pop-up .which-valves-content .valves-required-text {
+    line-height:24px;
+    margin:20px 0;
+    font-size:12px;
+    float:left;
+}
+
+.modal-popup.valves-pop-up h3 {
+    text-transform:uppercase;
+    color:#333333;
+    font-size:26px;
+    font-weight:700;
+    line-height:32px;
+    text-align:center;
+    margin:0
+}
+
+.modal-popup.valves-pop-up h3 span {
+    color:#333333;
+}
+
+.modal-popup.valves-pop-up .valves-thumbs img:last-child {
+    margin-right:0;
+}
+
+.modal-popup.valves-pop-up .valves-thumbs img {
+    border:1px solid #cccccc;
+    margin-right:10px;
+    width:70px;
+}
+
+a.valves-required, a.valves-required:hover {
+    color:#333;
+    text-decoration:underline;
+}
+
+@media (min-width:768px) {
+    .modal-popup.valves-pop-up .valves-required-image {
+        display:inline-block;
+    }
+
+    .modal-popup.valves-pop-up .which-valves-content {
+        width:67%;
+    }
+
+    .modal-popup.valves-pop-up h3 {
+        text-align:left;
+    }
+
+    .modal-popup.valves-pop-up .valves-thumbs img {
+        width:auto;
+    }
+
+    .modal-popup.valves-pop-up .modal-inner-wrap {
+        width: 700px;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        margin: auto;
+        top: 50%;
+    }
+}
+
+
+
+
