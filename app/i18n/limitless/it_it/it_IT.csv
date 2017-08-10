@@ -873,3 +873,7 @@
 "About Your Shipment","Dettagli Sulla Consegna"
 "A customer with the same email already exists in an associated website.","È possibile che tu abbia già creato un account con questo indirizzo email."
 " Example: "," Esempio: "
+"Relevance","Default"
+"The password doesn\'t match this account.","La password non corrisponde alla password attuale dell'utente."
+"Your Invoice for Order #%order_id","La fattura per l'ordine #%order_id"
+"Invoice for Order #%order_id","Fattura per l'ordine #%order_id"

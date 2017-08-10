@@ -871,3 +871,6 @@
 "About Your Shipment","Detalles Sobre Su Entrega"
 "A customer with the same email already exists in an associated website.","Es posible que ya haya creado una cuenta con esta dirección de correo electrónico."
 " Example: "," Ejemplo: "
+"The password doesn\'t match this account.","La contraseña no corresponde a la contraseña de esta cuenta."
+"Your Invoice for Order #%order_id","Su Recibo del Pedido #%order_id"
+"Invoice for Order #%order_id","Recibo del Pedido #%order_id"
