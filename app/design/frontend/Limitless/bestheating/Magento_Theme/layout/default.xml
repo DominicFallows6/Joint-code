@@ -7,5 +7,7 @@
     <body>
         <referenceBlock name="footer.security" remove="true" />
         <referenceBlock name="footer.flags" remove="true" />
+        <move element="breadcrumbs" destination="main.content" before="-"/>
+        <move element="global.lister.banner" destination="main.content" before="breadcrumbs"/>
     </body>
 </page>

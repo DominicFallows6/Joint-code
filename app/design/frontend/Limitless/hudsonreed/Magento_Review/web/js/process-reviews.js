@@ -35,11 +35,9 @@ define([
             $('.product-info-main .reviews-actions a').click(function (event) {
                 event.preventDefault();
                 var acnchor = $(this).attr('href').replace(/^.*?(#|$)/, '');
-                $(".product.data.items [data-role='content']").each(function(index){
-                    $('html, body').animate({
-                        scrollTop: $('#' + acnchor).offset().top - 50
-                    }, 300);
-                });
+                $('html, body').animate({
+                    scrollTop: $('#' + acnchor).offset().top - 50
+                }, 800);
             });
         });
     };

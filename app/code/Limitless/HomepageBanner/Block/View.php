@@ -26,18 +26,22 @@ class View extends Template
         return $this->_scopeConfig->getValue('general/limitless_homepage_banner/' . $path,
             ScopeInterface::SCOPE_STORE);
     }
+
     public function getDesktopBannerImageConfig()
     {
         return $this->getConfig('limitless_homepage_banner_image');
     }
+
     public function getMobileBannerImageConfig()
     {
         return $this->getConfig('limitless_mobile_homepage_banner_image');
     }
+
     public function getImgAltText()
     {
         return $this->getConfig('limitless_homepage_banner_alt');
     }
+
     public function getBackgroundColour()
     {
         $bkgcolour = $this->getConfig('limitless_banner_background_colour');
@@ -47,16 +51,34 @@ class View extends Template
             return '';
         }
     }
+
     public function getDesktopHomepageBanner()
     {
         return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . 'homepage_banners/' . $this->getDesktopBannerImageConfig();
     }
+
     public function getMobileHomepageBanner()
     {
         return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . 'homepage_banners/' . $this->getMobileBannerImageConfig();
     }
+
     public function getBannerLink()
     {
-        return $this->getBaseUrl() . $this->getConfig('limitless_homepage_banner_link');
+        return $this->getConfig('limitless_homepage_banner_link');
+    }
+
+    public function getBanners()
+    {
+        return '<img class="desktop-hp-banner" src="' . $this->getDesktopHomepageBanner() . '" alt="' . $this->getImgAltText() . '" />
+        <img class="mobile-hp-banner" src="' . $this->getMobileHomepageBanner() . '" alt="' . $this->getImgAltText() . '" />';
+    }
+
+    public function getBannerWithLinkOrWithoutLink()
+    {
+        if ($this->getBannerLink()) {
+            return '<a href="' . $this->getBannerLink() . '">' . $this->getBanners() . '</a>';
+        } else {
+            return $this->getBanners();
+        }
     }
 }
