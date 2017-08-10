@@ -11,7 +11,6 @@ use Magento\Store\Model\ScopeInterface;
 class View extends Template
 {
     const FILE_SEPERATOR = '/';
-
     const PDF_BASE_URL_PATH = 'base_url';
     const PDF_BASE_URL_SECURITY_PATH = 'base_url_security';
 
@@ -30,17 +29,20 @@ class View extends Template
 
     public function getPdfHtml()
     {
-        $pdfList = $this->getAllPdfUrls();
         $pdfHtml = '';
 
-        if (!empty($pdfList)){
-            $pdfHtml .= '<div id="product-pdf">';
-            foreach ($pdfList as $name => $location) {
-                $pdfHtml .= '<div class="pdf-list">';
-                $pdfHtml .= '<span class="pdf-img"></span><a href="'.$location.'">'.$name.'</a>';
+        if ($this->getPdfEnabled()) {
+            $pdfList = $this->getAllPdfUrls();
+
+            if (!empty($pdfList)) {
+                $pdfHtml .= '<div id="product-pdf">';
+                foreach ($pdfList as $name => $location) {
+                    $pdfHtml .= '<div class="pdf-list">';
+                    $pdfHtml .= '<span class="pdf-img"></span><a href="' . $location . '">' . $name . '</a>';
+                    $pdfHtml .= '</div>';
+                }
                 $pdfHtml .= '</div>';
             }
-            $pdfHtml .= '</div>';
         }
 
         return $pdfHtml;
@@ -122,14 +124,14 @@ class View extends Template
 
     private function getPdfBaseUrl()
     {
-        $scope = ScopeInterface::SCOPE_WEBSITE;
+        $scope = ScopeInterface::SCOPE_STORE;
         $baseUrl =  $this->getConfigValue(self::PDF_BASE_URL_PATH, $scope) ?? 'none';
         return $baseUrl;
     }
 
     private function getPdfBaseUrlSecurity()
     {
-        $scope = ScopeInterface::SCOPE_WEBSITE;
+        $scope = ScopeInterface::SCOPE_STORE;
         $baseUrlSecurity =  $this->getConfigValue(self::PDF_BASE_URL_SECURITY_PATH, $scope) ?? 'unsecure';
         return $baseUrlSecurity;
     }
@@ -143,7 +145,7 @@ class View extends Template
 
     private function getPdfWebsiteUrl()
     {
-        $scope = ScopeInterface::SCOPE_GROUP;
+        $scope = ScopeInterface::SCOPE_WEBSITE;
         $websiteUrl = $this->getConfigValue('pdf_website_address', $scope) ?? '';
         return $this->cleanUrlPath($websiteUrl);
     }
@@ -159,5 +161,11 @@ class View extends Template
     {
         $scope = ScopeInterface::SCOPE_STORE;
         return $this->getConfigValue('filename_extensions', $scope) ?? '0';
+    }
+
+    private function getPdfEnabled()
+    {
+        $scope = ScopeInterface::SCOPE_STORE;
+        return $this->getConfigValue('enabled', $scope) ?? '0';
     }
 }
