@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="general">
+            <group id="trustpilot" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Trustpilot</label>
+
+                <group id="trustpilot_api" translate="label" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Trustpilot API</label>
+
+                    <field id="enabled" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Enable Api (Widgets)</label>
+                        <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    </field>
+                    <field id="api_mode" translate="label comment" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Api Mode</label>
+                        <source_model>Limitless\TrustpilotApi\Model\Source\TrustpilotApiMode</source_model>
+                        <comment>Cache will still be updated in Ajax mode -> only disabling API will stop Cron</comment>
+                    </field>
+                    <field id="cache_updated" translate="label" type="select" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Cache Updated At:</label>
+                        <source_model>Limitless\TrustpilotApi\Model\Source\TrustpilotApiDateUpdated</source_model>
+                        <depends>
+                            <field id="api_mode">cache</field>
+                        </depends>
+                    </field>
+                    <!--
+                    <field id="cache_execute" translate="label" type="button" sortOrder="7" showInDefault="1" showInWebsite="0" showInStore="0">
+                        <frontend_model>Limitless\TrustpilotApi\Block\System\Config\TrustpilotApiExecute</frontend_model>
+                        <label>Execute Cache Update</label>
+                    </field>
+                    -->
+
+                    <!-- TODO -->
+                    <!-- Button to update cron -->
+
+                    <field id="api_key" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Api Key</label>
+                    </field>
+                    <field id="api_secret" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Api Secret</label>
+                    </field>
+                    <field id="business_id" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Business Key</label>
+                    </field>
+
+                    <field id="trustpilot_url" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>TrustPilot Site URL</label>
+                        <comment>Please enter the base Trustpilot Site URL e.g. https://fr.trustpilot.com</comment>
+                    </field>
+                    <field id="trustpilot_sitename" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Trustpilot Sitename</label>
+                        <comment>The site name in Trustpilot e.g. fr.hudsonreed.com</comment>
+                    </field>
+
+                    <field id="trust_score_labels" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>TrustPilot Score Labels</label>
+                        <comment>e.g. Bad,Poor,Average,Great,Excellent</comment>
+                    </field>
+
+                    <field id="trust_rest_business" translate="label comment" type="text" sortOrder="74" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>TrustPilot Rest API for Business Info</label>
+                        <comment>e.g. https://api.trustpilot.com/v1/business-units/{business_id}</comment>
+                    </field>
+                    <field id="trust_rest_reviews" translate="label comment" type="text" sortOrder="76" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>TrustPilot Rest API for Review Info</label>
+                        <comment>e.g. https://api.trustpilot.com/v1/business-units/{business_id}/reviews?{stars}{per_page}</comment>
+                    </field>
+
+
+                    <field id="trust_star_ratings" translate="label" type="multiselect" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Reviews Start Ratings</label>
+                        <source_model>Limitless\TrustpilotApi\Model\Source\TrustpilotApiStars</source_model>
+                    </field>
+                    <field id="trust_reviews_count" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>Number Of Reviews To Show</label>
+                        <comment>Default is 12, Max is 25</comment>
+                    </field>
+                </group>
+
+            </group>
+        </section>
+    </system>
+</config>

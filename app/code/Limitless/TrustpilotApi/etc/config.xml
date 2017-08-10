@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <general>
+            <trustpilot>
+                <trustpilot_api>
+                    <enabled>0</enabled>
+                    <api_mode>ajax</api_mode>
+                    <trust_score_labels>Bad,Poor,Average,Good,Excellent</trust_score_labels>
+                    <trustpilot_url>https://uk.trustpilot.com</trustpilot_url>
+                    <trust_star_ratings>4,5</trust_star_ratings>
+                    <trust_reviews_count>12</trust_reviews_count>
+                    <trust_rest_business>https://api.trustpilot.com/v1/business-units/{business_id}</trust_rest_business>
+                    <trust_rest_reviews>https://api.trustpilot.com/v1/business-units/{business_id}/reviews?{stars}{per_page}</trust_rest_reviews>
+                </trustpilot_api>
+            </trustpilot>
+        </general>
+    </default>
+</config>

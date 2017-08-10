@@ -1,0 +1,20 @@
+{
+  "name": "limitless/trustpilot-api",
+  "description": "Allows API to be called via cron (every 6 hours) or via Ajax",
+  "require": {
+    "php": "~7.0.0",
+    "magento/framework": "100.1.*"
+  },
+  "type": "magento2-module",
+  "license": [
+    "proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\TrustpilotApi\\": ""
+    }
+  }
+}

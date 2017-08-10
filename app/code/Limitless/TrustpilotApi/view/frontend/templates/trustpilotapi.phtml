@@ -1,0 +1,49 @@
+<?php
+/** @var \Limitless\TrustpilotApi\Block\TrustpilotApi $block */
+?>
+
+<div id="trustpilot-footer">
+    <div class="trustpilot-footer-wrapper">
+        <div class="tp-footer-logo"><img src="<?= $block->getViewFileUrl('Limitless_TrustpilotApi::images/trustpilot-logo.svg'); ?>" /></div>
+            <div class="tp-footer-widget-area">
+                <div class="tp-customerssay"><?=__('Our Customers Say') ?></div>
+                <div class="tp-trust-score"></div>
+                <div class="tp-stars">
+                    <div class="star-1"><span class="star"></span></div>
+                    <div class="star-2"><span class="star"></span></div>
+                    <div class="star-3"><span class="star"></span></div>
+                    <div class="star-4"><span class="star"></span></div>
+                    <div class="star-5"><span class="star"></span></div>
+                </div>
+                <div class="tp-rating"></div>
+                <div class="tp-review-based-on"><?=__('out of 10 based on ') ?></div>
+                <div class="tp-number-of-reviews"></div>
+                <div class="tp-reviews"><?=__('Reviews') ?></div>
+                <div class="tp-powered-by"><?= $block->getTrustpilotUrlLogo()?></div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/x-magento-init">
+{
+    "*": {
+    "Limitless_TrustpilotApi/js/trustpilot_api" : {
+            "api_key": "<?= $block->escapeJsQuote($block->getTrustpilotApiKey()) ?>",
+            "api_secret": "<?= $block->escapeJsQuote($block->getTrustpilotApiSecret()) ?>",
+            "business_id": "<?= $block->getTrustpilotBusinessId() ?>",
+
+            "business_api_url": "<?= $block->getTrustpilotApiBusinessURLClean() ?>",
+            "review_api_url": "<?= $block->getTrustpilotApiReviewsURLClean() ?>",
+            "label_ratings": "<?= $block->getTrustpilotLabels() ?>",
+
+            "business_base_url": "<?= $block->getTrustpilotUrl() ?>",
+            "trustpilot_sitename": "<?= $block->getTrustpilotSiteName() ?>",
+            "trustpilot_mode": "<?= $block->getTrustpilotApiMode() ?>",
+
+            "cached_business_info" : "<?= $block->getCachedData('business') ?>",
+            "cached_review_info" : "<?= $block->getCachedData('review') ?>"
+        }
+    }
+}
+</script>
