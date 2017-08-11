@@ -65,10 +65,12 @@
 #trustpilot-footer .trustpilot-footer-wrapper .tp-footer-widget-area .tp-review-based-on {
     margin:0 2px 0 0;
     display:none;
+    font-size:11px;
 }
 
 #trustpilot-footer .trustpilot-footer-wrapper .tp-footer-widget-area .tp-reviews {
     display:none;
+    font-size:11px;
 }
 
 
@@ -84,7 +86,7 @@
 }
 
 #trustpilot-footer .trustpilot-footer-wrapper .tp-footer-widget-area .tp-powered-by span {
-    font-size:10px;
+    font-size:8px;
     float:left;
     width:100%;
 }

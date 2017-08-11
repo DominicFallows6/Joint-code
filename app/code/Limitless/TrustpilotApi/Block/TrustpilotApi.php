@@ -241,11 +241,11 @@ class TrustpilotApi extends Template
                 switch(strtolower($cacheType))
                 {
                     case 'review':
-                        $cachedJSString = $trustpilotCache->getData($trustpilotCache::REVIEW_CACHE);
+                        $cachedJSString = $trustpilotCache->getData($trustpilotCache::REVIEW_CACHE) ?? '';
                         break;
                     case 'business':
                     default:
-                        $cachedJSString = $trustpilotCache->getData($trustpilotCache::BUSINESS_UNITS_CACHE);
+                        $cachedJSString = $trustpilotCache->getData($trustpilotCache::BUSINESS_UNITS_CACHE) ?? '';
                         break;
                 }
             } catch (\Exception $e) {
