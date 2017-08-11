@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Limitless_ContactUsPopUp::css/contact-us-popup.css"/>
+    </head>
+    <body>
+        <referenceContainer name="product.info.content">
+            <block class="Limitless\ContactUsPopUp\Block\ContactForm" name="contact.us.popup"
+                   template="Limitless_ContactUsPopUp::contact-us-popup.phtml" before="product.info.main"
+                   ifconfig="contact/limitless_contactus_popup/enabled"/>
+        </referenceContainer>
+
+        <move element="contact.us.popup" destination="product.info.content" after="product.info.social"/>
+    </body>
+</page>

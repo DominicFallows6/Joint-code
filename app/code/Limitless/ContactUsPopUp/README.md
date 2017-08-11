@@ -1,0 +1,3 @@
+Limitless_ContactUsPopUp hooks into the functionality of Magento_Contact module to provide a modal popup implementation of the "Contact Us" feature on the product page. This allows the user to send the business a question which goes through to the configured email address set in admin (should be Numero). 
+
+To keep the user on the product page (and not to redirect them to /contact/index/ this module changes the redirect path to use getRefererUrl(). Even if the user goes to the original contact page to post their question, they will still be redirected back to that same contact page with the referral.)

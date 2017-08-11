@@ -1,0 +1,100 @@
+<?php
+/**
+ * @var \Limitless\ContactUsPopUp\Block\ContactForm $block
+ */
+?>
+<div id="contact-us-popup">
+    <div id="modal-form" style="display:none;">
+        <form class="form contact"
+              action="<?php /* @escapeNotVerified */
+              echo $block->getFormAction(); ?>"
+              id="contact-form-product"
+              method="post"
+              data-hasrequired="<?php /* @escapeNotVerified */
+              echo __('* Required Fields') ?>"
+              data-mage-init='{"validation":{}}'>
+
+            <fieldset class="fieldset" id="fieldset-title">
+                <legend class="legend"><span><?php /* @escapeNotVerified */
+                        echo __('ASK A QUESTION') ?></span></legend>
+            </fieldset>
+            <fieldset class="fieldset" id="fieldset-main">
+                <div class="field name required">
+                    <label class="label" for="name"><span><?php /* @escapeNotVerified */
+                            echo __('Name') ?></span></label>
+                    <div class="control">
+                        <input name="name" id="name" title="<?php /* @escapeNotVerified */
+                        echo __('Name') ?>"
+                               value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('name')) ?>"
+                               class="input-text" type="text" data-validate="{required:true}"/>
+                    </div>
+                </div>
+                <div class="field email required">
+                    <label class="label" for="email"><span><?php /* @escapeNotVerified */
+                            echo __('Email') ?></span></label>
+                    <div class="control">
+                        <input name="email" id="email" title="<?php /* @escapeNotVerified */
+                        echo __('Email') ?>"
+                               value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('email')) ?>"
+                               class="input-text" type="email" data-validate="{required:true, 'validate-email':true}"/>
+                    </div>
+                </div>
+                <div class="field telephone">
+                    <label class="label" for="telephone"><span><?php /* @escapeNotVerified */
+                            echo __('Phone Number') ?></span></label>
+                    <div class="control">
+                        <input name="telephone" id="telephone" title="<?php /* @escapeNotVerified */
+                        echo __('Phone Number') ?>"
+                               value="<?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('telephone')) ?>"
+                               class="input-text" type="text"/>
+                    </div>
+                </div>
+                <div class="field product-reference">
+                    <label class="label" for="product-reference"><span><?php /* @escapeNotVerified */
+                            echo __('Product Reference') ?></span></label>
+                    <div class="control">
+                        <input name="product-reference" id="product-reference" title="<?php /* @escapeNotVerified */
+                        echo __('Product Reference') ?>" value="<?php echo $block->getAliasCode() ?>" class="input-text"
+                               type="text"/>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="fieldset" id="fieldset-comment">
+                <div class="field comment required">
+                    <label class="label" for="comment"><span><?php /* @escapeNotVerified */
+                            echo __('Question') ?></span></label>
+                    <div class="control">
+                    <textarea name="comment" id="comment" title="<?php /* @escapeNotVerified */
+                    echo __('Question') ?>" class="input-text" cols="5" rows="3"
+                              data-validate="{required:true}"><?php echo $block->escapeHtml($this->helper('Magento\Contact\Helper\Data')->getPostValue('comment')) ?></textarea>
+                    </div>
+                </div>
+            </fieldset>
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <input type="hidden" name="hideit" id="hideit" value=""/>
+                    <button type="submit" title="<?php /* @escapeNotVerified */
+                    echo __('Submit Question') ?>" class="action submit primary">
+                    <span><?php /* @escapeNotVerified */
+                        echo __('Submit Question') ?></span>
+                    </button>
+                </div>
+            </div>
+            <p><span class="required">*</span><?php /* @escapeNotVerified */
+                echo __('Name and email are required fields') ?></p>
+        </form>
+    </div>
+    <a class="action open-contact-modal-form"
+       href="#"
+       title="Have a question?">
+        <span><?php /* @escapeNotVerified */
+            echo __('Have a question?') ?></span>
+    </a>
+</div>
+<script type="text/x-magento-init">
+    {
+        ".open-contact-modal-form": {
+            "Limitless_ContactUsPopUp/js/modal-form": {}
+        }
+    }
+</script>

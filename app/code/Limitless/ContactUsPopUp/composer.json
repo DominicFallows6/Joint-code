@@ -1,0 +1,22 @@
+{
+  "name": "limitless/contactuspopup",
+  "description": "Adds a modal popup to the product page and changes the Post redirect rule to use getRefererUrl() instead of 'contact/index/",
+  "require": {
+    "php": "^7.0.0",
+    "magento/framework": "100.1.*",
+    "magento/contact": "100.1.*",
+    "limitless/module-alias-code": "0.1.0"
+  },
+  "type": "magento2-module",
+  "license": [
+    "proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\ContactUsPopUp\\": ""
+    }
+  }
+}

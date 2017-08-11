@@ -393,7 +393,21 @@
     }
 
     .product-info-stock-sku {
-      float:right;
+      float: right;
+      width: 33.33333333%;
+      text-align: center;
+      clear: none;
+      .stock.available >,
+      .stock.unavailable > {
+        margin-right: 0;
+        span {
+          &:before {
+            display: block;
+            float: none;
+            margin: 0 auto;
+          }
+        }
+      }
     }
 
     .product-social-links {
@@ -501,24 +515,57 @@
       font-size:@font-size__s;
       font-weight:@font-weight__semibold;
       line-height:24px;
-      display:flex;
-      align-items:center;
-      width:50%;
+      width: 33.33333333%;
+      text-align: center;
       &:before {
         content:"";
         background:url('../images/hr-eu-sprite.svg') no-repeat 0 0;
         background-size:137px 2700px;
         background-position:-56px -158px;
-        float:left;
+        float:none;
+        display: block;
         width:30px;
         height:25px;
-        margin:0 7px 0 0;
+        margin:0 auto;
       }
       span {
-        width:70%;
+        display: inline-block;
+        width: 66%;
       }
     }
   }
+
+
+  #contact-us-popup {
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 24px;
+    color: #333333;
+    float: left;
+    width: 33.33333333%;
+    text-align: center;
+    .open-contact-modal-form {
+      color: #333333;
+      &:visited,
+      &:hover {
+        color: #333333;
+        text-decoration: none;
+      }
+      &:before {
+        width: 28px;
+        height: 25px;
+      }
+      span {
+        text-align: center;
+        display: inline-block;
+        width: 90%;
+      }
+    }
+  }
+
+
+
+
 
   .product-tp-reviews {
     display:inline-block;
@@ -1008,14 +1055,51 @@
         width:75%;
       }
     }
-    .product-info-stock-sku {
-      margin-top:0;
-      clear:none;
-      width:50%;
-      text-align:right;
-    }
-
     .product-info-content {
+      .delivery-message {
+        text-align: left;
+        &:before {
+          float: left;
+          display: inline-block;
+          margin: 0 5px 0 0;
+        }
+        span {
+          display: inline-block;
+          width: auto;
+        }
+      }
+      #contact-us-popup {
+        text-align: left;
+        width: 40%;
+        .open-contact-modal-form {
+          &:before {
+            float: left;
+            display: inline-block;
+            margin: 0 5px 0 0;
+          }
+          span {
+            display: inline-block;
+            width: auto;
+          }
+        }
+      }
+      .product-info-stock-sku {
+        width: 26%;
+        float:right;
+        margin-top:0;
+        clear:none;
+        text-align:right;
+        .stock.available, .stock.unavailable {
+          span {
+            width: auto;
+            display: inline-block;
+            &:before {
+              float: left;
+              margin: 0 5px 0 0;
+            }
+          }
+        }
+      }
       .price-box {
         .special-price {
           .price-container {
@@ -1028,7 +1112,6 @@
       }
     }
   }
-
 }
 
 //
