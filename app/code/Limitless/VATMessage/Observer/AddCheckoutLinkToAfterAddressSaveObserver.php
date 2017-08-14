@@ -56,6 +56,7 @@ class AddCheckoutLinkToAfterAddressSaveObserver extends AfterAddressSaveObserver
         ];
 
         $customer = $customerAddress->getCustomer();
+        $checkoutLink = '/checkout/';
         if (!$this->scopeConfig->isSetFlag(HelperAddress::XML_PATH_VIV_DISABLE_AUTO_ASSIGN_DEFAULT)
             && !$customer->getDisableAutoGroupChange()
         ) {
@@ -64,8 +65,8 @@ class AddCheckoutLinkToAfterAddressSaveObserver extends AfterAddressSaveObserver
                 $validationResult
             );
             $message[] = $customerVatClass == Vat::VAT_CLASS_DOMESTIC
-                ? (string)__('You will be charged tax. <a href="/checkout/">Continue</a> with your order.')
-                : (string)__('You will not be charged tax. <a href="/checkout/">Continue</a> with your order.');
+                ? (string)__('You will be charged tax. <a href="%1">Continue</a> with your order.',$checkoutLink)
+                : (string)__('You will not be charged tax. <a href="%1">Continue</a> with your order.',$checkoutLink);
         }
 
         $this->messageManager->addSuccess(implode(' ', $message));
@@ -87,10 +88,11 @@ class AddCheckoutLinkToAfterAddressSaveObserver extends AfterAddressSaveObserver
         ];
 
         $customer = $customerAddress->getCustomer();
+        $checkoutLink = '/checkout/';
         if (!$this->scopeConfig->isSetFlag(HelperAddress::XML_PATH_VIV_DISABLE_AUTO_ASSIGN_DEFAULT)
             && !$customer->getDisableAutoGroupChange()
         ) {
-            $message[] = (string)__('You will be charged tax. <a href="/checkout/">Continue</a> with your order.');
+            $message[] = (string)__('You will be charged tax. <a href="%1">Continue</a> with your order.',$checkoutLink);
         }
 
         $this->messageManager->addError(implode(' ', $message));
@@ -111,10 +113,11 @@ class AddCheckoutLinkToAfterAddressSaveObserver extends AfterAddressSaveObserver
         ];
 
         $customer = $customerAddress->getCustomer();
+        $checkoutLink = '/checkout/';
         if (!$this->scopeConfig->isSetFlag(HelperAddress::XML_PATH_VIV_DISABLE_AUTO_ASSIGN_DEFAULT)
             && !$customer->getDisableAutoGroupChange()
         ) {
-            $message[] = (string)__('You will be charged tax. <a href="/checkout/">Continue</a> with your order.');
+            $message[] = (string)__('You will be charged tax. <a href="%1">Continue</a> with your order.',$checkoutLink);
         }
 
         $email = $this->scopeConfig->getValue('trans_email/ident_support/email', ScopeInterface::SCOPE_STORE);
