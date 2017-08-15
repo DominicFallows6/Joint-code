@@ -9,6 +9,7 @@ return array (
             'Magento_Eav' => 1,
             'Limitless_DiscountSplat' => 1,
             'Limitless_EmergencyMessage' => 1,
+            'Limitless_ElasticDynamic' => 1,
             'Limitless_FeaturedCategories' => 1,
             'Limitless_FooterLinks' => 1,
             'Limitless_GlobalListerBanner' => 1,

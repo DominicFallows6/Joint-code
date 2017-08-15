@@ -1,0 +1,21 @@
+{
+  "name": "limitless/module-elastic-dynamic",
+  "description": "N/A",
+  "require": {
+    "php": "^7.0.0",
+    "magento/module-catalog-search": "100.1.2",
+    "magento/module-elasticsearch": "^100.1"
+  },
+  "type": "magento2-module",
+  "license": [
+    "proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\ElasticDynamic\\": ""
+    }
+  }
+}
