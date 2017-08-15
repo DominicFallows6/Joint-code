@@ -117,11 +117,12 @@ class TrustpilotApi extends Template
     }
 
     /**
+     * @param int|null $siteCode
      * @return string
      */
-    public function getTrustpilotStarRatings(): string
+    public function getTrustpilotStarRatings($siteCode = null): string
     {
-        return (string) $this->getTrustPilotApiConfigValue('trust_star_ratings') ?? '';
+        return (string) $this->getTrustPilotApiConfigValue('trust_star_ratings', $siteCode) ?? '';
     }
 
     /**
@@ -143,11 +144,12 @@ class TrustpilotApi extends Template
     }
 
     /**
+     * @param int|null $siteCode
      * @return int
      */
-    public function getTrustpilotReviewsCount(): int
+    public function getTrustpilotReviewsCount($siteCode = null): int
     {
-        $perPage = (int) $this->getTrustPilotApiConfigValue('trust_reviews_count');
+        $perPage = (int) $this->getTrustPilotApiConfigValue('trust_reviews_count', $siteCode);
         if ($perPage < 0 || $perPage > 25)
         {
             $perPage = 12;
@@ -161,7 +163,7 @@ class TrustpilotApi extends Template
      */
     public function getTrustpilotApiBusinessURLClean($siteCode = null): string
     {
-        return (string) $this->cleanTrustpilotUrl($this->getTrustpilotRestBusiness($siteCode));
+        return (string) $this->cleanTrustpilotUrl($this->getTrustpilotRestBusiness($siteCode), $siteCode);
     }
 
     /**
@@ -170,33 +172,43 @@ class TrustpilotApi extends Template
      */
     public function getTrustpilotApiReviewsURLClean($siteCode = null): string
     {
-        return (string) $this->cleanTrustpilotUrl($this->getTrustpilotRestReviews($siteCode));
+        return (string) $this->cleanTrustpilotUrl($this->getTrustpilotRestReviews($siteCode), $siteCode);
     }
 
-    private function cleanTrustpilotUrl(string $url): string
+    /**
+     * @param string $url
+     * @param int|null $siteCode
+     * @return string
+     */
+    private function cleanTrustpilotUrl(string $url, $siteCode = null): string
     {
         if (strpos($url, '{business_id}') !== false) {
-            $url = str_replace('{business_id}', $this->getTrustpilotBusinessId(), $url);
+            $url = str_replace('{business_id}', $this->getTrustpilotBusinessId($siteCode), $url);
         }
 
-        $url = $this->cleanTrustpilotUrlParams($url);
+        $url = $this->cleanTrustpilotUrlParams($url, $siteCode);
 
         return $url;
     }
 
-    private function cleanTrustpilotUrlParams(string $url): string
+    /**
+     * @param string $url
+     * @param int|null $siteCode
+     * @return string
+     */
+    private function cleanTrustpilotUrlParams(string $url, $siteCode = null): string
     {
         $params = [];
 
         if (strpos($url, '{stars}') !== false) {
-            $stars = $this->getTrustpilotStarRatings();
+            $stars = $this->getTrustpilotStarRatings($siteCode);
 
             $params[] = 'stars='.$stars;
             $url = str_replace('{stars}', '', $url);
         }
 
         if (strpos($url, '{per_page}') !== false) {
-            $perPage = (int) $this->getTrustpilotReviewsCount();
+            $perPage = (int) $this->getTrustpilotReviewsCount($siteCode);
             $params[] = 'perPage='.$perPage;
             $url = str_replace('{per_page}', '', $url);
         }
