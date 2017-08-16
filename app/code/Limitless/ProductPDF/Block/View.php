@@ -38,7 +38,7 @@ class View extends Template
                 $pdfHtml .= '<div id="product-pdf">';
                 foreach ($pdfList as $name => $location) {
                     $pdfHtml .= '<div class="pdf-list">';
-                    $pdfHtml .= '<span class="pdf-img"></span><a href="' . $location . '">' . $name . '</a>';
+                    $pdfHtml .= '<span class="pdf-img"></span><a href="' . $location . '" rel="nofollow">' . $name . '</a>';
                     $pdfHtml .= '</div>';
                 }
                 $pdfHtml .= '</div>';
