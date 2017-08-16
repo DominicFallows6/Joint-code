@@ -2,6 +2,7 @@
 
 namespace Limitless\DiscountSplat\Block;
 
+use Magento\Catalog\Model\Product;
 use Magento\Framework\Registry;
 use Magento\Framework\View\Element\Template;
 use Magento\Framework\View\Element\Template\Context;
@@ -25,23 +26,22 @@ class View extends Template
     public function getSplatDiscount()
     {
         $percentage = "";
-        $specialPrice = $this->registry->registry('product')->getFinalPrice();
-        $productType = $this->registry->registry('product')->getTypeId();
         $product = $this->registry->registry('product');
+        $specialPrice = $product->getPriceInfo()->getPrice('final_price')->getAmount()->getBaseAmount();
+        $productType = $product->getTypeId();
         $minusSymbol = "-";
         $percentSymbol = "%";
 
         if ($productType === 'configurable') {
             $configurableProducts = $product->getTypeInstance()->getUsedProducts($product);
             $configurablePrices = [];
+            /** @var Product $value */
             foreach ($configurableProducts as $value) {
-                foreach ($value as $configProduct) {
-                    $configurablePrices[] = $configProduct['price'];
-                }
+                $configurablePrices[] = $value->getPriceInfo()->getPrice('regular_price')->getAmount()->getBaseAmount();
             }
             $originalPrice = min($configurablePrices);
         } else {
-            $originalPrice = $this->registry->registry('product')->getPrice();
+            $originalPrice = $product->getPriceInfo()->getPrice('regular_price')->getAmount()->getBaseAmount();
         }
 
         if ($specialPrice) {
