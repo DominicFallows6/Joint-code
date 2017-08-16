@@ -90,7 +90,7 @@
 .products-upsell .product-item-actions .actions-primary + .actions-secondary {
     width:100%;
     margin:0;
-    display:inline-block;
+    display:none;
 }
 
 .product-tabs ul li a {
@@ -117,7 +117,7 @@
     display:none;
 }
 
-.upsell .block-title strong {
+.column.main .upsell .block-title strong {
     font-weight:600;
 }
 
@@ -128,12 +128,18 @@
 .products-upsell .product-item-actions {
     display:inline-block;
     margin:0;
+    width:100%;
 }
 
 .product-info-main .products-upsell .product-item-actions .actions-primary button {
     padding:7px 6px;
     margin:15px 0 0 0;
     white-space:normal;
+    width:100%;
+}
+
+.product-info-main .products-upsell .product-item-actions .actions-primary {
+    display:block;
 }
 
 @media screen and (min-width: 640px) {

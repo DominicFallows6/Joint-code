@@ -21,7 +21,7 @@
 & when (@media-common = true) {
   .page-products {
     .columns {
-      padding-top: 30px;
+      padding-top: 40px;
       position: relative;
       z-index: 1;
     }
@@ -32,11 +32,19 @@
     margin-bottom: @indent__base;
     text-align: center;
 
+    .toolbar-amount {
+      display:none;
+    }
+
+    .products.wrapper ~ & .sorter {
+      display:none;
+    }
+
     select {
       .lib-css(background-color, @color-white);
       .lib-css(box-shadow, @button__shadow);
       border-radius: 0;
-      border: 1px solid @color-gray54;
+      border: 1px solid #888888;
     }
 
     &-amount {
@@ -64,8 +72,6 @@
       .lib-css(background-color, @toolbar-background);
 
       .pages {
-        display: none;
-
         .products.wrapper ~ & {
           display: block;
         }
@@ -74,22 +80,21 @@
 
     .pages {
       margin-bottom: @indent__m;
+      float:none;
+      display:none;
     }
   }
 
   .sorter {
     float: right;
-    width:50%;
+    width:40%;
+    text-align:left;
 
     .page-products & {
       position: absolute;
-      right: @indent__s;
+      right: 0;
       top: 0;
       z-index: 1;
-    }
-
-    .products.wrapper ~ .toolbar & {
-      display: none;
     }
 
     &-label {
@@ -97,7 +102,7 @@
     }
 
     &-options {
-      margin: 0 @indent__xs 0 7px;
+      margin: 0 5px;
       width: 100%;
     }
 
@@ -122,8 +127,7 @@
   }
 
   .limiter {
-    display: none;
-
+    display:none;
     &-options {
       margin: 0 5px 0 7px;
       width: auto;
@@ -133,8 +137,8 @@
       font-weight: 400;
     }
 
-    .page-products .toolbar & {
-      display: none;
+    .limiter-text {
+      display:none;
     }
 
     .control {
@@ -143,17 +147,16 @@
   }
 }
 
-
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
-    .sorter {
+  .sorter {
+    width:auto;
+    &-options {
       width:auto;
-      &-options {
-        width:auto;
-      }
-      &-label {
-        display: inline-block;
-      }
     }
+    &-label {
+      display: inline-block;
+    }
+  }
 }
 
 //
@@ -184,15 +187,21 @@
   }
 
   .toolbar-amount {
-    display: block;
     float: left;
     position: static;
   }
 
   .toolbar {
     .products.wrapper ~ & .pages {
-      float: left;
+      float: right;
       margin-bottom: 0;
+    }
+    .products.wrapper ~ & .sorter {
+      display:none;
+    }
+    .pages {
+      display:block;
+      float:right;
     }
   }
 
@@ -214,7 +223,7 @@
     .lib-css(background-color, @toolbar-element-background);
     .lib-css(box-shadow, @button__shadow);
     .lib-css(color, @text__color__muted);
-    border: 1px solid @color-gray54;
+    border: 1px solid @color-gray20;
     border-right: 0;
     float: left;
     font-weight: @font-weight__regular;
@@ -233,7 +242,7 @@
 
     &:last-child {
       //border-radius: 0 3px 3px 0;
-      border-right: 1px solid @color-gray54;
+      border-right: 1px solid @color-gray20;
     }
 
     &.active {
@@ -241,7 +250,7 @@
       background: @color-white;
       color: @color-gray62;
       &:before {
-        color: @color-gray54;
+        color: @color-gray20;
       }
     }
 
@@ -258,6 +267,12 @@
   .sorter {
     .page-products & {
       position: static;
+      float:left;
+      margin-left:15px;
+      width:38%;
+    }
+    &-options {
+      width:50%;
     }
   }
 
@@ -268,9 +283,24 @@
   }
 
   .limiter {
-    float: right;
+    float: left;
+    display:block;
     .products.wrapper ~ .toolbar & {
       display: block;
+    }
+  }
+}
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+  .sorter {
+    .page-products & {
+      margin-left:30px;
+    }
+  }
+
+  .limiter {
+    .limiter-text {
+      display:inline-block;
     }
   }
 }

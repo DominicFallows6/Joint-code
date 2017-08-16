@@ -95,12 +95,15 @@
       position:static;
       float:right;
       .action.showcart {
-        &:before {
-          content:url("../images/hr-shopping-bag-dark.svg");
-        }
         .counter.qty {
-          top:12px;
-          color:@color-white;
+          top:15px;
+          left:17px;
+          color:@color-gray20;
+        }
+        &:after {
+          content:url('../images/shopping-bag.svg');
+          width:30px;
+          height:36px;
         }
       }
     }

@@ -571,7 +571,7 @@
     display:inline-block;
     width:100%;
     .trustpilot-widget {
-        padding:@indent__l 0 @indent__l 0;
+      padding:@indent__l 0;
     }
     h2 {
       text-transform:uppercase;
@@ -709,12 +709,13 @@
 
   .column.main {
     .block.related {
-      margin:20px 0 30px 0;
+      margin:@indent__base 0 @indent__l 0;
       width:100%;
       display:inline-block;
       .title {
         border-bottom: 1px solid @color-gray80;
         padding-bottom: @indent__base;
+        margin-bottom: @indent__base;
         strong {
           text-transform: uppercase;
           font-weight: 500;
@@ -729,11 +730,11 @@
           width:33.33333333%;
           margin-bottom:20px;
           .product-item-info {
-            width:140px;
+            width:180px;
             .product-item-name {
-                font-size:@font-size__s;
-                height:52px;
-                overflow:hidden;
+              font-size:@font-size__s;
+              height:52px;
+              overflow:hidden;
             }
             .more-info {
               border:2px solid @color-gray20;

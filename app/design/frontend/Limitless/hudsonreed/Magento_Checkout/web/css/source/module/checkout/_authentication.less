@@ -27,7 +27,7 @@
   }
   .authentication-wrapper {
     float: right;
-    margin-top: -1.4*@indent__xl;
+    margin-top: -60px;
     max-width: 50%;
     position: relative;
     z-index: 1;
@@ -39,6 +39,9 @@
 
   .action-auth-toggle {
     &:extend(.abs-action-button-as-link all);
+    > span {
+      display:none;
+    }
     color:@color-white;
     &:hover {
       color:@color-white;
@@ -46,6 +49,17 @@
     &:focus {
       color:@color-white;
     }
+    &:after {
+      content:'';
+      background:url('../images/hr-eu-sprite.svg') no-repeat 0 0;
+      background-size:137px 2700px;
+      background-position: -55px -633px;
+      height:32px;
+      width:32px;
+      float:right;
+      margin-left:5px;
+    }
+    line-height:30px;
   }
 
   .block-authentication {
@@ -159,7 +173,13 @@
   .authentication-wrapper {
     .lib-column-width(@checkout-sidebar__columns);
     text-align: right;
-    margin-top: -1.7*@indent__xl;
+    margin-top: -73px;
+  }
+
+  .action-auth-toggle {
+    > span {
+      display:inline-block;
+    }
   }
 
   .block-authentication {

@@ -1,0 +1,68 @@
+// /**
+//  * Copyright © 2013-2017 Magento, Inc. All rights reserved.
+//  * See COPYING.txt for license details.
+//  */
+
+//
+//  Variables
+//  _____________________________________________
+
+@checkout-sidebar-shipping-information__padding: @indent__l;
+@checkout-sidebar-shipping-information__line-height: @checkout-billing-address-details__line-height;
+
+@checkout-sidebar-shipping-information-edit-icon__color: @color-gray20;
+@checkout-sidebar-shipping-information-edit-icon__content: @icon-settings;
+@checkout-sidebar-shipping-information-edit-icon__font-size: 28px;
+@checkout-sidebar-shipping-information-edit-icon__line-height: 28px;
+@checkout-sidebar-shipping-information-edit-icon__top: 2px;
+@checkout-sidebar-shipping-information-edit-icon__hover__color: @primary__color;
+
+//
+//  Common
+//  _____________________________________________
+
+& when (@media-common = true) {
+
+  //
+  //  Shipping Information
+  //  ---------------------------------------------
+
+  .opc-block-shipping-information {
+    .lib-css(padding, 0 @checkout-sidebar-shipping-information__padding);
+
+    .shipping-information-title {
+      &:extend(.abs-checkout-title all);
+      .lib-css(border-bottom, @checkout-step-title__border);
+      margin: 0 0 @indent__base;
+      position: relative;
+      .action-edit {
+        content: "";
+        background: url('../images/hr-eu-sprite.svg') no-repeat 0 0;
+        background-size: 137px 2700px;
+        background-position: -54px -1937px;
+        height: 32px;
+        width: 32px;
+        display:inline-block;
+        margin: 0;
+        position: absolute;
+        right: 0;
+        border:none;
+        > span {
+          display:none;
+        }
+      }
+    }
+
+    .shipping-information-content {
+      .lib-css(line-height, @checkout-sidebar-shipping-information__line-height);
+      .actions-toolbar {
+        margin-left: 0;
+      }
+    }
+
+    .ship-to,
+    .ship-via {
+      margin: 0 0 @indent__base;
+    }
+  }
+}
