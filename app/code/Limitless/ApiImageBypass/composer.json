@@ -1,0 +1,21 @@
+{
+  "name": "limitless/module-api-image-bypass",
+  "description": "",
+  "require": {
+    "php": "~7.0.0",
+    "magento/framework" : "100.1.*",
+    "magento/module-catalog": "101.0.5"
+  },
+  "type": "magento2-module",
+  "license": [
+    "Commercial"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\ApiImageBypass\\": ""
+    }
+  }
+}

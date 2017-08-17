@@ -229,5 +229,6 @@ return array (
             'Limitless_Product_PDF' => 1,
             'Limitless_ProductOOSSortOrder' => 1,
             'Limitless_ContactUsPopUp' => 1,
+            'Limitless_ApiImageBypass' => 1,
         ),
 );
