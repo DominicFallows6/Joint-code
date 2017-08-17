@@ -139,12 +139,24 @@
   .message.global {
     p {
       margin: 0;
+      display: inline-block;
+      padding: 0 1% 1% 0;
     }
 
     &.noscript,
     &.cookie {
       .lib-message(@_message-type: global-note);
       margin: 0;
+      background: lighten(black, 75%);
+      text-align: center;
+      a {
+        color: #333333;
+        font-weight: 700;
+        &:hover {
+          color: #333333;
+          text-decoration: none;
+        }
+      }
     }
 
     &.cookie {
@@ -155,7 +167,7 @@
       z-index: 3;
 
       .actions {
-        margin-top: @indent__s;
+        display: inline-block;
       }
     }
 
