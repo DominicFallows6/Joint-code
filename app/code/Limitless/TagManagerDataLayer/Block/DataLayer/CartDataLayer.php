@@ -53,7 +53,7 @@ class CartDataLayer extends DataLayerAbstract
     private function initDynamicRemarketingDLVariables()
     {
         /** @var \Magento\Quote\Model\ResourceModel\Quote\Item\Collection $cartItems */
-        $cartItems = $this->cart->getCart()->getItems();
+        $cartItems = $this->cart->getQuote()->getAllVisibleItems();
 
         $products = $quantities = [];
 

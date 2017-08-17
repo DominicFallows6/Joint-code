@@ -49,7 +49,7 @@ class LeGuide implements AffiliateHelperInterface
     public function getAffiliateDataLayer(): array
     {
         $this->initLastOrder();
-        $orderItems = $this->lastOrder->getItems();
+        $orderItems = $this->lastOrder->getAllVisibleItems();
         $this->buildLeGuideValues($orderItems);
 
         return [self::LG_DATALAYER_NAME =>

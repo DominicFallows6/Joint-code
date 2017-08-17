@@ -71,7 +71,7 @@ class SuccessDataLayer extends DataLayerAbstract
     public function initDataLayerVariables()
     {
         $this->order = $this->getLastOrder();
-        $this->orderItems = $this->order->getItems();
+        $this->orderItems = $this->order->getAllVisibleItems();
         $this->cookieAffiliateCode = $this->getAffiliateCodeFromCookie();
 
         if ($this->cookieAffiliateCode) {

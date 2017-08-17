@@ -67,7 +67,7 @@ class ShoppingCom implements AffiliateHelperInterface
     public function getAffiliateDataLayer(): array
     {
         $this->initLastOrder();
-        $orderItems = $this->lastOrder->getItems();
+        $orderItems = $this->lastOrder->getAllVisibleItems();
         $this->buildShoppingComValues($orderItems);
 
         return [self::SHOPPINGCOM_DATALAYER_NAME =>

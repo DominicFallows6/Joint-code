@@ -84,7 +84,7 @@ class WebgainsDataLayer implements AffiliateHelperInterface
 
     private function getWebgainsProductString($voucherCode = '')
     {
-        $orderItems = $this->lastOrder->getItems();
+        $orderItems = $this->lastOrder->getAllVisibleItems();
 
         $wgDelimiter = '::';
         $wgLineDelimiter = '|';
