@@ -65,7 +65,8 @@ a.valves-required, a.valves-required:hover {
 
 @media (min-width:768px) {
     .modal-popup.valves-pop-up .valves-required-image {
-        display:inline-block;
+        display:table-cell;
+        vertical-align:middle;
     }
 
     .modal-popup.valves-pop-up .which-valves-content {
