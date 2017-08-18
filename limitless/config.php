@@ -6,6 +6,7 @@ return array (
             'Limitless_BlankProductMetaData' => 1,
             'Limitless_BtuCalculator' => 1,
             'Magento_Directory' => 1,
+            'Limitless_ConfigValueWidget' => 1,
             'Magento_Eav' => 1,
             'Limitless_DiscountSplat' => 1,
             'Limitless_EmergencyMessage' => 1,

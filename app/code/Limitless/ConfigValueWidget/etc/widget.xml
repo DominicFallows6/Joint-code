@@ -1,0 +1,14 @@
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="config_value" class="Limitless\ConfigValueWidget\Block\Widget\ConfigValue"
+            placeholder_image="Magento_Cms::images/widget_block.png">
+        <label>Config Value</label>
+        <description>Show config values</description>
+        <parameters>
+            <parameter name="path" xsi:type="text" required="true" visible="true">
+                <label>Path</label>
+                <description>Enter path to config value e.g. general/store_information/merchant_vat_number</description>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>
