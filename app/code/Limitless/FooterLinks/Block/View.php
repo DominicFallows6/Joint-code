@@ -60,7 +60,7 @@ class View extends Template
 
             } else {
                 if (!$currentTitleCountMet) {
-                    $titleParts = explode(self::TITLE_SPLIT_DELIMITER, $footerItem, 2);
+                    $titleParts = explode(self::TITLE_SPLIT_DELIMITER, $footerItem, 3);
                     if ($headerSet && isset($titleParts[0]) && isset($titleParts[1])) {
 
                         $titleHtml = $this->getFooterTitleAndLinkHtml($titleParts, $currentTitleCount);
@@ -127,8 +127,18 @@ class View extends Template
         $title = trim($titleParts[0]);
         $link = trim($titleParts[1]);
 
+        if (isset($titleParts[2])) {
+            if (trim($titleParts[2]) == "target") {
+                $target = 'target="_blank"';
+            } else {
+                $target = '';
+            }
+        } else {
+            $target = '';
+        }
+
         if ($this->maxTotalTitlesPerColumn == 0 || $currentFooterTitleTotal < $this->maxTotalTitlesPerColumn) {
-            return '<li><a href="' . $link . '" title="' . $title . '">' . $title . '</a></li>';
+            return '<li><a href="' . $link . '" title="' . $title . '" '. $target .'>' . $title . '</a></li>';
         }
         return false;
     }
