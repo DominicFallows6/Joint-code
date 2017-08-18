@@ -5,41 +5,146 @@
         <section id="general">
             <group id="limitless_sales_hotline" translate="label" sortOrder="999" showInDefault="1" showInWebsite="1" showInStore="1">
                 <label>Sales Hotline</label>
-
                 <field id="timezone" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Timezone</label>
                     <source_model>Magento\Config\Model\Config\Source\Locale\Timezone</source_model>
                 </field>
-
                 <field id="sales_number" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <validate>required-entry</validate>
                     <label>Telephone Number</label>
                     <comment>Please enter the stores telephone number</comment>
                 </field>
-                <field id="days" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
-                    <label>Opening Times</label>
-                    <backend_model>Magento\Config\Model\Config\Backend\Serialized</backend_model>
-                    <frontend_model>Limitless\SalesHotline\Block\System\Config\Form\Field\Custom</frontend_model>
+                <field id="sunday_open" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sunday Open?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
-                <field id="check_interval" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="sunday_opening_time" translate="label" type="time" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sunday Opening Time</label>
+                    <depends>
+                        <field id="sunday_open">1</field>
+                    </depends>
+                </field>
+                <field id="sunday_closed_time" translate="label" type="time" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sunday Closing Time</label>
+                    <depends>
+                        <field id="sunday_open">1</field>
+                    </depends>
+                </field>
+                <field id="monday_open" translate="label" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Monday Open?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="monday_opening_time" translate="label" type="time" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Monday Opening Time</label>
+                    <depends>
+                        <field id="monday_open">1</field>
+                    </depends>
+                </field>
+                <field id="monday_closed_time" translate="label" type="time" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Monday Closing Time</label>
+                    <depends>
+                        <field id="monday_open">1</field>
+                    </depends>
+                </field>
+                <field id="tuesday_open" translate="label" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tuesday Open?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="tuesday_opening_time" translate="label" type="time" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tuesday Opening Time</label>
+                    <depends>
+                        <field id="tuesday_open">1</field>
+                    </depends>
+                </field>
+                <field id="tuesday_closed_time" translate="label" type="time" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tuesday Closing Time</label>
+                    <depends>
+                        <field id="tuesday_open">1</field>
+                    </depends>
+                </field>
+                <field id="wednesday_open" translate="label" type="select" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Wednesday Open?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="wednesday_opening_time" translate="label" type="time" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Wednesday Opening Time</label>
+                    <depends>
+                        <field id="wednesday_open">1</field>
+                    </depends>
+                </field>
+                <field id="wednesday_closed_time" translate="label" type="time" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Wednesday Closing Time</label>
+                    <depends>
+                        <field id="wednesday_open">1</field>
+                    </depends>
+                </field>
+                <field id="thursday_open" translate="label" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Thursday Open?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="thursday_opening_time" translate="label" type="time" sortOrder="160" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Thursday Opening Time</label>
+                    <depends>
+                        <field id="thursday_open">1</field>
+                    </depends>
+                </field>
+                <field id="thursday_closed_time" translate="label" type="time" sortOrder="170" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Thursday Closing Time</label>
+                    <depends>
+                        <field id="thursday_open">1</field>
+                    </depends>
+                </field>
+                <field id="friday_open" translate="label" type="select" sortOrder="180" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Friday Open?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="friday_opening_time" translate="label" type="time" sortOrder="190" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Friday Opening Time</label>
+                    <depends>
+                        <field id="friday_open">1</field>
+                    </depends>
+                </field>
+                <field id="friday_closed_time" translate="label" type="time" sortOrder="200" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Friday Closing Time</label>
+                    <depends>
+                        <field id="friday_open">1</field>
+                    </depends>
+                </field>
+                <field id="saturday_open" translate="label" type="select" sortOrder="210" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Saturday Open?</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="saturday_opening_time" translate="label" type="time" sortOrder="220" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Saturday Opening Time</label>
+                    <depends>
+                        <field id="saturday_open">1</field>
+                    </depends>
+                </field>
+                <field id="saturday_closed_time" translate="label" type="time" sortOrder="230" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Saturday Closing Time</label>
+                    <depends>
+                        <field id="saturday_open">1</field>
+                    </depends>
+                </field>
+                <field id="check_interval" translate="label" type="text" sortOrder="240" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Check Interval</label>
                     <comment>In seconds, determine how often the browser will check the opening hours. If 0, no updates will occur after the initial page load.</comment>
                 </field>
-                <field id="closed_text" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="closed_text" translate="label" type="text" sortOrder="250" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <validate>required-entry</validate>
                     <label>Closed Text</label>
                     <comment>Please enter the stores closed text</comment>
                 </field>
-                <field id="open_text" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="open_text" translate="label" type="text" sortOrder="260" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <validate>required-entry</validate>
                     <label>Open Text</label>
                     <comment>Please enter the stores open text</comment>
                 </field>
-                <field id="helpcentre_text" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="helpcentre_text" translate="label" type="text" sortOrder="270" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Help Centre Text</label>
                     <comment>Please enter the text for the link to the help centre</comment>
                 </field>
-                <field id="helpcentre_link" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                <field id="helpcentre_link" translate="label" type="text" sortOrder="280" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
                     <label>Help Centre Link</label>
                     <comment>Please enter the link to the help centre</comment>
                 </field>

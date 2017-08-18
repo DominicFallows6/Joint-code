@@ -3,9 +3,29 @@
     <default>
         <general>
             <limitless_sales_hotline>
-                <timezone>Europe/Berlin</timezone>
-                <sales_number>0123456789</sales_number>
-                <days>a:3:{s:9:"open_time";a:7:{i:0;s:5:"09:30";i:1;s:5:"09:30";i:2;s:5:"09:30";i:3;s:5:"09:30";i:4;s:5:"09:30";i:5;s:5:"09:30";i:6;s:5:"09:30";}s:11:"closed_time";a:7:{i:0;s:5:"18:00";i:1;s:5:"18:00";i:2;s:5:"18:00";i:3;s:5:"18:00";i:4;s:5:"18:00";i:5;s:5:"18:00";i:6;s:5:"18:00";}s:14:"open_or_closed";a:7:{i:0;s:3:"Yes";i:1;s:2:"No";i:2;s:2:"No";i:3;s:2:"No";i:4;s:2:"No";i:5;s:2:"No";i:6;s:3:"Yes";}}</days>
+                <timezone>Europe/London</timezone>
+                <sales_number>0344 417 2563</sales_number>
+                <monday_open>1</monday_open>
+                <monday_opening_time>08,30,00</monday_opening_time>
+                <monday_closed_time>22,00,00</monday_closed_time>
+                <tuesday_open>1</tuesday_open>
+                <tuesday_opening_time>08,30,00</tuesday_opening_time>
+                <tuesday_closed_time>22,00,00</tuesday_closed_time>
+                <wednesday_open>1</wednesday_open>
+                <wednesday_opening_time>08,30,00</wednesday_opening_time>
+                <wednesday_closed_time>22,00,00</wednesday_closed_time>
+                <thursday_open>1</thursday_open>
+                <thursday_opening_time>08,30,00</thursday_opening_time>
+                <thursday_closed_time>22,00,00</thursday_closed_time>
+                <friday_open>1</friday_open>
+                <friday_opening_time>08,30,00</friday_opening_time>
+                <friday_closed_time>17,00,00</friday_closed_time>
+                <saturday_open>1</saturday_open>
+                <saturday_opening_time>08,30,00</saturday_opening_time>
+                <saturday_closed_time>17,00,00</saturday_closed_time>
+                <sunday_open>0</sunday_open>
+                <sunday_opening_time>08,30,00</sunday_opening_time>
+                <sunday_closed_time>17,00,00</sunday_closed_time>
                 <check_interval>999</check_interval>
                 <closed_text>Closed text</closed_text>
                 <open_text>Open text</open_text>

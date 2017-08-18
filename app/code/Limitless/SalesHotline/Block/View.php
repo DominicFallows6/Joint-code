@@ -24,28 +24,11 @@ class View extends Template
      */
     public function __construct(
         Context $context,
-        //TimezoneInterface $timezone,
         array $data = []
     )
     {
         parent::__construct($context, $data);
         $this->scopeConfig = $context->getScopeConfig();
-        //$this->timezone = $timezone;
-
-    }
-
-
-    private function daysOfWeek()
-    {
-        return array(
-            0 => 'Sunday',
-            1 => 'Monday',
-            2 => 'Tuesday',
-            3 => 'Wednesday',
-            4 => 'Thursday',
-            5 => 'Friday',
-            6 => 'Saturday'
-        );
     }
 
     private function getScopeConfigValue($path)
@@ -53,27 +36,43 @@ class View extends Template
         return $this->scopeConfig->getValue('general/limitless_sales_hotline/' . $path, ScopeInterface::SCOPE_STORE);
     }
 
-    public function getConfigDropDownValues() {
+    public function getOpeningTimes()
+    {
+        $openingTimes = "";
 
-        $tableConfig = $this->getScopeConfigValue('days');
+        foreach ($this->getOpeningTimesConfig() as $key => $value) {
+            $openingTime = str_replace(',',':', substr($value['opening_time'], 0, 5));
+            $closedTime = str_replace(',',':', substr($value['closed_time'], 0, 5));
+            $openingTimes .= $openingTime . ' - ' . $closedTime . ',';
+        }
 
-        $tableConfigResults = unserialize($tableConfig);
+        $openingTimes = explode(',', rtrim($openingTimes, ","));
 
-        return $tableConfigResults;
-
+        return json_encode($openingTimes);
     }
 
+    public function getClosedValue()
+    {
+        $closedValues = "";
+
+        foreach ($this->getOpeningTimesConfig() as $key => $value)
+        {
+            $closedValues .= $value['open_or_closed'] . ',';
+        }
+
+        $closedValues = explode(',', rtrim($closedValues, ","));
+
+        return json_encode($closedValues);
+    }
 
     public function getTimeAccordingToTimeZone()
     {
-
         if (($this->timezone instanceof \DateTime) === false) {
             $this->timezone = new \DateTime;
             $this->timezone->setTimeZone(new \DateTimeZone($this->getScopeConfigValue('timezone')));
         }
 
         return $this->timezone;
-
     }
 
     public function getTimeZone()
@@ -86,126 +85,87 @@ class View extends Template
         return $this->getTimeAccordingToTimeZone()->format('Z');
     }
 
-
-    public function getOpeningTimes() {
-
-        $openingTimes = "";
-
-        foreach ($this->daysOfWeek() as $key => $value) {
-            $openingTimes .= $this->getOpeningHours($key);
-        }
-
-        $openingTimes = explode(',', rtrim($openingTimes, ","));
-
-        return json_encode($openingTimes);
-
-    }
-
-    public function getClosedValue() {
-
-        $openClosed = "";
-
-        foreach ($this->daysOfWeek() as $key => $value) {
-            $openClosed .= $this->getOpenClosedValue($key);
-        }
-
-        $openClosed = explode(',', rtrim($openClosed, ","));
-
-        return json_encode($openClosed);
-
-    }
-
-    public function getSalesNumber() {
-
+    public function getSalesNumber()
+    {
         $salesNumberHtml = "";
-
         $salesNumber = $this->getScopeConfigValue('sales_number');
-
         $salesNumberCtc = str_replace(' ', '', $salesNumber);
 
-        if($salesNumber != "") {
+        if ($salesNumber != "") {
             $salesNumberHtml = "<a href='tel:$salesNumberCtc' class='sales-number'>" . $salesNumber . "</a>";
         }
 
         return $salesNumberHtml;
     }
 
-    public function checkInterval() {
+    public function checkInterval()
+    {
         return $this->getScopeConfigValue('check_interval');
     }
 
-    public function getOpenText() {
+    public function getOpenText()
+    {
         $openText = $this->getScopeConfigValue('open_text');
         return '<span>' . $openText . '</span>';
     }
 
-    public function getClosedText() {
+    public function getClosedText()
+    {
         $closedText = $this->getScopeConfigValue('closed_text');
         return '<span>' . $closedText . '</span>';
     }
 
-    public function getHelpCentreLink() {
-
+    public function getHelpCentreLink()
+    {
         $helpCentreLinkHtml = "";
-
         $helpCentreText = $this->getScopeConfigValue('helpcentre_text');
         $helpCentreLink = $this->getScopeConfigValue('helpcentre_link');
 
-        if($helpCentreLink != "") {
+        if ($helpCentreLink != "") {
             $helpCentreLinkHtml = "<a href='" . $helpCentreLink . "' target='_blank' class='help-centre'>" . $helpCentreText . "</a>";
         }
 
         return $helpCentreLinkHtml;
     }
 
-    public function getOpenClosedValue($int) {
-
-        $openOrClosed = "";
-
-        $i = 0;
-        $selectedTimes = $this->getConfigDropDownValues();
-        foreach($selectedTimes as $key => $value) {
-            if($key === 'open_or_closed') {
-                if ($i === 0) {
-                    $openOrClosed = $value[$int];
-                }
-            }
-        }
-
-        $openOrClosedTxt = $openOrClosed . ',';
-
-        return $openOrClosedTxt;
-
+    public function getOpeningTimesConfig():array
+    {
+        return [
+            [
+                "opening_time" => $this->getScopeConfigValue('sunday_opening_time'),
+                "closed_time" => $this->getScopeConfigValue('sunday_closed_time'),
+                "open_or_closed" => $this->getScopeConfigValue('sunday_open')
+            ],
+            [
+                "opening_time" => $this->getScopeConfigValue('monday_opening_time'),
+                "closed_time" => $this->getScopeConfigValue('monday_closed_time'),
+                "open_or_closed" => $this->getScopeConfigValue('monday_open')
+            ],
+            [
+                "opening_time" => $this->getScopeConfigValue('tuesday_opening_time'),
+                "closed_time" => $this->getScopeConfigValue('tuesday_closed_time'),
+                "open_or_closed" => $this->getScopeConfigValue('tuesday_open')
+            ],
+            [
+                "opening_time" => $this->getScopeConfigValue('wednesday_opening_time'),
+                "closed_time" => $this->getScopeConfigValue('wednesday_closed_time'),
+                "open_or_closed" => $this->getScopeConfigValue('wednesday_open')
+            ],
+            [
+                "opening_time" => $this->getScopeConfigValue('thursday_opening_time'),
+                "closed_time" => $this->getScopeConfigValue('thursday_closed_time'),
+                "open_or_closed" => $this->getScopeConfigValue('thursday_open')
+            ],
+            [
+                "opening_time" => $this->getScopeConfigValue('friday_opening_time'),
+                "closed_time" => $this->getScopeConfigValue('friday_closed_time'),
+                "open_or_closed" => $this->getScopeConfigValue('friday_open')
+            ],
+            [
+                "opening_time" => $this->getScopeConfigValue('saturday_opening_time'),
+                "closed_time" => $this->getScopeConfigValue('saturday_closed_time'),
+                "open_or_closed" => $this->getScopeConfigValue('saturday_open')
+            ]
+        ];
     }
-
-
-    public function getOpeningHours($int) {
-
-        $openTime = "";
-        $closedTime = "";
-
-        $i = 0;
-        $selectedTimes = $this->getConfigDropDownValues();
-        foreach($selectedTimes as $key => $value) {
-
-            if($key === 'open_time') {
-                if ($i === 0) {
-                    $openTime = $value[$int] . ' - ';
-                }
-            }
-
-            if($key === 'closed_time') {
-                if ($i === 0) {
-                    $closedTime = $value[$int];
-                }
-            }
-
-        }
-
-        $times = $openTime . $closedTime . ',';
-
-        return $times;
-
-    }
-
 }

@@ -1,0 +1,21 @@
+{
+  "name": "limitless/module-sales-hotline",
+  "description": "Show the current days opening times",
+  "require": {
+    "php": "~7.0.0",
+    "magento/framework" : "100.1.*",
+    "magento/module-store" : "100.1.*"
+  },
+  "type": "magento2-module",
+  "license": [
+    "proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\SalesHotline\\": ""
+    }
+  }
+}
