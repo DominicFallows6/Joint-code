@@ -6,7 +6,8 @@
     </head>
     <body>
         <referenceContainer name="content">
-            <block class="Limitless\TopTips\Block\View" name="top.tips" template="Limitless_TopTips::top-tips.phtml" after="product.info.details"/>
+            <block class="Limitless\TopTips\Block\View" name="top.tips" template="Limitless_TopTips::top-tips.phtml"
+                   after="product.info.details"  ifconfig="general/limitless_top_tips/enabled"/>
         </referenceContainer>
     </body>
 </page>
