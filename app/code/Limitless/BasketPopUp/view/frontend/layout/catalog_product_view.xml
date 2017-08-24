@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Limitless_BasketPopUp::css/basket-pop-up.css" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <container name="product.info.pop.up" as="product.info.pop.up" htmlTag="div" htmlClass="product-info-popup" after="-" />
+            <referenceBlock name="product.info.upsell">
+                <action method="setTemplate" ifconfig="general/limitless_basket_pop_up/enabled">
+                    <argument name="template" xsi:type="string">Limitless_BasketPopUp::product/list/items.phtml</argument>
+                </action>
+            </referenceBlock>
+            <block class="Limitless\BasketPopUp\Block\View" name="product.pop.up" template="Limitless_BasketPopUp::pop-up.phtml" after="-" ifconfig="general/limitless_basket_pop_up/enabled" />
+        </referenceContainer>
+        <move element="product.pop.up" destination="product.info.pop.up" after="-"/>
+    </body>
+</page>

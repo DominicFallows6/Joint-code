@@ -40,6 +40,7 @@ return array (
             'Limitless_PaymentIcons' => 1,
             'Limitless_WorldpayOrderExtensions' => 1,
             'Limitless_Worldpay_TDS' => 1,
+            'Limitless_BasketPopUp' => 1,
             'Magento_Cms' => 1,
             'Magento_Rule' => 1,
             'Magento_Catalog' => 1,

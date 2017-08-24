@@ -1,0 +1,65 @@
+<?php
+/** @var \Limitless\BasketPopUp\Block\View $block */
+?>
+
+<div id="pop-up" class="product-pop-up">
+    <div class="product-added">
+        <div class="box-left">
+            <div class="product-message">
+                <span><?=__('Item was added to your basket')?></span>
+            </div>
+            <div class="product-info">
+                <div class="product-image">
+                    <img src="<?=$block->getProductImage()?>" alt="<?=$block->getProductTitle()?>"/>
+                </div>
+                <div class="product-details">
+                    <div class="product-title">
+                        <p><?=$block->getProductTitle()?></p>
+                        <?=$block->isConfigurableProduct()?>
+                    </div>
+                    <div class="product-price">
+                        <?=$block->getProductFinalPrice()?>
+                    </div>
+                </div>
+            </div>
+            <div class="extras-info">
+                <div class="product-image"></div>
+                <div class="product-details">
+                    <div class="product-title"></div>
+                    <div class="product-price"></div>
+                </div>
+            </div>
+        </div>
+        <div class="box-right">
+            <div data-bind="scope: 'minicart_content'">
+                <div class="basket-qty">
+                    <span class="qty"><!-- ko text: getCartParam('summary_count') --><!-- /ko --></span>
+                    <span class="qty-total"><?=__('Basket contains')?>
+                        <strong>
+                            <!-- ko text: getCartParam('summary_count') --><!-- /ko -->
+                            <!-- ko if: getCartParam('summary_count') == 1 -->
+                            <!-- ko i18n: 'item' --><!-- /ko -->
+                            <!-- /ko -->
+                            <!-- ko if: getCartParam('summary_count') > 1 -->
+                            <!-- ko i18n: 'items' --><!-- /ko -->
+                            <!-- /ko -->
+                        </strong>
+                    </span>
+                </div>
+                <div class="basket-total">
+                    <span class="label"><?=__('Total')?>:</span>
+                    <?=$block->taxConfigPricesHtml()?>
+                </div>
+            </div>
+            <div class="buttons">
+                <button class type="button" data-role="action">
+                    <span><?=__('Continue Shopping')?></span>
+                </button>
+                <a class="action primary" href="/checkout/cart/"><?=__('Go to Basket')?></a>
+            </div>
+        </div>
+    </div>
+    <div class="upsells">
+        <?=$this->getBlockHtml('product.info.upsell'); ?>
+    </div>
+</div>
