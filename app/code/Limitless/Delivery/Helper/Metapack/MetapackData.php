@@ -1,6 +1,8 @@
 <?php
 
-namespace Limitless\Delivery\Helper;
+namespace Limitless\Delivery\Helper\Metapack;
+
+use Limitless\Delivery\Helper\DatepickerTransformationInterface;
 
 class MetapackData implements DatepickerTransformationInterface
 {

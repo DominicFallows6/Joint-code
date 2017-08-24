@@ -1,43 +1,24 @@
 <?php
 
-namespace Limitless\Delivery\Helper;
+namespace Limitless\Delivery\Helper\Metapack;
 
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Store\Model\ScopeInterface;
 
-class MetapackOptionsResponse
+class OptionsResponse extends AbstractResponse
 {
+    /**
+     * @var ScopeConfigInterface
+     */
     private $scopeConfig;
 
-    public function __construct(
-        ScopeConfigInterface $scopeConfig
-    ) {
+    /**
+     * OptionsResponse constructor.
+     * @param ScopeConfigInterface $scopeConfig
+     */
+    public function __construct(ScopeConfigInterface $scopeConfig)
+    {
         $this->scopeConfig = $scopeConfig;
-    }
-
-    /**
-     * @param string $configPath
-     * @return string|null
-     */
-    public function getConfig($configPath)
-    {
-        return $this->scopeConfig->getValue($configPath, ScopeInterface::SCOPE_STORE);
-    }
-
-    /**
-     * @param int $orderValue
-     * @param $deliveryOption
-     * @return mixed
-     */
-    public function buildEconomyDeliveryOption(int $orderValue, $deliveryOption)
-    {
-        $economyOption = $deliveryOption;
-        $economyOption['deliveryTimeString'] = (__('3 - 5 Working days'));
-        $economyOption['allocationFilter'] = 'acceptableCarrierServiceGroupCodes:' . $this->getConfig('carriers/delivery/economy_group');
-        $economyOption['deliveryServiceLevelString'] = (__("I'm not in a hurry"));
-        $economyOption['shippingCharge'] = $this->calculateEconomyDeliveryCharge($economyOption['shippingCharge'],
-            $orderValue);
-        return $economyOption;
+        parent::__construct($scopeConfig);
     }
 
     /**
@@ -45,12 +26,12 @@ class MetapackOptionsResponse
      * @param $filteredDeliveryOptions
      * @return array
      */
-    public function buildPremiumDeliveryOption($deliveryOption, $filteredDeliveryOptions): array
+    public function buildPremiumDeliveryOption(array $deliveryOption, array $filteredDeliveryOptions): array
     {
         $deliveryTimeString = $this->buildDeliveryTimeString($deliveryOption);
         $deliveryOption['deliveryTimeString'] = $deliveryTimeString;
         $deliveryOption['deliveryServiceLevelString'] = $this->buildServiceLevelString($deliveryOption);
-        $deliveryOption['allocationFilter'] = $this->buildAllocationFilter($deliveryOption);
+        $deliveryOption['deliveryOptionString'] = $this->buildDeliveryOptionString($deliveryOption);
         $filteredDeliveryOptions[] = $deliveryOption;
 
         return [$deliveryOption, $filteredDeliveryOptions];
@@ -105,28 +86,12 @@ class MetapackOptionsResponse
      * @param $option
      * @return string
      */
-    private function buildAllocationFilter($option)
+    private function buildDeliveryOptionString($option)
     {
-        $acceptableCarrierServiceGroupCodes = $option['groupCodes'][0];
+        $acceptableCarrierServiceGroupCode = $option['groupCodes'][0];
         $acceptableCollectionSlots = $option['collection']['from'] . ',' . $option['collection']['to'];
         $acceptableDeliverySlots = $option['delivery']['from'] . ',' . $option['delivery']['to'];
 
-        return 'acceptableCarrierServiceGroupCodes:' . $acceptableCarrierServiceGroupCodes . '|acceptableCollectionSlots:' . $acceptableCollectionSlots . '|acceptableDeliverySlots:' . $acceptableDeliverySlots;
-    }
-
-    /**
-     * @param $shippingCharge
-     * @param $orderValue
-     * @return int
-     */
-    private function calculateEconomyDeliveryCharge($shippingCharge, $orderValue)
-    {
-        $deliveryThreshold = $this->getConfig('carriers/delivery/delivery_charge_threshold');
-
-        if ($orderValue >= $deliveryThreshold) {
-            $shippingCharge = 0;
-        }
-
-        return $shippingCharge;
+        return 'acceptableCarrierServiceGroupCodes:' . $acceptableCarrierServiceGroupCode . '|acceptableCollectionSlots:' . $acceptableCollectionSlots . '|acceptableDeliverySlots:' . $acceptableDeliverySlots;
     }
 }

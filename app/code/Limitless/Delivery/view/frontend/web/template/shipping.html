@@ -83,7 +83,15 @@
                         <div>
                             <!-- ko if: mobileCheck() == true -->
                             <!-- MOBILE - Choose your delivery date dropdown-->
-                            <div class="choose-delivery-message"><!-- ko i18n: 'Choose your delivery date and time...'--><!-- /ko --></div>
+                            <div id="next-day-info">
+                                <div class="field-tooltip" data-bind="click: toggleNextDayMessage()">
+                                    <!-- ko i18n: 'Next Day'--><!-- /ko -->
+                                </div>
+                                <div id="toggle-next-day"><!-- ko i18n: 'For next day delivery your order must be placed and confirmed by 1pm.' --><!-- /ko --></div>
+                            </div>
+                            <div class="choose-delivery-message">
+                                <span><!-- ko i18n: 'Choose your delivery date and time...'--><!-- /ko --></span>
+                            </div>
                             <select id="mobile-delivery-date"
                                     class="mobile-delivery-rates"
                                     data-bind="
@@ -123,6 +131,9 @@
                         <div>
                             <!-- ko if: mobileCheck() == false -->
                             <div>
+                                <div id="next-day-msg">
+                                    <p><!-- ko i18n: 'For next day delivery your order must be placed and confirmed by 1pm.'--><!-- /ko --></p>
+                                </div>
                                 <!-- DESKTOP - Week picker: left and right arrows -->
                                 <ul id="week-picker" class="desktop-delivery-rates">
                                     <li>

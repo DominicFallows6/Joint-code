@@ -77,19 +77,7 @@ class MetapackDmApiCallTest extends \PHPUnit_Framework_TestCase
         $options = $this->metapackDmApi->call($rateRequest);
 
         foreach($options as $option) {
-            $dateToDeliver = [];
-            $dateToShip = [];
-
             echo $option['carrierServiceCode'] . PHP_EOL;
-            preg_match('/acceptableCollectionSlots:(\d+-\d+-\d+)/', $option['allocationFilter'], $dateToShip);
-            if(!empty($dateToShip)) {
-                echo 'Collection date = ' . $dateToShip[1] . PHP_EOL;
-            }
-
-            preg_match('/acceptableDeliverySlots:(\d+-\d+-\d+)/', $option['allocationFilter'], $dateToDeliver);
-            if(!empty($dateToDeliver)) {
-                echo 'Delivery date = ' . $dateToDeliver[1] . PHP_EOL.PHP_EOL;
-            }
         }
 
         $this->assertNotEmpty($options);

@@ -1,12 +1,13 @@
 <?php
 
-namespace Limitless\Delivery\Helper;
+namespace Limitless\Delivery\Helper\Metapack;
 
+use Limitless\Delivery\DeliveryApi\MetapackDmApi\Type\Address;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Store\Model\ScopeInterface;
 
-class MetapackRequest
+class Request
 {
     /**
      * @var ProductRepositoryInterface
@@ -30,7 +31,7 @@ class MetapackRequest
         return $this->scopeConfig->getValue($configPath, ScopeInterface::SCOPE_STORE);
     }
 
-    public function buildCustomField($data)
+    public function buildCustomField($data, $endpoint = 'options')
     {
         $customField = '';
 
@@ -56,7 +57,7 @@ class MetapackRequest
             }
         }
 
-        if($customField !== '') {
+        if($endpoint === 'options' && $customField !== '') {
             $customField = '&custom6=' . $customField;
         }
 
@@ -81,7 +82,7 @@ class MetapackRequest
 
         return max($maxLength,$maxWidth,$maxHeight);
     }
-  
+
     public function parcelCount($data)
     {
         // Return estimated number of parcels in Customer's basket (based on max parcel weight set in admin)
@@ -113,14 +114,15 @@ class MetapackRequest
     }
 
     /**
-     * @return string
+     * @param string $endpoint
+     * @return array|string
      */
-    public function includedGroups()
+    public function includedGroups($endpoint = 'options')
     {
         $includedGroups = '';
-        $timedGroups = $this->getConfig('carriers/delivery/timed_groups');
-        $premiumGroups = $this->getConfig('carriers/delivery/premium_groups');
-        $economyGroup = $this->getConfig('carriers/delivery/economy_group');
+        $timedGroups = $this->getConfig('carriers/delivery_metapack/timed_groups');
+        $premiumGroups = $this->getConfig('carriers/delivery_metapack/premium_groups');
+        $economyGroup = $this->getConfig('carriers/delivery_metapack/economy_group');
 
         if ($economyGroup != '') {
             $includedGroups = $economyGroup;
@@ -134,6 +136,30 @@ class MetapackRequest
             $includedGroups = ($includedGroups != '' ? $includedGroups . ',' . $timedGroups : $timedGroups);
         }
 
-        return $includedGroups != '' ? '&incgrp=' . $includedGroups : '';
+        if ($endpoint === 'options') {
+            return $includedGroups != '' ? '&incgrp=' . $includedGroups : '';
+        } else {
+            return explode(',', $includedGroups);
+        }
+    }
+
+    /**
+     * @return Address
+     */
+    public function buildSenderAddress()
+    {
+        /** @var Address $senderAddress */
+        $senderAddress = new Address();
+
+        $senderAddress->companyName = $this->getConfig('general/store_information/name');
+        $senderAddress->countryCode = $this->getConfig('general/store_information/country_id');
+        $senderAddress->line1 = $this->getConfig('general/store_information/street_line1');
+        $senderAddress->line2 = $this->getConfig('general/store_information/street_line2');
+        $senderAddress->line3 = $this->getConfig('general/store_information/city');
+        $senderAddress->postCode = $this->getConfig('general/store_information/postcode');
+        $senderAddress->region = $this->getConfig('general/store_information/region_id');
+        $senderAddress->type = 'Business';
+
+        return $senderAddress;
     }
 }

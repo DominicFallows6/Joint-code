@@ -2,7 +2,7 @@
 
 namespace Limitless\Delivery\Test\Integration;
 
-use Limitless\Delivery\Helper\MetapackData;
+use Limitless\Delivery\Helper\Metapack\MetapackData;
 
 class DataTransformationTest extends \PHPUnit_Framework_TestCase
 {

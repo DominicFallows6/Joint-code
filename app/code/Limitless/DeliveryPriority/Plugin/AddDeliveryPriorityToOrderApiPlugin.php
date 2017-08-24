@@ -48,6 +48,23 @@ class AddDeliveryPriorityToOrderApiPlugin
     }
 
     /**
+     * @param OrderRepositoryInterface $subject
+     * @param \Closure $proceed
+     * @param $searchCriteria
+     * @return \Magento\Sales\Api\Data\OrderSearchResultInterface
+     */
+    public function aroundGetList(OrderRepositoryInterface $subject, \Closure $proceed, $searchCriteria)
+    {
+        /** @var \Magento\Sales\Api\Data\OrderSearchResultInterface $searchResults */
+        $searchResults = $proceed($searchCriteria);
+        $orders = $searchResults->getItems();
+        foreach ($orders as $key => $order) {
+            $this->addExtensionAttributesToOrder($order);
+        }
+        return $searchResults;
+    }
+
+    /**
      * @param OrderInterface $order
      */
     private function addExtensionAttributesToOrder(OrderInterface $order)

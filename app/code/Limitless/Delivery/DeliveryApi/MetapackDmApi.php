@@ -6,135 +6,53 @@ use Limitless\Delivery\DeliveryApi\MetapackDmApi\Service\AllocationService;
 use Limitless\Delivery\DeliveryApi\MetapackDmApi\Type\Address;
 use Limitless\Delivery\DeliveryApi\MetapackDmApi\Type\AllocationFilter;
 use Limitless\Delivery\DeliveryApi\MetapackDmApi\Type\Consignment;
-use Limitless\Delivery\Helper\MetapackRequest;
-use Limitless\Delivery\Helper\MetapackDmResponse;
+use Limitless\Delivery\Helper\Metapack\Request;
+use Limitless\Delivery\Helper\Metapack\DmResponse as Response;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
-use Magento\Store\Model\ScopeInterface;
+use Magento\Quote\Model\Quote\Address\RateRequest;
 
-class MetapackDmApi implements DeliveryApiInterface
+class MetapackDmApi extends DeliveryApi
 {
     /**
      * @var ProductRepositoryInterface
      */
     private $productRepository;
 
-    private $metapackRequest;
-    private $metapackResponse;
-    private $scopeConfig;
+    /**
+     * @var Request
+     */
+    private $request;
 
+    /**
+     * @var Response
+     */
+    private $response;
+
+    /**
+     * @var ScopeConfigInterface
+     */
+    protected $scopeConfig;
+
+    /**
+     * MetapackDmApi constructor.
+     * @param ScopeConfigInterface $scopeConfig
+     * @param Request $request
+     * @param Response $response
+     * @param ProductRepositoryInterface $productRepository
+     */
     public function __construct(
         ScopeConfigInterface $scopeConfig,
-        MetapackRequest $metapackRequest,
-        MetapackDmResponse $metapackResponse,
+        Request $request,
+        Response $response,
         ProductRepositoryInterface $productRepository
     ) {
-        $this->scopeConfig = $scopeConfig;
-        $this->metapackRequest = $metapackRequest;
-        $this->metapackResponse = $metapackResponse;
+        $this->request = $request;
+        $this->response = $response;
         $this->productRepository = $productRepository;
-    }
+        $this->scopeConfig = $scopeConfig;
 
-    /**
-     * @param string $configPath
-     * @return string|null
-     */
-    public function getConfig($configPath)
-    {
-        return $this->scopeConfig->getValue($configPath, ScopeInterface::SCOPE_STORE);
-    }
-
-    // TODO: Get rid of these utility functions and call getConfig directly?
-    private function getStoreName()
-    {
-        return $this->getConfig('general/store_information/name');
-    }
-
-    private function getStoreCountry()
-    {
-        return $this->getConfig('general/store_information/country_id');
-    }
-
-    private function getStoreStreetLine1()
-    {
-        return $this->getConfig('general/store_information/street_line1');
-    }
-
-    private function getStoreStreetLine2()
-    {
-        return $this->getConfig('general/store_information/street_line2');
-    }
-
-    private function getStoreCity()
-    {
-        return $this->getConfig('general/store_information/city');
-    }
-
-    private function getStorePostcode()
-    {
-        return $this->getConfig('general/store_information/postcode');
-    }
-
-    private function getStoreRegion()
-    {
-        return $this->getConfig('general/store_information/region_id');
-    }
-
-    private function getStorePhoneNumber()
-    {
-        return $this->getConfig('general/store_information/phone');
-    }
-
-    private function getStoreBaseCurrency()
-    {
-        return $this->getConfig('currency/options/base');
-    }
-
-    private function getStoreLocale()
-    {
-        return $this->getConfig('general/locale/code');
-    }
-
-    /**
-     * @param $a
-     * @param $b
-     * @return int
-     */
-    private function compareDates($a, $b)
-    {
-        $dateA = strtotime($a['deliveryWindow']->to);
-        $dateB = strtotime($b['deliveryWindow']->to);
-
-        if ($dateA == $dateB) {
-            return 0;
-        }
-
-        return ($dateA < $dateB) ? -1 : 1;
-    }
-
-    private function getWarehouseCode()
-    {
-        return $this->getConfig('carriers/delivery/warehouse_code');
-    }
-
-    // TODO: Create Interface for Helper/MetapackRequest ansd split into Options and DM, then add this into respective class
-    /**
-     * @return Address
-     */
-    private function buildSenderAddress()
-    {
-        $senderAddress = new Address();
-
-        $senderAddress->companyName = $this->getStoreName();
-        $senderAddress->countryCode = $this->getStoreCountry();
-        $senderAddress->line1 = $this->getStoreStreetLine1();
-        $senderAddress->line2 = $this->getStoreStreetLine2();
-        $senderAddress->line3 = $this->getStoreCity();
-        $senderAddress->postCode = $this->getStorePostcode();
-        $senderAddress->region = $this->getStoreRegion();
-        $senderAddress->type = 'Business';
-
-        return $senderAddress;
+        parent::__construct($scopeConfig);
     }
 
     /**
@@ -144,6 +62,7 @@ class MetapackDmApi implements DeliveryApiInterface
      */
     private function buildRecipientAddress($request, Address $senderAddress)
     {
+        /** @var Address $recipientAddress */
         $recipientAddress = new Address();
 
         // Possible bug with M2 regarding dest_street and dest_city.
@@ -157,44 +76,61 @@ class MetapackDmApi implements DeliveryApiInterface
     }
 
     /**
+     * @param $a
+     * @param $b
+     * @return int
+     */
+    protected function compareDates($a, $b)
+    {
+        $dateA = strtotime($a['deliveryWindow']->to);
+        $dateB = strtotime($b['deliveryWindow']->to);
+
+        if ($dateA == $dateB) {
+            return 0;
+        }
+
+        return ($dateA < $dateB) ? -1 : 1;
+    }
+
+    /**
      * @param $request
      * @return Consignment
      */
-    public function buildRequest($request,$parcels = null)
+    public function buildRequest(RateRequest $request)
     {
-        $senderAddress = $this->buildSenderAddress();
+        $senderAddress = $this->request->buildSenderAddress();
         $recipientAddress = $this->buildRecipientAddress($request,$senderAddress);
-        $customField = $this->buildCustomField($request);
+        $customField = $this->request->buildCustomField($request,'dm');
 
+        /** @var Consignment $consignment */
         $consignment = new Consignment();
-        $consignment->cashOnDeliveryCurrency = $this->getStoreBaseCurrency();
+        $consignment->cashOnDeliveryCurrency = $this->getConfig('currency/options/base');
         $consignment->CODAmount = 0.00;
         $consignment->CODFlag = 0;
         $consignment->consignmentLevelDetailsFlag = 1;
         $consignment->consignmentValue = ($request['value'] ? $request['value'] : 0.00);
         $consignment->consignmentWeight = $request['package_weight'];
-        $consignment->languageCode = strtoupper(explode('_',$this->getStoreLocale())[0]);
-        $consignment->maxDimension = $this->metapackRequest->getMaxDimension($request);
+        $consignment->languageCode = strtoupper(explode('_',$this->getConfig('general/locale/code'))[0]);
+        $consignment->maxDimension = $this->request->getMaxDimension($request);
         $consignment->orderNumber = ($request['order_number'] ? $request['order_number'] : '123456');
         $consignment->orderValue = ($request['value'] ? $request['value'] : 0.00);
-        $consignment->parcelCount = $this->metapackRequest->parcelCount($request);
-        //$consignment->podRequired = 'signature';
+        $consignment->parcelCount = $this->request->parcelCount($request);
         $consignment->recipientAddress = $recipientAddress;
-        $consignment->recipientContactPhone = ($request['phone'] ? $request['phone'] : $this->getStorePhoneNumber());
+        $consignment->recipientContactPhone = ($request['phone'] ? $request['phone'] : $this->getConfig('general/store_information/phone'));
         $consignment->recipientEmail = '';
         $consignment->recipientFirstName = ($request['first_name'] ? $request['first_name'] : '');
         $consignment->recipientLastName = ($request['last_name'] ? $request['last_name'] : '');
         $consignment->recipientMobilePhone = '';
         $consignment->recipientName = $request['first_name'] . ' ' . $request['last_name'];
-        $consignment->recipientPhone = ($request['phone'] ? $request['phone'] : $this->getStorePhoneNumber());
+        $consignment->recipientPhone = ($request['phone'] ? $request['phone'] : $this->getConfig('general/store_information/phone'));
         $consignment->recipientTimeZone = '';
         $consignment->recipientTitle = '';
         $consignment->senderAddress = $senderAddress;
-        $consignment->senderCode = $this->getWarehouseCode();
-        $consignment->senderFirstName = $this->getStoreName();
+        $consignment->senderCode = $this->getConfig('carriers/delivery_metapack/warehouse_code', true);
+        $consignment->senderFirstName = $this->getConfig('general/store_information/name');
         $consignment->senderLastName = '';
-        $consignment->senderName = $this->getStoreName();
-        $consignment->senderPhone = $this->getStorePhoneNumber();
+        $consignment->senderName = $this->getConfig('general/store_information/name');
+        $consignment->senderPhone = $this->getConfig('general/store_information/phone');
         $consignment->transactionType = 'delivery';
         $consignment->twoManLiftFlag = 0;
 
@@ -210,9 +146,10 @@ class MetapackDmApi implements DeliveryApiInterface
      */
     private function buildAllocationFilter()
     {
+        /** @var AllocationFilter $allocationFilter */
         $allocationFilter = new AllocationFilter();
         $allocationFilter->acceptableDeliverySlots = date("Y-m-d").'T00:00:00.000Z,'. $this->getDateTo() .'T23:59:59.999Z';
-        $includedGroups = $this->includedGroups();
+        $includedGroups = $this->request->includedGroups();
 
         if ($includedGroups) {
             $allocationFilter->acceptableCarrierServiceGroupCodes = $includedGroups;
@@ -225,84 +162,39 @@ class MetapackDmApi implements DeliveryApiInterface
         return $allocationFilter;
     }
 
-    // TODO: This needs adding into seperare 'request' helper (as per options)
-    public function buildCustomField($data)
-    {
-        $customField = '';
-
-        /** @var \Magento\Quote\Model\Quote\Address\RateRequest $data */
-        $items = $data->getAllItems();
-        if (is_array($items)) {
-            foreach ($items as $item) {
-                $product = $this->productRepository->getById($item->getProductId());
-                if ($product->getPallet() == 1 && strpos($customField,'PALLET') === false) {
-                    if(strlen($customField) > 0) {
-                        $customField .= ',PALLET';
-                    } else {
-                        $customField = 'PALLET';
-                    }
-                }
-                if ($product->getTwoman() == 1 && strpos($customField,'TWOMAN') === false) {
-                    if(strlen($customField) > 0) {
-                        $customField .= ',TWOMAN';
-                    } else {
-                        $customField = 'TWOMAN';
-                    }
-                }
-            }
-        }
-
-        return $customField;
-    }
-
     /**
-     * @return string
+     * @param $request
+     * @return array
      */
-    public function includedGroups()
-    {
-        $includedGroups = '';
-        $timedGroups = $this->getConfig('carriers/delivery/timed_groups');
-        $premiumGroups = $this->getConfig('carriers/delivery/premium_groups');
-        $economyGroup = $this->getConfig('carriers/delivery/economy_group');
-
-        if ($economyGroup != '') {
-            $includedGroups = $economyGroup;
-        }
-
-        if ($premiumGroups != '') {
-            $includedGroups = ($includedGroups != '' ? $includedGroups . ',' . $premiumGroups : $premiumGroups);
-        }
-
-        if ($timedGroups != '') {
-            $includedGroups = ($includedGroups != '' ? $includedGroups . ',' . $timedGroups : $timedGroups);
-        }
-
-        return explode(',', $includedGroups);
-    }
-
-    public function call($request)
+    public function call(RateRequest $request): array
     {
         if ($request['dest_postcode'] === '*' || $request['dest_postcode'] == '') {
             return [$this->offlineDeliveryOption()];
         }
-        $allocationService = new AllocationService($this->getConfig('carriers/delivery/wsdl').'AllocationService?wsdl',array("login" => $this->getConfig('carriers/delivery/username'), "password" => $this->getConfig('carriers/delivery/password')));
-        $deliveryOptions = $allocationService->findDeliveryOptions($this->buildRequest($request),$this->buildAllocationFilter($request),0);
 
-        $value = $request['package_value'] ? $request['package_value'] : 0.00;
+        /** @var AllocationService $allocationService */
+        $allocationService = new AllocationService($this->getConfig('carriers/delivery/wsdl', true).'AllocationService?wsdl',array("login" => $this->getConfig('carriers/delivery/username'), "password" => $this->getConfig('carriers/delivery/password')));
+        $deliveryOptions = $allocationService->findDeliveryOptions($this->buildRequest($request),$this->buildAllocationFilter(),0);
+        $value = $request['package_value'] ?? 0.00;
 
         return $this->filterResponse($deliveryOptions, $value);
     }
 
-    public function filterResponse($deliveryOptions, $orderValue)
+    /**
+     * @param $deliveryOptions
+     * @param $orderValue
+     * @return array
+     */
+    public function filterResponse($deliveryOptions, $orderValue): array
     {
         setlocale(LC_TIME, $this->getConfig('general/locale/code'));
 
         $groupDateMapping = [];
         $filteredDeliveryOptions = [];
         $economyOption = [];
-        $timedGroups = explode(',', $this->getConfig('carriers/delivery/timed_groups'));
-        $premiumGroups = explode(',', $this->getConfig('carriers/delivery/premium_groups'));
-        $economyGroup = $this->getConfig('carriers/delivery/economy_group');
+        $timedGroups = explode(',', $this->getConfig('carriers/delivery_metapack/timed_groups'));
+        $premiumGroups = explode(',', $this->getConfig('carriers/delivery_metapack/premium_groups', true));
+        $economyGroup = $this->getConfig('carriers/delivery_metapack/economy_group', true);
 
         foreach ($deliveryOptions as $deliveryOption) {
             if (!is_array($deliveryOption)) {
@@ -322,10 +214,11 @@ class MetapackDmApi implements DeliveryApiInterface
                         'date' => $date,
                         'shipping_charge' => $deliveryOption['shippingCharge']
                     ];
-                    $filteredDeliveryOptions[] = $this->metapackResponse->buildPremiumDeliveryOption($deliveryOption, $groupCode);
+                    $deliveryOption['groupCode'] = $groupCode;
+                    $filteredDeliveryOptions[] = $this->response->buildPremiumDeliveryOption($deliveryOption, $filteredDeliveryOptions);
                 }  else if ($groupCode == $economyGroup) {
                     if (empty($economyOption['shippingCharge']) || $deliveryOption['shippingCharge'] < $economyOption['shippingCharge']) {
-                        $economyOption = $this->metapackResponse->buildEconomyDeliveryOption($orderValue, $deliveryOption);
+                        $economyOption = $this->response->buildEconomyDeliveryOption($orderValue, $deliveryOption);
                     }
                 }
             }
@@ -346,21 +239,12 @@ class MetapackDmApi implements DeliveryApiInterface
     private function getDateTo()
     {
         $deliveryWeeks = 2;
-        if (is_numeric($this->getConfig('carriers/delivery/delivery_weeks'))) {
-            $deliveryWeeks = $this->getConfig('carriers/delivery/delivery_weeks');
+        $deliveryWeeksCompare = $this->getConfig('carriers/delivery/delivery_weeks', true);
+        if (is_numeric($deliveryWeeksCompare) && $deliveryWeeksCompare > 0) {
+            $deliveryWeeks = $deliveryWeeksCompare;
         }
         $dateTo = date("Y-m-d", strtotime('+' . $deliveryWeeks . ' weeks'));
         return $dateTo;
     }
 
-    private function offlineDeliveryOption()
-    {
-        $offlineOption = [];
-        $offlineOption['deliveryTimeString'] = (__('3 - 5 Working days'));
-        $offlineOption['allocationFilter'] = $this->getConfig('carriers/delivery/economy_group');
-        $offlineOption['deliveryServiceLevelString'] = (__('Standard delivery'));
-        $offlineOption['shippingCharge'] = $this->getConfig('carriers/delivery/economy_group_price');
-
-        return $offlineOption;
-    }
 }

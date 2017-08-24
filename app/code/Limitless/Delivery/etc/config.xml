@@ -4,15 +4,6 @@
         <carriers>
             <delivery>
                 <active>1</active>
-                <username>soap_ts</username>
-                <password>d1lb3rt75</password>
-                <wsdl>https://dm.metapack.com/api/5.x/services/</wsdl>
-                <key>cf720d4c-edc3-443a-9cf7-febec4e6733b</key>
-                <url>https://dmo.metapack.com</url>
-                <warehouse_code>DC</warehouse_code>
-                <timed_groups>NEXTDAY12,NEXTDAY930,SAT930,SATURDAYAM</timed_groups>
-                <premium_groups>NEXTDAY,SATURDAYPM</premium_groups>
-                <economy_group>ECONOMY</economy_group>
                 <economy_group_price>0</economy_group_price>
                 <delivery_charge_threshold>0</delivery_charge_threshold>
                 <delivery_weeks>2</delivery_weeks>
@@ -22,6 +13,21 @@
                 <model>Limitless\Delivery\Model\Carrier</model>
                 <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
             </delivery>
+            <delivery_metapack>
+                <warehouse_code>DC</warehouse_code>
+                <timed_groups>NEXTDAY12,NEXTDAY930,SAT930,SATURDAYAM</timed_groups>
+                <premium_groups>NEXTDAY,NEXTDAY12,NEXTDAY930,SAT930,SATURDAYPM,SATURDAYAM</premium_groups>
+                <economy_group>ECONOMY</economy_group>
+            </delivery_metapack>
+            <delivery_metapack_dm>
+                <username>soap_ts</username>
+                <password>d1lb3rt75</password>
+                <wsdl>https://dm.metapack.com/api/5.x/services/</wsdl>
+            </delivery_metapack_dm>
+            <delivery_metapack_options>
+                <key>cf720d4c-edc3-443a-9cf7-febec4e6733b</key>
+                <url>https://dmo.metapack.com</url>
+            </delivery_metapack_options>
         </carriers>
     </default>
 </config>

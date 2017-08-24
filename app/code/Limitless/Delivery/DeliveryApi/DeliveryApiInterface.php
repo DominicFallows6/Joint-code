@@ -2,11 +2,13 @@
 
 namespace Limitless\Delivery\DeliveryApi;
 
+use Magento\Quote\Model\Quote\Address\RateRequest;
+
 interface DeliveryApiInterface
 {
-    public function buildRequest($data);
+    public function buildRequest(RateRequest $request);
 
-    public function call($request);
+    public function call(RateRequest $request): array;
 
-    public function filterResponse($deliveryOptions, $orderValue);
+    public function filterResponse($deliveryOptions, $orderValue): array;
 }

@@ -434,7 +434,7 @@ define(
                     initialCountry = quote.shippingAddress().countryId.toLowerCase();
 
                 if (!quote.shippingMethod()) {
-                    this.errorValidationMessage('Please specify a shipping method.');
+                    this.errorValidationMessage($.mage.__('Please specify a shipping method.'));
 
                     return false;
                 }
@@ -535,6 +535,9 @@ define(
                     // update everything when the rates are updated:
                     quote.shippingAddress(quoteAddress);
                 }
+            },
+            toggleNextDayMessage: function () {
+                $('#toggle-next-day').slideToggle('fast');
             }
         });
     }

@@ -9,7 +9,9 @@ use Magento\Sales\Api\OrderManagementInterface;
 
 class SetPlaceOrderIdPlugin
 {
-    /** @var AllocationFilterFactory */
+    /**
+     * @var AllocationFilterFactory
+     */
     private $allocationFilterFactory;
 
     public function __construct(AllocationFilterFactory $allocationFilterFactory)

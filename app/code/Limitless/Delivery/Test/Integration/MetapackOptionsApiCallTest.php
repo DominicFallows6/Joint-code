@@ -82,12 +82,12 @@ class MetapackOptionsApiCallTest extends \PHPUnit_Framework_TestCase
             $dateToShip = [];
 
             echo $option['carrierServiceCode'] . PHP_EOL;
-            preg_match('/acceptableCollectionSlots:(\d+-\d+-\d+)/', $option['allocationFilter'], $dateToShip);
+            preg_match('/acceptableCollectionSlots:(\d+-\d+-\d+)/', $option['deliveryOptionString'], $dateToShip);
             if(!empty($dateToShip)) {
                 echo 'Collection date = ' . $dateToShip[1] . PHP_EOL;
             }
 
-            preg_match('/acceptableDeliverySlots:(\d+-\d+-\d+)/', $option['allocationFilter'], $dateToDeliver);
+            preg_match('/acceptableDeliverySlots:(\d+-\d+-\d+)/', $option['deliveryOptionString'], $dateToDeliver);
             if(!empty($dateToDeliver)) {
                 echo 'Delivery date = ' . $dateToDeliver[1] . PHP_EOL.PHP_EOL;
             }

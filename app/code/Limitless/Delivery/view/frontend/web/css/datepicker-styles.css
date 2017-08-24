@@ -39,7 +39,35 @@
         float: right;
     }
 }
-
+#next-day-msg p {
+    font-size: 13px;
+    padding: 13px;
+    border: 1px solid #ccc;
+    background: #efefef;
+}
+#next-day-info {
+    margin: 10px 0 5px 0;
+}
+#next-day-info .field-tooltip {
+    position: relative;
+}
+#next-day-info .field-tooltip span:nth-child(1) {
+    display: inline-block;
+    border: 1px solid #333;
+    padding: 5px 30px 5px 10px;
+    font-size: 13px;
+    background: url('../../images/select-bg.svg') no-repeat 100% 48%;
+}
+#next-day-info .field-tooltip-action {
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+#toggle-next-day {
+    padding:10px;
+    background: #efefef;
+    margin-top:10px;
+}
 #week-picker {
     font-weight: bold;
     font-size: 17px;

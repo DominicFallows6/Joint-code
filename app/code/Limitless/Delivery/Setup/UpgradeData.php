@@ -8,6 +8,7 @@ use Magento\Eav\Setup\EavSetupFactory;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\ModuleDataSetupInterface;
 use Magento\Framework\Setup\UpgradeDataInterface;
+use Magento\Eav\Api\AttributeRepositoryInterface;
 
 class UpgradeData implements UpgradeDataInterface
 {
@@ -15,6 +16,7 @@ class UpgradeData implements UpgradeDataInterface
      * @var EavSetupFactory
      */
     private $eavSetupFactory;
+    private $attributeRepository;
 
     /**
      * @var ModuleDataSetupInterface setup
@@ -25,9 +27,12 @@ class UpgradeData implements UpgradeDataInterface
      * UpgradeData constructor.
      * @param EavSetupFactory $eavSetupFactory
      */
-    public function __construct(EavSetupFactory $eavSetupFactory)
-    {
+    public function __construct(
+        EavSetupFactory $eavSetupFactory,
+        AttributeRepositoryInterface $attributeRepository
+    ) {
         $this->eavSetupFactory = $eavSetupFactory;
+        $this->attributeRepository = $attributeRepository;
     }
 
     /**
@@ -90,18 +95,48 @@ class UpgradeData implements UpgradeDataInterface
             ]
         );
 
-        $eavSetup->addAttribute(\Magento\Catalog\Model\Product::ENTITY,
-            'twoman',
-            [
-                'type' => 'int',
-                'input' => 'boolean',
-                'label' => 'Two Man Delivery',
-                'required' => false,
-                'user_defined' => false,
-                'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE,
-                'group' => 'Shipping',
-            ]
-        );
+        try {
+            $attribute = $this->attributeRepository->get(\Magento\Catalog\Model\Product::ENTITY, 'carrier_option');
+        } catch (\Magento\Framework\Exception\NoSuchEntityException $e) {
+            $attribute = false;
+            echo $e->getMessage().PHP_EOL;
+        }
+
+        if (!$attribute) {
+            $eavSetup->addAttribute(
+                \Magento\Catalog\Model\Product::ENTITY,
+                'carrier_option',
+                [
+                    'type' => 'text',
+                    'label' => 'Carrier Option',
+                    'input' => 'multiselect',
+                    'required' => false,
+                    'backend' => 'Magento\Eav\Model\Entity\Attribute\Backend\ArrayBackend',
+                    'global' => \Magento\Eav\Model\Entity\Attribute\ScopedAttributeInterface::SCOPE_STORE,
+                    'visible' => true,
+                    'user_defined' => false,
+                    'searchable' => false,
+                    'filterable' => false,
+                    'filterable_in_search' => false,
+                    'comparable' => false,
+                    'visible_on_front' => false,
+                    'unique' => true,
+                    'group' => 'Shipping',
+                    'is_used_in_grid' => true,
+                    'is_visible_in_grid' => false,
+                    'is_filterable_in_grid' => false,
+                    'option' => [
+                        'values' => [
+                            'FRAGILE',
+                            'HIVALUE',
+                            'BULKY',
+                            'HAZARDOUS',
+                            'PALLET'
+                        ]
+                    ]
+                ]
+            );
+        }
     }
 
     private function insertMetapackCarrierSorting()

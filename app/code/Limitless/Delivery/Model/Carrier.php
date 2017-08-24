@@ -35,7 +35,7 @@ class Carrier extends AbstractCarrier implements CarrierInterface
      * @param LoggerInterface $logger
      * @param ResultFactory $rateResultFactory
      * @param MethodFactory $rateMethodFactory
-     * @param DeliveryApi $deliveryApi
+     * @param DeliveryApiInterface $deliveryApi
      * @param array $data
      */
     public function __construct(
@@ -83,7 +83,7 @@ class Carrier extends AbstractCarrier implements CarrierInterface
 
                 $method->setCarrier('delivery');
                 $method->setCarrierTitle($deliveryOption['deliveryServiceLevelString']);
-                $method->setMethod($deliveryOption['allocationFilter']);
+                $method->setMethod($deliveryOption['deliveryOptionString']);
                 $method->setMethodTitle($deliveryOption['deliveryTimeString']);
 
                 $amount = $deliveryOption['shippingCharge'];
