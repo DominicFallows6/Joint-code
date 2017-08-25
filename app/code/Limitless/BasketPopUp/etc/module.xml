@@ -5,6 +5,7 @@
         <sequence>
             <module name="Magento_Catalog"/>
             <module name="Limitless_UpsellTab"/>
+            <module name="Limitless_ContactUsPopUp"/>
         </sequence>
     </module>
 </config>
