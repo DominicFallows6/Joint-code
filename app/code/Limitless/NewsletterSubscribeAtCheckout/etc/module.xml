@@ -1,12 +1,10 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Limitless_VATMessage" setup_version="0.1.0">
+    <module name="Limitless_NewsletterSubscribeAtCheckout" setup_version="0.0.1">
         <sequence>
             <module name="Magento_Checkout"/>
-            <module name="Magento_Customer"/>
-            <module name="Magento_CustomerCustomAttributes"/>
-            <module name="Limitless_NewsletterSubscribeAtCheckout"/>
+            <module name="Magento_Newsletter"/>
         </sequence>
     </module>
 </config>

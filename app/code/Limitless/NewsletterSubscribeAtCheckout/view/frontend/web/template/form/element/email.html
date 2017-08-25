@@ -1,9 +1,3 @@
-<!--
-/**
- * Copyright © 2013-2017 Magento, Inc. All rights reserved.
- * See COPYING.txt for license details.
- */
--->
 <!-- ko ifnot: isCustomerLoggedIn() -->
 
 <!-- ko foreach: getRegion('before-login-form') -->
@@ -27,20 +21,16 @@
                        data-validate="{required:true, 'validate-email':true}"
                        id="customer-email" />
                 <!-- ko template: 'ui/form/element/helper/tooltip' --><!-- /ko -->
-                <span class="note" data-bind="fadeVisible: isPasswordVisible() == false">
-                    <!-- ko i18n: 'You can create an account after checkout.'--><!-- /ko -->
-                    <!-- ko i18n: ' Or '--><!-- /ko -->
-                    <a href="/customer/account/create" data-bind="i18n:'create an account'"></a>
-                    <!-- ko i18n: ' now to enter your VAT number for VAT exemption.' --><!-- /ko -->
-                </span>
+                <span class="note" data-bind="fadeVisible: isPasswordVisible() == false"><!-- ko i18n: 'You can create an account after checkout.'--><!-- /ko --></span>
             </div>
         </div>
+
 
         <!-- ko foreach: getRegion('newsletter-subscribe') -->
         <!-- ko template: getTemplate() --><!-- /ko -->
         <!--/ko-->
 
-        <!--Hidden fields test -->
+        <!--Hidden fields -->
         <fieldset class="fieldset hidden-fields" data-bind="fadeVisible: isPasswordVisible">
             <div class="field">
                 <label class="label" for="customer-password">
@@ -52,7 +42,7 @@
                            type="password"
                            name="password"
                            id="customer-password"
-                           data-validate="{required:true}" autocomplete="off"/>
+                           data-validate="{required:true, 'validate-password':true}" autocomplete="off"/>
                     <span class="note" data-bind="i18n: 'You already have an account with us. Sign in or continue as guest.'"></span>
                 </div>
 
