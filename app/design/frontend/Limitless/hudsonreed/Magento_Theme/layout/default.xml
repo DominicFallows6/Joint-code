@@ -51,7 +51,7 @@
 
         <move element="breadcrumbs" destination="main.content" before="-"/>
 
-        <move element="global.lister.banner" destination="main.content" before="breadcrumbs"/>
+        <move element="global.lister.banner" destination="main.content" before="-"/>
 
     </body>
 </page>
