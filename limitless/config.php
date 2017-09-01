@@ -233,5 +233,6 @@ return array (
             'Limitless_ApiImageBypass' => 1,
             'Limitless_NewsletterSubscribeAtCheckout' => 1,
             'Limitless_VATMessage' => 1,
+            'Limitless_CookieLawFixes' => 1,
         ),
 );

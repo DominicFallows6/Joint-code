@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <!-- Display different message (implied consent by continuing)-->
+    <!-- Fixes for Cookie restriction mode on varnish -->
+    <!-- Fixes with JS (requirejs-config to stringify value -->
+    <preference for="Magento\Cookie\Block\Html\Notices"
+                type="Limitless\CookieLawFixes\Block\Html\Notices" />
+
+    <!-- Fixes for cookie mode to always allow -->
+    <type name="Magento\Cookie\Helper\Cookie">
+        <plugin name="limitless_cookiehelperplugin" type="Limitless\CookieLawFixes\Plugin\CookieLawRestrictionMode" />
+    </type>
+
+</config>
