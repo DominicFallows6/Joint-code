@@ -107,6 +107,7 @@ return array (
             'Magento_ImportExport' => 1,
             'Magento_Reports' => 1,
             'Limitless_MinifyExcludeWorldpay' => 1,
+            'PCAPredict_Tag' => 1,
             'Magento_AdvancedSearch' => 1,
             'Magento_Email' => 1,
             'Magento_EncryptionKey' => 1,
