@@ -5,9 +5,17 @@
         <label>BTU Calculator</label>
         <description>Show BTU Calculator</description>
         <parameters>
-            <parameter name="css_changes" xsi:type="block" visible="true" sort_order="0">
+            <parameter name="btu" xsi:type="select" visible="true" source_model="Magento\Config\Model\Config\Source\Yesno" sort_order="10">
+                <label>BTU Display</label>
+                <description>Display BTU results and watts. Select No just to use watts.</description>
+            </parameter>
+            <parameter name="css_changes" xsi:type="block" visible="true" sort_order="20">
                 <label>Custom CSS</label>
                 <block class="Limitless\BtuCalculator\Block\Adminhtml\Widget\TextField" />
+            </parameter>
+            <parameter name="filter_output_url" xsi:type="text" visible="true" sort_order="30">
+                <label>Enter Url for category</label>
+                <description>Please enter url and attribute code e.g. /radiators?filter_output</description>
             </parameter>
         </parameters>
     </widget>

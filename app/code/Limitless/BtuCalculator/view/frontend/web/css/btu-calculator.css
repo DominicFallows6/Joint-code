@@ -26,24 +26,24 @@
 #btu_calc .input-css { -webkit-appearance: none; -webkit-border-radius: 0; border: 1px solid #CECECE; width: 100%; color: black; height: 43px; background-color: white;}
 #btu_calc .required {color: red;}
 #btu_calc .reset-btu, #btu_calc .calculate {background-color: #7B7B7B; color: white; width: 48%; display: inline-block; text-align: center; font-size: 19px; cursor:pointer;text-transform:uppercase;line-height:40px;min-height:40px;}
-#btu_calc .calculate {background-color: #00B233; float:right; border:none; margin:0;line-height:normal;}
+#btu_calc .calculate {background-color: #00B233; float:right; border:none; margin:0;line-height:normal; -webkit-appearance: none; -webkit-border-radius: 0;}
 #btu_calc .btu_container a {text-decoration: none;}
 #btu_calc .requirements-info {width:100%; background-color: #444444; color: white; font-size: 19px; font-weight: lighter;}
 #btu_calc .requirements-info div {padding: 2%;}
 #btu_calc .inset input {background-color: transparent; border: none; font-size: 48px; color: white; text-align: center;}
 #btu_calc .inset .btus span {display: block; padding-top: 48px; text-align:center;}
-#btu_calc .inset .btus input {width: 180px;}
+#btu_calc .inset .btus input {width: 180px; box-sizing:border-box;opacity:1;}
 #btu_calc .watts-req {text-align: right; padding:0 2% 1% 0;}
 #btu_calc .watts-req span {display: block;}
-#btu_calc .watts-req input { width: 100%; text-align: right; background-color: transparent; border: none; font-size: 34px; color: white; }
-#btu_calc .suitable-products { background-color: #00B233; color: white; text-align: center; font-size: 19px; padding: 2% 0; text-transform:uppercase; width:100%; display:block;text-decoration:none;}
+#btu_calc .watts-req input { width: 100%; text-align: right; background-color: transparent; border: none; font-size: 34px; color: white;box-sizing:border-box;opacity:1;}
+#btu_calc .suitable-products > a {color:#ffffff;font-weight:500;background-color: #00B233; text-align: center; font-size: 19px; padding: 2% 0; text-transform:uppercase; width:100%; display:block;text-decoration:none;}
 #btu_calc .top-img {width: 100%; margin-top: 20px;}
 #btu_calc .req-info-data {width: 100%; background-color: #444444; color: white; font-size: 17px; font-weight: lighter;margin:10px 0;}
 #btu_calc input.error, #btu_calc select.error {background-color:#fff7f5;border:1px solid #f47d4e;}
 #btu_calc .label {margin:0 0 7px 0;}
 
 /* BTU Circle Load */
-#btu_calc .radial-progress { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto; }
+#btu_calc .radial-progress { width: 200px; height: 200px; border-radius: 50%; margin: 0 auto 20px auto; }
 .radial-progress .circle .mask {clip: rect(0px, 200px, 200px, 100px);}
 .radial-progress .circle .mask, .radial-progress .circle .fill {width: 200px; height: 200px; position: absolute; -webkit-backface-visibility: hidden; transition: -webkit-transform 1s; transition: -ms-transform 1s; transition: transform 1s; border-radius: 50%; }
 .radial-progress[data-progress="100"] .circle .mask.full, .radial-progress[data-progress="100"] .circle .fill { -webkit-transform: rotate(180deg); -ms-transform: rotate(180deg); transform: rotate(180deg); }

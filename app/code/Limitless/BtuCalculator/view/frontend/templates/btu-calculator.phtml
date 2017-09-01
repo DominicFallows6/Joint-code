@@ -1,3 +1,7 @@
+<?php
+/** @var \Limitless\BtuCalculator\Block\Widget\BtuCalculator $block */
+?>
+
 <div id="btu_calc">
     <form name="btuForm" id="btuForm">
        <h3><?=__('PLEASE ENTER YOUR INFORMATION BELOW')?>:</h3>
@@ -106,17 +110,27 @@
                     </div>
                     <div class="inset">
                         <div class="btus">
-                            <span><?=__("BTU's Required")?></span><input placeholder="0" name="subtotalal2" size="20" value="" class="total" disabled="disabled" />
+                            <?php if($this->getData('btu') == 1) { ?>
+                                <span><?=__("BTU's Required")?></span>
+                            <?php } else { ?>
+                                <span><?=__("Watts Required")?></span>
+                            <?php } ?>
+                            <input placeholder="0" name="btu_total" size="20" value="" class="total" disabled="disabled" />
                         </div>
                     </div>
                 </div>
                 <div class="watts-req">
-                    <span><?=__('Watts Required')?></span><input placeholder="0" name="subtotalal" size="10" value="" class="total" disabled="disabled" />
+                    <?php if($this->getData('btu') == 1) { ?>
+                        <span><?=__('Watts Required')?></span>
+                    <?php } ?>
+                    <input placeholder="0" name="watts_total" size="10" value="" class="total" disabled="disabled" />
                 </div>
+                <div class="suitable-products"></div>
             </div>
         </div>
     </form>
 </div>
+
 
 <?php if($this->getData('css_changes') != "") { ?>
 <style type="text/css">
@@ -127,7 +141,12 @@
 <script type="text/x-magento-init">
     {
         "*": {
-            "Limitless_BtuCalculator/js/btu-calculator": {}
+            "Limitless_BtuCalculator/js/btu-calculator": {
+                "filter_output_label" : <?=$block->getFilterOutputAttributeLabel()?>,
+                "filter_output_value" : <?=$block->getFilterOutputAttributeValue()?>,
+                "filter_output_url" : "<?=$this->getData('filter_output_url')?>",
+                "btu_output": "<?=$this->getData('btu')?>"
+            }
         }
     }
 </script>

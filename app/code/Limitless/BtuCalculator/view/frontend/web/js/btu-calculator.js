@@ -2,7 +2,10 @@ define(["jquery","jquery/validate"], function($) {
 
     "use strict";
 
-    return function() {
+    return function(data) {
+
+        var btu = $('input[name="btu_total"]');
+        var watts = $('input[name="watts_total"]');
 
         function addCommas(nStr) {
             nStr += '';
@@ -16,10 +19,63 @@ define(["jquery","jquery/validate"], function($) {
             return x1 + x2;
         }
 
+        function buildFilteredLink() {
+
+            var suitableProductsLink = $('.suitable-products');
+            var wattsRequired;
+            var filteredLabel = data.filter_output_label;
+            var filteredValue = data.filter_output_value;
+            var filteredUrl = data.filter_output_url;
+            var rangeArrayTo = [];
+            var rangeTo = null;
+            var filterIdKey;
+            var filteredId;
+
+            if(data.btu_output == 1) {
+                wattsRequired = parseInt($(btu).val().replace(/,/g, ''))
+            } else {
+                wattsRequired = parseInt($(watts).val().replace(/,/g, ''));
+            }
+
+            /* Split the filtered label range into separate array to get range to values */
+            for (var i=0; i < filteredLabel.length; i++) {
+                var split = filteredLabel[i].split('-');
+                rangeArrayTo.push(split[1]);
+            }
+
+            /* return the closest value up when comparing the BTU result against the rangeArrayFrom array */
+            $.each(rangeArrayTo, function() {
+                if(this >= wattsRequired && (rangeTo == null || (wattsRequired - this) > (wattsRequired - rangeTo))) {
+                    rangeTo = this;
+                }
+            });
+
+            /* Get the array key for the filterId */
+            for(var n in rangeArrayTo) {
+                if(rangeArrayTo.hasOwnProperty(n)) {
+                    if(rangeArrayTo[n] === rangeTo) {
+                        filterIdKey = n;
+                    }
+                }
+            }
+
+            /* Get filter id value from the key returned above */
+            for (var j=0; j < filteredValue.length; j++) {
+                if(filteredValue[filterIdKey] != null){
+                    filteredId = filteredValue[filterIdKey];
+                } else {
+                    filteredId = "no_results";
+                }
+
+            }
+
+            $(suitableProductsLink).html('<a href="'+filteredUrl+'='+filteredId+'" title="View suitable products" target="_blank">View suitable products</a>');
+
+        }
+
         function showBtuResults() {
 
-            var btu = $('input[name="subtotalal2"]');
-            var watts = $('input[name="subtotalal"]');
+            var btuTotal;
 
             $('html,body').animate({scrollTop: $(".scrolldown").offset().top}, 'slow');
 
@@ -31,7 +87,13 @@ define(["jquery","jquery/validate"], function($) {
 
             setTimeout(window.randomize);
 
-            $({countNum: 0}).animate({countNum: btu.val()}, {
+            if(data.btu_output == 1) {
+                btuTotal = btu.val();
+            } else {
+                btuTotal = watts.val();
+            }
+
+            $({countNum: 0}).animate({countNum: btuTotal}, {
                 duration: 1000,
                 easing: 'linear',
                 step: function () {
@@ -49,11 +111,15 @@ define(["jquery","jquery/validate"], function($) {
                 easing: 'linear',
                 step: function () {
                     watts.val(Math.floor(this.countNum));
+                    if(data.btu_output != 1) {
+                        watts.hide();
+                    }
                 },
                 complete: function () {
                     var wattsTotal = watts.val();
                     var commas = addCommas(wattsTotal);
                     watts.val(commas);
+                    buildFilteredLink();
                 }
             });
         }
@@ -127,14 +193,14 @@ define(["jquery","jquery/validate"], function($) {
             answer *= parseFloat(document.btuForm.roomtype.value);
             if (belowroom == 1) answer -= floorsize * 1.6 * 3;
             if (isNaN(answer)) {
-                document.btuForm.subtotalal.value = "";
-                document.btuForm.subtotalal2.value = "";
+                document.btuForm.watts_total.value = "";
+                document.btuForm.btu_total.value = "";
 
             }
             else {
                 answer *= 1.15;
-                document.btuForm.subtotalal.value = Math.floor(answer);
-                document.btuForm.subtotalal2.value = Math.floor(answer * 3.412);
+                document.btuForm.watts_total.value = Math.floor(answer);
+                document.btuForm.btu_total.value = Math.floor(answer * 3.412);
             }
 
             showBtuResults();
