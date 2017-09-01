@@ -15,7 +15,8 @@
     "require": {
         "magento/product-enterprise-edition": "2.1.5",
         "composer/composer": "@alpha",
-        "worldpay/magento2-module-payments": "^2.0"
+        "worldpay/magento2-module-payments": "^2.0",
+        "pcapredict/tag": "^2.0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "4.1.0",
