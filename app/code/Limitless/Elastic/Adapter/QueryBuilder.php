@@ -63,6 +63,32 @@ class QueryBuilder
     private $queryFields;
 
     /**
+     * @var bool $forceMustNotAggregationComparison Forces a must not comparison for aggregations
+     */
+    private $forceMustNotAggregationComparison = false;
+
+    /**
+     * @var bool $forceMustNotAggregationComparison Forces a must comparison for aggregations
+     */
+    private $forceMustAggregationComparison = false;
+
+    /**
+     * @param bool $forceMustNotAggregationComparison
+     */
+    public function setForceMustNotAggregationComparison($forceMustNotAggregationComparison)
+    {
+        $this->forceMustNotAggregationComparison = $forceMustNotAggregationComparison;
+    }
+
+    /**
+     * @param bool $forceMustAggregationComparison
+     */
+    public function setForceMustAggregationComparison($forceMustAggregationComparison)
+    {
+        $this->forceMustAggregationComparison = $forceMustAggregationComparison;
+    }
+
+    /**
      * @param string $index
      */
     public function setIndex($index)
@@ -418,9 +444,10 @@ class QueryBuilder
                                             },';
                                         }
 
+
             foreach ($this->termFields as $subKey => $subQuery){
 
-                if ($subKey !== $internalKey) {
+                if ($subKey !== $internalKey || $this->forceMustAggregationComparison) {
 
                     $this->elasticSearchRequestJSON .= $this->determineAggregationComparison($subKey);
 
@@ -438,7 +465,7 @@ class QueryBuilder
 
             foreach ($this->termFields as $subKey => $subQuery){
 
-                if ($subKey === $internalKey) {
+                if ($subKey === $internalKey && $this->forceMustNotAggregationComparison) {
 
                     $this->elasticSearchRequestJSON .= $this->determineAggregationComparison($subKey);
 
@@ -487,7 +514,7 @@ class QueryBuilder
 
     private function determineValueComparison(string $valueTerm, string $keyTerm) : string
     {
-        //named ambiguously as hope to refactor to use a stdClass instead of string
+        //named ambiguously as hope to refactor to use an array instead of string
         $returnValue = '';
 
         //determine comparison
@@ -591,9 +618,19 @@ class QueryBuilder
         return $returnValue;
     }
 
+    /**
+     * Another switch function that sets options due to badly defined class properties - will be remedied in Version2
+     * @param bool $switchOption
+     */
+    public function enforceBroadSearchOption($switchOption)
+    {
+        $this->isBroadSearch = $switchOption;
+    }
+
     public function createRangedValues($values, $delimiter = '-')
     {
-        $valuesAsArray = (explode('-', $values));
+
+        $valuesAsArray = (explode($delimiter, $values));
 
         $returnString = '';
 

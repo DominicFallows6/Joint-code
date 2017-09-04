@@ -3,6 +3,7 @@
 namespace Limitless\Elastic\Adapter;
 
 use Limitless\Elastic\Adapter\QueryBuilder as LimitlessQueryBuilder;
+use Magento\Directory\Model\Currency;
 use Magento\Elasticsearch\Model\Config;
 use Magento\Elasticsearch\SearchAdapter\Adapter as MagentoElasticAdapter;
 use Magento\Elasticsearch\SearchAdapter\ConnectionManager;
@@ -25,7 +26,7 @@ class SearchAdapter implements AdapterInterface
     /** @var ResponseFactory $responseFactory */
     private $responseFactory;
 
-    /** @var Config  */
+    /** @var Config */
     private $config;
 
     /**
@@ -61,8 +62,7 @@ class SearchAdapter implements AdapterInterface
         Mapper $mapper,
         AggregationBuilder $aggregationBuilder,
         \Magento\Framework\App\RequestInterface $request,
-        Config $config,
-        \Magento\Directory\Model\Currency $currency
+        Config $config
     ) {
         $this->responseFactory = $responseFactory;
         $this->magentoElasticAdapter = $magentoElasticAdapter;
@@ -115,14 +115,14 @@ class SearchAdapter implements AdapterInterface
         }
 
         return $this->magentoElasticAdapter->query($request);
-
     }
 
-    private function finaliseResults(RequestInterface $request, QueryResultsInterface $results):QueryResponse
+    private function finaliseResults(RequestInterface $request, QueryResultsInterface $results): QueryResponse
     {
         $hits = [];
         $hits['hits'] = $results->getResults();
         $hits['total'] = count($hits['hits']);
+        $requestName = $request->getName();
 
         $rawResponse = [
             'timed_out' => false,
@@ -130,164 +130,192 @@ class SearchAdapter implements AdapterInterface
             'hits' => $hits
         ];
 
-        //runs the same query without the price filters - only way to maintain the facets across searches that have multiple attributes applied
-        //should be able to modify this to call in one query
-        //need to do this so that the filters remain the same across multiple requests
-        //magento tries to make changes as price is a dynamic bucket
-        $getWithPriceParams = $this->request->getParams();
+        if ($requestName === 'quick_search_container') {
 
-        $prePriceAggregations = [];
+            $allParamSearch = $this->queryBuilder->createRequest(
+                $this->request->getParams(),
+                $this->createRequestAggregationsArray(),
+                $this->createQueryFieldsArray(),
+                'q',
+                ['_id', '_score']
+            );
 
-        if (isset($getWithPriceParams['price'])) {
+        } elseif ($requestName === 'catalog_view_container') {
 
-            $requestName = $request->getName();
-            $pricePreferenceParameters = $this->request->getParams();
-            unset($pricePreferenceParameters['price']);
+            $categoryId = $this->query['body']['query']['bool']['must'][0]['term']['category_ids'];
 
-            if ($requestName === 'quick_search_container') {
+            $allParamSearch = $this->queryBuilder->createCategoryRequest(
+                $this->request->getParams(),
+                $this->createRequestAggregationsArray(),
+                $this->createQueryFieldsArray(),
+                $categoryId,
+                ['_id', '_score']
+            );
 
-                $getWithPriceParams = ['q'=>$getWithPriceParams['q']];
+        }
 
-                $withoutPrices = $this->queryBuilder->createRequest(
-                    $getWithPriceParams,
-                    $this->createRequestAggregationsArray(),
-                    $this->createQueryFieldsArray(),
-                    'q',
-                    ['_id', '_score']
-                );
+        $basePriceResponse = $rawResponse;
+        $basePriceResponse['aggregations'] = $allParamSearch->getFilters();
+        $basePriceResponse['hits']['hits'] = $allParamSearch->getResults();
+        $basePriceResponse['hits']['total'] = count($basePriceResponse['hits']['total']);
 
-            } elseif($requestName === 'catalog_view_container') {
+        $baseSearchAggregations = $this->aggregationBuilder->build($request, $basePriceResponse);
 
-                $categoryId = $this->query['body']['query']['bool']['must'][0]['term']['category_ids'];
+        //Uses the dynamic results to create multi-faceted price results
+        if (!empty($baseSearchAggregations['price_bucket'])) {
+            $priceFacetAggregations = $this->createPriceFacets($request, $rawResponse);
+            $baseSearchAggregations['price_bucket'] = $priceFacetAggregations;
+        }
 
-                $withoutPrices = $this->queryBuilder->createCategoryRequest(
-                    $pricePreferenceParameters,
-                    $this->createRequestAggregationsArray(),
-                    $this->createQueryFieldsArray(),
-                    $categoryId,
-                    ['_id', '_score']
-                );
+        $response = $this->responseFactory->create([
+            'documents' => $hits['hits'],
+            'aggregations' => $baseSearchAggregations,
+        ]);
 
+        return $response;
+    }
+
+    protected function createPriceFacets(RequestInterface $request, array $originalSearchResponse): array
+    {
+        $getAllURLParamsExceptPrice = $getAllURLParams = $this->request->getParams();
+        $requestName = $request->getName();
+        $newlyFormedPriceAggregations = [];
+
+        if (isset($getAllURLParamsExceptPrice['price'])) {
+            unset($getAllURLParamsExceptPrice['price']);
+        }
+
+        if ($requestName === 'quick_search_container') {
+
+            $baseSearchParameters = ['q' => $getAllURLParams['q']];
+
+            $baseSearch = $this->queryBuilder->createRequest(
+                $baseSearchParameters,
+                $this->createRequestAggregationsArray(),
+                $this->createQueryFieldsArray(),
+                'q',
+                ['_id', '_score']
+            );
+
+        } elseif ($requestName === 'catalog_view_container') {
+
+            $categoryId = $this->query['body']['query']['bool']['must'][0]['term']['category_ids'];
+
+            $baseSearch = $this->queryBuilder->createCategoryRequest(
+                [],
+                $this->createRequestAggregationsArray(),
+                $this->createQueryFieldsArray(),
+                $categoryId,
+                ['_id', '_score']
+            );
+
+        }
+
+        $basePriceResponse = $originalSearchResponse;
+        $basePriceResponse['aggregations'] = $baseSearch->getFilters();
+        $basePriceResponse['hits']['hits'] = $baseSearch->getResults();
+        $basePriceResponse['hits']['total'] = count($basePriceResponse['hits']['total']);
+
+        $newSearchAggregations = $this->aggregationBuilder->build($request, $basePriceResponse);
+
+        //reset the price bucket aggregations
+        $priceBucketRequiredComparisons = $newSearchAggregations['price_bucket'];
+
+        //remove ones already applied
+        $priceParamsSorted = [];
+        $priceParams = $this->request->getParam('price', []);
+
+        if (!empty($priceParams)) {
+            foreach ($priceParams as $priceKey => $priceValue) {
+                $priceParamsSorted[] = $this->convertToAggregateGroupArrayKey($priceValue);
             }
+        }
 
-            $prePriceAggregationsResponse = $rawResponse;
-            $prePriceAggregationsResponse['aggregations'] = $withoutPrices->getFilters();
-            $prePriceAggregationsResponse['hits']['hits'] = $withoutPrices->getResults();
-            $prePriceAggregationsResponse['hits']['total'] = count($prePriceAggregationsResponse['hits']['total']);
+        foreach ($priceBucketRequiredComparisons as $priceComparisonBucketKey => $priceComparisonBucketValue) {
 
-            $prePriceAggregations = $this->aggregationBuilder->build($request, $prePriceAggregationsResponse);
+            if (!isset($priceParamsSorted[$priceComparisonBucketKey])) {
 
-            //we then need to ensure that once we have the same aggregations
-            //we need to apply the filters to get the correct numbers - these are then "mapped" below
-            if (!$this->priceOnly()) {
+                $this->queryBuilder->enforceBroadSearchOption(false);
+                $this->queryBuilder->setForceMustAggregationComparison(true);
+                $this->queryBuilder->setForceMustNotAggregationComparison(false);
+
+                /*
+                 * this mocks the request parameters and supplies each price filter at a time
+                 * need to do this as magento has to resolve the prices itself later along the request
+                */
+                $individualFiltersForPrice = $getAllURLParamsExceptPrice;
+                $valueToPassAsParameter = $this->convertToUsableStringComparison($priceComparisonBucketValue['value']);
+                $individualFiltersForPrice['price'][] = $valueToPassAsParameter;
 
                 if ($requestName === 'quick_search_container') {
-
-                    $preferencePrices = $this->queryBuilder->createRequest(
-                        $pricePreferenceParameters,
+                    $individualPriceSearch = $this->queryBuilder->createRequest(
+                        $individualFiltersForPrice,
                         $this->createRequestAggregationsArray(),
                         $this->createQueryFieldsArray(),
                         'q',
                         ['_id', '_score'],
                         true
                     );
-
                 } elseif ($requestName === 'catalog_view_container') {
-
-                    $preferencePrices = $this->queryBuilder->createCategoryRequest(
-                        $pricePreferenceParameters,
+                    $categoryId = $this->query['body']['query']['bool']['must'][0]['term']['category_ids'];
+                    $individualPriceSearch = $this->queryBuilder->createCategoryRequest(
+                        $individualFiltersForPrice,
                         $this->createRequestAggregationsArray(),
                         $this->createQueryFieldsArray(),
                         $categoryId,
                         ['_id', '_score'],
                         true
                     );
-
                 }
 
-                //copy original values
-                $pricePreferencesResponse = $rawResponse;
+                $aggregations = $individualPriceSearch->getFilters();
 
-                $pricePreferencesResponse['aggregations'] = $preferencePrices->getFilters();
-                $pricePreferencesResponse['hits']['hits'] = $preferencePrices->getResults();
-                $pricePreferencesResponse['hits']['total'] = count($pricePreferencesResponse['hits']['hits']);
-
-                $pricePreferenceAggregations = $this->aggregationBuilder->build($request, $pricePreferencesResponse);
-
-                //map true counts over the top and remove the un-required ones
-                foreach($prePriceAggregations['price_bucket'] as $priceMappedKey => $priceMappedValue) {
-                    if (isset($pricePreferenceAggregations['price_bucket'][$priceMappedKey])) {
-                        $prePriceAggregations['price_bucket'][$priceMappedKey]['count'] = $pricePreferenceAggregations['price_bucket'][$priceMappedKey]['count'];
-                    } else {
-                        unset($prePriceAggregations['price_bucket'][$priceMappedKey]);
-                    }
+                if (!in_array($valueToPassAsParameter, $priceParams)) {
+                    $newlyFormedPriceAggregations[$priceComparisonBucketKey] = [
+                        'value' => $priceComparisonBucketKey,
+                        'count' => $aggregations['price_bucket']['count']
+                    ];
                 }
 
             }
 
         }
 
-        //skips to here when search is "basic"
-        $completeAggregations = $this->aggregationBuilder->build($request, $rawResponse);
-
-        if (!empty($prePriceAggregations) && isset($completeAggregations['price_bucket'])) {
-
-            $completeAggregations['price_bucket'] = $prePriceAggregations['price_bucket'];
-            $currentlyUsedParams = $this->request->getParams();
-
-            if ($requestName === 'quick_search_container') {
-
-                $currentlyUsedParamsCount = count($currentlyUsedParams['price']);
-                $numberOfPriceBuckets = count($completeAggregations['price_bucket']);
-
-                if ($currentlyUsedParamsCount >= $numberOfPriceBuckets) {
-                    $completeAggregations['price_bucket'] = [];
-                }
-
-            } elseif ($requestName === 'catalog_view_container') {
-
-                foreach ($currentlyUsedParams['price'] as $currentKey => $currentValue) {
-
-                    $modifiedElementName = str_replace('-', '_', $currentValue);
-
-                    if (isset($completeAggregations['price_bucket'][$modifiedElementName])) {
-                        $elementToBeRemoved = $modifiedElementName;
-                    } else {
-
-                        $explodedValues = explode('-', $currentValue);
-
-                        if ($explodedValues[0] == '') {
-                            $elementToBeRemoved = '*_' . $explodedValues[1];
-                        } elseif ($explodedValues[1] == '') {
-                            $elementToBeRemoved = $explodedValues[0] . '_*';
-                        }
-
-                    }
-
-                    if (isset($elementToBeRemoved)) {
-                        if (isset($completeAggregations['price_bucket'][$elementToBeRemoved])) {
-                            unset($completeAggregations['price_bucket'][$elementToBeRemoved]);
-                        }
-                    }
-
-
-                    //todo when we do the price filter work
-                    //add an arbitrary filter in. think magento does some sort of count in category view page -
-                    if (isset($completeAggregations['price_bucket']) && count($completeAggregations['price_bucket']) == 1) {
-                        $completeAggregations['price_bucket']['0'] = ['value'=>'0', 'count'=>0];
-                    }
-
-                }
-            }
-
+        //clean up for view bugs - arbitrary filter
+        if (count($newlyFormedPriceAggregations) == 1) {
+            $newlyFormedPriceAggregations['0'] = ['value' => '0', 'count' => 0];
         }
 
-        $response = $this->responseFactory->create([
-            'documents' => $hits['hits'],
-            'aggregations' => $completeAggregations,
-        ]);
+        return $newlyFormedPriceAggregations;
+    }
 
-        return $response;
+    private function convertToAggregateGroupArrayKey(string $string, $delimiter = '-'): string
+    {
+
+        $returnString = '';
+        $valuesAsArray = (explode($delimiter, $string));
+
+        if ($valuesAsArray[0] == '') {
+            $returnString .= '*';
+        } else {
+            $returnString .= $valuesAsArray[0];
+        }
+
+        $returnString .= '_';
+
+        if ($valuesAsArray[1] == '') {
+            $returnString .= '*';
+        } else {
+            $returnString .= $valuesAsArray[1];
+        }
+
+        return $returnString;
+    }
+
+    private function convertToUsableStringComparison(string $string): string
+    {
+        $modifiedString = str_replace('_', '-', (str_replace('*', '', $string)));
+        return $modifiedString;
     }
 
     private function createRequestAggregationsArray(): array
@@ -296,7 +324,7 @@ class SearchAdapter implements AdapterInterface
         return $requestAggregations;
     }
 
-    private function createQueryFieldsArray():array
+    private function createQueryFieldsArray(): array
     {
         $queryFields = [];
         if (isset($this->query['body']['query']['bool']['should'])) {
@@ -316,7 +344,9 @@ class SearchAdapter implements AdapterInterface
         return $queryFields;
     }
 
-    //this takes the core mapped keys and applies the URL values to our internal mapping
+    /*
+     * This method takes the core mapped keys and applies the URL values to our internal mapping
+     */
     private function initialiseQueryBuilderMapOfQueryFieldsToInternalNames()
     {
         $fieldsThatNeedMapping = ['price'];
@@ -324,7 +354,7 @@ class SearchAdapter implements AdapterInterface
         $mappings = [];
 
         foreach ($fieldsThatNeedMapping as $needMapKey => $needMapValue) {
-            $keyToFind = $needMapValue.'_bucket';
+            $keyToFind = $needMapValue . '_bucket';
             if (isset($getMappedAggregations[$keyToFind])) {
                 if (isset($getMappedAggregations[$keyToFind]['extended_stats']['field'])) {
                     $mappedKey = $getMappedAggregations[$keyToFind]['extended_stats']['field'];
@@ -351,24 +381,5 @@ class SearchAdapter implements AdapterInterface
         $this->queryBuilder->setIndex($this->query['index']);
         $this->queryBuilder->setURL($url);
         $this->queryBuilder->setMethod('_search');
-    }
-
-    private function priceOnly() : bool
-    {
-        $params = $this->request->getParams();
-
-        if (isset($params['q'])) {
-            unset($params['q']);
-        }
-
-        if (isset($params['price'])) {
-            unset($params['price']);
-        }
-
-        if (count($params) === 0) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }
