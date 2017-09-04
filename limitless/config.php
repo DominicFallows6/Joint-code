@@ -43,6 +43,7 @@ return array (
             'Magento_Cms' => 1,
             'Magento_Rule' => 1,
             'Magento_Catalog' => 1,
+            'Limitless_SubMenuStaticLinks' => 1,
             'Magento_Quote' => 1,
             'Magento_AdvancedPricingImportExport' => 1,
             'Magento_AdvancedRule' => 1,
