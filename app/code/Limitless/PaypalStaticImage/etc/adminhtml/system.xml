@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="payment">
+            <group id="paypal_static_image" translate="label" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Paypal Static Image</label>
+
+            <field id="enabled" translate="label comment" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Enable Paypal Static Image</label>
+                <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                <comment>Paypal do not recommend this - use with caution!</comment>
+            </field>
+            </group>
+        </section>
+
+        <!--
+        Paypal uses dynamic configuration for core config so adding here will not work when reading config.
+        @see _mapMethodFieldset
+
+        <section id="payment_all_paypal">
+            <group id="express_checkout">
+                <group id="settings_ec">
+                    <group id="settings_ec_advanced">
+                        <field id="use_static_image_override" translate="label" type="select" sortOrder="7" showInDefault="1" showInWebsite="1">
+                            <label>Use Static Image Override</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <attribute type="shared">1</attribute>
+                            <comment>Paypal recommend against this. Use with caution!</comment>
+                            <depends>
+                                <field id="visible_on_cart">1</field>
+                            </depends>
+                        </field>
+                    </group>
+                </group>
+            </group>
+        </section>
+        -->
+    </system>
+</config>

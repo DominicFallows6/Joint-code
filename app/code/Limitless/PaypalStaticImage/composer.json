@@ -1,0 +1,20 @@
+{
+  "name": "limitless/paypalstaticimage",
+  "description": "Static image for Paypal icon (basket pages)",
+  "require": {
+    "php": "^7.0.0",
+    "magento/module-paypal": "^100.1.4"
+  },
+  "type": "magento2-module",
+  "license": [
+    "BSD-3-Clause"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\PaypalStaticImage\\": ""
+    }
+  }
+}
