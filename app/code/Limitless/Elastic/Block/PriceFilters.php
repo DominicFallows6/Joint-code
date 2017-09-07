@@ -4,6 +4,7 @@
 namespace Limitless\Elastic\Block;
 
 use Magento\LayeredNavigation\Block\Navigation\State;
+use Limitless\Elastic\Helpers\ArrayHelper;
 
 class PriceFilters extends State
 {
@@ -45,6 +46,7 @@ class PriceFilters extends State
     protected function initialisePriceFilters()
     {
         $params = $this->_request->getParams();
+        $params = ArrayHelper::ensureMagento2Based2DArray($params);
 
         if (!empty($params['price'])) {
             $this->arePriceFiltersRequired = true;

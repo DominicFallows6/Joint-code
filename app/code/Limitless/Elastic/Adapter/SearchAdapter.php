@@ -3,7 +3,6 @@
 namespace Limitless\Elastic\Adapter;
 
 use Limitless\Elastic\Adapter\QueryBuilder as LimitlessQueryBuilder;
-use Magento\Directory\Model\Currency;
 use Magento\Elasticsearch\Model\Config;
 use Magento\Elasticsearch\SearchAdapter\Adapter as MagentoElasticAdapter;
 use Magento\Elasticsearch\SearchAdapter\ConnectionManager;
@@ -13,6 +12,7 @@ use Magento\Framework\Search\RequestInterface;
 use Magento\Framework\Search\Response\QueryResponse;
 use Magento\Elasticsearch\SearchAdapter\ResponseFactory;
 use Magento\Elasticsearch\SearchAdapter\Aggregation\Builder as AggregationBuilder;
+use Limitless\Elastic\Helpers\ArrayHelper;
 
 class SearchAdapter implements AdapterInterface
 {
@@ -89,7 +89,7 @@ class SearchAdapter implements AdapterInterface
         if ($requestName === 'quick_search_container') {
 
             $results = $this->queryBuilder->createRequest(
-                $this->request->getParams(),
+                ArrayHelper::ensureMagento2Based2DArray($this->request->getParams()),
                 $this->createRequestAggregationsArray(),
                 $this->createQueryFieldsArray(),
                 'q',
@@ -103,7 +103,7 @@ class SearchAdapter implements AdapterInterface
             $categoryId = $this->query['body']['query']['bool']['must'][0]['term']['category_ids'];
 
             $results = $this->queryBuilder->createCategoryRequest(
-                $this->request->getParams(),
+                ArrayHelper::ensureMagento2Based2DArray($this->request->getParams()),
                 $this->createRequestAggregationsArray(),
                 $this->createQueryFieldsArray(),
                 $categoryId,
@@ -133,7 +133,7 @@ class SearchAdapter implements AdapterInterface
         if ($requestName === 'quick_search_container') {
 
             $allParamSearch = $this->queryBuilder->createRequest(
-                $this->request->getParams(),
+                ArrayHelper::ensureMagento2Based2DArray($this->request->getParams()),
                 $this->createRequestAggregationsArray(),
                 $this->createQueryFieldsArray(),
                 'q',
@@ -145,7 +145,7 @@ class SearchAdapter implements AdapterInterface
             $categoryId = $this->query['body']['query']['bool']['must'][0]['term']['category_ids'];
 
             $allParamSearch = $this->queryBuilder->createCategoryRequest(
-                $this->request->getParams(),
+                ArrayHelper::ensureMagento2Based2DArray($this->request->getParams()),
                 $this->createRequestAggregationsArray(),
                 $this->createQueryFieldsArray(),
                 $categoryId,
@@ -177,7 +177,7 @@ class SearchAdapter implements AdapterInterface
 
     protected function createPriceFacets(RequestInterface $request, array $originalSearchResponse): array
     {
-        $getAllURLParamsExceptPrice = $getAllURLParams = $this->request->getParams();
+        $getAllURLParamsExceptPrice = $getAllURLParams = ArrayHelper::ensureMagento2Based2DArray($this->request->getParams());
         $requestName = $request->getName();
         $newlyFormedPriceAggregations = [];
 
@@ -224,6 +224,10 @@ class SearchAdapter implements AdapterInterface
         //remove ones already applied
         $priceParamsSorted = [];
         $priceParams = $this->request->getParam('price', []);
+
+        if (!is_array($priceParams)) {
+            $priceParams = (array) $priceParams;
+        }
 
         if (!empty($priceParams)) {
             foreach ($priceParams as $priceKey => $priceValue) {
@@ -334,6 +338,8 @@ class SearchAdapter implements AdapterInterface
                     $key = key($queryField['match']);
                 } elseif (isset($queryField['terms'])) {
                     $key = key($queryField['terms']);
+                } else {
+                    $key = key($queryField['term']);
                 }
 
                 if ($key !== '_all') {

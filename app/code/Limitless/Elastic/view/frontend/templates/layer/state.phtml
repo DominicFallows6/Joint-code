@@ -42,40 +42,44 @@ if (!empty($filters) || $priceFiltersRequired) {
             }
             ?>
 
-            <?php foreach ($filters as $filter) { ?>
-                <li class="item">
-                    <span class="filter-label"><?php echo $block->escapeHtml(__($filter->getName())); ?></span>
-                    <span class="filter-value"><?php /* @escapeNotVerified */
-                        echo $block->stripTags($filter->getLabel()) ?></span>
-                    <?php
-                    $clearLinkUrl = $filter->getClearLinkUrl();
-                    $currentFilterName = $block->escapeHtml(__($filter->getName())) . " " . $block->stripTags($filter->getLabel());
-                    if ($clearLinkUrl) {
-                        ?>
-                        <a class="action previous" href="<?php /* @escapeNotVerified */
-                        echo $filter->getRemoveUrl() ?>"
-                           title="<?php /* @escapeNotVerified */
-                           echo __('Previous') ?>">
+            <?php foreach ($filters as $filter) {
+                $filterName = strtolower($filter->getName());
+                if ($filterName !== 'price') {
+                    ?>
+                    <li class="item">
+                        <span class="filter-label"><?php echo $block->escapeHtml(__($filter->getName())); ?></span>
+                        <span class="filter-value"><?php /* @escapeNotVerified */
+                            echo $block->stripTags($filter->getLabel()) ?></span>
+                        <?php
+                        $clearLinkUrl = $filter->getClearLinkUrl();
+                        $currentFilterName = $block->escapeHtml(__($filter->getName())) . " " . $block->stripTags($filter->getLabel());
+                        if ($clearLinkUrl) {
+                            ?>
+                            <a class="action previous" href="<?php /* @escapeNotVerified */
+                            echo $filter->getRemoveUrl() ?>"
+                               title="<?php /* @escapeNotVerified */
+                               echo __('Previous') ?>">
                             <span><?php /* @escapeNotVerified */
                                 echo __('Previous') ?></span>
-                        </a>
-                        <a class="action remove"
-                           title="<?php echo $block->escapeHtml($filter->getFilter()->getClearLinkText()) ?>"
-                           href="<?php /* @escapeNotVerified */
-                           echo $clearLinkUrl ?>">
-                            <span><?php echo $block->escapeHtml($filter->getFilter()->getClearLinkText()) ?></span>
-                        </a>
-                    <?php } else { ?>
-                        <a class="action remove" href="<?php /* @escapeNotVerified */
-                        echo $filter->getRemoveUrl() ?>"
-                           title="<?php /* @escapeNotVerified */
-                           echo $block->escapeHtml(__('Remove')) . " " . $currentFilterName; ?>">
+                            </a>
+                            <a class="action remove"
+                               title="<?php echo $block->escapeHtml($filter->getFilter()->getClearLinkText()) ?>"
+                               href="<?php /* @escapeNotVerified */
+                               echo $clearLinkUrl ?>">
+                                <span><?php echo $block->escapeHtml($filter->getFilter()->getClearLinkText()) ?></span>
+                            </a>
+                        <?php } else { ?>
+                            <a class="action remove" href="<?php /* @escapeNotVerified */
+                            echo $filter->getRemoveUrl() ?>"
+                               title="<?php /* @escapeNotVerified */
+                               echo $block->escapeHtml(__('Remove')) . " " . $currentFilterName; ?>">
                             <span><?php /* @escapeNotVerified */
                                 echo __('Remove This Item') ?></span>
-                        </a>
-                    <?php } ?>
-                </li>
-            <?php } ?>
+                            </a>
+                        <?php } ?>
+                    </li>
+                <?php }
+            }?>
         </ol>
     </div>
 <?php } ?>

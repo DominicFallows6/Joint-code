@@ -2,7 +2,9 @@
 
 namespace Limitless\Elastic\Plugin;
 
+use Limitless\Elastic\Helpers\ArrayHelper;
 use Limitless\Elastic\Plugin\Util\FacetUrlBuilder;
+use Magento\Catalog\Model\Layer\Filter\Item;
 use Magento\Framework\App\RequestInterface;
 
 class FacetRenderingFixes
@@ -37,33 +39,36 @@ class FacetRenderingFixes
         $this->facetUrlBuilder = $facetUrlBuilder;
     }
 
-    public function aroundGetUrl(\Magento\Catalog\Model\Layer\Filter\Item $subject, \Closure $closure)
+    public function aroundGetUrl(Item $subject, \Closure $closure)
     {
-        $query = [
-            $subject->getFilter()->getRequestVar() . '[]' => $subject->getValue(),
-            // exclude current page from urls
-            $this->htmlPagerBlock->getPageVarName() => null,
-        ];
-        return $this->url->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true, '_query' => $query]);
-    }
+        $params = ArrayHelper::ensureMagento2Based2DArray($this->request->getParams());
+        $requestVar = $subject->getFilter()->getRequestVar();
+        $subjectValue = $subject->getValue();
 
-    public function around__call(\Magento\Catalog\Model\Layer\Filter\Item $subject, \Closure $proceed, $method, $args)
-    {
-        if ($method === 'getIsSelected') {
-            $getParam = $this->request->getParam($subject->getFilter()->getRequestVar(), []);
-
-            return is_array($getParam) && in_array($subject->getValue(), $getParam) || $getParam == $subject->getValue();
-
+        if ($requestVar === 'price' && strpos($subjectValue,',') !== FALSE) {
+            $params['price'] = explode(',', $subjectValue);;
         } else {
-            return $proceed($method, $args);
+            $params[$requestVar][] = $subjectValue;
         }
+
+        $urlParams = [
+            '_use_rewrite' => true,
+            '_query' => $params,
+            '_escape' => true,
+        ];
+
+        $newURL = $this->url->getUrl('*/*/*', $urlParams);
+
+        return $newURL;
     }
 
-    public function afterGetRemoveUrl(\Magento\Catalog\Model\Layer\Filter\Item $subject, $result)
+    public function afterGetRemoveUrl(Item $subject, $result)
     {
         $requestVar = $subject->getFilter()->getRequestVar();
 
         $params = $this->request->getParams();
+        $params = ArrayHelper::ensureMagento2Based2DArray($params);
+
         $valueToRemove = $subject->getValue();
 
         $params = $this->facetUrlBuilder->removeValueFromParams($params, $requestVar, $valueToRemove);
@@ -77,6 +82,19 @@ class FacetRenderingFixes
         ];
 
         return $this->url->getUrl('*/*/*', $urlParams);
+    }
+
+    public function around__call(Item $subject, \Closure $proceed, $method, $args)
+    {
+        if ($method === 'getIsSelected') {
+            $getParam = $this->request->getParam($subject->getFilter()->getRequestVar(), []);
+
+            return is_array($getParam) && in_array($subject->getValue(),
+                    $getParam) || $getParam == $subject->getValue();
+
+        } else {
+            return $proceed($method, $args);
+        }
     }
 
 }
