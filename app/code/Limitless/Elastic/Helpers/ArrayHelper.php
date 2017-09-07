@@ -9,7 +9,7 @@ class ArrayHelper
      */
     static public function ensureMagento2Based2DArray(
         array $params,
-        array $ignoredElements = ['q', 'p'],
+        array $ignoredElements = ['q', 'p', 'product_list_limit', 'product_list_order'],
         array $removalElements = ['pg', 'id']
     ) {
         $returnElements = [];
