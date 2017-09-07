@@ -39,9 +39,14 @@
         float: right;
     }
 }
+#next-day-msg {
+    display:inline-block;
+    margin:0 0 0 9px;
+}
 #next-day-msg p {
     font-size: 13px;
     padding: 13px;
+    margin:0 0 20px 0;
     border: 1px solid #ccc;
     background: #efefef;
 }
@@ -111,9 +116,12 @@
 #del-rates {
     padding: 0 8px;
     font-size: 12px;
+    display:inline-block;
+    width:97.4%;
 }
 .rates-for-day {
-    height: 40px;
+    width:100%;
+    float:left;
     cursor: pointer;
 }
 .choose-delivery-message {
@@ -138,6 +146,7 @@
 }
 #standard-delivery {
     padding: 8px;
+    margin:15px 0;
     font-size: 12px;
 }
 .standard-delivery-option {
@@ -165,7 +174,6 @@
 .or-container {
     text-align: center;
     border-top: 1px solid #ccc;
-    margin-top: 30px;
 }
 .or-container span {
     position: relative;
@@ -191,7 +199,7 @@
     border-collapse: separate;
 }
 .table-checkout-shipping-method select {
-    margin-top: 10px;
+    margin: 10px 0 20px 0;
     height: 50px;
 }
 .default-select-value {

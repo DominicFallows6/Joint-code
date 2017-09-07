@@ -55,11 +55,6 @@
     </form>
 </li>
 
-
-
-
-
-
 <!--Shipping method template-->
 <li id="opc-shipping_method"
     class="checkout-shipping-method"
@@ -79,7 +74,34 @@
             <form class="form methods-shipping" id="co-shipping-method-form" data-bind="submit: setShippingInformation" novalidate="novalidate">
                 <div id="checkout-shipping-method-load">
                     <div class="table-checkout-shipping-method">
+                        <div id="standard-delivery">
+                            <div class="standard-delivery-option" data-bind="click: function() { return selectShippingMethod(economyRate());}">
+                                <div class="message">
+                                    <p data-bind="text: economyRate().carrier_title"></p>
+                                    <span><!-- ko i18n: 'Not in a hurry? Use our standard delivery option, delivered within 3-5 working days'--><!-- /ko --></span>
+                                </div>
+                                <div class="select-economy">
+                                    <span data-bind="
+                                        text: economyRate().amount.toLocaleString(siteLocale, { style: 'currency', currency: 'EUR' }),
+                                        visible: economyRate().method_title.length > 0"
+                                    >4,99 €</span>
+                                    <input type="radio"
+                                           data-bind="
+                                                visible: economyRate().method_code !== '',
+                                                value: economyRate().carrier_code + '_' + economyRate().method_code,
+                                                checked: isSelected,
+                                                attr: {
+                                                    'id': 's_method_' + economyRate().carrier_code + '_' + economyRate().method_code,
+                                                    'aria-labelledby': 'label_method_' + economyRate().method_code + '_' + economyRate().carrier_code + ' ' + 'label_carrier_' + economyRate().method_code + '_' + economyRate().carrier_code
+                                                }"
+                                           class="radio"/>
+                                </div>
+                            </div>
+                        </div>
                         <!-- ko if: deliveryDatepickerWindow().length > 0 -->
+                        <div class="or-container">
+                            <span><!-- ko i18n: 'OR'--><!-- /ko --></span>
+                        </div>
                         <div>
                             <!-- ko if: mobileCheck() == true -->
                             <!-- MOBILE - Choose your delivery date dropdown-->
@@ -131,9 +153,6 @@
                         <div>
                             <!-- ko if: mobileCheck() == false -->
                             <div>
-                                <div id="next-day-msg">
-                                    <p><!-- ko i18n: 'For next day delivery your order must be placed and confirmed by 1pm.'--><!-- /ko --></p>
-                                </div>
                                 <!-- DESKTOP - Week picker: left and right arrows -->
                                 <ul id="week-picker" class="desktop-delivery-rates">
                                     <li>
@@ -178,39 +197,12 @@
                                     </div>
                                 </div>
                             </div>
-
+                            <div id="next-day-msg">
+                                <p><!-- ko i18n: 'For next day delivery your order must be placed and confirmed by 1pm.'--><!-- /ko --></p>
+                            </div>
                             <!-- /ko -->
                         </div>
                         <!-- /ko -->
-                        <div id="standard-delivery">
-                            <!-- ko if: deliveryDatepickerWindow().length > 0 -->
-                            <div class="or-container">
-                                <span><!-- ko i18n: 'OR'--><!-- /ko --></span>
-                            </div>
-                            <!-- /ko -->
-                            <div class="standard-delivery-option" data-bind="click: function() { return selectShippingMethod(economyRate());}">
-                                <div class="message">
-                                    <p data-bind="text: economyRate().carrier_title"></p>
-                                    <span><!-- ko i18n: 'Not in a hurry? Use our standard delivery option, delivered within 3-5 working days'--><!-- /ko --></span>
-                                </div>
-                                <div class="select-economy">
-                                    <span data-bind="
-                                        text: economyRate().amount.toLocaleString(siteLocale, { style: 'currency', currency: 'EUR' }),
-                                        visible: economyRate().method_title.length > 0"
-                                    >4,99 €</span>
-                                    <input type="radio"
-                                           data-bind="
-                                                visible: economyRate().method_code !== '',
-                                                value: economyRate().carrier_code + '_' + economyRate().method_code,
-                                                checked: isSelected,
-                                                attr: {
-                                                    'id': 's_method_' + economyRate().carrier_code + '_' + economyRate().method_code,
-                                                    'aria-labelledby': 'label_method_' + economyRate().method_code + '_' + economyRate().carrier_code + ' ' + 'label_carrier_' + economyRate().method_code + '_' + economyRate().carrier_code
-                                                }"
-                                           class="radio"/>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
 

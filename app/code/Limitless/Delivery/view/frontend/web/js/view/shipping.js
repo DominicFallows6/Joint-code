@@ -258,6 +258,7 @@ define(
                     if(shippingGroup.rates.length > 0){
                         $('.rates-for-day:nth-child(even)').css('background-color','#fafcf8');
                         $('.rates-for-day:nth-child(odd)').css('background-color','#e4f0db');
+                        $('#del-rates').css('margin-bottom', '10px');
                     } else {
                         $('.rates-for-day').css('background-color','#fff');
                     }
