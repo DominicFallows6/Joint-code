@@ -244,6 +244,17 @@ class CardModify extends WorldpayPayments {
         return $this->createWorldpayOrder($orderId, $payment, $token, $amount, $currency_code, $authorizeOnly, true, $quote);
     }
 
+    /**
+     * @param string $orderId
+     * @param \Magento\Quote\Model\Quote\Payment $payment
+     * @param string $token
+     * @param float $amount
+     * @param string $currency_code
+     * @param bool $authorize
+     * @param bool $threeDS
+     * @param \Magento\Quote\Model\Quote $quote
+     * @throws LocalizedException
+     */
     protected function createWorldpayOrder($orderId, $payment, $token, $amount, $currency_code, $authorize, $threeDS, $quote) {
         $worldpay = $this->setupWorldpay();
 
@@ -337,6 +348,7 @@ class CardModify extends WorldpayPayments {
                     ->setCcTransId($response['orderCode'])
                     ->setLastTransId($response['orderCode'])
                     ->setTransactionId($response['orderCode']);
+                $this->addWorldpaySiteCodeToAdditionalInformation($payment, $response['siteCode']);
                 $payment->setAdditionalInformation("worldpayOrderCode", $response['orderCode']);
                 if (!$response['is3DSOrder']) {
                     if ($payment->isCaptureFinal($amount)) {
@@ -355,6 +367,7 @@ class CardModify extends WorldpayPayments {
                     ->setIsTransactionClosed(false)
                     ->setAmount($amount)
                     ->setShouldCloseParentTransaction(false);
+                $this->addWorldpaySiteCodeToAdditionalInformation($payment, $response['siteCode']);
                 $payment->setAdditionalInformation("worldpayOrderCode", $response['orderCode']);
                 if (!$response['is3DSOrder']) {
                     if ($payment->isCaptureFinal($amount)) {
@@ -367,6 +380,7 @@ class CardModify extends WorldpayPayments {
 
                 $this->_debug('Order Request: ' . $response['orderCode']  . ' PRE_AUTHORIZED');
                 $payment->setAmount($amount);
+                $this->addWorldpaySiteCodeToAdditionalInformation($payment, $response['siteCode']);
                 $payment->setAdditionalInformation("worldpayOrderCode", $response['orderCode']);
                 $payment->setLastTransId($orderId);
                 $payment->setTransactionId($response['orderCode']);
@@ -468,6 +482,21 @@ class CardModify extends WorldpayPayments {
             }
         }
         return true;
+    }
+
+    /**
+     *
+     * Add Additional Info: Payment MID (siteCode)
+     * Done before orderCode as Steve G knows this is second last for API
+     * Unset in afterAroundCreateMagentoOrder
+     *
+     * @param \Magento\Quote\Model\Quote\Payment $payment
+     * @param string $siteCode
+     *
+     */
+    private function addWorldpaySiteCodeToAdditionalInformation($payment, $siteCode)
+    {
+        $payment->setAdditionalInformation("worldpaySiteCode", $siteCode);
     }
 }
 

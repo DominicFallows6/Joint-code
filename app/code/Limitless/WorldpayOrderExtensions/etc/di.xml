@@ -51,4 +51,15 @@
         <plugin name="limitless_riskscore" type="Limitless\WorldpayOrderExtensions\Plugin\AddRiskScoreToOrderApiPlugin" />
     </type>
 
+    <type name="Worldpay\Payments\Model\Methods\WorldpayPayments">
+        <plugin name="limitless_worldpayfixstaticcall"
+                type="Limitless\WorldpayFixStaticCall\Plugin\WorldpayStaticMethodCallFixPlugin"/>
+    </type>
+
+    <!-- Plugin to add extra info to Order Notes -->
+    <type name="Magento\Sales\Model\Order">
+        <plugin name="limitless_updateorderinformationandnotes"
+                type="Limitless\WorldpayOrderExtensions\Plugin\UpdateOrderInformationAndNotesPlugin"/>
+    </type>
+
 </config>

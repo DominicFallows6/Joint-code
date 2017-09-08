@@ -1,9 +1,10 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
-    <module name="Limitless_WorldpayOrderExtensions" setup_version="0.1.0">
+    <module name="Limitless_WorldpayOrderExtensions" setup_version="0.1.1">
         <sequence>
             <module name="Worldpay_Payments" />
+            <module name="Limitless_WorldpayFixStaticCall" />
         </sequence>
     </module>
 </config>
