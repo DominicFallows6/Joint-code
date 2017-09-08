@@ -1,0 +1,20 @@
+{
+  "name": "limitless/module-autocomplete",
+  "description": "N/A",
+  "require": {
+    "php": "^7.0.0",
+    "magento/module-catalog-search": "100.1.2"
+  },
+  "type": "magento2-module",
+  "license": [
+    "proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\AutoComplete\\": ""
+    }
+  }
+}

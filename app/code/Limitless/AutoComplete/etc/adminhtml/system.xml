@@ -1,0 +1,15 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="catalog">
+            <group id="search">
+                <field id="autocomplete_result_count" translate="label" type="text" sortOrder="61" showInDefault="1"
+                       showInWebsite="1" showInStore="0">
+                    <label>Autocomplete Result Count</label>
+                    <validate>required-entry validate-number</validate>
+                    <comment>Enter 0 to turn off results completely</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
