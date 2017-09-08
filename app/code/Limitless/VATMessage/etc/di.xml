@@ -2,4 +2,8 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
     <preference for="Magento\Customer\Observer\AfterAddressSaveObserver" type="Limitless\VATMessage\Observer\AddCheckoutLinkToAfterAddressSaveObserver" />
+    <preference for="Magento\Tax\Model\Calculation" type="Limitless\VATMessage\Model\CalculationOverride"/>
+    <type name="Magento\Customer\Model\Address">
+        <plugin name="limitless_recollect_totals" type="Limitless\VATMessage\Plugin\RecollectTotalsPlugin" />
+    </type>
 </config>

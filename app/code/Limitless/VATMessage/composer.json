@@ -1,6 +1,6 @@
 {
   "name": "limitless/vatmessage",
-  "description": "Add a new template for VAT text field if 'Show VAT on frontend' is enabled and if customer is logged in.",
+  "description": "Add a new template for VAT text field if 'Show VAT on frontend' is enabled and if customer is logged in. Workaround for cart/minicart totals not updating on customer address form update.",
   "require": {
     "php": "~5.6.0|~7.0.0",
     "magento/module-checkout": "100.1.*",
@@ -8,7 +8,8 @@
     "magento/module-customer-custom-attributes":"100.1.*",
     "magento/module-directory": "100.1.3",
     "magento/framework": "100.1.*",
-    "magento/module-store": "100.1.*"
+    "magento/module-store": "100.1.*",
+    "magento/magento/module-tax": "100.1.2"
   },
   "type": "magento2-module",
   "license": [

@@ -7,6 +7,7 @@
             <module name="Magento_Customer"/>
             <module name="Magento_CustomerCustomAttributes"/>
             <module name="Limitless_NewsletterSubscribeAtCheckout"/>
+            <module name="Magento_Tax"/>
         </sequence>
     </module>
 </config>
