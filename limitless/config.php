@@ -138,6 +138,7 @@ return array (
             'Magento_Security' => 1,
             'Magento_Invitation' => 1,
             'Magento_LayeredNavigation' => 1,
+            'Limitless_InvoiceVat' => 1,
             'Magento_LayeredNavigationStaging' => 1,
             'Magento_Logging' => 1,
             'Magento_Marketplace' => 1,
