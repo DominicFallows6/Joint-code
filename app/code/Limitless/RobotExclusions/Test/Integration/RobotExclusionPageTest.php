@@ -7,7 +7,7 @@ use Magento\TestFramework\ObjectManager;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\View\Element\Template\Context;
 use Limitless\RobotExclusions\Block\RobotExclusions;
-use Magento\Framework\App\Request\Http AS Request;
+use Magento\Framework\App\Request\Http as Request;
 
 class RobotExclusionPageTest extends \PHPUnit_Framework_TestCase
 {
@@ -60,8 +60,8 @@ class RobotExclusionPageTest extends \PHPUnit_Framework_TestCase
 
     public function createEnvironment()
     {
-        $this->requestMock = $this->createMock(Request::class);
-        $scopeConfigMock = $this->createMock(ScopeConfigInterface::class);
+        $this->requestMock = $this->getMockBuilder(Request::class);
+        $scopeConfigMock = $this->getMockBuilder(ScopeConfigInterface::class)->disableOriginalConstructor()->setMethods(['getValue', 'isSetFlag'])->getMock();
         $scopeConfigMock->method('getValue')->willReturnCallback([$this, 'mockGetExclusionListFromScopeConfig']);
         $this->contextMock = $this->objectManager->create(Context::class, ['scopeConfig' => $scopeConfigMock]);
     }

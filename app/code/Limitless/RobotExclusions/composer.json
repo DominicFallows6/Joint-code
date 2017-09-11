@@ -1,0 +1,18 @@
+{
+  "name": "limitless/robot-exclusions",
+  "version": "1.0.1",
+  "dependencies": {
+  },
+  "require": {
+    "php": "^7.0.0"
+  },
+  "type": "magento2-module",
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\RobotExclusions\\": ""
+    }
+  }
+}
