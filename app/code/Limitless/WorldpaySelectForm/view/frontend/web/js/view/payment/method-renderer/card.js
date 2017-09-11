@@ -75,6 +75,11 @@ define(
                     'form':'co-payment-form',
                     'paymentSection': iframe,
                     'display':'inline',
+                    'templateOptions': {
+                        dimensions: {
+                            height:330
+                        }
+                    },
                     'reusable': this.saveCard(),
                     'code': form_code,
                     'saveButton': false,
