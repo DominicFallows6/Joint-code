@@ -25,7 +25,10 @@ class Item extends M2Item
         $this->robotsExclusions = $robotsExclusions;
     }
 
-    public function isNoFollow(): bool
+    /**
+     * @return bool
+     */
+    public function isNoFollow()
     {
         $requestVar = $this->getFilter()->getRequestVar();
         return $this->robotsExclusions->shouldAssetBeNoFollow([$requestVar => []]);
