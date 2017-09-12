@@ -6,12 +6,12 @@
 <?php $_invoice = $block->getData('invoice'); ?>
 <?php $_order = $block->getData('order'); ?>
 <?php if ($_invoice && $_order): ?>
-    <? $companyNumber =  $block->getVariableValue('COMPANY_NUMBER',$block->getData('order')->getStoreId());?>
+    <?php $companyNumber =  $block->getVariableValue('COMPANY_NUMBER',$block->getData('order')->getStoreId());?>
 
     <?php if ($block->getData('order')->getTaxAmount() > 0): ?>
-           <? $vatCode =  $block->getVariableValue('VAT',$block->getData('order')->getStoreId());?>
+           <?php $vatCode =  $block->getVariableValue('VAT',$block->getData('order')->getStoreId());?>
     <?php else: ?>
-        <? $vatCode = $block->getVariableValue('UKVAT',$block->getData('order')->getStoreId()); ?>
+        <?php $vatCode = $block->getVariableValue('UKVAT',$block->getData('order')->getStoreId()); ?>
     <?php endif; ?>
 
     <?= /* @escapeNotVerified */ __('Company Registration Number:') ?>
