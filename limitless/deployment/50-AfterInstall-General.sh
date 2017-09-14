@@ -23,3 +23,8 @@ echo "Attaching sitemaps EFS mount"
 if [ ! -L $DIR/pub/sitemaps ]; then
   ln -s "/efs/magento2/sitemaps" "${DIR}/pub/sitemaps"
 fi
+
+echo “Attaching robots EFS mount”
+if [ ! -L $DIR/pub/robots ]; then
+  ln -s “/efs/magento2/robots” “${DIR}/pub/robots”
+fi
