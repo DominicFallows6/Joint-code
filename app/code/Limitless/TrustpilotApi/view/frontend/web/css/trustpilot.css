@@ -335,6 +335,7 @@
 
 #trustpilot-product .tp-latest-reviews > div .text {
     min-height:60px;
+    width:100%;
 }
 
 .tp-latest-reviews > div .reviewer {

@@ -149,8 +149,8 @@
   }
 
   .product-reviews-summary {
-    display: table;
-    margin: @indent__s 0 12px;
+    display: inline-block;
+    margin: @indent__base 0;
     width:100%;
 
     .products.wrapper.list & {
@@ -163,11 +163,9 @@
     }
 
     .rating-summary {
-      display: table-cell;
       left: -@indent__xs;
       position: relative;
       text-align: left;
-      vertical-align: middle;
       float:left;
       margin:10px 0 10px 0;
     }
@@ -454,6 +452,11 @@
 .media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
   .product-info-main {
     .product-reviews-summary {
+      &.empty {
+        .reviews-actions {
+          width:100%;
+        }
+      }
       .reviews-actions {
         float: left;
         width: 45%;
