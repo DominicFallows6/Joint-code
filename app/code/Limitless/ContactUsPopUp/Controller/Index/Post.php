@@ -70,7 +70,7 @@ class Post extends PostParent
                     ]
                 )
                 ->setTemplateVars(['data' => $postObject])
-                ->setFrom($this->scopeConfig->getValue(self::XML_PATH_EMAIL_SENDER, $storeScope))
+                ->setFrom(['name' => $post['name'],'email' => $post['email']])
                 ->addTo($this->scopeConfig->getValue(self::XML_PATH_EMAIL_RECIPIENT, $storeScope))
                 ->setReplyTo($post['email'])
                 ->getTransport();
