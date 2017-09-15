@@ -6,6 +6,7 @@ use Magento\Customer\Api\GroupManagementInterface;
 use Magento\Customer\Helper\Address as HelperAddress;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Customer\Observer\AfterAddressSaveObserver;
+use Magento\Framework\App\Action\AbstractAction;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\App\State as AppState;
 use Magento\Framework\DataObject;
@@ -15,9 +16,19 @@ use Magento\Framework\Registry;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Customer\Model\Address;
 use Magento\Customer\Model\Vat;
+use Magento\Framework\App\Area;
 
 class AddCheckoutLinkToAfterAddressSaveObserver extends AfterAddressSaveObserver
 {
+    /**
+     * @var CustomerSession
+     */
+    private $customerSession;
+    /**
+     * @var AbstractAction
+     */
+    private $action;
+
     public function __construct(
         Vat $customerVat,
         HelperAddress $customerAddress,
@@ -27,7 +38,8 @@ class AddCheckoutLinkToAfterAddressSaveObserver extends AfterAddressSaveObserver
         ManagerInterface $messageManager,
         Escaper $escaper,
         AppState $appState,
-        CustomerSession $customerSession
+        CustomerSession $customerSession,
+        AbstractAction $action
     ) {
         parent::__construct(
             $customerVat,
@@ -39,8 +51,79 @@ class AddCheckoutLinkToAfterAddressSaveObserver extends AfterAddressSaveObserver
             $escaper,
             $appState,
             $customerSession);
+        $this->customerSession = $customerSession;
+        $this->action = $action;
     }
 
+    /**
+     * Address after save event handler
+     * LDG - Add in a check to see if 'vat_id' is in the request. If it's not, then don't display the vat valid/invalid message.
+     *
+     * @param \Magento\Framework\Event\Observer $observer
+     * @return void
+     * @SuppressWarnings(PHPMD.CyclomaticComplexity)
+     */
+    public function execute(\Magento\Framework\Event\Observer $observer)
+    {
+        /** @var $customerAddress Address */
+        $customerAddress = $observer->getCustomerAddress();
+        $customer = $customerAddress->getCustomer();
+
+        if (!$this->_customerAddress->isVatValidationEnabled($customer->getStore())
+            || $this->_coreRegistry->registry(self::VIV_PROCESSED_FLAG)
+            || !$this->_canProcessAddress($customerAddress)
+        ) {
+            return;
+        }
+
+        try {
+            $this->_coreRegistry->register(self::VIV_PROCESSED_FLAG, true);
+
+            if ($customerAddress->getVatId() == ''
+                || !$this->_customerVat->isCountryInEU($customerAddress->getCountry())
+            ) {
+                $defaultGroupId = $this->_groupManagement->getDefaultGroup($customer->getStore())->getId();
+                if (!$customer->getDisableAutoGroupChange() && $customer->getGroupId() != $defaultGroupId) {
+                    $customer->setGroupId($defaultGroupId);
+                    $customer->save();
+                    $this->customerSession->setCustomerGroupId($defaultGroupId);
+                }
+            } else {
+                $result = $this->_customerVat->checkVatNumber(
+                    $customerAddress->getCountryId(),
+                    $customerAddress->getVatId()
+                );
+
+                $newGroupId = $this->_customerVat->getCustomerGroupIdBasedOnVatNumber(
+                    $customerAddress->getCountryId(),
+                    $result,
+                    $customer->getStore()
+                );
+
+                if (!$customer->getDisableAutoGroupChange() && $customer->getGroupId() != $newGroupId) {
+                    $customer->setGroupId($newGroupId);
+                    $customer->save();
+                    $this->customerSession->setCustomerGroupId($newGroupId);
+                }
+
+                $customerAddress->setVatValidationResult($result);
+
+                if ($this->action->getRequest()->getParam('vat_id')) {
+                    if ($this->appState->getAreaCode() == Area::AREA_FRONTEND) {
+                        if ($result->getIsValid()) {
+                            $this->addValidMessage($customerAddress, $result);
+                        } elseif ($result->getRequestSuccess()) {
+                            $this->addInvalidMessage($customerAddress);
+                        } else {
+                            $this->addErrorMessage($customerAddress);
+                        }
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            $this->_coreRegistry->register(self::VIV_PROCESSED_FLAG, false, true);
+        }
+    }
 
     /**
      * Add success message for valid VAT ID
@@ -127,5 +210,4 @@ class AddCheckoutLinkToAfterAddressSaveObserver extends AfterAddressSaveObserver
 
         return $this;
     }
-
 }
