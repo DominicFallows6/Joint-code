@@ -6,8 +6,8 @@ use Magento\Customer\Api\GroupManagementInterface;
 use Magento\Customer\Helper\Address as HelperAddress;
 use Magento\Customer\Model\Session as CustomerSession;
 use Magento\Customer\Observer\AfterAddressSaveObserver;
-use Magento\Framework\App\Action\AbstractAction;
 use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Framework\App\RequestInterface;
 use Magento\Framework\App\State as AppState;
 use Magento\Framework\DataObject;
 use Magento\Framework\Escaper;
@@ -25,9 +25,9 @@ class AddCheckoutLinkToAfterAddressSaveObserver extends AfterAddressSaveObserver
      */
     private $customerSession;
     /**
-     * @var AbstractAction
+     * @var RequestInterface
      */
-    private $action;
+    private $request;
 
     public function __construct(
         Vat $customerVat,
@@ -39,7 +39,7 @@ class AddCheckoutLinkToAfterAddressSaveObserver extends AfterAddressSaveObserver
         Escaper $escaper,
         AppState $appState,
         CustomerSession $customerSession,
-        AbstractAction $action
+        RequestInterface $request
     ) {
         parent::__construct(
             $customerVat,
@@ -52,7 +52,7 @@ class AddCheckoutLinkToAfterAddressSaveObserver extends AfterAddressSaveObserver
             $appState,
             $customerSession);
         $this->customerSession = $customerSession;
-        $this->action = $action;
+        $this->request = $request;
     }
 
     /**
@@ -108,7 +108,7 @@ class AddCheckoutLinkToAfterAddressSaveObserver extends AfterAddressSaveObserver
 
                 $customerAddress->setVatValidationResult($result);
 
-                if ($this->action->getRequest()->getParam('vat_id')) {
+                if ($this->request->getParam('vat_id')) {
                     if ($this->appState->getAreaCode() == Area::AREA_FRONTEND) {
                         if ($result->getIsValid()) {
                             $this->addValidMessage($customerAddress, $result);
