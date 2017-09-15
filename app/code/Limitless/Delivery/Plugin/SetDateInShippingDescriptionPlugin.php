@@ -8,6 +8,8 @@ use Magento\Quote\Model\Quote\Address\Total;
 use Magento\Quote\Model\Quote\Address\Total\Shipping;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Stdlib\DateTime\DateTimeFormatterInterface;
+use Magento\Framework\App\Area;
+use Magento\Framework\App\State;
 
 class SetDateInShippingDescriptionPlugin
 {
@@ -16,9 +18,17 @@ class SetDateInShippingDescriptionPlugin
      */
     private $dateTimeFormatter;
 
-    public function __construct(DateTimeFormatterInterface $dateTimeFormatter)
-    {
+    /**
+     * @var State
+     */
+    private $state;
+
+    public function __construct(
+        DateTimeFormatterInterface $dateTimeFormatter,
+        State $state
+    ) {
         $this->dateTimeFormatter = $dateTimeFormatter;
+        $this->state = $state;
     }
 
     public function aroundCollect(
@@ -44,8 +54,7 @@ class SetDateInShippingDescriptionPlugin
                 /** @var \Magento\Quote\Model\Quote\Address\Rate $rate */
                 foreach ($address->getAllShippingRates() as $rate) {
                     if ($rate->getCode() === $method) {
-                        $shippingDescription = $date . ' (' . $rate->getMethodTitle() . ')';
-                        $total->setData('shipping_description', $shippingDescription);
+                        $total->setData('shipping_description', $this->buildShippingDescription($date, $rate));
                         break;
                     }
                 }
@@ -54,5 +63,19 @@ class SetDateInShippingDescriptionPlugin
         }
 
         return $result;
+    }
+
+    /**
+     * @param $date
+     * @param $rate
+     * @return string
+     */
+    private function buildShippingDescription($date, $rate)
+    {
+        if ($this->state->getAreaCode() === Area::AREA_ADMINHTML) {
+            return $rate->getMethodTitle();
+        }
+
+        return $date . ' (' . $rate->getMethodTitle() . ')';
     }
 }
