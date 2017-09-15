@@ -21,24 +21,6 @@
         padding: 10px 2px!important;
     }
 }
-@media (min-width:768px) {
-    #on-submit {
-        max-width: 600px;
-    }
-    #on-submit .primary {
-        float: right;
-    }
-
-    #co-shipping-method-form {
-        max-width: 600px;
-    }
-    #delivery-threshold {
-        margin-bottom: 20px;
-    }
-    .actions-toolbar .primary {
-        float: right;
-    }
-}
 #next-day-msg {
     display:inline-block;
     margin:0 0 0 9px;
@@ -87,6 +69,7 @@
 }
 
 .checkout-shipping-method .step-title {
+    margin:40px 0 0 0;
     border-bottom: 0;
     clear: both;
 }
@@ -145,8 +128,8 @@
     width: 25%;
 }
 #standard-delivery {
-    padding: 8px;
-    margin:15px 0;
+    padding: 5px;
+    margin:5px 0 15px 0;
     font-size: 12px;
 }
 .standard-delivery-option {
@@ -155,13 +138,13 @@
     cursor: pointer;
 }
 #standard-delivery .message {
-    width: 80%;
+    width: 75%;
     display: inline-block;
     float: left;
 }
 #standard-delivery .message p {
     font-weight: bold;
-
+    font-size:14px;
 }
 #standard-delivery .select-economy {
     /*display: inline-block;*/
@@ -170,6 +153,7 @@
 }
 #standard-delivery .select-economy span {
     font-weight: bold;
+    font-size:14px;
 }
 .or-container {
     text-align: center;
@@ -225,7 +209,7 @@
     border-top: 2px #ff0000 solid !important;
 }
 .table-checkout-shipping-method .date {
-    font-size: 40px;
+    font-size: 36px;
     font-weight: 600;
     line-height: 1;
 }
@@ -254,4 +238,35 @@ thead td div:last-of-type {
     display: inline-block;
     width: 80%;
     padding: 10px 5px;
+}
+@media (min-width:768px) {
+    #on-submit {
+        max-width: 600px;
+    }
+    #on-submit .primary {
+        float: right;
+    }
+
+    #co-shipping-method-form {
+        max-width: 600px;
+    }
+    #delivery-threshold {
+        margin-bottom: 20px;
+    }
+    .actions-toolbar .primary {
+        float: right;
+    }
+
+    #standard-delivery .message {
+        width:80%;
+    }
+
+    #standard-delivery .message p {
+        font-size:16px;
+    }
+
+    #standard-delivery .select-economy span {
+        font-size:16px;
+        margin-right:5px;
+    }
 }
