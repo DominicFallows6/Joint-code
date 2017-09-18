@@ -42,7 +42,7 @@ abstract class AbstractResponse implements ResponseInterface
     {
         $economyOption['deliveryTimeString'] = (string) (__('3 - 5 Working days'));
         $economyOption['deliveryOptionString'] = 'acceptableCarrierServiceGroupCodes:' . $this->getConfig('carriers/delivery_metapack/economy_group');
-        $economyOption['deliveryServiceLevelString'] = (__("I'm not in a hurry"));
+        $economyOption['deliveryServiceLevelString'] = (string) (__("I'm not in a hurry"));
         $economyOption['shippingCharge'] = $this->calculateEconomyDeliveryCharge($economyOption['shippingCharge'], $orderValue);
 
         return $economyOption;
