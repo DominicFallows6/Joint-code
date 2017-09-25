@@ -156,20 +156,37 @@ class View extends ViewParent
         return (bool) $this->getCategory()->getId();
     }
 
+    /**
+     * @return mixed
+     */
+    public function getCustomMetaDescription()
+    {
+        $categoryFromDb = $this->getCategory();
+        return $categoryFromDb->getData('meta_description');
+    }
+
     protected function _prepareLayout()
     {
         $this->getLayout()->createBlock('Magento\Catalog\Block\Breadcrumbs');
 
         $category = $this->getCurrentCategory();
         if ($category) {
+            $customMetaTitle = $this->getCustomHeading();
             $title = $category->getMetaTitle();
-            if ($title) {
+            if ($customMetaTitle) {
+                $this->pageConfig->getTitle()->set($customMetaTitle);
+            } else if ($title) {
                 $this->pageConfig->getTitle()->set($title);
             }
+
+            $customMetaDescription = $this->getCustomMetaDescription();
             $description = $category->getMetaDescription();
-            if ($description) {
+            if ($customMetaDescription) {
+                $this->pageConfig->setDescription($customMetaDescription);
+            } else if ($description) {
                 $this->pageConfig->setDescription($description);
             }
+
             $keywords = $category->getMetaKeywords();
             if ($keywords) {
                 $this->pageConfig->setKeywords($keywords);

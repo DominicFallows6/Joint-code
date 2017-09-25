@@ -27,13 +27,14 @@ if(file_exists(CSV)) {
         $staticBlock = $data[4];
         $status = $data[5];
         $storeId = $data[6];
-        
+        $metaDesc = $data[7];
+
         $attributes = explode('|', $filterAttributeIds);
         sort ($attributes);
         $attributes = implode('|', $attributes);
 
         if ($categoryId != '') {
-            $importCustomCategory = "insert into limitless_custom_category (category_id,category_description,category_heading,filter_attribute_ids,static_block,status,store_id) values ('" . $categoryId . "','" . $categoryDescription . "','" . $categoryHeading . "','" . $attributes . "','" . $staticBlock . "','" . $status . "','" . $storeId . "'); ";
+            $importCustomCategory = "insert into limitless_custom_category (category_id,category_description,category_heading,filter_attribute_ids,static_block,status,store_id,meta_description) values ('" . $categoryId . "','" . $categoryDescription . "','" . $categoryHeading . "','" . $attributes . "','" . $staticBlock . "','" . $status . "','" . $storeId . "','" . $metaDesc . "'); ";
             mysqli_real_escape_string($conn,$importCustomCategory);
             mysqli_query($conn, $importCustomCategory);
             echo $importCustomCategory;

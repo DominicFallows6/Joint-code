@@ -17,8 +17,17 @@
 <?php if ($_description = $block->getCurrentCategory()->getDescription()): ?>
     <div class="category-description">
         <div class="cat-desc-title">
-            <h2><?php /* @escapeNotVerified */
-                echo $block->getCurrentCategory()->getName(); ?></h2>
+            <h2>
+                <?php
+                if ($block->getCustomHeading()) {
+                    /* @escapeNotVerified */
+                    echo $block->getCustomHeading();
+                } else {
+                    /* @escapeNotVerified */
+                    echo $block->getCurrentCategory()->getName();
+                }
+                ?>
+            </h2>
         </div>
         <div class="cat-desc-text">
             <p>

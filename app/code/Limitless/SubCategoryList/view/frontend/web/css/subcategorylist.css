@@ -9,6 +9,7 @@
     float:left;
     margin-left:calc((100% - 2 * 48%) / 1);
     margin-bottom:20px;
+    cursor: pointer;
 }
 
 #sub-category-list > .sub-cat-box:nth-child(2n + 1) {
