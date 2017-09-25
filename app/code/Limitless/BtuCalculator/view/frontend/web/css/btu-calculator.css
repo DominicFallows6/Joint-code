@@ -8,6 +8,7 @@
 #btu_calc form select { -webkit-appearance: none; -webkit-border-radius: 0; border: 1px solid #CECECE; width: 100%; color: black; height: 43px; margin-bottom: 10px; }
 #btu_calc select { -webkit-appearance: none; -moz-appearance: none; text-indent: 1px; text-overflow: ''; }
 #btu_calc .option-grey {color: #CECECE;}
+#btu_calc h2 {text-transform:uppercase;font-weight:500;}
 #btu_calc h3 {font-weight:500;font-size:21px;margin-bottom:1.5rem;}
 #btu_calc select option {color: black;}
 #btu_calc select option:first-child {color: #CECECE;}

@@ -4,7 +4,7 @@
 
 <div id="btu_calc">
     <form name="btuForm" id="btuForm">
-       <h3><?=__('PLEASE ENTER YOUR INFORMATION BELOW')?>:</h3>
+       <h2><?=__('Please enter your information below')?>:</h2>
         <div id="measurement">
             <span class="metric current"><label><input type="radio" name="units" checked="checked" value="metric" /><?=__('Metric (metres)')?></label></span>
             <span class="imperial"><label><input type="radio" name="units" value="imperial" /><?=__('Imperial (feet)')?></label></span>
@@ -87,7 +87,7 @@
                 <option value="" SELECTED>-- <?=__('Please select')?> --</option>
                 <option value="1"><?=__('None or One')?></option>
                 <option value="2"><?=__('Two')?></option>
-                <option value="3"><?__('Three')?></option>
+                <option value="3"><?=__('Three')?></option>
             </select>
         </div>
         <div class="scrolldown"></div>
@@ -125,7 +125,9 @@
                     <?php } ?>
                     <input placeholder="0" name="watts_total" size="10" value="" class="total" disabled="disabled" />
                 </div>
-                <div class="suitable-products"></div>
+                <div class="suitable-products">
+                    <a href="#" title="<?=__('View suitable products')?>" target="_blank"><?=__('View suitable products')?></a>
+                </div>
             </div>
         </div>
     </form>

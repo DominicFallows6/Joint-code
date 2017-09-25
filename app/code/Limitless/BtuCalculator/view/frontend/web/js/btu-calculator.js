@@ -21,7 +21,7 @@ define(["jquery","jquery/validate"], function($) {
 
         function buildFilteredLink() {
 
-            var suitableProductsLink = $('.suitable-products');
+            var suitableProductsLink = $('.suitable-products > a');
             var wattsRequired;
             var filteredLabel = data.filter_output_label;
             var filteredValue = data.filter_output_value;
@@ -69,7 +69,7 @@ define(["jquery","jquery/validate"], function($) {
 
             }
 
-            $(suitableProductsLink).html('<a href="'+filteredUrl+'='+filteredId+'" title="View suitable products" target="_blank">View suitable products</a>');
+            $(suitableProductsLink).attr("href", filteredUrl+'='+filteredId);
 
         }
 
