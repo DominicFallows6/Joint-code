@@ -38,7 +38,6 @@ class InstallSchema implements InstallSchemaInterface
             $table->addColumn('static_block', Table::TYPE_TEXT);
             $table->addColumn('status', Table::TYPE_INTEGER);
             $table->addColumn('store_id', Table::TYPE_INTEGER);
-            $table->addColumn('meta_description', Table::TYPE_TEXT);
 
             $indexColumns = [
                 CustomCategoryResource::CATEGORY_ID_FIELD,

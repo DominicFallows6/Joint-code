@@ -18,6 +18,13 @@ $conn->set_charset("utf8");
 if(file_exists(CSV)) {
     $handle = fopen(CSV, 'r');
 
+    $tableExists = "select * from limitless_custom_category";
+    if (mysqli_query($conn,$tableExists)) {
+        $truncateTable = "truncate table limitless_custom_category";
+        mysqli_query($conn, $truncateTable);
+        echo 'table truncated. ';
+    }
+
     while ($data = fgetcsv($handle, 1000, ',')) {
 
         $categoryId = $data[0];
@@ -35,11 +42,10 @@ if(file_exists(CSV)) {
 
         if ($categoryId != '') {
             $importCustomCategory = "insert into limitless_custom_category (category_id,category_description,category_heading,filter_attribute_ids,static_block,status,store_id,meta_description) values ('" . $categoryId . "','" . $categoryDescription . "','" . $categoryHeading . "','" . $attributes . "','" . $staticBlock . "','" . $status . "','" . $storeId . "','" . $metaDesc . "'); ";
-            mysqli_real_escape_string($conn,$importCustomCategory);
+            mysqli_real_escape_string($conn, $importCustomCategory);
             mysqli_query($conn, $importCustomCategory);
             echo $importCustomCategory;
         }
-
     }
 }
 
