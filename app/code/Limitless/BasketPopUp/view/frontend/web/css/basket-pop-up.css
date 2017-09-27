@@ -15,9 +15,8 @@
 
 .product-info-popup .product-message:before  {
     content:'';
-    background:url('../images/pop-up-cart-icons.svg') no-repeat;
+    background: url('../images/pop-up-cart-icons.svg') no-repeat -5px -4px;
     background-size: 40px 220px;
-    background-position:-5px -4px;
     float:left;
     height:30px;
     width:30px;
@@ -60,9 +59,8 @@
 
 .product-info-popup .basket-qty:before {
     content:'';
-    background:url('../images/pop-up-cart-icons.svg') no-repeat;
+    background: url('../images/pop-up-cart-icons.svg') no-repeat -7px -44px;
     background-size: 40px 220px;
-    background-position:-7px -44px;
     float:left;
     height:30px;
     width:25px;
@@ -104,7 +102,6 @@
 .product-info-popup .product-image img {
     border:1px solid #cccccc;
 }
-
 
 .product-info-popup .product-details, .product-info-popup .extras-info .product-details {
     float:left;
@@ -192,7 +189,7 @@
 }
 
 .product-info-popup .upsell .products-grid .product-item .price-box {
-    display:inline-block;
+    float:left;
     margin:10px 0 10px;
 }
 
@@ -200,6 +197,10 @@
     color:#adadad;
     margin:0 10px 0 0;
     float:left;
+}
+
+.product-info-popup .upsell .products-grid .product-item .price-box {
+    font-size:1.6rem;
 }
 
 .product-info-popup .upsell .products-grid .product-item .price-box .price {
@@ -313,9 +314,7 @@
     font-weight:600;
 }
 
-
 @media screen and (min-width:640px) {
-
     .product-info-popup .product-added .box-left {
         float:left;
         width:45%;
@@ -345,7 +344,6 @@
     .product-info-popup .product-message > span, .product-info-popup .basket-qty .qty-total {
         font-size:14px;
     }
-
 }
 
 @media (min-width:768px) {
@@ -361,17 +359,20 @@
         width: 80%;
     }
 
-    .product-info-popup .upsell .products-grid .product-item .price-box .price {
+    .product-info-popup .product-message > span, .product-info-popup .basket-qty .qty-total {
+        font-size:16px;
+    }
+
+    .product-info-popup .upsell .products-grid .product-item .price-box {
         font-size:2rem;
     }
 
-    .product-info-popup .product-message > span, .product-info-popup .basket-qty .qty-total {
-        font-size:16px;
+    .product-info-popup .upsell .products-grid .product-item .price-box .price {
+        font-size:2rem;
     }
 }
 
 @media (min-width:1024px) {
-
     .product-info-popup .buttons {
         margin:20px 0 0 0;
         display:inline-flex;
@@ -390,6 +391,7 @@
 
     .product-info-popup .buttons a, .product-info-popup .buttons button {
         font-size:14px;
+        line-height:18px;
     }
 }
 
@@ -398,5 +400,3 @@
         width: 60%;
     }
 }
-
-

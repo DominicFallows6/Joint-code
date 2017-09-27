@@ -18,10 +18,13 @@ define([
             bindSubmit: true,
             minicartSelector: '[data-block="minicart"]',
             messagesSelector: '[data-placeholder="messages"]',
+            oldPrice: '[data-price-type="oldPrice"] .price',
+            finalPrice: '[data-price-type="finalPrice"] .price',
             productStatusSelector: '.stock.available',
             addToCartButtonSelector: '.action.tocart',
             productPageCartButton: '#product-addtocart-button',
             upsellProductCartButton: '.upsell .tocart',
+            configurableProduct: '.product-options-wrapper .super-attribute-select',
             productPopUp: '.product-info-popup',
             addToCartButtonDisabledClass: 'disabled',
             addToCartButtonTextWhileAdding: '',
@@ -29,16 +32,31 @@ define([
             addToCartButtonTextDefault: ''
         },
 
+        configurableProductPrices: function() {
+            var self = this;
+            var productOptionDropdown = $(this.options.configurableProduct);
+            productOptionDropdown.on('change', function() {
+                var oldPrice = $(self.options.oldPrice).html();
+                var finalPrice = $(self.options.finalPrice).html();
+                $('.product-pop-up .special-price').html(finalPrice);
+                $('.product-pop-up .old-price').html(oldPrice);
+                $('.product-pop-up .price').html(finalPrice);
+            });
+        },
+
         _create: function() {
+            var productInfo = $('.product-pop-up .product-info');
+            var productUpsells = $('.product-pop-up .upsells');
+            var productUpsellsInfo = $('.product-pop-up .extras-info');
+            var productOptions = $('.product-title .options');
 
             if (this.options.bindSubmit) {
                 this._bindSubmit();
             }
 
-            var productInfo = $('.product-pop-up .product-info');
-            var productUpsells = $('.product-pop-up .upsells');
-            var productUpsellsInfo = $('.product-pop-up .extras-info');
-            var productOptions = $('.product-title .options');
+            if ($(this.options.configurableProduct).length) {
+                this.configurableProductPrices();
+            }
 
             $(this.options.upsellProductCartButton).click(function() {
                var self = this;
@@ -97,7 +115,7 @@ define([
 
             setTimeout(function() {
                 popup.modal('openModal');
-            }, 800);
+            }, 1000);
         },
 
         /**
