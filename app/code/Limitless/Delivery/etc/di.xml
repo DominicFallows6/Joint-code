@@ -28,4 +28,8 @@
         <plugin name="limitless_shippingdescription" type="Limitless\Delivery\Plugin\SetDateInShippingDescriptionPlugin" />
     </type>
 
+    <type name="Magento\Quote\Model\Cart\ShippingMethodConverter">
+        <plugin name="limitless_shippingtax" type="Limitless\Delivery\Plugin\RemoveShippingTaxFromDatepickerPlugin" />
+    </type>
+
 </config>
