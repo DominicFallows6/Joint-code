@@ -4,7 +4,7 @@
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands" xsi:type="array">
-                <item name="feed" xsi:type="object">Limitless\ProductFeeds\Console\Command\Feed</item>
+                <item name="report" xsi:type="object">Limitless\Reports\Console\Command\Report</item>
             </argument>
         </arguments>
     </type>

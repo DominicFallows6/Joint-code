@@ -1,17 +1,22 @@
 <?php
 
-namespace Limitless\ProductFeeds\Model;
+namespace Limitless\ProductFeeds\Console\Command;
 
-use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory;
+use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
+use Magento\Framework\App\State as AppState;
 use Magento\ImportExport\Model\Export\Adapter\Csv;
 use Magento\ImportExport\Model\Export\Adapter\CsvFactory;
 use Magento\Store\Model\StoreManagerInterface;
 
-class Cron
+use Symfony\Component\Console\Command\Command;
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
+class Feed extends Command
 {
     const FILE_DIR = "limitless_feeds/";
     const FILE_NAME = "final_price_%%";
-    
+
     /**
      * @var StoreManagerInterface
      */
@@ -21,33 +26,44 @@ class Cron
      * @var CsvFactory
      */
     protected $csvFactory;
+
+    /**
+     * @var ProductCollectionFactory
+     */
+    protected $productCollectionFactory;
+
     /**
      * @var Csv
      */
     protected $csv;
 
     /**
-     * @var CollectionFactory
+     * @var AppState
      */
-    protected $productCollection;
-    
+    protected $state;
+
     public function __construct(
-        CollectionFactory $productCollection,
+        ProductCollectionFactory $productCollectionFactory,
         StoreManagerInterface $storeManager,
-        CsvFactory $csvFactory
+        CsvFactory $csvFactory,
+        AppState $state
     ) {
-        $this->collection = $productCollection;
+        $this->productCollectionFactory = $productCollectionFactory;
         $this->storeManager = $storeManager;
         $this->csvFactory = $csvFactory;
+        $this->state = $state;
+        parent::__construct();
+
+
     }
 
     /**
      * @param $storeId
-     * @return CollectionFactory
+     * @return ProductCollectionFactory
      */
     public function getProducts($storeId)
     {
-        $collection = $this->collection->create()->setStore($storeId)->addAttributeToSelect('*')->load();
+        $collection = $this->productCollectionFactory->create()->setStore($storeId)->addAttributeToSelect('*')->load();
         return $collection;
     }
 
@@ -60,26 +76,6 @@ class Cron
         return $stores;
     }
 
-    public function export()
-    {
-        $stores = $this->getStores();
-        
-        foreach ($stores as $store) {
-            
-            $storeId = $store->getId();
-            $this->storeManager->setCurrentStore($storeId);
-            
-            $collection = $this->getProducts($storeId);
-
-            $fileName = str_replace("%%", $storeId, self::FILE_NAME);
-            $destination = self::FILE_DIR . DIRECTORY_SEPARATOR . $fileName . ".csv";
-            $this->csv = $this->csvFactory->create(["destination" => $destination]);
-            
-            $this->writeToFile($collection);
-        }
-    }
-
-
     /**
      * @param $collection
      */
@@ -89,7 +85,7 @@ class Cron
             foreach ($collection as $product) {
                 /** @var \Magento\Catalog\Model\Product $product */
                 $finalPrice = $product->getPriceInfo()->getPrice('final_price')->getValue();
-                
+
                 if ($finalPrice > 0) {
                     $this->csv->writeRow(
                         [
@@ -104,4 +100,34 @@ class Cron
             }
         }
     }
+
+    protected function configure()
+    {
+        $this->setName('feed:export')
+            ->setDescription('Export of Feeds');
+
+        parent::configure();
+    }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $this->state->setAreaCode(\Magento\Framework\App\Area::AREA_GLOBAL);
+
+        $stores = $this->getStores();
+
+        foreach ($stores as $store) {
+
+            $storeId = $store->getId();
+            $this->storeManager->setCurrentStore($storeId);
+
+            $collection = $this->getProducts($storeId);
+
+            $fileName = str_replace("%%", $storeId, self::FILE_NAME);
+            $destination = self::FILE_DIR . DIRECTORY_SEPARATOR . $fileName . ".csv";
+            $this->csv = $this->csvFactory->create(["destination" => $destination]);
+
+            $this->writeToFile($collection);
+        }
+    }
+    
 }
