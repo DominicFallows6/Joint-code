@@ -31,7 +31,7 @@ define(["jquery","jquery/validate"], function($) {
             var filterIdKey;
             var filteredId;
 
-            if(data.btu_output == 1) {
+            if (data.btu_output == 1) {
                 wattsRequired = parseInt($(btu).val().replace(/,/g, ''))
             } else {
                 wattsRequired = parseInt($(watts).val().replace(/,/g, ''));
@@ -45,15 +45,15 @@ define(["jquery","jquery/validate"], function($) {
 
             /* return the closest value up when comparing the BTU result against the rangeArrayFrom array */
             $.each(rangeArrayTo, function() {
-                if(this >= wattsRequired && (rangeTo == null || (wattsRequired - this) > (wattsRequired - rangeTo))) {
+                if (this >= wattsRequired && (rangeTo == null || (wattsRequired - this) > (wattsRequired - rangeTo))) {
                     rangeTo = this;
                 }
             });
 
             /* Get the array key for the filterId */
-            for(var n in rangeArrayTo) {
-                if(rangeArrayTo.hasOwnProperty(n)) {
-                    if(rangeArrayTo[n] === rangeTo) {
+            for (var n in rangeArrayTo) {
+                if (rangeArrayTo.hasOwnProperty(n)) {
+                    if (rangeArrayTo[n] === rangeTo) {
                         filterIdKey = n;
                     }
                 }
@@ -61,7 +61,7 @@ define(["jquery","jquery/validate"], function($) {
 
             /* Get filter id value from the key returned above */
             for (var j=0; j < filteredValue.length; j++) {
-                if(filteredValue[filterIdKey] != null){
+                if (filteredValue[filterIdKey] != null){
                     filteredId = filteredValue[filterIdKey];
                 } else {
                     filteredId = "no_results";
@@ -76,6 +76,7 @@ define(["jquery","jquery/validate"], function($) {
         function showBtuResults() {
 
             var btuTotal;
+            var wattsTotal;
 
             $('html,body').animate({scrollTop: $(".scrolldown").offset().top}, 'slow');
 
@@ -87,10 +88,12 @@ define(["jquery","jquery/validate"], function($) {
 
             setTimeout(window.randomize);
 
-            if(data.btu_output == 1) {
+            if (data.btu_output == 1) {
                 btuTotal = btu.val();
+                wattsTotal = watts.val();
             } else {
                 btuTotal = watts.val();
+                wattsTotal = watts.val();
             }
 
             $({countNum: 0}).animate({countNum: btuTotal}, {
@@ -100,23 +103,21 @@ define(["jquery","jquery/validate"], function($) {
                     btu.val(Math.floor(this.countNum));
                 },
                 complete: function () {
-                    var btuTotal = btu.val();
                     var commas = addCommas(btuTotal);
                     btu.val(commas);
                 }
             });
 
-            $({countNum: 0}).animate({countNum: watts.val()}, {
+            $({countNum: 0}).animate({countNum: wattsTotal}, {
                 duration: 1000,
                 easing: 'linear',
                 step: function () {
                     watts.val(Math.floor(this.countNum));
-                    if(data.btu_output != 1) {
+                    if (data.btu_output != 1) {
                         watts.hide();
                     }
                 },
                 complete: function () {
-                    var wattsTotal = watts.val();
                     var commas = addCommas(wattsTotal);
                     watts.val(commas);
                     buildFilteredLink();
@@ -261,7 +262,5 @@ define(["jquery","jquery/validate"], function($) {
                 $(this).removeClass('option-grey');
             }
         });
-
     }
-
 });
