@@ -877,7 +877,7 @@
 "A customer with the same email already exists in an associated website.","È possibile che tu abbia già creato un account con questo indirizzo email."
 " Example: "," Esempio: "
 "Relevance","Default"
-"The password doesn\'t match this account.","La password non corrisponde alla password attuale dell'utente."
+"The password doesn't match this account.","La password non corrisponde alla password attuale dell'utente."
 "Your Invoice for Order #%order_id","La fattura per l'ordine #%order_id"
 "Invoice for Order #%order_id","Fattura per l'ordine #%order_id"
 "If you are a registered VAT customer, please <a href=""%1"">click here</a> to enter your billing address for proper VAT calculation.","Se hai la partita IVA Intracomunitaria, ti preghiamo di <a href=""%1"">cliccare qui</a> per inserire l'indirizzo legale in modo da consentire il calcolo corretto dell'IVA."
