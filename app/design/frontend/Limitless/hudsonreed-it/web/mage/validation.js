@@ -174,7 +174,7 @@
                 }
                 return value === target.val();
             },
-            $.mage.__('Please enter the same value again.')
+            $.mage.__('Ti preghiamo di inserire di nuovo lo stesso valore.')
         ],
         "max-words": [
             function (value, element, params) {
