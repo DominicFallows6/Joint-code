@@ -69,6 +69,12 @@ class AddCheckoutLinkToAfterAddressSaveObserver extends AfterAddressSaveObserver
         $customerAddress = $observer->getCustomerAddress();
         $customer = $customerAddress->getCustomer();
 
+        /** Clear addresses from $customer object so OLD address won't be re-saved on $customer->save() call
+         * MAGENTO ISSUE: https://github.com/magento/magento2/issues/7668
+         */
+        $customer->getAddressesCollection()->clear();
+
+
         if (!$this->_customerAddress->isVatValidationEnabled($customer->getStore())
             || $this->_coreRegistry->registry(self::VIV_PROCESSED_FLAG)
             || !$this->_canProcessAddress($customerAddress)
