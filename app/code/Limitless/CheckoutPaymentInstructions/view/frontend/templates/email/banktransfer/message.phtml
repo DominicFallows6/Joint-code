@@ -1,0 +1,13 @@
+<?php
+/** @var \Limitless\CheckoutPaymentInstructions\Block\View $block */
+?>
+<div class="additional-email-message">
+    <?php
+    $storeId = $block->getData('order')->getStoreId();
+    $paymentMethod = $block->getData('order')->getPayment()->getMethodInstance()->getCode();
+
+    if ($paymentMethod == 'banktransfer') {
+        echo $block->getBankTransferCustomVariableValue('BANK_TRANSFER_DETAILS', $storeId);
+    }
+    ?>
+</div>
