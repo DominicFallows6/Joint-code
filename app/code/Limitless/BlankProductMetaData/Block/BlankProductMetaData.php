@@ -23,6 +23,8 @@ class BlankProductMetaData extends View
         $title = $product->getMetaTitle();
         if ($title) {
             $this->pageConfig->getTitle()->set($title);
+        } else {
+            $this->pageConfig->getTitle()->set($product->getName());
         }
         $keyword = $product->getMetaKeyword();
         $currentCategory = $this->_coreRegistry->registry('current_category');
