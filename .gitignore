@@ -8,6 +8,7 @@ atlassian*
 /sitemap
 /.idea
 /.gitattributes
+/node_modules
 
 /app/code/Magento
 /app/design/*/Magento

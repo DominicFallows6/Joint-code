@@ -413,11 +413,6 @@
     .ie11 & {
       height: 100%;
     }
-    .global-lister-banner {
-      padding-left: 0;
-      padding-right: 0;
-      width: auto;
-    }
   }
 
   .navigation > ul {
@@ -574,33 +569,3 @@
     }
   }
 }
-
-
-// Sticky header - mobile
-.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
-  .page-wrapper {
-    .page-header {
-      position: fixed;
-      width: 100%;
-      z-index: 9;
-      top: 0;
-    }
-    #maincontent {
-      margin-top: 73px;
-      .global-lister-banner {
-        margin-left: -15px;
-        margin-right: -15px;
-        width:auto;
-      }
-    }
-  }
-  .cms-home {
-    #banner-hp {
-      margin-top: 50px;
-    }
-    #maincontent {
-      margin-top: 0;
-    }
-  }
-}
-

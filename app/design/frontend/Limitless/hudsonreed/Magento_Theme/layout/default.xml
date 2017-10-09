@@ -48,10 +48,5 @@
         <move element="footer.flags" destination="footer.bottom.container" after="-" />
 
         <move element="footer.security" destination="footer.bottom.container" before="footer.flags" />
-
-        <move element="breadcrumbs" destination="main.content" before="-"/>
-
-        <move element="global.lister.banner" destination="main.content" before="breadcrumbs"/>
-
     </body>
 </page>
