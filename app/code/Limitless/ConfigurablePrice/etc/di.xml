@@ -5,4 +5,5 @@
         <plugin name="Limitless_ConfigurablePrice"
                 type="Limitless\ConfigurablePrice\Plugin\ConfigurablePricePlugin"/>
     </type>
+    <preference for="Magento\ConfigurableProduct\Pricing\Price\ConfigurableRegularPrice" type="Limitless\ConfigurablePrice\Pricing\Price\GetUsedProductsInDoGetMinRegularAmount" />
 </config>
