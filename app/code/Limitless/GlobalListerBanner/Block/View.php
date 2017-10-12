@@ -37,16 +37,20 @@ class View extends Template
         $mobileBanner = $this->getMobileListerBanner();
 
         if (empty($bannerLink)) {
-            $desktopBannerHtml = '<img class="desktop" src="' . $desktopBanner . '" alt="' . $altText . '" />';
-            $mobileBannerHtml = '<img class="mobile " src="' . $mobileBanner . '" alt="' . $altText . '" />';
+            $bannerHtml = '<picture>' .
+                '<source media="(max-width: 767px)" srcset="' . $mobileBanner . '">' .
+                '<img src="' . $desktopBanner . '" alt="' . $altText . '" />' .
+            '</picture>';
         } else {
-            $desktopBannerHtml = '<a class="desktop "href="' . $bannerLink . '"><img src="' . $desktopBanner .
-                '" alt="' . $altText . '" /></a>';
-            $mobileBannerHtml = '<a class="mobile" href="' . $bannerLink . '"><img src="' . $mobileBanner .
-                '" alt="' . $altText . '" /></a>';
+            $bannerHtml = '<a href="' . $bannerLink . '">
+                <picture>
+                    <source media="(max-width: 767px)" srcset="' . $mobileBanner . '">
+                    <img src="' . $desktopBanner . '" alt="' . $altText . '" />
+                </picture>
+            </a>';
         }
 
-        return $desktopBannerHtml . $mobileBannerHtml;
+        return $bannerHtml;
 
     }
 
