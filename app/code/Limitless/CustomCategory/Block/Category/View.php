@@ -13,6 +13,9 @@ use Limitless\CustomCategory\Repository\CustomCategoryRepositoryInterface;
 
 class View extends ViewParent
 {
+    /** @var \Magento\Catalog\Model\Category $currentCategory */
+    protected $currentCategory;
+
     /**
      * @var Http
      */
@@ -86,14 +89,32 @@ class View extends ViewParent
      */
     public function getFilterAttributeIdsAsString()
     {
-        // Current filter attribute params minus category ID
-        $currentAttributeId = $this->request->getParams();
+        // Current filter attribute params minus category ID and other sorting params
+        $currentAttributeId = $this->removeUnwantedParams($this->request->getParams());
 
-        unset($currentAttributeId['id']);
         $currentAttributeId = $this->flatten($currentAttributeId);
         sort($currentAttributeId);
 
         return implode('|', $currentAttributeId);
+    }
+
+    private function removeUnwantedParams(array $params) : array
+    {
+        unset($params['id']);
+
+        if (isset($params['p'])) {
+            unset($params['p']);
+        }
+
+        if (isset($params['product_list_order'])) {
+            unset($params['product_list_order']);
+        }
+
+        if (isset($params['product_list_limit'])) {
+            unset($params['product_list_limit']);
+        }
+
+        return $params;
     }
 
     /**
@@ -165,14 +186,40 @@ class View extends ViewParent
         return $categoryFromDb->getData('meta_description');
     }
 
+    /**
+     * @return string
+     */
+    private function getCanonicalLinkForCustomCategory()
+    {
+        if ($this->hasCustomCategory() === true) {
+
+            //get the base URL for the category
+            $fullyQualifiedUrl = $this->currentCategory->getUrl();
+
+            //remove the parameter string
+            $strippedURL = str_replace('?'.$this->request->getUri()->getQuery(), '', $fullyQualifiedUrl);
+
+            //add wanted params
+            $paramsToAdd = $this->removeUnwantedParams($this->request->getParams());
+
+            //build the full URL
+            $fullyQualifiedUrl = $strippedURL.'?'.http_build_query($paramsToAdd);
+
+            return $fullyQualifiedUrl;
+
+        } else {
+            return $this->currentCategory->getUrl();
+        }
+    }
+
     protected function _prepareLayout()
     {
         $this->getLayout()->createBlock('Magento\Catalog\Block\Breadcrumbs');
 
-        $category = $this->getCurrentCategory();
-        if ($category) {
+        $this->currentCategory = $this->getCurrentCategory();
+        if ($this->currentCategory) {
             $customMetaTitle = $this->getCustomHeading();
-            $title = $category->getMetaTitle();
+            $title = $this->currentCategory->getMetaTitle();
             if ($customMetaTitle) {
                 $this->pageConfig->getTitle()->set($customMetaTitle);
             } else if ($title) {
@@ -180,35 +227,40 @@ class View extends ViewParent
             }
 
             $customMetaDescription = $this->getCustomMetaDescription();
-            $description = $category->getMetaDescription();
+            $description = $this->currentCategory->getMetaDescription();
             if ($customMetaDescription) {
                 $this->pageConfig->setDescription($customMetaDescription);
             } else if ($description) {
                 $this->pageConfig->setDescription($description);
             }
 
-            $keywords = $category->getMetaKeywords();
+            $keywords = $this->currentCategory->getMetaKeywords();
             if ($keywords) {
                 $this->pageConfig->setKeywords($keywords);
             }
             if ($this->_categoryHelper->canUseCanonicalTag()) {
                 $this->pageConfig->addRemotePageAsset(
-                    $category->getUrl(),
+                    $this->getCanonicalLinkForCustomCategory(),
                     'canonical',
                     ['attributes' => ['rel' => 'canonical']]
                 );
             }
 
             $pageMainTitle = $this->getLayout()->getBlock('page.main.title');
+            $usedParams = $this->removeUnwantedParams($this->request->getParams());
+            $categoryHeading = '';
+
             if ($this->hasCustomCategory() === true) {
+                $this->pageConfig->setRobots('index, follow');
                 $categoryHeading = $this->getCustomHeading();
-            } else {
-                $categoryHeading = '';
+            } elseif (!empty($usedParams)) {
+                $this->pageConfig->setRobots('no-index, follow');
             }
+
             if ($pageMainTitle && $categoryHeading) {
                 $pageMainTitle->setPageTitle($categoryHeading);
             } else {
-                $pageMainTitle->setPageTitle($this->getCurrentCategory()->getName());
+                $pageMainTitle->setPageTitle($this->currentCategory->getName());
             }
         }
     }

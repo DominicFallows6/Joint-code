@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Magento\Catalog\Model\Layer\Filter\Item" type="Limitless\Seo\Layer\Item"/>
+    <preference for="Magento\Sitemap\Model\ResourceModel\Cms\Page" type="Limitless\Seo\Model\ResourceModel\Cms\Page" />
+</config>

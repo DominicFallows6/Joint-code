@@ -14,7 +14,7 @@
     <div class="product-reviews-summary<?php echo !$rating ? ' no-rating' : ''?>" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
         <div class="reviews-actions">
             <span class="action customer"><?php /* @escapeNotVerified */ echo __('Customer Reviews') ?></span><br />
-            <a class="action view" href="<?php /* @escapeNotVerified */ echo $url ?>"><span itemprop="reviewCount">(<?php /* @escapeNotVerified */ echo $block->getReviewsCount() ?>)</span>&nbsp;<span><?php /* @escapeNotVerified */ echo($block->getReviewsCount() == 1) ? __('Review') : __('Reviews') ?></span></a>
+            <a class="action view" href="<?php /* @escapeNotVerified */ echo $url ?>"><span class="review-count" itemprop="reviewCount"><?php /* @escapeNotVerified */ echo $block->getReviewsCount() ?></span>&nbsp;<span><?php /* @escapeNotVerified */ echo($block->getReviewsCount() == 1) ? __('Review') : __('Reviews') ?></span></a>
             <a class="action add" href="<?php /* @escapeNotVerified */ echo $urlForm ?>"><?php /* @escapeNotVerified */ echo __('Add Your Review') ?></a>
         </div>
         <?php if ($rating):?>
