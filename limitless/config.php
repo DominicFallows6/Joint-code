@@ -240,5 +240,6 @@ return array (
             'Limitless_VATMessage' => 1,
             'Limitless_CookieLawFixes' => 1,
             'Limitless_PaypalStaticImage' => 1,
+            'MagicToolbox_MagicZoomPlus' => 1,
         ),
 );

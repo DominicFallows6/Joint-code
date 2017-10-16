@@ -15,6 +15,7 @@
     background:#ffffff;
     display:table;
     text-align:center;
+    z-index:1;
 }
 
 .discount-splat > span {

@@ -207,6 +207,7 @@
     font-size:12px;
     display:inline-block;
     line-height:16px;
+    width:100%;
 }
 
 .tp-pagination > a {
@@ -335,7 +336,6 @@
 
 #trustpilot-product .tp-latest-reviews > div .text {
     min-height:60px;
-    width:100%;
 }
 
 .tp-latest-reviews > div .reviewer {
