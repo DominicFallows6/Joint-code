@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="Limitless\GoogleAnalytics\Block\ProductListCookie" name="product_list_cookie_setter"
+                   template="Limitless_GoogleAnalytics::productlist_cookiesetter.phtml"
+                    ifconfig="google/analytics/limitless_analytics/product_detail/use_category_cookie">
+            </block>
+        </referenceContainer>
+    </body>
+</page>

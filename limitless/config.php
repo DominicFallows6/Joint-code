@@ -217,6 +217,7 @@ return array (
             'Magento_Braintree' => 1,
             'Magento_Version' => 1,
             'Limitless_TagManagerDataLayer' => 1,
+            'Limitless_GoogleAnalytics' => 1,
             'Limitless_TrustpilotApi' => 1,
             'Magento_VisualMerchandiser' => 1,
             'Magento_Webapi' => 1,

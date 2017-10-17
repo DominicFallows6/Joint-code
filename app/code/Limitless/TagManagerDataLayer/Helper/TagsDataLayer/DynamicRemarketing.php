@@ -265,6 +265,7 @@ class DynamicRemarketing
      * Will slow down loading
      *
      * @param Product[] $productsArray
+     * @return array
      */
     private function convertProductsForAliasCode($productsArray)
     {

@@ -1,0 +1,31 @@
+<?php
+/** @var \Limitless\GoogleAnalytics\Block\ListJson $block */
+$product = $block->getCurrentProduct();
+
+$block->initHelper();
+
+?>
+
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Limitless_GoogleAnalytics/js/product_detail" : {
+            "product_detail_id": "<?php /* @escapeNotVerified */ echo $block->escapeJsQuote($product->getSku()); ?>",
+            "product_detail_name": "<?php /* @escapeNotVerified */ echo $block->escapeJsQuote($product->getName()); ?>",
+
+            "product_detail_category": "<?= $block->escapeJsQuote($block->getAttributeLookupValue(
+                    $block->getProductGACategoryAttributeName(), 'undefined'));?>",
+            "product_detail_allow_category_cookie": "<?= $block->getProductGAAllowCategoryCookie(); ?>",
+            "product_detail_category_cookie_default": "<?= $block->escapeJsQuote($block->getProductGACategoryCookieDefault()); ?>",
+
+            "product_detail_brand": "<?= $block->escapeJsQuote($block->getAttributeLookupValue(
+                    $block->getProductGABrandAttributeName(), 'undefined'));?>",
+            "product_detail_variant": "<?= $block->escapeJsQuote($block->getAttributeLookupValue(
+                    $block->getProductGAVariantAttributeName()));?>",
+
+            "product_detail_extras": "<?= $block->escapeJsQuote($block->getMultipleAttributeValues()); ?>"
+        }
+    }
+}
+</script>
+

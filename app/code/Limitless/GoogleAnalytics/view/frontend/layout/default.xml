@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="after.body.start">
+
+            <referenceBlock name="google.tagmanager.js">
+                <action method="setTemplate" ifconfig="google/analytics/override_active">
+                    <argument name="template" xsi:type="string">Limitless_GoogleAnalytics::js.phtml</argument>
+                </action>
+            </referenceBlock>
+
+            <!-- This could go in above but decided to keep separate -->
+            <block class="Limitless\GoogleAnalytics\Block\CookieInterval"
+                   name="limitless_googleanalytics_cookie_interval"
+                   template="Limitless_GoogleAnalytics::cookieInterval.phtml"
+                   ifconfig="google/analytics/override_active" />
+
+        </referenceContainer>
+    </body>
+</page>

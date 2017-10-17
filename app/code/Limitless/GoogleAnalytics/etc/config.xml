@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <google>
+            <analytics>
+                <override_active>0</override_active>
+                <limitless_analytics>
+                    <general_settings>
+                        <category>reporting_category</category>
+                        <use_category_cookie>0</use_category_cookie>
+                        <empty_category_default>direct</empty_category_default>
+                        <brand>style</brand>
+                        <variant>colour</variant>
+                    </general_settings>
+                </limitless_analytics>
+            </analytics>
+        </google>
+    </default>
+</config>

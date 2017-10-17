@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="before.body.end">
+            <referenceBlock name="product_view_detail">
+                <action method="setTemplate" ifconfig="google/analytics/override_active">
+                    <argument name="template" xsi:type="string">Limitless_GoogleAnalytics::detailproduct.phtml</argument>
+                </action>
+            </referenceBlock>
+        </referenceContainer>
+    </body>
+</page>

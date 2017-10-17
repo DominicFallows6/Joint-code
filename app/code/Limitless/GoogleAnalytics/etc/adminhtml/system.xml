@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="google">
+            <group id="analytics">
+                <field id="override_active" translate="label comment" type="select" sortOrder="11" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Limitless Analytics Overrides</label>
+                    <comment>Changes to the DataLayer passed to GA</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="*/*/active">1</field>
+                    </depends>
+                </field>
+
+                <group id="limitless_analytics" translate="label" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Limitless Google Analytics Settings</label>
+                    <depends>
+                        <field id="override_active">1</field>
+                    </depends>
+
+                    <group id="general_settings" translate="label" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                        <label>General Settings</label>
+
+                        <field id="category" translate="label" type="text" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Category Attribute Key Name</label>
+                        </field>
+
+                        <field id="use_category_cookie" translate="label comment" type="select" sortOrder="9" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Use Cookie for Cateogry Tree</label>
+                            <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                            <comment>Set cookie for category</comment>
+                        </field>
+
+                        <field id="empty_category_default" translate="label comment" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Empty Category Default</label>
+                            <comment>If a product is opened directly (e.g. home page / feed) what will Analytics report</comment>
+                            <depends>
+                                <field id="use_category_cookie">1</field>
+                            </depends>
+                        </field>
+
+                        <field id="brand" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Brand Attribute Key Name</label>
+                            <comment>If attribute is not set will be passed as "undefined"</comment>
+                        </field>
+
+                        <field id="variant" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Variant Attribute Key Name</label>
+                            <comment>If attribute is not set will not be passed</comment>
+                        </field>
+
+                        <field id="extra_information" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                            <label>Extra Attributes for DataLayer</label>
+                            <comment>If attribute is not set will not be passed</comment>
+                        </field>
+                    </group>
+                </group>
+            </group>
+        </section>
+    </system>
+</config>

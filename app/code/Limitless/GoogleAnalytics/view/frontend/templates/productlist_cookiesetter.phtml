@@ -1,0 +1,13 @@
+<?php
+
+/** @var \Limitless\GoogleAnalytics\Block\ProductListCookie $block */
+?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Limitless_GoogleAnalytics/js/product_list_cookie_setter" : {
+            "category_name": "<?= $block->escapeJsQuote($block->getCategoryName()) ?>"
+        }
+    }
+}
+</script>
