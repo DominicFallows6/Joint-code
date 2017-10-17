@@ -231,6 +231,7 @@ return array (
             'Limitless_WorldpaySelectForm' => 1,
             'Limitless_InlineTranslationFix' => 1,
             'Limitless_Reports' => 1,
+            'Limitless_TrackingLink' => 1,
             'Limitless_Product_PDF' => 1,
             'Limitless_ProductOOSSortOrder' => 1,
             'Limitless_ContactUsPopUp' => 1,
