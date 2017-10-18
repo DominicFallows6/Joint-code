@@ -57,27 +57,5 @@
             </dd>
         </dl>
     <?php  endif; ?>
-    <div class="table-wrapper order-items-shipment">
-        <table class="data table table-order-items shipment" id="my-shipment-table-<?php /* @escapeNotVerified */ echo $_shipment->getId(); ?>">
-            <caption class="table-caption"><?php /* @escapeNotVerified */ echo __('Items Shipped') ?></caption>
-            <thead>
-            <tr>
-                <th class="col name"><?php /* @escapeNotVerified */ echo __('Product Name') ?></th>
-                <th class="col sku"><?php /* @escapeNotVerified */ echo __('SKU') ?></th>
-                <th class="col qty"><?php /* @escapeNotVerified */ echo __('Qty Shipped') ?></th>
-            </tr>
-            </thead>
-            <?php $_items = $_shipment->getAllItems(); ?>
-            <?php $_count = count($_items) ?>
-            <?php foreach ($_items as $_item): ?>
-                <?php if ($_item->getOrderItem()->getParentItem()) {
-                    continue;
-                } ?>
-                <tbody>
-                <?php echo $block->getItemHtml($_item) ?>
-                </tbody>
-            <?php endforeach; ?>
-        </table>
-    </div>
     <?php echo $block->getCommentsHtml($_shipment)?>
 <?php endforeach; ?>
