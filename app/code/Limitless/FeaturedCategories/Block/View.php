@@ -43,7 +43,7 @@ class View extends Template
         $base_admin_placeholder = $this->scopeConfig->getValue('catalog/placeholder/image_placeholder');
         $placeholder = $this->getViewFileUrl('Limitless_FeaturedCategories::images/placeholder.jpg');
 
-        if($base_admin_placeholder == "") {
+        if ($base_admin_placeholder == "") {
             return $placeholder;
         } else {
             return '/media/catalog/product/placeholder/' . $base_admin_placeholder;
@@ -56,6 +56,28 @@ class View extends Template
         } else {
             return  '<img src="' . $this->getProductImagePlaceholder() . '" />';
         }
+    }
+
+    private function getFeaturedSideImageHtml($value) {
+
+        if (substr($value['featured_category_image'], -1) !== '/') {
+            $desktopFeaturedSideImageUrl = $value['featured_category_image'];
+        } else {
+            $desktopFeaturedSideImageUrl = $this->getProductImagePlaceholder();
+        }
+
+        if (substr($this->getMobileFeaturedImageUrl(), -1) !== '/') {
+            $mobileFeaturedSideImageUrl = $this->getMobileFeaturedImageUrl();
+        } else {
+            $mobileFeaturedSideImageUrl = $this->getProductImagePlaceholder();
+        }
+
+        $featuredSideImageHtml = '<picture>' .
+            '<source media="(max-width: 767px)" srcset="' . $mobileFeaturedSideImageUrl . '">' .
+            '<img src="' . $desktopFeaturedSideImageUrl .'" />' .
+            '</picture>';
+
+        return $featuredSideImageHtml;
     }
 
     public function getConfig($path) {
@@ -78,22 +100,14 @@ class View extends Template
         return $this->storeManager->getStore()->getBaseUrl(UrlInterface::URL_TYPE_MEDIA) . 'featured/' . $this->getConfig('featured_five_image_mobile');
     }
 
-    public function getMobileFeaturedImageHtml() {
-        if(substr($this->getMobileFeaturedImageUrl(), -1) !== '/') {
-            return '<img class="mobile-featured" src="' . $this->getMobileFeaturedImageUrl() . '" />';
-        } else {
-            return  '<img class="mobile-featured" src="' . $this->getProductImagePlaceholder() . '" />';
-        }
-    }
-
     public function getFeaturedCategories()
     {
         $featured_html = "";
         $featured_html_side = "";
 
         foreach ($this->getFeaturedConfig() as $key => $value) {
-            if($key === 4) {
-                $image = $this->getFeaturedImageHtml($value) .  $this->getMobileFeaturedImageHtml();
+            if ($key === 4) {
+                $image = $this->getFeaturedSideImageHtml($value);
                 $featured_category = $this->buildFeaturedCategoryHtml($value, $image);
                 $featured_html_side .= $featured_category;
             } else {
@@ -103,7 +117,7 @@ class View extends Template
             }
         }
 
-        if($this->getLayoutConfig() == 'one_column') {
+        if ($this->getLayoutConfig() == 'one_column') {
             return '<div class="featured">' . $featured_html . "</div>";
         } else {
             return '<div class="featured">' .  $featured_html . "</div>" . '<div class="featured-side">' . $featured_html_side . '</div>';
@@ -116,13 +130,13 @@ class View extends Template
 
         $callToAction = $this->getCtaText();
 
-        if($value['featured_sub_title'] != "") {
+        if ($value['featured_sub_title'] != "") {
             $featured_sub_title = '<span class="sub-title">' . $value['featured_sub_title'] . '</span>';
         } else {
             $featured_sub_title = "";
         }
 
-        if($callToAction !='') {
+        if ($callToAction !='') {
             $featured_cta_active = "cta-active";
             $cta_html = '<span class="cta action primary">' . $callToAction . '</span>';
         } else {
@@ -130,7 +144,7 @@ class View extends Template
             $featured_cta_active = "";
         }
 
-        if($value['featured_category'] != "") {
+        if ($value['featured_category'] != "") {
             $featured_title = '<div class="featured-text '.$featured_cta_active.'">' .
                 '<div>' .
                     '<span class="title">' .
@@ -144,7 +158,7 @@ class View extends Template
         }
 
 
-        if($value['featured_enabled'] == true) {
+        if ($value['featured_enabled'] == true) {
             $featured_category = '<div class="featured-category">' .
                 '<a href="' . $value['featured_category_url'] . '">' . $image . $featured_title.'</a>' .
             '</div>';

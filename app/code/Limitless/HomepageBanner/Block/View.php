@@ -69,8 +69,16 @@ class View extends Template
 
     public function getBanners()
     {
-        return '<img class="desktop-hp-banner" src="' . $this->getDesktopHomepageBanner() . '" alt="' . $this->getImgAltText() . '" />
-        <img class="mobile-hp-banner" src="' . $this->getMobileHomepageBanner() . '" alt="' . $this->getImgAltText() . '" />';
+        $mobileHomepageBanner =  $this->getMobileHomepageBanner();
+        $desktopHomepageBanner = $this->getDesktopHomepageBanner();
+        $altText = $this->getImgAltText();
+
+        $homePageBanner = '<picture>' .
+                    '<source media="(max-width: 480px)" srcset="' . $mobileHomepageBanner . '">' .
+                    '<img class="hp-banner" src="' . $desktopHomepageBanner . '" alt="' . $altText . '"/>' .
+                '</picture>';
+
+        return $homePageBanner;
     }
 
     public function getBannerWithLinkOrWithoutLink()
