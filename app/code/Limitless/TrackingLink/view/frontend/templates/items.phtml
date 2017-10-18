@@ -45,7 +45,7 @@
                 $i = 1;
                 $_size = $tracks->count();
                 foreach ($tracks as $track): ?>
-                   <? $trackNumber = trim($track->getNumber()); ?>
+                   <?php $trackNumber = trim($track->getNumber()); ?>
                 <?php if (filter_var($trackNumber, FILTER_VALIDATE_URL)): ?>
                         <br><a href="<?=__($block->escapeHtml($trackNumber))?>" target="_blank"><?=__($block->escapeHtml($trackNumber))?></a>
                 <?php else: ?>
