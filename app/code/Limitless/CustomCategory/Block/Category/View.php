@@ -203,7 +203,11 @@ class View extends ViewParent
             $paramsToAdd = $this->removeUnwantedParams($this->request->getParams());
 
             //build the full URL
-            $fullyQualifiedUrl = $strippedURL.'?'.http_build_query($paramsToAdd);
+            if (!empty($paramsToAdd)) {
+                $fullyQualifiedUrl = $strippedURL.'?'.http_build_query($paramsToAdd);
+            } else {
+                $fullyQualifiedUrl = $strippedURL;
+            }
 
             return $fullyQualifiedUrl;
 
@@ -254,7 +258,7 @@ class View extends ViewParent
                 $this->pageConfig->setRobots('index, follow');
                 $categoryHeading = $this->getCustomHeading();
             } elseif (!empty($usedParams)) {
-                $this->pageConfig->setRobots('no-index, follow');
+                $this->pageConfig->setRobots('noindex, follow');
             }
 
             if ($pageMainTitle && $categoryHeading) {
