@@ -7,18 +7,6 @@ define(["jquery","jquery/validate"], function($) {
         var btu = $('input[name="btu_total"]');
         var watts = $('input[name="watts_total"]');
 
-        function addCommas(nStr) {
-            nStr += '';
-            var x = nStr.split('.');
-            var x1 = x[0];
-            var x2 = x.length > 1 ? '.' + x[1] : '';
-            var rgx = /(\d+)(\d{3})/;
-            while (rgx.test(x1)) {
-                x1 = x1.replace(rgx, '$1' + ',' + '$2');
-            }
-            return x1 + x2;
-        }
-
         function buildFilteredLink() {
 
             var suitableProductsLink = $('.suitable-products > a');
@@ -103,8 +91,7 @@ define(["jquery","jquery/validate"], function($) {
                     btu.val(Math.floor(this.countNum));
                 },
                 complete: function () {
-                    var commas = addCommas(btuTotal);
-                    btu.val(commas);
+                    btu.val(btuTotal);
                 }
             });
 
@@ -118,8 +105,7 @@ define(["jquery","jquery/validate"], function($) {
                     }
                 },
                 complete: function () {
-                    var commas = addCommas(wattsTotal);
-                    watts.val(commas);
+                    watts.val(wattsTotal);
                     buildFilteredLink();
                 }
             });
@@ -139,10 +125,10 @@ define(["jquery","jquery/validate"], function($) {
             var floorsize = 0;
             var category = '';
 
-            var height = parseFloat(document.btuForm.height.value);
-            var width = parseFloat(document.btuForm.width.value);
-            var depth = parseFloat(document.btuForm.depth.value);
-            var windarea = parseFloat(document.btuForm.windarea.value);
+            var height = parseFloat(document.btuForm.height.value.replace(',', '.'));
+            var width = parseFloat(document.btuForm.width.value.replace(',', '.'));
+            var depth = parseFloat(document.btuForm.depth.value.replace(',', '.'));
+            var windarea = parseFloat(document.btuForm.windarea.value.replace(',', '.'));
 
             if (document.btuForm.units[1].checked) {
                 height *= 0.3048;
@@ -210,23 +196,31 @@ define(["jquery","jquery/validate"], function($) {
 
         function calculateBtu() {
 
+            // Allow commas as well as dots for number validation
+            $.extend($.validator.methods, {
+                number: function(value, element) {
+                    return this.optional(element)
+                        || /^-?(?:\d+|\d{1,3}(?:\.\d{3})+)(?:[,.]\d+)?$/.test(value);
+                }
+            });
+
             $("#btuForm").validate({
                 rules: {
                     width: {
                         required: true,
-                        integer: true
+                        number: true
                     },
                     height: {
                         required: true,
-                        integer: true
+                        number: true
                     },
                     depth: {
                         required: true,
-                        integer: true
+                        number: true
                     },
                     windarea: {
                         required: true,
-                        integer: true
+                        number: true
                     },
                     roomtype: "required",
                     belowroom: "required",

@@ -1,9 +1,9 @@
 "Please enter your information below","Si prega di inserire le informazioni di seguito richieste"
 "Metric (metres)","Metri"
 "Room Dimensions","Dimensioni della stanza"
-"Width","Larghezza"
-"Height","Altezza"
-"Length","Lunghezza"
+"Width","Larghezza (m)"
+"Height","Altezza (m)"
+"Length","Lunghezza (m)"
 "Window Area X²","Superficie della finestra (metri quadrati)"
 "Please enter window area","Si prega di indicare la superficie della finestra"
 "Room Information","Dettagli della stanza",

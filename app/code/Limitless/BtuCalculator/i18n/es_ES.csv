@@ -1,9 +1,9 @@
 "Please enter your information below","Rogamos introduzca su información a continuación"
 "Metric (metres)","Metros"
 "Room Dimensions","Dimensiones de la habitación"
-"Width","Anchura"
-"Height","Altura"
-"Length","Largura"
+"Width","Anchura (m)"
+"Height","Altura (m)"
+"Length","Largura (m)"
 "Window Area X²","Área de la ventana (en Metros²)"
 "Please enter window area","Rogamos indique el área de la ventana"
 "Room Information","Detalles de estancia",
