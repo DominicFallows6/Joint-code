@@ -291,6 +291,10 @@ define(
                     return economyRates[0] || null;
                 };
 
+                this.getCurrencySymbol = function () {
+                    return window.checkoutConfig.quoteData.store_currency_code;
+                };
+
                 this.economyRate = ko.computed(function () {
                     var economy = findEconomyRate();
                     return economy ? economy : dummyRate;

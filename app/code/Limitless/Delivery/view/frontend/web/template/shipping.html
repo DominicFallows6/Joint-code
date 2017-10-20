@@ -82,7 +82,7 @@
                                 </div>
                                 <div class="select-economy">
                                     <span data-bind="
-                                        text: economyRate().amount.toLocaleString(siteLocale, { style: 'currency', currency: 'EUR' }),
+                                        text: economyRate().amount.toLocaleString(siteLocale, { style: 'currency', currency: getCurrencySymbol() }),
                                         visible: economyRate().method_title.length > 0"
                                     >4,99 €</span>
                                     <input type="radio"
@@ -120,7 +120,7 @@
                                     options: mobileDeliveryDatepickerWindow(),
                                     optionsCaption: selectDeliveryDateTranslate(),
                                     optionsText: function(item) {
-                                        return item.date.toLocaleString(siteLocale, {weekday: 'short'}) + ' ' + item.date.getDate() + ' ' + item.from_price.toLocaleString(siteLocale, { style: 'currency', currency: 'EUR' });
+                                        return item.date.toLocaleString(siteLocale, {weekday: 'short'}) + ' ' + item.date.getDate() + ' ' + item.from_price.toLocaleString(siteLocale, { style: 'currency', currency: getCurrencySymbol() });
                                     },
                                     css: {'default-select-value': isDefaultSelected},
                                     value: selectedRates,
@@ -137,7 +137,7 @@
                                 <option value=""><!-- ko i18n: 'Select a delivery time...'--><!-- /ko --></option>
                                 <!-- ko foreach: mobileDeliveryRatesForDay -->
                                 <option data-bind="
-                                text: carrier_title + ' ' + method_title + ' ' + amount.toLocaleString($parent.siteLocale, { style: 'currency', currency: 'EUR' }),
+                                text: carrier_title + ' ' + method_title + ' ' + amount.toLocaleString($parent.siteLocale, { style: 'currency', currency: $parent.getCurrencySymbol() }),
                                 value: carrier_code + '_' + method_code,
                                 attr: {
                                     'id': 's_method_' + carrier_code + '_' + method_code,
@@ -171,7 +171,7 @@
                                         <div class="availability" data-bind="visible: rates.length > 1"><!-- ko i18n: 'From'--><!-- /ko --></div>
                                         <div class="availability" data-bind="visible: rates.length === 1">&nbsp;</div>
                                         <div class="availability" data-bind="visible: rates.length === 0"><!-- ko i18n: 'Not available'--><!-- /ko --></div>
-                                        <div class="date-price" data-bind="visible: rates.length > 0, text: from_price.toLocaleString($parent.siteLocale, { style: 'currency', currency: 'EUR' })">9,99 €</div>
+                                        <div class="date-price" data-bind="visible: rates.length > 0, text: from_price.toLocaleString($parent.siteLocale, { style: 'currency', currency: $parent.getCurrencySymbol() })">9,99 €</div>
                                     </li>
                                 </ul>
                             </div>
@@ -182,7 +182,7 @@
                                     <span class="carrier-title" data-bind="text: carrier_title">Anytime Delivery</span>
                                     <span class="method_title" data-bind="text: method_title">7:00am - 6:00pm</span>
                                     <div>
-                                        <span class="del-amount" data-bind="text: amount.toLocaleString($parent.siteLocale, { style: 'currency', currency: 'EUR' }), visible: method_title.length > 0">9,99 €</span>
+                                        <span class="del-amount" data-bind="text: amount.toLocaleString($parent.siteLocale, { style: 'currency', currency: $parent.getCurrencySymbol() }), visible: method_title.length > 0">9,99 €</span>
                                         <input type="radio"
                                                data-bind="
                                                 visible: method_code !== '',
