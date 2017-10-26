@@ -2,7 +2,7 @@
     "name": "magento/project-enterprise-edition",
     "description": "eCommerce Platform for Growth (Enterprise Edition)",
     "type": "project",
-    "version": "2.1.0",
+    "version": "2.1.9",
     "license": [
         "proprietary"
     ],
@@ -13,7 +13,7 @@
         }
     ],
     "require": {
-        "magento/product-enterprise-edition": "2.1.5",
+        "magento/product-enterprise-edition": "2.1.9",
         "composer/composer": "@alpha",
         "worldpay/magento2-module-payments": "^2.0",
         "pcapredict/tag": "^2.0.1"

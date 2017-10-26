@@ -102,7 +102,6 @@ class CardModify extends WorldpayPayments {
             $orderSender,
             $sessionQuote,
             $wpLogger,
-            $order,
             $resource,
             $resourceCollection,
             $data
