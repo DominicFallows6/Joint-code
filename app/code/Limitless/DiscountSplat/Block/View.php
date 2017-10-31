@@ -26,6 +26,7 @@ class View extends Template
     public function getSplatDiscount()
     {
         $percentage = "";
+        $originalPrice = "";
         $product = $this->registry->registry('product');
         $specialPrice = $product->getPriceInfo()->getPrice('final_price')->getAmount()->getBaseAmount();
         $productType = $product->getTypeId();
@@ -39,7 +40,9 @@ class View extends Template
             foreach ($configurableProducts as $value) {
                 $configurablePrices[] = $value->getPriceInfo()->getPrice('regular_price')->getAmount()->getBaseAmount();
             }
-            $originalPrice = min($configurablePrices);
+            if (count($configurablePrices) > 0) {
+                $originalPrice = min($configurablePrices);
+            }
         } else {
             $originalPrice = $product->getPriceInfo()->getPrice('regular_price')->getAmount()->getBaseAmount();
         }
