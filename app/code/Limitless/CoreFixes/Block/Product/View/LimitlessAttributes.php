@@ -18,8 +18,6 @@ class LimitlessAttributes extends Magento2Attributes
     public function getAdditionalData(array $excludeAttr = [])
     {
         $data = [];
-
-
         $product = $this->getProduct();
         $attributes = $product->getAttributes();
         foreach ($attributes as $attribute) {

@@ -104,6 +104,7 @@ return array (
             'Magento_Deploy' => 1,
             'Magento_Developer' => 1,
             'Magento_Dhl' => 1,
+            'Limitless_CoreFixes' => 1,
             'Limitless_ProductDefaultVisibility' => 1,
             'Magento_ProductAlert' => 1,
             'Magento_ImportExport' => 1,
