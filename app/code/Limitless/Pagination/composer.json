@@ -1,0 +1,20 @@
+{
+  "name": "limitless/pagination",
+  "description": "Add Pagination to Product pages!",
+  "require": {
+    "php": "~7.0.0",
+//    "limitless/module-seo": "1.0.0"
+  },
+  "type": "magento2-module",
+  "license": [
+    "Commercial"
+  ],
+  "autoload": {
+    "files": [
+      "registration.php"
+    ],
+    "psr-4": {
+      "Limitless\\Pagination\\": ""
+    }
+  }
+}

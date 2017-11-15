@@ -18,7 +18,7 @@ git clean -x -f -d --exclude="limitless" --exclude=".idea" ${MAGENTO}
 
 # Reinstall magento core from composer
 echo "Reinstalling Magento2"
-(cd ${MAGENTO} && composer install)
+(cd ${MAGENTO} && /usr/local/bin/composer.phar install)
 
 # Core bug fix
 echo "Hack the Core to fix a deployment issues"
