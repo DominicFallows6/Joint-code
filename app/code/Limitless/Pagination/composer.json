@@ -3,11 +3,11 @@
   "description": "Add Pagination to Product pages!",
   "require": {
     "php": "~7.0.0",
-//    "limitless/module-seo": "1.0.0"
+    "magento/module-catalog": "101.0.*"
   },
   "type": "magento2-module",
   "license": [
-    "Commercial"
+    "proprietary"
   ],
   "autoload": {
     "files": [
